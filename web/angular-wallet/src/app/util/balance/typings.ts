@@ -5,6 +5,7 @@ export interface BalanceHistoryItem {
   readonly timestamp: number;
   readonly transactionId: string;
   readonly balance: number;
+  readonly relativeAmount: number;
   readonly transaction: Transaction;
 }
 

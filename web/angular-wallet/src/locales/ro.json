@@ -549,5 +549,6 @@
   "account_not_verified": "Contul nu a fost găsit în rețea. Ai ales rețeaua corectă? Este expresia corectă de recuperare?",
   "account_verified": "Cont găsit în rețea",
   "error_storage_quota_exceeded": "Cota de stocare pe partea clientului a fost depășită. Încercați să eliminați unul sau mai multe conturi pentru a elibera spațiu.",
-  "you_own_no_token": "Încă nu ai niciun token"
+  "you_own_no_token": "Încă nu ai niciun token",
+  "chart_balance_change": "Modificarea soldului pe perioada afișată"
 }

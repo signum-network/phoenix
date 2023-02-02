@@ -10,7 +10,7 @@ import semver from 'semver';
 import { StoreService } from "../../store/store.service";
 import { UnsubscribeOnDestroy } from "../../util/UnsubscribeOnDestroy";
 import { takeUntil } from "rxjs/operators";
-import { I18nService } from "../../layout/components/i18n/i18n.service";
+import { I18nService } from "../../shared/services/i18n.service";
 
 @Component({
   selector: 'app-peers',

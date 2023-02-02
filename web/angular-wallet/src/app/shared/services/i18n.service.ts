@@ -1,10 +1,8 @@
 import {Injectable, ApplicationRef} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
-import {Subject, Subscription} from 'rxjs';
-import {constants} from '../../../constants';
+import {constants} from '../../constants';
 import {StoreService} from 'app/store/store.service';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 export interface Language {
   name: string;

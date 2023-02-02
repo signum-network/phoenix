@@ -11,7 +11,6 @@ import { ChartsModule } from 'ng2-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import { AccountResolver } from 'app/shared/resolvers/account.resolver';
 
@@ -42,7 +41,7 @@ import { BlockinfoComponent } from './widgets/blockinfo/blockinfo.component';
 import { MiningpoolComponent } from './widgets/miningpool/miningpool.component';
 import {
   AccountProtectionWarningComponent
-} from "./widgets/account-protection-warning/account-protection-warning.component";
+} from './widgets/account-protection-warning/account-protection-warning.component';
 
 const routes: Routes = [
   {
@@ -89,7 +88,6 @@ const routes: Routes = [
 
     FuseSharedModule,
     FuseWidgetModule,
-    I18nModule,
     TransactionTableModule,
     MatCheckboxModule,
     AppSharedModule,

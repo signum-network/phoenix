@@ -5,7 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {RecipientAmountCsvParser} from './recipientAmountCsvParser';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {I18nService} from '../../../shared/services/i18n.service';
 
 const DelimiterMap = {
   comma: ',',

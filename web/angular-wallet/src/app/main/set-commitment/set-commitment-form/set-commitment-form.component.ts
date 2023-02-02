@@ -3,7 +3,7 @@ import { SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signu
 import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';

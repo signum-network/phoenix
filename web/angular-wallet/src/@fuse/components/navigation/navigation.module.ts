@@ -4,26 +4,22 @@ import { RouterModule } from '@angular/router';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { TranslateModule } from '@ngx-translate/core';
-
 import { FuseNavigationComponent } from './navigation.component';
 import { FuseNavVerticalItemComponent } from './vertical/item/item.component';
 import { FuseNavVerticalCollapsableComponent } from './vertical/collapsable/collapsable.component';
 import { FuseNavVerticalGroupComponent } from './vertical/group/group.component';
 import { FuseNavHorizontalItemComponent } from './horizontal/item/item.component';
 import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/collapsable.component';
+import { AppSharedModule } from 'app/shared/shared.module';
 
-import { I18nModule } from '../../../app/layout/components/i18n/i18n.module'
 
 @NgModule({
     imports     : [
+        AppSharedModule,
         CommonModule,
         RouterModule,
-
         MatIconModule,
         MatRippleModule,
-
-        I18nModule
     ],
     exports     : [
         FuseNavigationComponent

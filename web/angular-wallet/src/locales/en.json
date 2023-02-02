@@ -549,5 +549,6 @@
   "select_account": "Select",
   "account_verified": "Account found on network",
   "account_not_verified": "Account not found on network. Did you choose the correct network? Is it the correct recovery phrase?",
-  "you_own_no_token": "You don't have any tokens yet"
+  "you_own_no_token": "You don't have any tokens yet",
+  "chart_balance_change": "Balance change over displayed period"
 }

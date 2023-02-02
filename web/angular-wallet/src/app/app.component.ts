@@ -8,7 +8,7 @@ import {parseDeeplink} from '@signumjs/util';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
-import {I18nService} from './layout/components/i18n/i18n.service';
+import {I18nService} from './shared/services/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {
   CertificationInfo,

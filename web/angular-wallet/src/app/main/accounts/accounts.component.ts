@@ -9,7 +9,7 @@ import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
-import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { I18nService } from '../../shared/services/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { Address } from '@signumjs/core';
 import { DescriptorData } from '@signumjs/standards';

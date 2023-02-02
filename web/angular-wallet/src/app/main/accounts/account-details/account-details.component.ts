@@ -17,7 +17,7 @@ import { NetworkService } from 'app/network/network.service';
 import { AppService } from 'app/app.service';
 import { interval, Subscription } from 'rxjs';
 import { constants } from 'app/constants';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 
 const ColumnsQuery = {
   xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],

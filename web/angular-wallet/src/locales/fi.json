@@ -549,5 +549,6 @@
   "account_not_verified": "Tiliä ei löydy verkosta. Valitsitko oikean verkon? Onko se oikea palautuslause?",
   "account_verified": "Tili löydetty verkosta",
   "error_storage_quota_exceeded": "Asiakaspuolen tallennuskiintiö ylitettiin. Yritä vapauttaa tilaa poistamalla yksi tai useampi tili.",
-  "you_own_no_token": "Sinulla ei ole vielä tunnuksia"
+  "you_own_no_token": "Sinulla ei ole vielä tunnuksia",
+  "chart_balance_change": "Saldon muutos näytetyn ajanjakson aikana"
 }

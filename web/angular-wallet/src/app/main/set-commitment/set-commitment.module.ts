@@ -14,7 +14,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SetupModule} from 'app/setup/setup.module';
 import {NotifierModule} from 'angular-notifier';
 import {NgxMaskModule} from 'ngx-mask';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
@@ -50,7 +49,6 @@ const routes = [
         ComponentsModule,
         FormsModule,
         FuseSharedModule,
-        I18nModule,
         LayoutModule,
         MatButtonModule,
         MatCheckboxModule,

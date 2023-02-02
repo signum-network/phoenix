@@ -549,5 +549,6 @@
   "account_not_verified": "Akun tidak ditemukan di jaringan. Apakah Anda memilih jaringan yang benar? Apakah ini frase pemulihan yang benar?",
   "account_verified": "Akun ditemukan di jaringan",
   "error_storage_quota_exceeded": "Kuota penyimpanan sisi klien terlampaui. Coba hapus satu atau beberapa akun untuk mengosongkan sebagian ruang.",
-  "you_own_no_token": "Anda belum memiliki token apa pun"
+  "you_own_no_token": "Anda belum memiliki token apa pun",
+  "chart_balance_change": "Perubahan saldo selama periode yang ditampilkan"
 }

@@ -12,9 +12,8 @@ import { Amount } from '@signumjs/util';
 import { constants } from '../../../constants';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../../layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { StoreService } from '../../../store/store.service';
-import { takeUntil } from 'rxjs/operators';
 import { getBalancesFromAccount, AccountBalances } from 'app/util/balance';
 import {
   Recipient,

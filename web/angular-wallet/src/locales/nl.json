@@ -549,5 +549,6 @@
   "account_not_verified": "Account niet gevonden op netwerk. Heb je het juiste netwerk gekozen? Is het de juiste herstelzin?",
   "account_verified": "Account gevonden op netwerk",
   "error_storage_quota_exceeded": "Opslagquotum aan clientzijde is overschreden. Probeer een of meer accounts te verwijderen om ruimte vrij te maken.",
-  "you_own_no_token": "Je hebt nog geen tokens"
+  "you_own_no_token": "Je hebt nog geen tokens",
+  "chart_balance_change": "Saldoverandering over weergegeven periode"
 }

@@ -4,7 +4,7 @@ import semver from 'semver';
 import { Settings } from '../../store/settings';
 import { constants } from '../../constants';
 import { environment } from '../../../environments/environment.hmr';
-import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { I18nService } from '../../shared/services/i18n.service';
 import { StoreService } from '../../store/store.service';
 import { ActivatedRoute } from '@angular/router';
 import { LedgerClientFactory } from '@signumjs/core';

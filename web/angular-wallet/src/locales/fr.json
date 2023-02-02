@@ -549,5 +549,6 @@
   "account_not_verified": "Compte introuvable sur le réseau. Avez-vous choisi le bon réseau ? Est-ce la bonne phrase de récupération ?",
   "account_verified": "Compte trouvé sur le réseau",
   "error_storage_quota_exceeded": "Le quota de stockage côté client a été dépassé. Essayez de supprimer un ou plusieurs comptes pour libérer de l'espace.",
-  "you_own_no_token": "Vous n'avez pas encore de jetons"
+  "you_own_no_token": "Vous n'avez pas encore de jetons",
+  "chart_balance_change": "Variation du solde sur la période affichée"
 }

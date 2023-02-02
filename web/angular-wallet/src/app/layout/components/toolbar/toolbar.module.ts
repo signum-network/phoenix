@@ -10,9 +10,9 @@ import { FuseSearchBarModule, FuseShortcutsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
-import {I18nModule} from '../i18n/i18n.module';
 import {MatDividerModule} from '@angular/material/divider';
 import { AccountSelectorItemComponent } from './account-selector-item/account-selector-item.component';
+import { AppSharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +20,7 @@ import { AccountSelectorItemComponent } from './account-selector-item/account-se
         AccountSelectorItemComponent
     ],
   imports: [
+    AppSharedModule,
     RouterModule,
     MatButtonModule,
     MatIconModule,
@@ -29,7 +30,6 @@ import { AccountSelectorItemComponent } from './account-selector-item/account-se
     FuseSharedModule,
     FuseSearchBarModule,
     FuseShortcutsModule,
-    I18nModule,
     MatDividerModule
   ],
     exports     : [

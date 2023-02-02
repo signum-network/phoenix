@@ -3,16 +3,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
+import { AppSharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     declarations: [
         FuseConfirmDialogComponent
     ],
   imports: [
+    AppSharedModule,
     MatDialogModule,
     MatButtonModule,
-    I18nModule
   ],
     entryComponents: [
         FuseConfirmDialogComponent

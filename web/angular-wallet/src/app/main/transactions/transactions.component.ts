@@ -27,7 +27,7 @@ import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
 import { takeUntil } from 'rxjs/operators';
 import { UtilService } from 'app/util.service';
 import { StoreService } from 'app/store/store.service';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { isSelf } from 'app/util/transaction/isSelf';

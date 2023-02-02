@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {I18nService} from '../../layout/components/i18n/i18n.service';
+import {I18nService} from './i18n.service';
 import {NotifierService} from 'angular-notifier';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 

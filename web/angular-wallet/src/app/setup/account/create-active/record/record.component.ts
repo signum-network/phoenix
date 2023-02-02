@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { CreateService } from '../../create.service';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../../../layout/components/i18n/i18n.service';
+import { I18nService } from '../../../../shared/services/i18n.service';
 import { ExceptionHandlerService } from '../../../../shared/services/exceptionhandler.service';
 import { AccountService } from '../../account.service';
 

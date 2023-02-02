@@ -20,7 +20,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { AddAliasComponent } from './add-alias/add-alias.component';
@@ -160,7 +159,6 @@ const routes = [
     MatButtonModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    I18nModule,
     MatDialogModule,
     RouterModule.forChild(routes),
     ComponentsModule,

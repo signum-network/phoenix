@@ -7,7 +7,7 @@ import {FuseMatchMediaService} from '@fuse/services/match-media.service';
 import {FuseNavigationService} from '@fuse/components/navigation/navigation.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {MediaObserver} from '@angular/flex-layout';
-import {I18nService} from '../../../app/layout/components/i18n/i18n.service';
+import {I18nService} from '../../../app/shared/services/i18n.service';
 import { WalletAccount } from '../../../app/util/WalletAccount';
 import { StoreService } from "../../../app/store/store.service";
 

@@ -26,7 +26,7 @@ import { Chat, MessagesService } from '../messages.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { NotifierService } from 'angular-notifier';
 import { UtilService } from 'app/util.service';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
 import { isKeyDecryptionError } from 'app/util/exceptions/isKeyDecryptionError';
 import { NetworkService } from '../../../network/network.service';

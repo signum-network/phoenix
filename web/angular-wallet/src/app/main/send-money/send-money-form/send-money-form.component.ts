@@ -3,7 +3,7 @@ import { SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@sign
 import { Amount, convertBase64StringToString, CurrencySymbol } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';

@@ -18,7 +18,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {RouterModule} from '@angular/router';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {NotifierModule} from 'angular-notifier';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {AccountDetailsComponent} from './account-details/account-details.component';
@@ -69,7 +68,6 @@ const routes = [
     MatTooltipModule,
     MatDialogModule,
     NotifierModule,
-    I18nModule,
     RouterModule.forChild(routes),
     TransactionTableModule,
     AppSharedModule,

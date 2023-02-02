@@ -9,7 +9,7 @@ import { interval, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { LedgerService } from 'app/ledger.service';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { I18nService } from './i18n.service';
 
 @Injectable({
   providedIn: 'root'

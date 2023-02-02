@@ -8,13 +8,14 @@ import { FuseDirectivesModule } from '@fuse/directives/directives';
 import { FusePipesModule } from '@fuse/pipes/pipes.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { RouterModule } from '@angular/router';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { AppSharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     imports  : [
+        AppSharedModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -26,7 +27,6 @@ import { MatInputModule } from '@angular/material/input';
         MatInputModule,
         MatIconModule,
         MatButtonModule,
-        I18nModule,
         RouterModule.forChild([])
     ],
     exports  : [

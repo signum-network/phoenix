@@ -549,5 +549,6 @@
   "account_not_verified": "Účet nebyl v síti nalezen. Vybrali jste správnou síť? Je to správná fráze pro obnovení?",
   "account_verified": "Účet nalezen v síti",
   "error_storage_quota_exceeded": "Kvóta úložiště na straně klienta byla překročena. Zkuste odebrat jeden nebo více účtů, abyste uvolnili místo.",
-  "you_own_no_token": "Zatím nemáte žádné tokeny"
+  "you_own_no_token": "Zatím nemáte žádné tokeny",
+  "chart_balance_change": "Změna zůstatku za zobrazené období"
 }

@@ -18,7 +18,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { environment } from 'environments/environment';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { NotifierService } from 'angular-notifier';
 
 import hashicon from 'hashicon';

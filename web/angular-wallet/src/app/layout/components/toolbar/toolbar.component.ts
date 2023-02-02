@@ -5,7 +5,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
-import { I18nService } from '../i18n/i18n.service';
+import { I18nService } from '../../../shared/services/i18n.service';
 import { constants } from 'app/constants';
 import { StoreService } from 'app/store/store.service';
 import { Router } from '@angular/router';

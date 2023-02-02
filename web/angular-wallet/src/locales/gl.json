@@ -549,5 +549,6 @@
   "account_not_verified": "Non se atopou a conta na rede. Escolleches a rede correcta? É a frase de recuperación correcta?",
   "account_verified": "Atopouse unha conta na rede",
   "error_storage_quota_exceeded": "Superouse a cota de almacenamento do cliente. Proba a eliminar unha ou máis contas para liberar espazo.",
-  "you_own_no_token": "Aínda non tes ningunha ficha"
+  "you_own_no_token": "Aínda non tes ningunha ficha",
+  "chart_balance_change": "Cambio de saldo durante o período mostrado"
 }

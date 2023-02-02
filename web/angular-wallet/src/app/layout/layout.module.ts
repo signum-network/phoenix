@@ -6,7 +6,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {I18nModule} from './components/i18n/i18n.module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -19,7 +18,6 @@ import {AppSharedModule} from '../shared/shared.module';
     Ng5SliderModule,
     MatTooltipModule,
     MatIconModule,
-    I18nModule,
     FormsModule,
     MatFormFieldModule,
     CommonModule,

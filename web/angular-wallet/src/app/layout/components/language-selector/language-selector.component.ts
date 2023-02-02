@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {constants} from '../../../../constants';
-import {I18nService} from '../i18n.service';
+import {constants} from '../../../constants';
+import {I18nService} from '../../../shared/services/i18n.service';
 
 @Component({
   selector: 'burst-language-selector',

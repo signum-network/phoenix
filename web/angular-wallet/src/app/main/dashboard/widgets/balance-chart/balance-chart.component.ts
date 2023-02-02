@@ -1,6 +1,6 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Amount, ChainTime} from '@signumjs/util';
+import { Amount, ChainTime, CurrencySymbol } from '@signumjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {takeUntil} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
@@ -11,9 +11,14 @@ import {
   getBalancesFromAccount
 } from 'app/util/balance';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {I18nService} from 'app/shared/services/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { StoreService } from "../../../../store/store.service";
+import { StoreService } from 'app/store/store.service';
+
+interface BalanceChange {
+  signa: number;
+  percent: number;
+}
 
 @Component({
   selector: 'app-balance-chart',
@@ -21,6 +26,13 @@ import { StoreService } from "../../../../store/store.service";
   styleUrls: ['./balance-chart.component.scss']
 })
 export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
+
+  constructor(private router: Router,
+              private storeService: StoreService,
+              private i18nService: I18nService,
+              private breakpointObserver: BreakpointObserver) {
+    super();
+  }
 
   @Input() public account: WalletAccount;
   @Input() public priceBtc: number;
@@ -33,17 +45,31 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   transactionCount = 50;
   accountBalances: AccountBalances;
   locale: string;
+  balanceChange: BalanceChange = {
+    percent: 0,
+    signa: 0,
+  };
 
   private balanceHistory: BalanceHistoryItem[];
   private isMobile = false;
 
   private unsubscriber = takeUntil(this.unsubscribeAll);
 
-  constructor(private router: Router,
-              private storeService: StoreService,
-              private i18nService: I18nService,
-              private breakpointObserver: BreakpointObserver) {
-    super();
+
+  private static getBalanceChange(history: BalanceHistoryItem[]): BalanceChange {
+    if (!history.length){
+      return {
+        signa: 0,
+        percent: 0,
+      };
+    }
+
+    const first = history[0].balance;
+    const last = history[history.length - 1].balance;
+    return {
+      signa: last - first,
+      percent: first === 0 ? 0 : (((last / first) - 1) * 100),
+    };
   }
 
   ngOnInit(): void {
@@ -73,7 +99,6 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   ngOnChanges(changes: SimpleChanges): void {
     this.updateChart();
   }
-
   private toDateString(date: Date): string {
     return formatDate(date, 'medium', this.i18nService.currentLanguage.code);
   }
@@ -88,12 +113,12 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
       transactions).reverse();
 
     const chartData = this.balanceHistory.map(item => parseFloat(item.balance.toFixed(2)));
-    const max = Math.max(...chartData);
-    const min = Math.min(...chartData);
     this.firstDate = this.balanceHistory.length &&
       this.balanceHistory[0].timestamp &&
       ChainTime.fromChainTimestamp(this.balanceHistory[0].timestamp).getDate() ||
       new Date();
+
+    this.balanceChange = BalanceChartComponent.getBalanceChange(this.balanceHistory);
 
     this.chart = {
       datasets: [
@@ -103,8 +128,13 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
           fill: 'start'
         }
       ],
-      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(ChainTime.fromChainTimestamp(timestamp).getDate()) ||
-        this.toDateString(new Date())),
+      labels: this.balanceHistory.map(
+        ({timestamp, relativeAmount}) => {
+          const rawDate = timestamp ? ChainTime.fromChainTimestamp(timestamp).getDate() : new Date();
+          const formattedDate = this.toDateString(rawDate);
+          const change = `${CurrencySymbol} ${relativeAmount < 0 ? '-' : '+'}${relativeAmount.toFixed(4)}`;
+          return `${formattedDate} (${change})`;
+        }),
       colors: [
         {
           borderColor: '#0099ff',

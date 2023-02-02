@@ -8,8 +8,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { NavbarVerticalStyle1Component } from 'app/layout/components/navbar/vertical/style-1/style-1.component';
 import { RouterModule } from '@angular/router';
-import {I18nModule} from '../../../i18n/i18n.module';
-import {AppSharedModule} from '../../../../../shared/shared.module';
+import {AppSharedModule} from 'app/shared/shared.module';
 import {MatTooltipModule} from '@angular/material';
 
 @NgModule({
@@ -25,7 +24,6 @@ import {MatTooltipModule} from '@angular/material';
 
         FuseSharedModule,
         FuseNavigationModule,
-        I18nModule,
         AppSharedModule,
         MatTooltipModule
     ],

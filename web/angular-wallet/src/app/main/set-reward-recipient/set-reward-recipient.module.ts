@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SetupModule } from 'app/setup/setup.module';
 import { NotifierModule } from 'angular-notifier';
 import { NgxMaskModule } from 'ngx-mask';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
@@ -22,7 +21,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {ComponentsModule} from '../../components/components.module';
-import { AppSharedModule } from "../../shared/shared.module";
+import { AppSharedModule } from "app/shared/shared.module";
 
 const routes = [
   {
@@ -47,7 +46,6 @@ const routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     LayoutModule,
     MatButtonModule,
     MatCheckboxModule,

@@ -25,7 +25,6 @@ import {MessageLeftSidenavComponent} from './sidenavs/left/left.component';
 import {MessageRightSidenavComponent} from './sidenavs/right/right.component';
 import {MessageOptionsSidenavComponent} from './sidenavs/right/options/options.component';
 import {LoginGuard} from 'app/login/login-guard.service';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {SendMoneyModule} from '../send-money/send-money.module';
@@ -65,7 +64,6 @@ const routes: Routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     LayoutModule,
     MatButtonModule,
     MatCardModule,

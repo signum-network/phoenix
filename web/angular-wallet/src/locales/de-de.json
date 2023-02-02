@@ -549,5 +549,6 @@
   "account_not_verified": "Konto im Netzwerk nicht gefunden. Haben Sie das richtige Netzwerk ausgewählt? Ist es die richtige Wiederherstellungsphrase?",
   "account_verified": "Konto im Netzwerk gefunden",
   "error_storage_quota_exceeded": "Das clientseitige Speicherkontingent wurde überschritten. Versuchen Sie, ein oder mehrere Konten zu entfernen, um Speicherplatz freizugeben.",
-  "you_own_no_token": "Du hast noch keine Token"
+  "you_own_no_token": "Du hast noch keine Token",
+  "chart_balance_change": "Saldoänderung über den angezeigten Zeitraum"
 }

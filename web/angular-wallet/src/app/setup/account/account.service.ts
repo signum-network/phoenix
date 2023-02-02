@@ -19,7 +19,7 @@ import {
 import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from '@signumjs/crypto';
 import { Amount } from '@signumjs/util';
 import { HttpClientFactory, HttpError } from '@signumjs/http';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { NetworkService } from 'app/network/network.service';
 import { KeyDecryptionException } from 'app/util/exceptions/KeyDecryptionException';
 import { adjustLegacyAddressPrefix } from 'app/util/adjustLegacyAddressPrefix';

@@ -3,7 +3,7 @@ import { SuggestedFees, TransactionType, TransactionArbitrarySubtype, Alias } fr
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NotifierService} from 'angular-notifier';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {I18nService} from 'app/shared/services/i18n.service';
 import { Amount } from '@signumjs/util';
 import {handleException} from 'app/util/exceptions/handleException';
 import { WalletAccount } from 'app/util/WalletAccount';

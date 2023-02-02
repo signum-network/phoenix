@@ -20,7 +20,6 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SetupModule} from 'app/setup/setup.module';
@@ -36,7 +35,7 @@ import {TokenTransferFormComponent} from './token-transfer/token-transfer-form/t
 import {TokenDataResolver} from './token-data-resolver.service';
 import {ComponentsModule} from '../../components/components.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
-import { AccountResolver } from "../../shared/resolvers/account.resolver";
+import { AccountResolver } from "app/shared/resolvers/account.resolver";
 
 const routes = [
   {
@@ -95,7 +94,6 @@ const routes = [
         MatButtonModule,
         MatTooltipModule,
         ReactiveFormsModule,
-        I18nModule,
         MatDialogModule,
         RouterModule.forChild(routes),
         AppSharedModule,
