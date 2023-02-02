@@ -425,7 +425,7 @@
   "invalid_address": "Adresse invalide",
   "unknown_address": "Adresse inconnue",
   "success_transaction_executed": "Transaction exécutée avec succès",
-  "no_tokens_available": "Aucun jeton disponible",
+  "no_tokens_available": "Ce compte ne possède aucun jeton",
   "trade_tokens_with": "Échangez des jetons avec",
   "simple": "Simple",
   "trader": "Commerçant",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Entrez la clé publique du destinataire.",
   "enter_recipient_public_key_hint": "Le compte du destinataire n'est pas sécurisé, donc un transfert sans la clé publique du destinataire n'est pas autorisé.",
   "confirm": "Confirmer",
-  "select_account": "Sélectionner"
+  "select_account": "Sélectionner",
+  "account_not_verified": "Compte introuvable sur le réseau. Avez-vous choisi le bon réseau ? Est-ce la bonne phrase de récupération ?",
+  "account_verified": "Compte trouvé sur le réseau",
+  "error_storage_quota_exceeded": "Le quota de stockage côté client a été dépassé. Essayez de supprimer un ou plusieurs comptes pour libérer de l'espace.",
+  "you_own_no_token": "Vous n'avez pas encore de jetons"
 }

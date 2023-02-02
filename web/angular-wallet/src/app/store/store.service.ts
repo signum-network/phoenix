@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
@@ -370,6 +370,16 @@ export class StoreService {
         fallbackSelection();
       }
     });
+  }
+
+  public findAccount(accountId: string, networkName?: string): WalletAccount | null {
+    const collection = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+    const query = networkName
+      ? { '$and': [{ 'account' : accountId}, { 'networkName' : networkName }] }
+      : { 'account' : accountId};
+
+    const found = collection.find( query );
+    return found.length ? new WalletAccount(found[0]) : null;
   }
 
   public getSelectedNode(): NodeInfo {

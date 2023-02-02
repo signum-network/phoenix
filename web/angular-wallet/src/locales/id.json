@@ -425,7 +425,7 @@
   "invalid_address": "Alamat tidak valid",
   "unknown_address": "Alamat Tidak Diketahui",
   "success_transaction_executed": "Transaksi berhasil dijalankan",
-  "no_tokens_available": "Tidak ada token yang tersedia",
+  "no_tokens_available": "Akun ini tidak memiliki token",
   "trade_tokens_with": "Perdagangkan token dengan",
   "simple": "Sederhana",
   "trader": "Pedagang",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Masukkan kunci publik penerima.",
   "enter_recipient_public_key_hint": "Akun penerima tidak aman, sehingga transfer tanpa kunci publik penerima tidak diperbolehkan.",
   "confirm": "Mengonfirmasi",
-  "select_account": "Pilih"
+  "select_account": "Pilih",
+  "account_not_verified": "Akun tidak ditemukan di jaringan. Apakah Anda memilih jaringan yang benar? Apakah ini frase pemulihan yang benar?",
+  "account_verified": "Akun ditemukan di jaringan",
+  "error_storage_quota_exceeded": "Kuota penyimpanan sisi klien terlampaui. Coba hapus satu atau beberapa akun untuk mengosongkan sebagian ruang.",
+  "you_own_no_token": "Anda belum memiliki token apa pun"
 }

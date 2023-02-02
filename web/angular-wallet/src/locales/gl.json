@@ -425,7 +425,7 @@
   "invalid_address": "Enderezo non válido",
   "unknown_address": "Enderezo descoñecido",
   "success_transaction_executed": "Transacción executada con éxito",
-  "no_tokens_available": "Non hai fichas dispoñibles",
+  "no_tokens_available": "Esta conta non posúe fichas",
   "trade_tokens_with": "Cambia fichas con",
   "simple": "Sinxelo",
   "trader": "Comerciante",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Introduza a clave pública do destinatario.",
   "enter_recipient_public_key_hint": "A conta do destinatario non é segura, polo que non se permite unha transferencia sen a chave pública do destinatario.",
   "confirm": "Confirmar",
-  "select_account": "Seleccione"
+  "select_account": "Seleccione",
+  "account_not_verified": "Non se atopou a conta na rede. Escolleches a rede correcta? É a frase de recuperación correcta?",
+  "account_verified": "Atopouse unha conta na rede",
+  "error_storage_quota_exceeded": "Superouse a cota de almacenamento do cliente. Proba a eliminar unha ou máis contas para liberar espazo.",
+  "you_own_no_token": "Aínda non tes ningunha ficha"
 }

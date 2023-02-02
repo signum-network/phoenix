@@ -425,7 +425,7 @@
   "invalid_address": "Neplatná adresa",
   "unknown_address": "Neznáma adresa",
   "success_transaction_executed": "Transakcia bola úspešne vykonaná",
-  "no_tokens_available": "Nie sú k dispozícii žiadne tokeny",
+  "no_tokens_available": "Tento účet nevlastní žiadne tokeny",
   "trade_tokens_with": "Obchodujte s tokenmi s",
   "simple": "Jednoduché",
   "trader": "Obchodník",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Zadajte verejný kľúč príjemcu.",
   "enter_recipient_public_key_hint": "Účet príjemcu nie je bezpečný, takže prevod bez verejného kľúča príjemcu nie je povolený.",
   "confirm": "Potvrďte",
-  "select_account": "Vyberte"
+  "select_account": "Vyberte",
+  "account_not_verified": "Účet sa v sieti nenašiel. Vybrali ste si správnu sieť? Je to správna fráza na obnovenie?",
+  "account_verified": "Účet sa našiel v sieti",
+  "error_storage_quota_exceeded": "Kvóta úložiska na strane klienta bola prekročená. Skúste odstrániť jeden alebo viacero účtov, aby ste uvoľnili miesto.",
+  "you_own_no_token": "Zatiaľ nemáte žiadne tokeny"
 }

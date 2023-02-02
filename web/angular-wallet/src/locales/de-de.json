@@ -425,7 +425,7 @@
   "invalid_address": "Ungültige Adresse",
   "unknown_address": "Unbekannte Adresse",
   "success_transaction_executed": "Transaktion erfolgreich ausgeführt",
-  "no_tokens_available": "Keine Token verfügbar",
+  "no_tokens_available": "Dieses Konto besitzt keine Token",
   "trade_tokens_with": "Handel Token mit",
   "simple": "Einfach",
   "trader": "Händler",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Gib den öffentlichen Schlüssel des Empfängers ein.",
   "enter_recipient_public_key_hint": "Das Konto des Empfängers ist unsicher, daher ist eine Übertragung ohne den öffentlichen Schlüssel des Empfängers nicht zulässig.",
   "confirm": "Bestätigen",
-  "select_account": "Auswählen"
+  "select_account": "Auswählen",
+  "account_not_verified": "Konto im Netzwerk nicht gefunden. Haben Sie das richtige Netzwerk ausgewählt? Ist es die richtige Wiederherstellungsphrase?",
+  "account_verified": "Konto im Netzwerk gefunden",
+  "error_storage_quota_exceeded": "Das clientseitige Speicherkontingent wurde überschritten. Versuchen Sie, ein oder mehrere Konten zu entfernen, um Speicherplatz freizugeben.",
+  "you_own_no_token": "Du hast noch keine Token"
 }

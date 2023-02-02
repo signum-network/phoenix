@@ -16,7 +16,6 @@ export interface Language {
 })
 export class I18nService {
 
-  // public state = new BehaviorSubject(null);
   public currentLanguage: Language = {
     name: 'default',
     code: 'en'
@@ -36,9 +35,6 @@ export class I18nService {
       const {language} = this.storeService.getSettings();
       this.initLanguage(language);
     });
-  }
-
-  private fetch(locale: any): void {
   }
 
   private initLanguage(locale: string): void {

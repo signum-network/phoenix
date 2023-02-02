@@ -425,7 +425,7 @@
   "invalid_address": "無効なアドレス",
   "unknown_address": "不明な住所",
   "success_transaction_executed": "トランザクションが正常に実行されました",
-  "no_tokens_available": "利用可能なトークンはありません",
+  "no_tokens_available": "このアカウントはトークンを所有していません",
   "trade_tokens_with": "トークンを",
   "simple": "単純",
   "trader": "トレーダー",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "受信者の公開鍵を入力します。",
   "enter_recipient_public_key_hint": "受取人のアカウントは安全でないため、受取人の公開鍵なしでの送金は許可されていません。",
   "confirm": "確認",
-  "select_account": "選択する"
+  "select_account": "選択する",
+  "account_not_verified": "ネットワーク上にアカウントが見つかりません。正しいネットワークを選択しましたか?それは正しい回復フレーズですか？",
+  "account_verified": "ネットワーク上で見つかったアカウント",
+  "error_storage_quota_exceeded": "クライアント側のストレージ クォータを超えました。 1 つまたは複数のアカウントを削除して、スペースを解放してみてください。",
+  "you_own_no_token": "まだトークンを持っていません"
 }

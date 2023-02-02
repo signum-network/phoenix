@@ -425,7 +425,7 @@
   "invalid_address": "Endereço inválido",
   "unknown_address": "Endereço Desconhecido",
   "success_transaction_executed": "Transação executada com sucesso",
-  "no_tokens_available": "Nenhum token disponível",
+  "no_tokens_available": "Esta conta não possui tokens",
   "trade_tokens_with": "Negocie tokens com",
   "simple": "Simples",
   "trader": "Trader",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Insira a chave pública do destinatário.",
   "enter_recipient_public_key_hint": "A conta do destinatário não é segura, portanto, uma transferência sem a chave pública do destinatário não é permitida.",
   "confirm": "confirme",
-  "select_account": "Selecione"
+  "select_account": "Selecione",
+  "account_not_verified": "Conta não encontrada na rede. Você escolheu a rede correta? É a frase de recuperação correta?",
+  "account_verified": "Conta encontrada na rede",
+  "error_storage_quota_exceeded": "A cota de armazenamento do lado do cliente foi excedida. Tente remover uma ou mais contas para liberar espaço.",
+  "you_own_no_token": "Você ainda não tem tokens"
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import {Transaction} from '@signumjs/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
@@ -17,7 +17,7 @@ import { NetworkService } from 'app/network/network.service';
 import { AppService } from 'app/app.service';
 import { interval, Subscription } from 'rxjs';
 import { constants } from 'app/constants';
-import { I18nService } from "../../../layout/components/i18n/i18n.service";
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 
 const ColumnsQuery = {
   xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
@@ -42,6 +42,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   columns: string[] = [];
   tokens: TokenData[] = [];
   isLoadingTokens = true;
+  isLoadingTransactions = true;
   avatarImgSrc: string;
 
   src44: DescriptorData;
@@ -60,17 +61,20 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
               private progressService: FuseProgressBarService,
   ) {
     super();
+    // updates on account id changes in route - i.e. when clicked another account id
     router.events
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(async (val) => {
+      .subscribe((val) => {
         if (val instanceof NavigationEnd) {
-          await this.initialize();
+          this.isLoadingTransactions = true;
+          this.transactions = [];
+          this.update();
         }
       });
   }
 
   async ngOnInit(): Promise<void> {
-    await this.initialize();
+    await this.update();
   }
 
   public ngAfterContentInit(): void {
@@ -81,13 +85,14 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
       });
   }
 
-  async initialize(): Promise<void> {
+
+  update(): void {
     this.progressService.show();
     this.account = this.route.snapshot.data.account;
     this.dataSource.data = this.transactions;
     this.language = this.storeService.getSettings().language;
     this.updateAvatar();
-    this.updateTransactions().then(() => this.progressService.hide());
+    this.updateTransactions(false).then(() => this.progressService.hide());
     this.updateTokens().then(); // non-blocking
     this.listenToAccount();
   }
@@ -99,7 +104,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     // check for pending tx all 10 secs, but only all 120 secs for tokens
     this.accountPolling$ = interval(10_000)
       .pipe(
-        tap(async () => this.updateTransactions()),
+        tap(async () => this.updateTransactions(true)),
         filter(i => i % 12 === 0)
       )
       .subscribe(async () => {
@@ -109,19 +114,19 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
       });
   }
 
-  async updateTransactions(): Promise<void> {
+  async updateTransactions(incremental: boolean): Promise<void> {
     const accountId = this.account.account;
     let transactionList;
-    if (this.transactions.length > 0) {
+    if (this.transactions.length > 0 && incremental) {
       const timestamp = this.transactions[0].timestamp.toString(10);
       transactionList = await this.accountService.getAccountTransactions({accountId, timestamp});
     } else {
       transactionList = await this.accountService.getAccountTransactions({accountId});
     }
-
     const {unconfirmedTransactions} = await this.accountService.getUnconfirmedTransactions(accountId);
     this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), 'transaction');
     this.dataSource.data = this.transactions;
+    this.isLoadingTransactions = false;
   }
 
   private updateAvatar(): void {
@@ -157,7 +162,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   getPublicKeyStatus(): string {
     if (!this.account.keys.publicKey ){
-      return this.i18nService.getTranslation('account_unsafe');
+      return this.i18nService.getTranslation('no_public_key_title');
     }
     if (this.account.keys.publicKey && this.account.keys.publicKey === constants.smartContractPublicKey){
       return this.i18nService.getTranslation('smart_contract');

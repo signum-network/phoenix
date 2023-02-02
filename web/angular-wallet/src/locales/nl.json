@@ -425,7 +425,7 @@
   "invalid_address": "Ongeldig adres",
   "unknown_address": "Onbekend adres",
   "success_transaction_executed": "Transactie succesvol uitgevoerd",
-  "no_tokens_available": "Geen tokens beschikbaar",
+  "no_tokens_available": "Dit account bezit geen tokens",
   "trade_tokens_with": "Wissel tokens met",
   "simple": "Eenvoudig",
   "trader": "Handelaar",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Voer de openbare sleutel van de ontvanger in.",
   "enter_recipient_public_key_hint": "Het account van de ontvanger is onveilig, dus een overdracht zonder de openbare sleutel van de ontvanger is niet toegestaan.",
   "confirm": "Bevestigen",
-  "select_account": "Selecteer"
+  "select_account": "Selecteer",
+  "account_not_verified": "Account niet gevonden op netwerk. Heb je het juiste netwerk gekozen? Is het de juiste herstelzin?",
+  "account_verified": "Account gevonden op netwerk",
+  "error_storage_quota_exceeded": "Opslagquotum aan clientzijde is overschreden. Probeer een of meer accounts te verwijderen om ruimte vrij te maken.",
+  "you_own_no_token": "Je hebt nog geen tokens"
 }

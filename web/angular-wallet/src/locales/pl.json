@@ -425,7 +425,7 @@
   "invalid_address": "Błędny adres",
   "unknown_address": "Nieznany adres",
   "success_transaction_executed": "Transakcja zrealizowana pomyślnie",
-  "no_tokens_available": "Brak dostępnych tokenów",
+  "no_tokens_available": "To konto nie posiada żadnych tokenów",
   "trade_tokens_with": "Handluj tokenami z",
   "simple": "Prosty",
   "trader": "Handlowiec",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Wprowadź klucz publiczny odbiorcy.",
   "enter_recipient_public_key_hint": "Konto odbiorcy jest niebezpieczne, więc transfer bez klucza publicznego odbiorcy jest niedozwolony.",
   "confirm": "Potwierdzać",
-  "select_account": "Wybierać"
+  "select_account": "Wybierać",
+  "account_not_verified": "Nie znaleziono konta w sieci. Czy wybrałeś właściwą sieć? Czy to poprawna fraza odzyskiwania?",
+  "account_verified": "Konto znalezione w sieci",
+  "error_storage_quota_exceeded": "Limit miejsca po stronie klienta został przekroczony. Spróbuj usunąć jedno lub więcej kont, aby zwolnić trochę miejsca.",
+  "you_own_no_token": "Nie masz jeszcze żadnych tokenów"
 }

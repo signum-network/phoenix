@@ -425,7 +425,7 @@
   "invalid_address": "Geçersiz adres",
   "unknown_address": "Bilinmeyen Adres",
   "success_transaction_executed": "İşlem başarıyla gerçekleştirildi",
-  "no_tokens_available": "Kullanılabilir jeton yok",
+  "no_tokens_available": "Bu hesabın jetonu yok",
   "trade_tokens_with": "Token ile ticaret yap",
   "simple": "Basit",
   "trader": "tüccar",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Alıcının genel anahtarını girin.",
   "enter_recipient_public_key_hint": "Alıcının hesabı güvenli değil, bu nedenle alıcının ortak anahtarı olmadan aktarıma izin verilmiyor.",
   "confirm": "Teyit etmek",
-  "select_account": "Seçme"
+  "select_account": "Seçme",
+  "account_not_verified": "Hesap ağda bulunamadı. Doğru ağı seçtiniz mi? Doğru kurtarma ifadesi mi?",
+  "account_verified": "Ağda bulunan hesap",
+  "error_storage_quota_exceeded": "İstemci tarafı depolama kotası aşıldı. Biraz yer açmak için bir veya daha fazla hesabı kaldırmayı deneyin.",
+  "you_own_no_token": "Henüz jetonunuz yok"
 }

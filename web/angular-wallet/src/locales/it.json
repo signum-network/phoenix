@@ -425,7 +425,7 @@
   "invalid_address": "Indirizzo non valido",
   "unknown_address": "Indirizzo sconosciuto",
   "success_transaction_executed": "Transazione eseguita con successo",
-  "no_tokens_available": "Nessun token disponibile",
+  "no_tokens_available": "Questo account non possiede token",
   "trade_tokens_with": "Scambia i token con",
   "simple": "Semplice",
   "trader": "Commerciante",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Inserisci la chiave pubblica del destinatario.",
   "enter_recipient_public_key_hint": "L'account del destinatario non è sicuro, quindi non è consentito un trasferimento senza la chiave pubblica del destinatario.",
   "confirm": "Confermare",
-  "select_account": "Selezionare"
+  "select_account": "Selezionare",
+  "account_not_verified": "Account non trovato sulla rete. Hai scelto la rete corretta? È la frase di recupero corretta?",
+  "account_verified": "Account trovato sulla rete",
+  "error_storage_quota_exceeded": "La quota di archiviazione lato client è stata superata. Prova a rimuovere uno o più account per liberare spazio.",
+  "you_own_no_token": "Non hai ancora alcun token"
 }

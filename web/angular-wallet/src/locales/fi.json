@@ -425,7 +425,7 @@
   "invalid_address": "Väärä osoite",
   "unknown_address": "Tuntematon osoite",
   "success_transaction_executed": "Tapahtuma onnistui",
-  "no_tokens_available": "Merkkejä ei ole saatavilla",
+  "no_tokens_available": "Tämä tili ei omista tunnuksia",
   "trade_tokens_with": "Vaihda tunnuksia",
   "simple": "Yksinkertainen",
   "trader": "Kauppias",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Syötä vastaanottajan julkinen avain.",
   "enter_recipient_public_key_hint": "Vastaanottajan tili ei ole turvallinen, joten siirtoa ilman vastaanottajan julkista avainta ei sallita.",
   "confirm": "Vahvistaa",
-  "select_account": "Valitse"
+  "select_account": "Valitse",
+  "account_not_verified": "Tiliä ei löydy verkosta. Valitsitko oikean verkon? Onko se oikea palautuslause?",
+  "account_verified": "Tili löydetty verkosta",
+  "error_storage_quota_exceeded": "Asiakaspuolen tallennuskiintiö ylitettiin. Yritä vapauttaa tilaa poistamalla yksi tai useampi tili.",
+  "you_own_no_token": "Sinulla ei ole vielä tunnuksia"
 }

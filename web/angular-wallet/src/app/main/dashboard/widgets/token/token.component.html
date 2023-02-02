@@ -1,7 +1,17 @@
 <div class="container grey-700-fg fullwidth fullheight">
   <ng-container *ngIf="!hasTokens">
-    <div fxFlex fxLayoutAlign="center center" class="font-size-20 font-weight-600">
-      {{'no_tokens_available' | i18n}}
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+      <div class="font-size-20 font-weight-600">{{'you_own_no_token' | i18n}}</div>
+      <small class="btdex-hint">
+        {{'trade_tokens_with'| i18n}}&nbsp;
+        <a href="https://signumswap.com" target="_blank" rel="noopener noreferrer">
+          <img class="mr-4" src="assets/images/logos/icon_signumswap.svg" [width]="16" alt="SignumSwap Logo">SignumSwap
+        </a>
+        &nbsp;{{'or'| i18n}}&nbsp;
+        <a href="https://btdex.trade" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/logos/btdex-logo.png" [width]="16" alt="BTDEX Logo">BTDEX
+        </a>
+      </small>
     </div>
   </ng-container>
 

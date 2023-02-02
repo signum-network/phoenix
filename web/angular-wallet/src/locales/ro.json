@@ -425,7 +425,7 @@
   "invalid_address": "Adresă invalidă",
   "unknown_address": "Adresă necunoscută",
   "success_transaction_executed": "Tranzacția a fost executată cu succes",
-  "no_tokens_available": "Nu există jetoane disponibile",
+  "no_tokens_available": "Acest cont nu deține jetoane",
   "trade_tokens_with": "Tranzacționează jetoane cu",
   "simple": "Simplu",
   "trader": "Comerciant",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Introduceți cheia publică a destinatarului.",
   "enter_recipient_public_key_hint": "Contul destinatarului este nesigur, așa că nu este permis un transfer fără cheia publică a destinatarului.",
   "confirm": "A confirma",
-  "select_account": "Selectați"
+  "select_account": "Selectați",
+  "account_not_verified": "Contul nu a fost găsit în rețea. Ai ales rețeaua corectă? Este expresia corectă de recuperare?",
+  "account_verified": "Cont găsit în rețea",
+  "error_storage_quota_exceeded": "Cota de stocare pe partea clientului a fost depășită. Încercați să eliminați unul sau mai multe conturi pentru a elibera spațiu.",
+  "you_own_no_token": "Încă nu ai niciun token"
 }

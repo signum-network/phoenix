@@ -425,7 +425,7 @@
   "invalid_address": "无效地址",
   "unknown_address": "未知地址",
   "success_transaction_executed": "交易成功执行",
-  "no_tokens_available": "没有可用的令牌",
+  "no_tokens_available": "此帐户不拥有代币",
   "trade_tokens_with": "交易代币",
   "simple": "简单的",
   "trader": "商人",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "输入收件人的公钥。",
   "enter_recipient_public_key_hint": "收款人的账户是不安全的，所以没有收款人公钥的转账是不允许的。",
   "confirm": "确认",
-  "select_account": "选择"
+  "select_account": "选择",
+  "account_not_verified": "在网络上找不到帐户。您是否选择了正确的网络？这是正确的助记词吗？",
+  "account_verified": "在网络上找到帐户",
+  "error_storage_quota_exceeded": "已超出客户端存储配额。尝试删除一个或多个帐户以释放一些空间。",
+  "you_own_no_token": "您还没有任何代币"
 }

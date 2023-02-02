@@ -176,12 +176,7 @@ export class AccountManagementService {
   }
 
   public findAccount(accountId: string, network?: string): WalletAccount | null {
-    return this.getAllAccounts().find( ({account, networkName}) => {
-      const hasFound = account === accountId;
-      if (network){
-        return hasFound && network === networkName;
-      }
-    });
+    return this.storeService.findAccount(accountId, network)
   }
 
   public getAllAccounts(): WalletAccount[] {

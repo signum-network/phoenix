@@ -425,7 +425,7 @@
   "invalid_address": "Neispravna adresa",
   "unknown_address": "Nepoznata adresa",
   "success_transaction_executed": "Transakcija je uspješno izvršena",
-  "no_tokens_available": "Nema dostupnih žetona",
+  "no_tokens_available": "Ovaj račun ne posjeduje tokene",
   "trade_tokens_with": "Trgujte tokenima s",
   "simple": "Jednostavan",
   "trader": "Trgovac",
@@ -545,5 +545,9 @@
   "enter_recipient_public_key": "Unesite javni ključ primatelja.",
   "enter_recipient_public_key_hint": "Račun primatelja je nesiguran, stoga prijenos bez javnog ključa primatelja nije dopušten.",
   "confirm": "Potvrdi",
-  "select_account": "Odaberi"
+  "select_account": "Odaberi",
+  "account_not_verified": "Račun nije pronađen na mreži. Jeste li odabrali ispravnu mrežu? Je li to ispravna fraza za oporavak?",
+  "account_verified": "Račun pronađen na mreži",
+  "error_storage_quota_exceeded": "Kvota pohrane na strani klijenta je premašena. Pokušajte ukloniti jedan ili više računa da biste oslobodili prostor.",
+  "you_own_no_token": "Još nemate nijedan token"
 }

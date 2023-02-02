@@ -465,7 +465,7 @@
   "unknown_address": "Unknown Address",
   "burn_address": "Burnt 🔥",
   "success_transaction_executed": "Transaction successfully executed",
-  "no_tokens_available": "No tokens available",
+  "no_tokens_available": "This account owns no tokens",
   "trade_tokens_with": "Trade tokens with",
   "simple": "Simple",
   "trader": "Trader",
@@ -548,5 +548,6 @@
   "load_all_transactions_hint": "Loading all transactions eventually causes a lot of requests with high bandwidth usage. Depending on yours and the nodes internet connection and the number of transactions this action can take some time. Once fetched, the transactions are cached locally. Do you really want to load all transactions? (Fetching limit is capped to 10K transactions)",
   "select_account": "Select",
   "account_verified": "Account found on network",
-  "account_not_verified": "Account not found on network. Did you choose the correct network? Is it the correct recovery phrase"
+  "account_not_verified": "Account not found on network. Did you choose the correct network? Is it the correct recovery phrase?",
+  "you_own_no_token": "You don't have any tokens yet"
 }

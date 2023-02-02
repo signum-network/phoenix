@@ -36,6 +36,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: WalletAccount;
+
+  @Input() public isLoading = false;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   locale: string;
