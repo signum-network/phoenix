@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {StoreService} from 'app/store/store.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {FuseProgressBarService} from '../../../@fuse/components/progress-bar/progress-bar.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { FuseProgressBarService } from '../../../@fuse/components/progress-bar/progress-bar.service';
 import { TokenData, TokenService } from '../../shared/services/token.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 
@@ -21,29 +21,24 @@ export class TokensComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private storeService: StoreService,
-    private accountService: AccountService,
     private progressService: FuseProgressBarService,
-    private tokenService: TokenService,
+    private tokenService: TokenService
   ) {
   }
 
   ngOnInit(): void {
-    this.storeService.ready.subscribe(async (ready) => {
-      if (!ready) {
-        return;
-      }
-      this.selectedAccount = this.route.snapshot.data.account as WalletAccount;
-      if (this.selectedAccount) {
-        this.progressService.show();
-        this.isLoading = true;
-        await this.fetchTokens();
+    this.selectedAccount = this.route.snapshot.data.account as WalletAccount;
+    if (this.selectedAccount) {
+      this.progressService.show();
+      this.isLoading = true;
+      this.fetchTokens().finally(() => {
         this.isLoading = false;
         this.progressService.hide();
-      }
-      this.intervalHandle = setInterval(() => {
-        this.fetchTokens();
-      }, 60 * 1000);
-    });
+      });
+    }
+    this.intervalHandle = setInterval(() => {
+      this.fetchTokens();
+    }, 60 * 1000);
   }
 
   ngOnDestroy(): void {

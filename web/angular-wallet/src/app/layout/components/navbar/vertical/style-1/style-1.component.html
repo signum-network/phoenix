@@ -1,7 +1,7 @@
-<div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+<div *ngIf="selectedAccount" class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
   <div class="logo">
-    <img src="assets/images/logos/logo_white.svg" class="logo-unfolded">
+    <img src="assets/images/logos/logo_white_horizontal.svg" class="logo-unfolded">
     <img src="assets/images/logos/icon_white.svg" class="logo-folded">
     <small id="version" class="logo-unfolded">{{getVersion()}}</small>
   </div>
@@ -27,7 +27,7 @@
   <div *ngIf="selectedAccount" class="user" fxLayout="column"
        [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-    <div class="h3 username">{{ selectedAccount.accountRS }}</div>
+    <div class="h3 username">{{ selectedAccount.account | address }}</div>
     <div class="h5 username">{{ getBalance() | amount:'planck':true }}</div>
     <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type !== 'offline'" [matMenuTriggerFor]="menu">
       <span>{{ getAccountName() }}
@@ -40,8 +40,15 @@
       class="avatar-container"
       [routerLink]="['set-account-profile']"
     >
-      <canvas *ngIf="!avatarImgSrc" #avatar></canvas>
-      <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
+      <img #hashAvatar *ngIf="hashIconImgSrc && !avatarLoaded" [src]="hashIconImgSrc" alt="avatar-image" />
+      <img #ipfsAvatar [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)" alt="avatar-image" />
+
+      <div *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed"
+           class="unsafe-badge"
+           matTooltip="{{'account_unsafe' | i18n}}"
+      >
+        <mat-icon>lock_open</mat-icon>
+      </div>
     </a>
   </div>
 

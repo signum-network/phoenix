@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Amount, createDeeplink } from '@signumjs/util';
 
 @Component({
@@ -6,18 +6,13 @@ import { Amount, createDeeplink } from '@signumjs/util';
   templateUrl: './request-qr-code.component.html',
   styleUrls: ['./request-qr-code.component.scss']
 })
-export class RequestQrCodeComponent implements OnInit {
+export class RequestQrCodeComponent{
 
   @Input() immutable: boolean;
   @Input() recipientRS: string;
   @Input() amount: string;
   @Input() fee: string;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
   getDeepLink(): string {
 

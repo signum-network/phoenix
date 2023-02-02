@@ -4,7 +4,7 @@ import {CreateService} from '../../create.service';
 import {NotifierService} from 'angular-notifier';
 import {sampleSize} from 'lodash';
 import {AccountService} from '../../account.service';
-import {I18nService} from '../../../../layout/components/i18n/i18n.service';
+import {I18nService} from '../../../../shared/services/i18n.service';
 
 interface Token {
   text: string;
@@ -71,22 +71,17 @@ export class AccountActivateComponent {
     return this.createService.getPhrase() === this.passphrase;
   }
 
-  private async activateAccount(): Promise<void> {
-    const newAccount = this.createService.getAccount();
-    await this.accountService.activateAccount(newAccount);
-    this.notificationService.notify('success', this.i18nService.getTranslation('activate_request_successful'));
-  }
-
   public async activate(): Promise<void> {
     if (!this.isValid) {
       return;
     }
     try {
       this.isActivating = true;
-      await this.createService.createActiveAccount();
-      await this.activateAccount();
-      this.createService.reset();
+      const account = await this.createService.createActiveAccount();
+      await this.accountService.activateAccount(account);
+      this.notificationService.notify('success', this.i18nService.getTranslation('activate_request_successful'));
       this.notificationService.notify('success', this.i18nService.getTranslation('account_added'));
+      this.createService.reset();
     } catch (error) {
       this.notificationService.notify('error', error.toString());
     } finally {

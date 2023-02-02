@@ -11,6 +11,6 @@ export class SuggestFeeResolver implements Resolve<Promise<SuggestedFees>> {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<SuggestedFees> {
-    return this.networkService.suggestFee();
+    return this.networkService.getSuggestedFees();
   }
 }

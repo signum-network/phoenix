@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { Amount } from '@signumjs/util';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../../layout/components/i18n/i18n.service';
+import { I18nService } from '../../../shared/services/i18n.service';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { isNotEmpty } from 'app/util/forms';
@@ -26,7 +26,6 @@ export class CancelSaleAliasComponent extends UnsubscribeOnDestroy implements On
   alias: Alias;
   account: WalletAccount;
   fees: SuggestedFees;
-  language: string;
   immutable: boolean;
   fee: string;
   type = TransactionType.Arbitrary;
@@ -41,7 +40,6 @@ export class CancelSaleAliasComponent extends UnsubscribeOnDestroy implements On
     private notifierService: NotifierService,
     private errorService: ExceptionHandlerService,
     private i18nService: I18nService,
-    private storeService: StoreService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -53,14 +51,6 @@ export class CancelSaleAliasComponent extends UnsubscribeOnDestroy implements On
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     this.alias = this.route.snapshot.data.alias as Alias;
     this.immutable = false;
-    this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({ language }) => {
-          this.language = language;
-        }
-      );
   }
 
   async onSubmit(event): Promise<void> {

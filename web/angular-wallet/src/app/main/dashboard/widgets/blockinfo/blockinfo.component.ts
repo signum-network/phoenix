@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MiningInfo, NetworkService } from '../../../../network/network.service';
+import { NetworkService } from '../../../../network/network.service';
+import { MiningInfo } from '@signumjs/core';
 
 @Component({
   selector: 'app-blockinfo',

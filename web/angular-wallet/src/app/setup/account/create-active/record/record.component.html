@@ -6,7 +6,7 @@
   <img src="assets/images/logos/logo_black.svg" class="print-only" alt="Signum Logo" width="256">
 </div>
 
-<div class="passphrase-hint amber-600-bg">
+<div *ngIf="newUser" class="passphrase-hint amber-600-bg">
   <div class="hint" fxHide fxShow.gt-sm>
     <mat-icon>notification_important</mat-icon>
   </div>
@@ -25,7 +25,7 @@
       ID:
     </td>
     <td class="table__text">
-      <pre>{{this.createService.getAccount()?.account}}</pre>
+      <pre>{{createService.getAccount()?.account}}</pre>
     </td>
   </tr>
   <tr>
@@ -33,17 +33,21 @@
       {{ 'address' | i18n }}:
     </td>
     <td class="table__text">
-      <pre>{{this.createService.getAccount()?.accountRS}}</pre>
+      <pre>{{createService.getAccount()?.account | address:false:true}}</pre>
+      <ng-container *ngIf="!newUser" [ngSwitch]="createService.getAccountStatus()">
+        <mat-icon  *ngSwitchCase="0" class="is-verifying">refresh</mat-icon>
+        <mat-icon matTooltip="{{'account_verified' | i18n}}" *ngSwitchCase="1" class="verified">check_circle_outline</mat-icon>
+        <mat-icon matTooltip="{{'account_not_verified' | i18n}}" *ngSwitchCase="2" class="not-verified">error_outline</mat-icon>
+      </ng-container>
     </td>
   </tr>
-  <tr>
+  <tr *ngIf="newUser">
     <td class="table__label">
       {{ 'passphrase' | i18n }}:
     </td>
     <td class="table__text">
-      <pre class="bordered">{{ this.createService.getPhrase() }}</pre>
-    </td>
-    <td class="print-hide">
+      <pre class="bordered">{{ createService.getPhrase() }}</pre>
+      <div class="print-hide buttons">
       <button class="icon-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}"
               color="primary"
               mat-raised-button
@@ -56,10 +60,11 @@
               (click)="print()">
         <mat-icon>print</mat-icon>
       </button>
+      </div>
     </td>
   </tr>
 </table>
 <div class="text-center navigation">
-  <button class="print-hide" mat-raised-button (click)="back()">{{"back" | i18n}}</button>
+  <button class="print-hide mr-4" mat-raised-button (click)="back()">{{"back" | i18n}}</button>
   <button class="print-hide" mat-raised-button (click)="next()">{{"next" | i18n}}</button>
 </div>

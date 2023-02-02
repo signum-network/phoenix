@@ -10,7 +10,7 @@ export class TokenDataResolver implements Resolve<Promise<TokenData>> {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<TokenData> {
-    const currentAccount = await this.storeService.getSelectedAccount();
-    return this.tokenService.fetchTokenData(route.paramMap.get('id'), currentAccount);
+    const currentAccount = this.storeService.getSelectedAccount();
+    return this.tokenService.fetchTokenData(route.params.id, currentAccount);
   }
 }

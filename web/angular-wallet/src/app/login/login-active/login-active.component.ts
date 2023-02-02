@@ -1,7 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-active',
@@ -9,14 +7,13 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./login-active.component.scss']
 })
 export class LoginActiveComponent implements OnInit, OnDestroy {
-  newUser: Observable<string | false>;
+  newUser: boolean;
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.newUser = this.route.queryParamMap
-      .pipe(map(params => params.get('newUser') || false));
+    this.newUser = this.route.snapshot.queryParams.newUser === 'true';
   }
 
   ngOnDestroy(): void {

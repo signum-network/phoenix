@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {AmountPipe} from './pipes/amount.pipe';
 import {PasteableAddressDirective} from './directives/pasteable-address.directive';
-import {CurrentAccountResolver} from './resolvers/current-account.resolver';
+import { AddressPipe } from './pipes/address.pipe';
+import { AccountResolver } from './resolvers/account.resolver';
+import { I18nPipe } from './pipes/i18n.pipe';
 
 // TODO: move more shared components, directive here! Still a bit cluttered in the entire project
 
@@ -9,14 +11,18 @@ import {CurrentAccountResolver} from './resolvers/current-account.resolver';
   imports: [],
   exports: [
     AmountPipe,
+    AddressPipe,
     PasteableAddressDirective,
+    I18nPipe,
   ],
   declarations: [
     AmountPipe,
+    AddressPipe,
     PasteableAddressDirective,
+    I18nPipe,
   ],
   providers: [
-    CurrentAccountResolver,
+    AccountResolver,
   ]
 })
 export class AppSharedModule {

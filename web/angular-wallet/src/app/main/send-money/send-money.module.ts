@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {AccountResolver} from 'app/setup/account/account.resolver';
+import {AccountResolver} from 'app/shared/resolvers/account.resolver';
 import {SendMoneyComponent} from './send-money.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -18,7 +18,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {FormsModule} from '@angular/forms';
 import {SetupModule} from 'app/setup/setup.module';
 import {NotifierModule} from 'angular-notifier';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
@@ -65,7 +64,6 @@ const routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     LayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,

@@ -3,13 +3,13 @@ import {CommonModule} from '@angular/common';
 import {SettingsComponent} from './settings.component';
 import {RouterModule} from '@angular/router';
 import {SettingsResolver} from './settings.resolver';
-import {I18nModule} from '../../layout/components/i18n/i18n.module';
 import {MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatListModule, MatDividerModule} from '@angular/material';
 import {FuseSharedModule} from '../../../@fuse/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import {ComponentsModule} from '../../components/components.module';
+import { AppSharedModule } from "../../shared/shared.module";
 
 const routes = [
   {
@@ -24,10 +24,10 @@ const routes = [
 @NgModule({
   declarations: [SettingsComponent],
   imports: [
+    AppSharedModule,
     CommonModule,
     RouterModule.forChild(routes),
     ComponentsModule,
-    I18nModule,
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,

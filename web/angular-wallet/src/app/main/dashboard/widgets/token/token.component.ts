@@ -53,7 +53,7 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
         this.currentPrice = data.current_price;
       });
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

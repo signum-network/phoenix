@@ -20,7 +20,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {RouterModule} from '@angular/router';
 import {LoginGuard} from 'app/login/login-guard.service';
@@ -61,7 +60,6 @@ const routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     MatButtonModule,
     MatButtonModule,
     MatCardModule,

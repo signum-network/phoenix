@@ -7,8 +7,9 @@ import {FuseMatchMediaService} from '@fuse/services/match-media.service';
 import {FuseNavigationService} from '@fuse/components/navigation/navigation.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {MediaObserver} from '@angular/flex-layout';
-import {I18nService} from '../../../app/layout/components/i18n/i18n.service';
+import {I18nService} from '../../../app/shared/services/i18n.service';
 import { WalletAccount } from '../../../app/util/WalletAccount';
+import { StoreService } from "../../../app/store/store.service";
 
 @Component({
   selector: 'fuse-shortcuts',
@@ -21,7 +22,6 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
   filteredNavigationItems: any[];
   searching: boolean;
   mobileShortcutsPanelActive: boolean;
-  currentAccount: WalletAccount;
 
   @Input()
   navigation: any;
@@ -41,7 +41,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
     private _fuseNavigationService: FuseNavigationService,
     private _observableMedia: MediaObserver,
     private _renderer: Renderer2,
-    private accountService: AccountService
+    private storeService: StoreService
   ) {
     this.shortcutItems = [];
     this.searching = false;
@@ -56,13 +56,13 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
 
     if (this._cookieService.check('FUSE2.shortcuts')) {
       this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
-    } else {
-      this.accountService.currentAccount$.subscribe(this.setAccount());
     }
 
-    this.i18nService.state.subscribe(() => {
-      this.updateShortcuts();
-    });
+    this.storeService.languageSelected$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => {
+        this.updateShortcuts();
+      });
 
     this._fuseMatchMediaService.onMediaChange
       .pipe(takeUntil(this._unsubscribeAll))
@@ -73,17 +73,10 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private setAccount(): (value: WalletAccount) => void {
-    return (account) => {
-      this.currentAccount = account;
-      this.updateShortcuts();
-    };
-  }
 
   private updateShortcuts(): void {
     this.shortcutItems = [];
-    const isOfflineAccount = this.currentAccount && this.currentAccount.type === 'offline';
-
+    // const isOfflineAccount = this.currentAccount && this.currentAccount.type === 'offline';
     // this.shortcutItems.push({
     //   title: this.i18nService.getTranslation('dashboard'),
     //   type: 'item',

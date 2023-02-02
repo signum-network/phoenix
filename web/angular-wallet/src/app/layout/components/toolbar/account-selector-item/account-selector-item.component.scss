@@ -1,0 +1,36 @@
+:host {
+
+  .account-item {
+    user-select: none;
+    position: relative;
+    height: 48px;
+  }
+
+  .inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  img {
+    border-radius: 4px;
+    max-height: 36px;
+    max-width: 36px;
+  }
+
+  .address-box {
+    margin: 0 8px;
+    text-align: start;
+    width: 100px;
+    font-weight: bold;
+
+    .hint-line {
+      justify-content: space-between;
+      width: 100%;
+      display: flex;
+      font-weight: normal;
+    }
+  }
+
+}

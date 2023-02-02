@@ -60,7 +60,7 @@ export class FeeInputComponent implements OnInit, OnChanges {
   }
 
   async ngOnInit(): Promise<void> {
-    this.suggestedFees = await this.networkService.suggestFee();
+    this.suggestedFees = await this.networkService.getSuggestedFees();
     this.feeRegimeService.setFeeBase(Amount.fromPlanck(this.suggestedFees.standard));
     this.updateFee();
   }

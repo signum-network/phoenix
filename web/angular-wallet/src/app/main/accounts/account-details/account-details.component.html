@@ -1,26 +1,29 @@
-<app-page [full]="true"
+<app-page *ngIf="account"
+          [full]="true"
           [title]="'account_details' | i18n"
-          [subtitle]="account.accountRS"
+          [subtitle]="account.account | address"
           [breadcrumbs]="[{label: 'accounts' | i18n , path: '/accounts'}]">
   <!-- / HEADER -->
 
-  <div class=" p-24">
-
-    <div class="account-details">
-      <div class="avatar">
-        <canvas #avatar></canvas>
+  <div ngClass.gt-sm="p-24" class="account-details">
+    <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openInExplorer()">
+      <mat-icon>link</mat-icon>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxFlexAlign.xs="center center">
+      <div class="avatar-icon">
         <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
       </div>
       <div class="description">
         <div class="details">
-          <h2>{{ account.name || account.accountRS }}</h2>
+          <h2 *ngIf="account.name">{{ account.name }}</h2>
+          <h2 *ngIf="!account.name">{{ account.account | address }}</h2>
           <h3>{{ account.account }}</h3>
+          <small>{{ getPublicKeyStatus() }}</small>
           <h4>{{ account.balanceNQT | amount:'planck' }}</h4>
         </div>
         <div *ngIf="src44" class="src44">
           <p>{{ src44.description }}</p>
           <a *ngIf="src44.homePage" [href]="src44.homePage" class="homepage">
-            <mat-icon class="mr-8">link</mat-icon>
             {{ 'homepage' | i18n }}
           </a>
         </div>
@@ -32,7 +35,9 @@
         <app-transaction-table
           [dataSource]="dataSource"
           [displayedColumns]="columns"
-          [account]="account">
+          [account]="account"
+          [isLoading]="isLoadingTransactions"
+        >
         </app-transaction-table>
       </mat-tab>
       <mat-tab label="{{ 'assets' | i18n }}">

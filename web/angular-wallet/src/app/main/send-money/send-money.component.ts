@@ -29,27 +29,12 @@ export class SendMoneyComponent extends UnsubscribeOnDestroy implements OnInit {
     this.account = this.route.snapshot.data.account;
     this.fees = this.route.snapshot.data.suggestedFees;
 
-    this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({language}) => {
+    this.storeService.languageSelected$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe( (language) => {
           this.language = language;
         }
       );
-
-    this.storeService.ready
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe((ready) => {
-        if (!ready) {
-          return;
-        }
-        this.accountService.currentAccount$
-          .pipe(takeUntil(this.unsubscribeAll))
-          .subscribe((account) => {
-            this.account = account;
-          });
-      });
   }
 
   getBalance(): string {

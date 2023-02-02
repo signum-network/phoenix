@@ -39,14 +39,10 @@ export class DisclaimerComponent
         };
     }
 
-    async agree() {
+    agree(): void {
       try {
-
-        const settings = await this.storeService.getSettings();
-        settings.agree = true;
-        await this.storeService.saveSettings(settings);
+        this.storeService.updateSettings({ agree: true });
         this.router.navigate(['/login']);
-
       } catch (e) {
         console.warn(e);
       }

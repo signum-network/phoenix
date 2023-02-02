@@ -32,7 +32,7 @@ export const navigation: FuseNavigation[] = [
         id: 'send_signa',
         title: 'Send Burst',
         type: 'item',
-        icon: 'vertical_align_top',
+        icon: 'publish',
         url: '/send',
         fullAccountOnly: true
       },
@@ -40,7 +40,7 @@ export const navigation: FuseNavigation[] = [
         id: 'request_burst',
         title: 'Request Burst',
         type: 'item',
-        icon: 'vertical_align_bottom',
+        icon: 'get_app',
         url: '/request'
       },
     ]

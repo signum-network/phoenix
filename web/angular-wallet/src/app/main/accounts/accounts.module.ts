@@ -18,20 +18,18 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {RouterModule} from '@angular/router';
-import {AccountsResolver} from './accounts.resolver';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {NotifierModule} from 'angular-notifier';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {LoginGuard} from 'app/login/login-guard.service';
-import {AccountResolver} from 'app/setup/account/account.resolver';
+import {AccountResolver} from 'app/shared/resolvers/account.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
-import {AddNodeUrlPipe} from './account-details/add-node-url.pipe';
-import {ConvertNQTStringPipe} from './account-details/convert-nqt-string';
 import {AppSharedModule} from '../../shared/shared.module';
-import {TransactionsResolver} from './transactions.resolver';
 import {TokensModule} from '../tokens/tokens.module';
-import { ComponentsModule } from "../../components/components.module";
+import { ComponentsModule } from 'app/components/components.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 const routes = [
@@ -39,9 +37,6 @@ const routes = [
     path: 'accounts',
     component: AccountsComponent,
     canActivate: [LoginGuard],
-    resolve: {
-      account: AccountsResolver
-    }
   },
   {
     path: 'account/:id',
@@ -49,7 +44,7 @@ const routes = [
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
-      transactions: TransactionsResolver
+      // transactions: TransactionsResolver
     }
   }
 ];
@@ -73,22 +68,21 @@ const routes = [
     MatTooltipModule,
     MatDialogModule,
     NotifierModule,
-    I18nModule,
     RouterModule.forChild(routes),
     TransactionTableModule,
     AppSharedModule,
     TokensModule,
-    ComponentsModule
+    ComponentsModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatDividerModule
   ],
   declarations: [
     AccountsComponent,
     DeleteAccountDialogComponent,
     AccountDetailsComponent,
-    AddNodeUrlPipe,
-    ConvertNQTStringPipe
   ],
   providers: [
-    AccountsResolver
   ],
   entryComponents: [DeleteAccountDialogComponent]
 })

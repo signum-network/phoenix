@@ -22,16 +22,17 @@ import { ChainTime } from '@signumjs/util';
 import { decryptAES, decryptMessage, hashSHA256 } from '@signumjs/crypto';
 import { Router } from '@angular/router';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import { Messages, MessagesService } from '../messages.service';
+import { Chat, MessagesService } from '../messages.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { NotifierService } from 'angular-notifier';
 import { UtilService } from 'app/util.service';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
-import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { isKeyDecryptionError } from 'app/util/exceptions/isKeyDecryptionError';
 import { NetworkService } from '../../../network/network.service';
 import { FeeRegimeService } from '../../../components/fee-input/fee-regime.service';
-import { WalletAccount } from '../../../util/WalletAccount';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
 
 @Component({
   selector: 'message-view',
@@ -52,8 +53,8 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('replyForm', { static: false })
   replyForm: NgForm;
 
-  addressPrefix = AddressPrefix.MainNet;
-  message: Messages;
+  addressPrefix: string;
+  message: Chat;
   replyInput: any;
   pinInput: any;
   selectedUser: WalletAccount;
@@ -79,9 +80,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.encrypt = false;
-    this.addressPrefix = this.networkService.isMainNet()
-      ? AddressPrefix.MainNet
-      : AddressPrefix.TestNet;
+    this.addressPrefix = this.networkService.getAddressPrefix();
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
       .pipe(takeUntil(this._unsubscribeAll))
@@ -227,15 +226,10 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public async submitPinPrompt(event): Promise<void> {
     event.stopImmediatePropagation();
-    const account = await this.accountService.currentAccount$.getValue();
     const sender = await this.accountService.getAccount(this.message.contactId);
-    const privateKey = decryptAES(
-      account.keys.agreementPrivateKey,
-      hashSHA256(this.pin)
-    );
+    const privateKey = getPrivateEncryptionKey(this.pin, this.selectedUser.keys);
     this.message.dialog = this.message.dialog.map((message) => {
       if (message.encryptedMessage) {
-        // @ts-ignore
         message.message = decryptMessage(
           message.encryptedMessage,
           sender.keys.publicKey,
@@ -246,9 +240,9 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  getQRCode(id: string): Promise<string> {
-    return this.accountService.generateSendTransactionQRCodeAddress(id);
-  }
+  // getQRCode(id: string): Promise<string> {
+  //   return this.accountService.generateSendTransactionQRCodeAddress(id);
+  // }
 
   convertTimestampToDate(timestamp): Date {
     return ChainTime.fromChainTimestamp(timestamp).getDate();

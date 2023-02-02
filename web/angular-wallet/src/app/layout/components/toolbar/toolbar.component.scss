@@ -24,7 +24,7 @@ toolbar {
     text-transform: uppercase;
     border-radius: 1rem;
     font-family: 'Courier', serif;
-    -webkit-mask-image: url('../../../../assets/images/stamp_texture.png');
+    -webkit-mask-image: url('../../../../assets/images/stamp_texture.webp');
     -webkit-mask-size: 256px 256px;
     mix-blend-mode: multiply;
   }
@@ -90,4 +90,8 @@ fuse-search-bar,
   .manage-accounts {
     font-weight: bold;
   }
+  .mat-menu-item {
+    line-height: unset !important;
+  }
 }
+

@@ -26,15 +26,15 @@ import {appConfigFactory, StoreConfig} from './store/store.config';
 import {NetworkModule} from './network/network.module';
 import {NotifierModule} from 'angular-notifier';
 import {UtilService} from './util.service';
-import {I18nModule} from './layout/components/i18n/i18n.module';
 import {DisclaimerModule} from './disclaimer/disclaimer.module';
-import {SettingsResolver} from './store/settings.resolver';
-import {registerLocales} from './layout/components/i18n/locales';
+import {registerLocales} from './locales';
 import {NgxElectronModule} from 'ngx-electron';
 import {NewVersionDialogComponent} from './components/new-version-dialog/new-version-dialog.component';
 import {MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import { LedgerService } from './ledger.service';
+import { AppSharedModule } from "./shared/shared.module";
 
 registerLocales();
 
@@ -56,6 +56,7 @@ const appRoutes: Routes = [
         NewVersionDialogComponent,
     ],
     imports: [
+        AppSharedModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -72,7 +73,6 @@ const appRoutes: Routes = [
         SetupModule,
         NetworkModule,
         NotifierModule,
-        I18nModule,
         DisclaimerModule,
         NgxElectronModule,
         MatCardModule,
@@ -85,10 +85,10 @@ const appRoutes: Routes = [
         FormsModule
     ],
     providers: [
-        StoreService,
         {provide: StoreConfig, useFactory: appConfigFactory},
+        StoreService,
         UtilService,
-        SettingsResolver
+        LedgerService,
     ],
     entryComponents: [
         NewVersionDialogComponent

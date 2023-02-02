@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AccountResolver } from 'app/setup/account/account.resolver';
+import { AccountResolver } from 'app/shared/resolvers/account.resolver';
 import { SetAccountInfoComponent } from './set-account-info.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SetupModule } from 'app/setup/setup.module';
 import { NotifierModule } from 'angular-notifier';
 import { NgxMaskModule } from 'ngx-mask';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
@@ -26,10 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-  CustomDescriptionFormComponent
-} from 'app/components/custom-description-form/custom-description-form.component';
-import { JsonDescriptionFormComponent } from 'app/components/json-description-form/json-description-form.component';
+import { AppSharedModule } from "app/shared/shared.module";
 
 const routes = [
   {
@@ -55,7 +51,6 @@ const routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     LayoutModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -70,7 +65,8 @@ const routes = [
     SetupModule,
     MatTabsModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    AppSharedModule
   ]
 })
 export class SetAccountInfoModule { }

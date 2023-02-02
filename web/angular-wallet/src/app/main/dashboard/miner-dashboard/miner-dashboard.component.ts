@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '@signumjs/core';
 import { takeUntil } from 'rxjs/operators';
-import { StoreService } from '../../../store/store.service';
-import { AccountService } from '../../../setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { DashboardLayoutService } from '../dashboard.layout.service';
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { MinerDashboardLayoutConfiguration, MinerDashboardLayoutParameters } from './MinerDashboardLayoutConfiguration';
-import { WalletAccount } from "app/util/WalletAccount";
+import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 const LayoutConfiguration = new MinerDashboardLayoutConfiguration();
 
@@ -31,7 +30,7 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
   constructor(
     private storeService: StoreService,
-    private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private notificationService: NotifierService,
     private marketService: MarketServiceCoinGecko,
     private layoutService: DashboardLayoutService
@@ -42,10 +41,13 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
   ngOnInit(): void {
 
-    this.accountService.currentAccount$
+    this.account = this.accountManagementService.getSelectedAccount();
+
+    this.storeService.accountUpdated$
       .pipe(this.unsubscribe)
       .subscribe((account: WalletAccount) => {
-          this.account = account;       }
+          this.account = account;
+        }
       );
 
     this.marketService.ticker$
@@ -60,9 +62,7 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
     this.layoutService.layout$
       .pipe(this.unsubscribe)
       .subscribe((layoutParams: MinerDashboardLayoutParameters) => {
-        setTimeout(() => {
           this.layoutParameters = layoutParams;
-        }, 500);
       });
   }
 

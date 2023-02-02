@@ -2,9 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
-import { TransactionService } from 'app/main/transactions/transaction.service';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
@@ -53,7 +52,6 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   constructor(
     private accountService: AccountService,
     private networkService: NetworkService,
-    private transactionService: TransactionService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
@@ -61,7 +59,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     private router: Router
   ) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
@@ -112,7 +110,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
     return this.amount !== undefined && this.fee !== undefined
       ? Amount.fromSigna(this.amount).add(Amount.fromSigna(this.fee))
-      : Amount.Zero();
+      : Amount.fromSigna(this.fee);
   }
 
   async onSubmit(): Promise<void> {

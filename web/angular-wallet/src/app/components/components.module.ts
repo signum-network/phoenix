@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {MatButtonModule, MatIconModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {SubmitTransactionComponent} from './submit-transaction/submit-transaction.component';
 import {RouterModule} from '@angular/router';
 import {FlexModule} from '@angular/flex-layout';
@@ -58,7 +57,6 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     CommonModule,
     FlexModule,
     FormsModule,
-    I18nModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,

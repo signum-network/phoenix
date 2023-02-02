@@ -51,9 +51,6 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
     }
   }
 
-  ngOnDestroy(): void {
-    // clearInterval(this.interval);
-  }
 
   public getPoolUrlOrName(): string {
     try {

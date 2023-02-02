@@ -1,3 +1,5 @@
+<ng-container>
+
 <mat-form-field>
   <mat-label>{{ 'recipient' | i18n }}</mat-label>
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
@@ -10,13 +12,13 @@
 
     <div *ngIf="recipient.type !== 1 && recipient.status !== 'unstoppable-outage'"
          class="recipient-address"
-         title="{{ recipient.addressRS }}">
-        {{ recipient.addressRS }}
+         title="{{ recipient.addressId | address }}">
+        {{ recipient.addressId | address}}
     </div>
     <div fxFlex fxLayout="row"
          *ngIf="recipient.type>0"
          [ngClass]="getValidationClass()"
-         matTooltip="{{getValidationHint()}}"
+         matTooltip="{{getValidationHint() | i18n}}"
     >
       <div>{{getRecipientTypeName()}}</div>
       <mat-icon>
@@ -32,3 +34,37 @@
     <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
   </div>
 </mat-form-field>
+
+  <ng-container *ngIf="needPublicKey">
+
+  <mat-form-field class="w-100-p">
+    <mat-label>{{ 'recipient_public_key' | i18n }}</mat-label>
+    <input matInput
+           type="text"
+           autocomplete="off"
+           [(ngModel)]="recipient.publicKey"
+           (ngModelChange)="onPublickeyChange()"
+           name="amount"
+           placeholder="{{'enter_recipient_public_key' | i18n}}"
+    >
+    <mat-icon
+      class="icon ok"
+      *ngIf="isPublicKeyValid"
+      matSuffix
+      matTooltip="{{'recipient_public_key_valid' | i18n}}"
+    >
+      check_circle_outline
+    </mat-icon>
+    <mat-icon
+      class="icon error-text"
+      *ngIf="!isPublicKeyValid"
+      matSuffix
+      matTooltip="{{'recipient_public_key_invalid' | i18n}}"
+    >
+      error_outline
+    </mat-icon>
+    <mat-hint class="error">{{ 'enter_recipient_public_key_hint' | i18n }}</mat-hint>
+  </mat-form-field>
+
+  </ng-container>
+</ng-container>

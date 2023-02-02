@@ -20,7 +20,6 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SetupModule} from 'app/setup/setup.module';
@@ -33,10 +32,10 @@ import {TokensTableComponent} from './tokens-table/tokens-table.component';
 import {TokenTransferComponent} from './token-transfer/token-transfer.component';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {TokenTransferFormComponent} from './token-transfer/token-transfer-form/token-transfer-form.component';
-import {CurrentAccountResolver} from '../../shared/resolvers/current-account.resolver';
 import {TokenDataResolver} from './token-data-resolver.service';
 import {ComponentsModule} from '../../components/components.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import { AccountResolver } from "app/shared/resolvers/account.resolver";
 
 const routes = [
   {
@@ -44,7 +43,7 @@ const routes = [
     component: TokensComponent,
     canActivate: [LoginGuard],
     resolve: {
-      account: CurrentAccountResolver
+      account: AccountResolver
     }
   },
   {
@@ -52,7 +51,7 @@ const routes = [
     component: TokenTransferComponent,
     canActivate: [LoginGuard],
     resolve: {
-      account: CurrentAccountResolver,
+      account: AccountResolver,
       token: TokenDataResolver,
       suggestedFees: SuggestFeeResolver
     }
@@ -95,7 +94,6 @@ const routes = [
         MatButtonModule,
         MatTooltipModule,
         ReactiveFormsModule,
-        I18nModule,
         MatDialogModule,
         RouterModule.forChild(routes),
         AppSharedModule,

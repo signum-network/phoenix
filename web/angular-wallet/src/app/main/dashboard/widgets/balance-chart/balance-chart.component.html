@@ -1,9 +1,18 @@
 <div class="fullwidth fullheight" (mouseenter)="showPoints()" (mouseleave)="hidePoints()">
   <div class="main-widget" *ngIf="chart">
     <div class="fuse-navy-500-fg">
-      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate}}</small>
+      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate|date:'short':null:locale}}</small>
       <div class="balance-info mt-16">
-        <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getSigna() | amount}}</h1>
+        <div class="balance">
+          <h1 class="pr-8 my-0">{{accountBalances.totalBalance.getSigna() | amount}}</h1>
+          <div class="inline badge text-center" [ngClass]="{'gain': balanceChange.signa >= 0, 'loss': balanceChange.signa < 0}" matTooltip="{{'chart_balance_change' | i18n}}">
+            <p>{{balanceChange.signa >= 0 ? '+' : '-'}}</p>
+            <p class="ml-4">{{balanceChange.signa | amount:'signa':true}}</p>
+            <p class="ml-4">
+              ({{balanceChange.percent.toFixed(2)}} %)
+            </p>
+          </div>
+        </div>
         <div class="inline">
           <small class="font-size-12 pr-8">{{calculateValue(priceBtc) | currency:'฿'}}</small>
           <small class="font-size-12 pr-8">{{calculateValue(priceUsd) | currency:'USD'}}</small>

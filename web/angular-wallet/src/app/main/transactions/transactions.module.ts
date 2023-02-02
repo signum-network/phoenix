@@ -22,7 +22,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {RouterModule} from '@angular/router';
 import {TransactionDetailsComponent} from './transaction-details';
@@ -30,9 +29,10 @@ import {TransactionResolver} from './transaction.resolver';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {TransactionTableModule} from './transaction-table/transaction.module';
 import {TransactionRowValueCellComponent} from './transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
-import {AppSharedModule} from '../../shared/shared.module';
+import {AppSharedModule} from 'app/shared/shared.module';
 import {ComponentsModule} from '../../components/components.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FuseConfirmDialogModule } from '@fuse/components';
 
 const routes = [
   {
@@ -57,7 +57,6 @@ const routes = [
     ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     MatButtonModule,
     MatButtonModule,
     MatCardModule,
@@ -82,7 +81,8 @@ const routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     TransactionTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FuseConfirmDialogModule,
   ],
   declarations: [
     TransactionsComponent,
@@ -91,7 +91,7 @@ const routes = [
   ],
   providers: [
     TransactionResolver
-  ]
+  ],
 })
 export class TransactionsModule {
 }

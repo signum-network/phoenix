@@ -32,7 +32,7 @@ export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnIn
     this.fees = this.route.snapshot.data.suggestedFees;
     this.token = this.route.snapshot.data.token;
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ language }) => {
         this.locale = language;

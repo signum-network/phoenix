@@ -168,7 +168,7 @@ export const constants = {
     {
       name: 'Testnet Node Europe',
       region: 'Europe',
-      location: 'UK',
+      location: 'Germany',
       address: 'https://europe3.testnet.signum.network',
       port: 443,
       reliable: false,

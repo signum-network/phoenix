@@ -5,7 +5,7 @@ import { WalletAccount } from 'app/util/WalletAccount';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { takeUntil } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../../../layout/components/i18n/i18n.service';
+import { I18nService } from '../../../../shared/services/i18n.service';
 import { HttpError } from '@signumjs/http';
 
 enum AccountStatus {

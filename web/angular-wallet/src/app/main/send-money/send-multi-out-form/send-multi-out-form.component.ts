@@ -3,15 +3,12 @@ import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { Amount } from '@signumjs/util';
 import {
-  Address,
-  AddressPrefix,
   MultioutRecipientAmount,
   SuggestedFees,
   TransactionPaymentSubtype,
   TransactionType
 } from '@signumjs/core';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { TransactionService } from 'app/main/transactions/transaction.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { filter, takeUntil } from 'rxjs/operators';
 import { StoreService } from '../../../store/store.service';
@@ -22,11 +19,11 @@ import { constants } from '../../../constants';
 import { Router } from '@angular/router';
 import { AccountBalances, getBalancesFromAccount } from '../../../util/balance';
 import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
-import { NetworkService } from '../../../network/network.service';
-import { Recipient } from '../../../components/recipient-input/recipient-input.component';
+import { Recipient } from 'app/components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from '../../../components/warn-send-dialog/warn-send-dialog.component';
 import { memoize } from 'lodash';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { SendMoneyService } from '../send-money.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -40,16 +37,15 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   constructor(
     private warnDialog: MatDialog,
     private batchRecipientsDialog: MatDialog,
-    private transactionService: TransactionService,
+    private sendMoneyService: SendMoneyService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
-    private networkService: NetworkService,
     private breakpointObserver: BreakpointObserver,
     private router: Router,
   ) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(async ({language}) => {
           this.language = language;
@@ -114,13 +110,13 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const amount = Amount.fromSigna(this.amount || 0);
 
     const request = {
-      recipientIds: this.recipients.map(r => Address.fromReedSolomonAddress(r.addressRS).getNumericId()),
+      recipientIds: this.recipients.map(r => r.addressId),
       fee: fee.getPlanck(),
       amountNQT: amount.getPlanck(),
       pin: this.pin,
       keys: this.account.keys,
     };
-    await this.transactionService.sendSameAmountToMultipleRecipients(request);
+    await this.sendMoneyService.sendSameAmountToMultipleRecipients(request);
   }
 
   private async sendMoneyArbitraryAmount(): Promise<void> {
@@ -129,14 +125,14 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
     const request = {
       recipientAmounts: this.recipients.map(r => ({
-        recipient: Address.fromReedSolomonAddress(r.addressRS).getNumericId(),
+        recipient: r.addressId,
         amountNQT: Amount.fromSigna(r.amount || 0).getPlanck(),
       })),
       fee: fee.getPlanck(),
       pin: this.pin,
       keys: this.account.keys,
     };
-    await this.transactionService.sendAmountToMultipleRecipients(request);
+    await this.sendMoneyService.sendAmountToMultipleRecipients(request);
   }
 
 
@@ -207,11 +203,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   private calculatePayloadLength(): number {
     return this.recipients.reduce(
       (len, r) => {
-        if (!r.addressRS) {
+        if (!r.addressId) {
           return len;
         }
         // format is <id1>;<id2>;
-        len += Address.fromReedSolomonAddress(r.addressRS).getNumericId().length + 1;
+        len += r.addressId.length + 1;
         if (!this.sameAmount) {
           // format is <id1>:<amount>;<id2>:<amount>;
           len += Amount.fromSigna(r.amount || '0').getPlanck().length + 1;
@@ -237,7 +233,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private nonEmptyRecipients(): Array<Recipient> {
     return this.recipients.filter(
-      r => r.amount !== '' || r.addressRS !== ''
+      r => r.amount !== '' || r.addressId !== ''
     );
   }
 
@@ -292,13 +288,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     let previousAmount = null;
     let isSameAmount = true;
 
-    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-
     this.recipients = recipientAmounts.map(ra => {
       const r = new Recipient();
       r.amount = Amount.fromPlanck(ra.amountNQT).getSigna();
       r.addressRaw = ra.recipient;
-      r.addressRS = Address.fromNumericId(ra.recipient, prefix).getReedSolomonAddress();
 
       if (previousAmount) {
         isSameAmount = isSameAmount && (previousAmount === r.amount);

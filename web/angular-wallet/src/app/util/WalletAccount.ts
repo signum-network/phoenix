@@ -3,6 +3,9 @@ import { Keys } from '@signumjs/crypto';
 import { AssetBalance, Transaction, UnconfirmedAssetBalance } from '@signumjs/core';
 
 export class WalletAccount {
+
+  public _id: string;
+  public networkName: string;
   public account: string;
   public accountRS: string;
   public accountRSExtended: string;
@@ -12,7 +15,6 @@ export class WalletAccount {
   public effectiveBalanceNQT: string;
   public keys: Keys;
   public name: string;
-  public selected: boolean;
   public transactions: Transaction[];
   public type: string;
   public unconfirmedAssetBalances: UnconfirmedAssetBalance[];
@@ -22,6 +24,7 @@ export class WalletAccount {
   public confirmed: boolean;
 
   constructor(data: any = {}) {
+    this._id = data._id;
     this.account = data.account || undefined;
     this.accountRS = data.accountRS || undefined;
     this.accountRSExtended = data.accountRSExtended || undefined;
@@ -38,7 +41,6 @@ export class WalletAccount {
     };
     this.confirmed = !!this.keys.publicKey;
     this.name = data.name || undefined;
-    this.selected = data.selected || false;
     if (data.transactions !== undefined && data.transactions.length > 0) {
       this.transactions = data.transactions;
     } else {
@@ -47,5 +49,10 @@ export class WalletAccount {
     this.type = data.type || 'offline';
     this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
     this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
+    this.networkName = data.networkName || undefined;
+  }
+
+  public isStored() {
+    return !!this._id;
   }
 }

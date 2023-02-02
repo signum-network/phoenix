@@ -22,6 +22,32 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    .balance {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      @media screen and (max-width: 480px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .badge {
+        max-height: 24px;
+        border-radius: 12px;
+        padding: 2px 8px;
+        &.gain {
+          background: #CDFFCD;
+          color: #007F00;
+        }
+        &.loss {
+          background: #FFE0E0;
+          color: #D30000;
+        }
+      }
+    }
   }
 
   .no-transactions {

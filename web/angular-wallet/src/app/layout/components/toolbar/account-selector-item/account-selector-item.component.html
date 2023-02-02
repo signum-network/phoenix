@@ -1,0 +1,27 @@
+<span *ngIf="account" class="account-item inline">
+      <div class="avatar-icon">
+        <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
+      </div>
+      <div class="address-box" fxHide fxShow.gt-xs>
+        <span>{{short(account.name || shortAddress)}}</span>
+        <div class="hint-line secondary-text">
+          <small *ngIf="account.name">{{short(shortAddress)}}</small>
+          <small *ngIf="!account.name">{{short(account.account)}}</small>
+          <mat-icon *ngIf="account.type === 'offline'"
+                    class="s-12"
+                    matTooltip="{{'hint_offline_account' | i18n}}">
+            remove_red_eye
+          </mat-icon>
+          <mat-icon *ngIf="account.type !== 'offline' && account.confirmed"
+                    class="s-12"
+                    matTooltip="{{'hint_online_account' | i18n}}">
+            verified_user
+          </mat-icon>
+          <mat-icon *ngIf="account.type !== 'offline' && !account.confirmed"
+                    class="s-12 error-text"
+                    matTooltip="{{'error_no_public_key' | i18n}}">
+            lock_open
+          </mat-icon>
+        </div>
+      </div>
+</span>

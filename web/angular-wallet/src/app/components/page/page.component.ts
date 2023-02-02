@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HistoryNavigationService } from 'app/shared/services/historyNavigation.service';
+import { HistoryNavigationService } from 'app/shared/services/history-navigation.service';
 
 
 export interface BreadcrumbInfo {

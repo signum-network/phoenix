@@ -53,19 +53,18 @@ fuse-sidebar {
                 cursor: pointer;
                 filter: drop-shadow(0 0 4px black);
 
+                .unsafe-badge {
+                  position: absolute;
+                  color: red;
+                  top: 0;
+                  right: 0;
+                }
+
                 img {
                   position: relative;
                   top: -18px;
                   height: 42px;
                   border-radius: 50%;
-                }
-
-                canvas {
-                  display: block;
-                  position: relative;
-                  width: 100%;
-                  transform: scale(1.5) translateX(33%);
-                  top: -4px;
                 }
               }
 
@@ -136,9 +135,8 @@ navbar {
       padding: 12px 12px 12px 20px;
 
       @include media-breakpoint('xs') {
-        min-height: 56px;
-        max-height: 56px;
-        height: 56px;
+        min-height: 60px;
+        height: 60px;
       }
 
       .logo {
@@ -146,8 +144,8 @@ navbar {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        width: 80%
-      ;
+        top: 4px;
+        width: 80%;
         .logo-folded {
           display: none;
         }
@@ -200,16 +198,18 @@ navbar {
           filter: drop-shadow(0 0 4px black);
           margin-top: 1rem;
 
+          .unsafe-badge {
+            position: absolute;
+            background-color: transparent;
+            color: red;
+            bottom: 40px;
+            right: 80px;
+            filter: drop-shadow(0 0 4px black);
+          }
+
           img {
             height: 100px;
             border-radius: 4px;
-          }
-
-          canvas {
-            display: block;
-            position: relative;
-            width: 100%;
-            transform: translateX(33%);
           }
         }
       }

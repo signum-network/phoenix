@@ -5,6 +5,7 @@ export const environment = {
   hmr: true,
   version,
   defaultNode: 'http://localhost:6876',
+  defaultNodeNetwork: 'Signum-TESTNET',
   market: {
     tickerUrl: 'https://api.coingecko.com/api/v3/coins/signum?tickers=false&community_data=false&developer_data=false&market_data=true',
     tickerInterval: 60 * 1000

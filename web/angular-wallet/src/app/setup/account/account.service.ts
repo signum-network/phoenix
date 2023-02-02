@@ -5,9 +5,7 @@ import { StoreService } from 'app/store/store.service';
 
 import {
   Address,
-  AliasList,
   Api,
-  AssetList,
   Balance,
   BlockList,
   Transaction,
@@ -16,23 +14,21 @@ import {
   TransactionMiningSubtype,
   TransactionType,
   UnconfirmedTransactionList,
-  AddressPrefix,
-  GetAccountTransactionsArgs, Alias
+  GetAccountTransactionsArgs
 } from '@signumjs/core';
 import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from '@signumjs/crypto';
 import { Amount } from '@signumjs/util';
 import { HttpClientFactory, HttpError } from '@signumjs/http';
-import { ApiService } from '../../api.service';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { NetworkService } from '../../network/network.service';
-import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
-import { adjustLegacyAddressPrefix } from '../../util/adjustLegacyAddressPrefix';
-import { uniqBy } from 'lodash';
-import { Settings } from '../../settings';
+import { I18nService } from 'app/shared/services/i18n.service';
+import { NetworkService } from 'app/network/network.service';
+import { KeyDecryptionException } from 'app/util/exceptions/KeyDecryptionException';
+import { adjustLegacyAddressPrefix } from 'app/util/adjustLegacyAddressPrefix';
+import { Settings } from 'app/store/settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
-import { constants } from '../../constants';
+import { constants } from 'app/constants';
+import { LedgerService } from 'app/ledger.service';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -66,32 +62,22 @@ interface SetCommitmentRequest {
 })
 export class AccountService {
   public currentAccount$: BehaviorSubject<WalletAccount> = new BehaviorSubject(undefined);
-  private api: Api;
   private transactionsSeenInNotifications: string[] = [];
-  private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
   private showDesktopNotifications: boolean;
 
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
               private progressBarService: FuseProgressBarService,
-              private apiService: ApiService,
+              private ledgerService: LedgerService,
               private i18nService: I18nService) {
-    this.storeService.settings.subscribe((settings: Settings) => {
-      this.api = this.apiService.api;
+    this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
+      if (!settings){ return; }
       this.showDesktopNotifications = settings.showDesktopNotifications;
     });
-
-    this.networkService.isMainNet$.subscribe(() => {
-      this.accountPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-    });
-  }
-
-  public updateCurrentAccount(account: WalletAccount): void {
-    this.currentAccount$.next(account);
   }
 
   public async getAddedCommitments(account: WalletAccount): Promise<TransactionList> {
-    return this.api.account.getAccountTransactions({
+    return this.ledgerService.ledger.account.getAccountTransactions({
       accountId: account.account,
       type: TransactionType.Mining,
       subtype: TransactionMiningSubtype.AddCommitment,
@@ -104,12 +90,12 @@ export class AccountService {
     args.includeIndirect = true;
     args.resolveDistributions = true;
     try {
-      const transactions = await this.api.account.getAccountTransactions(args);
+      const transactions = await this.ledgerService.ledger.account.getAccountTransactions(args);
       return Promise.resolve(transactions);
     } catch (e) {
       const EC_INVALID_ARG = 4;
       if (e.data.errorCode === EC_INVALID_ARG) {
-        return this.api.account.getAccountTransactions(args);
+        return this.ledgerService.ledger.account.getAccountTransactions(args);
       } else {
         throw e;
       }
@@ -122,7 +108,7 @@ export class AccountService {
     feeSuggestionType?: string,
     feeNQT?: number,
     immutable?: boolean): Promise<string> {
-    return this.api.account.generateSendTransactionQRCodeAddress(
+    return this.ledgerService.ledger.account.generateSendTransactionQRCodeAddress(
       id,
       amountNQT,
       feeSuggestionType,
@@ -143,26 +129,18 @@ export class AccountService {
     }
   }
 
-  public getAccountBalance(id: string): Promise<Balance> {
-    return this.api.account.getAccountBalance(id);
-  }
 
   public getUnconfirmedTransactions(id: string): Promise<UnconfirmedTransactionList> {
-    return this.api.account.getUnconfirmedAccountTransactions(id);
+    return this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(id);
   }
 
   public async getAccount(accountId: string): Promise<WalletAccount> {
-    const supportsPocPlus = await this.apiService.supportsPocPlus();
-    const includeCommittedAmount = supportsPocPlus || undefined;
-    const account = await this.api.account.getAccount({
+    const account = await this.ledgerService.ledger.account.getAccount({
       accountId,
-      includeCommittedAmount
+      includeCommittedAmount: true,
+      includeEstimatedCommitment: true
     });
-    return adjustLegacyAddressPrefix(new WalletAccount(account));
-  }
-
-  public getCurrentAccount(): Promise<WalletAccount> {
-    return Promise.resolve(this.currentAccount$.getValue());
+    return new WalletAccount(account);
   }
 
   public setAccountInfo({
@@ -174,7 +152,7 @@ export class AccountService {
                           keys
                         }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAccountInfo({
+    return this.ledgerService.ledger.account.setAccountInfo({
       name,
       description,
       feePlanck,
@@ -192,7 +170,7 @@ export class AccountService {
                               keys
                             }: SetRewardRecipientRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setRewardRecipient({
+    return this.ledgerService.ledger.account.setRewardRecipient({
       recipientId,
       senderPrivateKey,
       senderPublicKey: keys.publicKey,
@@ -202,9 +180,9 @@ export class AccountService {
   }
 
   public async getRewardRecipient(recipientId: string): Promise<WalletAccount | null> {
-    const { rewardRecipient } = await this.api.account.getRewardRecipient(recipientId);
+    const { rewardRecipient } = await this.ledgerService.ledger.account.getRewardRecipient(recipientId);
     if (rewardRecipient) {
-      const acct = await this.api.account.getAccount({ accountId: rewardRecipient });
+      const acct = await this.ledgerService.ledger.account.getAccount({ accountId: rewardRecipient });
       return new WalletAccount(acct);
     }
     return null;
@@ -227,75 +205,78 @@ export class AccountService {
     };
 
     return (isRevoking
-      ? this.api.account.removeCommitment(args)
-      : this.api.account.addCommitment(args)) as Promise<TransactionId>;
+      ? this.ledgerService.ledger.account.removeCommitment(args)
+      : this.ledgerService.ledger.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
-  public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
-    return new Promise(async (resolve) => {
-      const account = new WalletAccount();
-      account.type = 'active';
-      const keys = generateMasterKeys(passphrase);
-      const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
-      const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+  // public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
+  //   return new Promise(async (resolve) => {
+  //     const account = new WalletAccount();
+  //     account.type = 'active';
+  //     const keys = generateMasterKeys(passphrase);
+  //     const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
+  //     const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+  //
+  //     account.keys = {
+  //       publicKey: keys.publicKey,
+  //       signPrivateKey: encryptedKey,
+  //       agreementPrivateKey: encryptedSignKey
+  //     };
+  //
+  //     const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
+  //     account.account = address.getNumericId();
+  //     account.accountRS = address.getReedSolomonAddress();
+  //
+  //     await this.selectAccount(account);
+  //     const savedAccount = await this.synchronizeAccount(account);
+  //     resolve(savedAccount);
+  //   });
+  // }
 
-      account.keys = {
-        publicKey: keys.publicKey,
-        signPrivateKey: encryptedKey,
-        agreementPrivateKey: encryptedSignKey
-      };
+  // public async createOfflineAccount(reedSolomonAddress: string): Promise<WalletAccount> {
+  //   const account = new WalletAccount();
+  //   const address = Address.fromReedSolomonAddress(reedSolomonAddress);
+  //   const existingAccount = await this.storeService.findAccountByIdLegacy(address.getNumericId());
+  //   if (existingAccount === undefined) {
+  //     account.type = 'offline';
+  //     account.accountRS = reedSolomonAddress;
+  //     account.account = address.getNumericId();
+  //     await this.selectAccount(account);
+  //     return this.synchronizeAccount(account);
+  //   } else {
+  //     throw new Error('Address already imported!');
+  //   }
+  // }
 
-      const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
-      account.account = address.getNumericId();
-      account.accountRS = address.getReedSolomonAddress();
+  // public removeAccount(account: WalletAccount): Promise<boolean> {
+  //   return this.storeService.removeAccountLegacy(account).catch(error => error);
+  // }
 
-      await this.selectAccount(account);
-      const savedAccount = await this.synchronizeAccount(account);
-      resolve(savedAccount);
-    });
-  }
+  // public async selectAccount(account: WalletAccount): Promise<WalletAccount> {
+  //   this.currentAccount$.next(account);
+  //   let acc = await this.storeService.selectAccountLegacy(account);
+  //   acc = await this.synchronizeAccount(acc);
+  //   return acc;
+  // }
 
-  public async createOfflineAccount(reedSolomonAddress: string): Promise<WalletAccount> {
-    const account = new WalletAccount();
-    const address = Address.fromReedSolomonAddress(reedSolomonAddress);
-    const existingAccount = await this.storeService.findAccount(address.getNumericId());
-    if (existingAccount === undefined) {
-      account.type = 'offline';
-      account.accountRS = reedSolomonAddress;
-      account.account = address.getNumericId();
-      await this.selectAccount(account);
-      return this.synchronizeAccount(account);
-    } else {
-      throw new Error('Address already imported!');
-    }
-  }
-
-  public removeAccount(account: WalletAccount): Promise<boolean> {
-    return this.storeService.removeAccount(account).catch(error => error);
-  }
-
-  public async selectAccount(account: WalletAccount): Promise<WalletAccount> {
-    this.updateCurrentAccount(account);
-    let acc = await this.storeService.selectAccount(account);
-    acc = await this.synchronizeAccount(acc);
-    return acc;
-  }
-
-  public synchronizeAccount(account: WalletAccount): Promise<WalletAccount> {
-    return new Promise(async (resolve, reject) => {
-      await Promise.all([
-        this.syncAccountDetails(account),
-        this.syncAccountTransactions(account),
-        this.syncAccountUnconfirmedTransactions(account)
-      ]);
-
-      if (account.account === this.currentAccount$.getValue().account) {
-        this.updateCurrentAccount(account); // emits update event
-      }
-      this.storeService.saveAccount(account).catch(reject);
-      resolve(account);
-    });
-  }
+  // public async synchronizeAccount(account: WalletAccount, onlyPendingTransactions = false): Promise<WalletAccount> {
+  //   if (onlyPendingTransactions) {
+  //     await this.syncAccountUnconfirmedTransactions(account);
+  //   } else {
+  //     await Promise.all([
+  //       this.syncAccountDetails(account),
+  //       this.syncAccountTransactions(account),
+  //       this.syncAccountUnconfirmedTransactions(account)
+  //     ]);
+  //   }
+  //   // TODO: verify if this really works
+  //   // if (account.account === this.currentAccount$.getValue().account) {
+  //   //   this.updateCurrentAccount(account); // emits update event
+  //   // }
+  //
+  //   // this.storeService.saveAccount(account);
+  //   return account;
+  // }
 
   public isNewTransaction(transactionId: string): boolean {
     return (!this.transactionsSeenInNotifications[transactionId]);
@@ -306,7 +287,6 @@ export class AccountService {
     if (!this.showDesktopNotifications) {
       return;
     }
-
 
     // TODO: create a notification factory according the type and show proper notifications
     if (transaction.type !== TransactionType.Payment) {
@@ -347,65 +327,66 @@ export class AccountService {
 
   }
 
-  public async syncAccountUnconfirmedTransactions(account: WalletAccount): Promise<void> {
-    try {
-      const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
-      const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
-      const unconfirmed = unconfirmedTransactionsResponse.unconfirmedTransactions.sort(orderByTimestamp);
-      account.transactions = uniqBy(unconfirmed.concat(account.transactions), 'transaction');
+  // private async syncAccountUnconfirmedTransactions(account: WalletAccount): Promise<void> {
+  //   try {
+  //     const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
+  //     const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
+  //     const unconfirmed = unconfirmedTransactionsResponse.unconfirmedTransactions.sort(orderByTimestamp);
+  //     account.transactions = uniqBy(unconfirmed.concat(account.transactions), 'transaction');
+  //
+  //     // @ts-ignore - Send notifications for new transactions
+  //     if (window.Notification) {
+  //       unconfirmed
+  //         .filter(({ transaction }) => this.isNewTransaction(transaction))
+  //         .map((transaction) => this.sendNewTransactionNotification(transaction));
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
-      // @ts-ignore - Send notifications for new transactions
-      if (window.Notification) {
-        unconfirmed
-          .filter(({ transaction }) => this.isNewTransaction(transaction))
-          .map((transaction) => this.sendNewTransactionNotification(transaction));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  public async syncAccountTransactions(account: WalletAccount): Promise<void> {
-    try {
-      const { account: accountId, transactions } = account;
-      let transactionList = transactions.slice(0, 500); // max supported tx
-      if (transactions.length > 0) {
-        const timestamp = transactions[0].timestamp.toString(10);
-        const { transactions: recentTransactions } = await this.getAccountTransactions({
-          accountId,
-          timestamp
-        });
-        transactionList = recentTransactions.concat(transactions);
-      } else {
-        transactionList = (await this.getAccountTransactions({ accountId })).transactions;
-      }
-      account.transactions = uniqBy(transactionList, 'transaction');
-    } catch (e) {
-      account.transactions = [];
-    }
-  }
-
-  private async syncAccountDetails(account: WalletAccount): Promise<void> {
-    try {
-      const remoteAccount = await this.getAccount(account.account);
-      // Only update what you really need...
-      // ATTENTION: Do not try to iterate over all keys and update then
-      // It will fail :shrug
-      account.name = remoteAccount.name;
-      account.description = remoteAccount.description;
-      account.assetBalances = remoteAccount.assetBalances;
-      account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
-      account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
-      account.balanceNQT = remoteAccount.balanceNQT;
-      account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
-      account.accountRSExtended = remoteAccount.accountRSExtended;
-      if(!remoteAccount.keys){
-        console.log('no keys - syncAccountDetails', remoteAccount);
-      }
-    } catch (e) {
-      console.warn(e);
-    }
-  }
+  // private async syncAccountTransactions(account: WalletAccount): Promise<void> {
+  //   try {
+  //     const { account: accountId, transactions } = account;
+  //     let transactionList = transactions ;// transactions.slice(0, 500); // max supported tx
+  //     if (transactions.length > 0) {
+  //       const timestamp = transactions[0].timestamp.toString(10);
+  //       const { transactions: recentTransactions } = await this.getAccountTransactions({
+  //         accountId,
+  //         timestamp
+  //       });
+  //       transactionList = recentTransactions.concat(transactions);
+  //     } else {
+  //       transactionList = (await this.getAccountTransactions({ accountId })).transactions;
+  //     }
+  //     account.transactions = uniqBy(transactionList, 'transaction');
+  //   } catch (e) {
+  //     account.transactions = [];
+  //   }
+  // }
+  //
+  // private async syncAccountDetails(account: WalletAccount): Promise<void> {
+  //   try {
+  //     const remoteAccount = await this.getAccount(account.account);
+  //     // Only update what you really need...
+  //     // ATTENTION: Do not try to iterate over all keys and update then
+  //     // It will fail :shrug
+  //     account.name = remoteAccount.name;
+  //     account.description = remoteAccount.description;
+  //     account.assetBalances = remoteAccount.assetBalances;
+  //     account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+  //     account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
+  //     account.balanceNQT = remoteAccount.balanceNQT;
+  //     account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+  //     account.accountRSExtended = remoteAccount.accountRSExtended;
+  //     account.accountRS = remoteAccount.accountRS;
+  //     if (!remoteAccount.keys) {
+  //       console.log('no keys - syncAccountDetails', remoteAccount);
+  //     }
+  //   } catch (e) {
+  //     console.warn(e);
+  //   }
+  // }
 
   public async activateAccount(account: WalletAccount): Promise<void> {
     try {
@@ -436,15 +417,15 @@ export class AccountService {
   }
 
   public async getForgedBlocks(account: WalletAccount): Promise<BlockList> {
-    return this.api.account.getAccountBlocks({ accountId: account.account });
+    return this.ledgerService.ledger.account.getAccountBlocks({ accountId: account.account });
   }
 
 
   public getAvatarUrlFromAccount(account: WalletAccount): string {
-    try{
+    try {
       const descriptor = DescriptorData.parse(account.description, false);
       return `${constants.ipfsGateway}/${descriptor.avatar.ipfsCid}`;
-    }catch (e){
+    } catch (e) {
       return '';
     }
   }

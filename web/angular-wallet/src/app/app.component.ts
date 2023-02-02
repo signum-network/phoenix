@@ -8,7 +8,7 @@ import {parseDeeplink} from '@signumjs/util';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
-import {I18nService} from './layout/components/i18n/i18n.service';
+import {I18nService} from './shared/services/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {
   CertificationInfo,
@@ -21,7 +21,8 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
-import { WalletAccount } from './util/WalletAccount';
+
+const BlockchainStatusInterval = 30_000;
 
 @Component({
   selector: 'app',
@@ -29,6 +30,7 @@ import { WalletAccount } from './util/WalletAccount';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
+  isReady = false;
   firstTime = true;
   isScanning = false;
   isDownloadingUpdate = false;
@@ -38,14 +40,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   numberOfBlocks: number;
   lastBlockchainFeederHeight: number;
   previousLastBlock = '0';
-  lastBlock = '0';
-  isLoggedIn = false;
-  selectedAccount: WalletAccount;
-  accounts: WalletAccount[];
-  BLOCKCHAIN_STATUS_INTERVAL = 30000;
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
-  blockchainStatusInterval: any = null;
+  private blockchainStatusInterval: NodeJS.Timeout;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -68,25 +65,14 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   ngOnInit(): void {
-    this.storeService.ready
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+   this.storeService.ready$
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
-        if (ready) {
-          this.updateAccounts();
-          const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
-          setTimeout(checkBlockchainStatus, 1000);
-          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
-        }
-        this.accountService.currentAccount$
-          .pipe(
-            takeUntil(this.unsubscribeAll)
-          )
-          .subscribe(async (account) => {
-            this.selectedAccount = account;
-            this.accounts = await this.storeService.getAllAccounts();
-          });
+        if (!ready) {return; }
+        const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
+        setTimeout(checkBlockchainStatus, 1000);
+        this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
+        this.isReady = true;
       });
 
     if (this.appService.isDesktop()) {
@@ -94,12 +80,23 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       this.initDeepLinkHandler();
       this.initRouteToHandler();
     }
+
   }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();
     clearInterval(this.blockchainStatusInterval);
   }
+
+  // private updateAccounts(network:string): void {
+  //   this.storeService
+  //     .getAllAccountsByNetwork(network)
+  //     .forEach((id) =>
+  //       this.accountService.getAccount(id.account)
+  //         .then( account => this.storeService.saveAccount(account))
+  //         .catch(e => console.warn('Could not update account', e.message))
+  //     );
+  // }
 
   private initDeepLinkHandler(): void {
     this.appService.onIpcMessage('deep-link-clicked', async (url) => {
@@ -194,9 +191,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       );
     });
 
-
   }
 
+  // TODO: refactor this ...
   private async checkBlockchainStatus(): Promise<void> {
     try {
       const blockchainStatus = await this.networkService.getBlockchainStatus();
@@ -210,11 +207,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         setTimeout(async () => {
           await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
         }, 1000);
-      } else if (this.selectedAccount) {
-        await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
-        });
-        this.accountService.updateCurrentAccount(this.selectedAccount);
-        // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);
       }
@@ -225,29 +217,10 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus): Promise<void> {
-    this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
     this.networkService.addBlock(block);
-    this.checkBlockchainStatus();
+    await this.checkBlockchainStatus();
   }
-
-  private async updateAccounts(): Promise<void> {
-    this.storeService.getSelectedAccount().then((account) => {
-      if (account !== this.selectedAccount) {
-        this.selectedAccount = account;
-        this.accountService.selectAccount(account);
-      }
-    });
-
-    this.accounts = await this.storeService.getAllAccounts();
-    this.accounts.map((account) => {
-      setTimeout(() => {
-        this.accountService.synchronizeAccount(account).catch(() => {
-        });
-      }, 1);
-    });
-  }
-
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
     return this.newVersionDialog.open(NewVersionDialogComponent, {

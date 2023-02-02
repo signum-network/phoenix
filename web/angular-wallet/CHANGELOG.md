@@ -1,4 +1,14 @@
 # Changelog
+## 1.5.0 (TBD)
+
+### Feature
+- Revamped Account Management
+- Transaction Table allows loading up to 10k transactions now. 
+
+### Bug Fixes
+
+- Fixed Disabled Activate Button (#1688)
+- Fixed Sending to unknown Accounts (#1664)
 
 ## 1.5.0-alpha
 

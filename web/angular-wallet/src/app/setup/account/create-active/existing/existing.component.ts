@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {CreateService} from '../../create.service';
+import { Component } from "@angular/core";
+import { AccountStatus, CreateService } from "../../create.service";
+import { AccountService } from "../../account.service";
 
 const WhiteSpaceIndicator = '⦾';
 
@@ -15,15 +16,22 @@ export class AccountCreateExistingComponent {
 
   constructor(
     public createService: CreateService,
+    public accountService: AccountService
   ) {
   }
 
 
-  public next(): void {
+  public async next(): Promise<void> {
     const phrase = this.showWhitespaces ? this.passphrase.replace(new RegExp(WhiteSpaceIndicator, 'gi'), ' ') : this.passphrase;
-    this.createService.generateAccount(phrase).then(() => {
+    try{
+      const {account} = await this.createService.generateAccount(phrase);
+      await this.accountService.getAccount(account);
+      this.createService.setAccountStatus(AccountStatus.IsVerified);
+    }catch(e){
+      this.createService.setAccountStatus(AccountStatus.IsNotVerified);
+    } finally {
       this.createService.nextStep();
-    });
+    }
   }
 
   public onChange(phrase: string): void {

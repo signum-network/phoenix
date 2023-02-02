@@ -25,7 +25,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
 
   public ngOnInit(): void {
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

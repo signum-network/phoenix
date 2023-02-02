@@ -1,5 +1,5 @@
 import {MultioutRecipientAmount} from '@signumjs/core';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {I18nService} from '../../../shared/services/i18n.service';
 import {constants} from '../../../constants';
 import {Address} from '@signumjs/core';
 import {Amount} from '@signumjs/util';

@@ -1,18 +1,11 @@
-<div class="fullwidth position-relative">
-  <ng-container *ngIf="transactionsDataSource && transactionsDataSource.data.length">
+<div *ngIf="account" class="fullwidth position-relative">
     <app-transaction-table
       [dataSource]="transactionsDataSource"
       [account]="account"
       [paginationEnabled]="false"
       [displayedColumns]="displayedColumns"
     ></app-transaction-table>
-    <div class="button-link-container">
+    <div *ngIf="account.transactions.length > 10" class="button-link-container">
       <app-link-button [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</app-link-button>
     </div>
-  </ng-container>
-  <ng-container *ngIf="!transactionsDataSource || !account.transactions.length">
-    <div>
-      {{ 'no_transactions_yet' | i18n }}
-    </div>
-  </ng-container>
 </div>

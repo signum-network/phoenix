@@ -1,23 +1,42 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {FormControl} from '@angular/forms';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  ApplicationRef,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
 import {
   Transaction,
   TransactionType,
   TransactionArbitrarySubtype,
-  isMultiOutSameTransaction, isMultiOutTransaction, TransactionAssetSubtype, TransactionPaymentSubtype
+  isMultiOutSameTransaction,
+  isMultiOutTransaction,
+  TransactionAssetSubtype,
+  TransactionPaymentSubtype,
+  TransactionSmartContractSubtype, TransactionEscrowSubtype
 } from '@signumjs/core';
-import {ChainTime} from '@signumjs/util';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-import {takeUntil} from 'rxjs/operators';
-import {UtilService} from '../../util.service';
-import {StoreService} from '../../store/store.service';
-import {AccountService} from '../../setup/account/account.service';
-import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { ChainTime } from '@signumjs/util';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
+import { takeUntil } from 'rxjs/operators';
+import { UtilService } from 'app/util.service';
+import { StoreService } from 'app/store/store.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { isSelf } from 'app/util/transaction/isSelf';
+import { isBurn } from 'app/util/transaction/isBurn';
+import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AppService } from 'app/app.service';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { LedgerService } from 'app/ledger.service';
 
 
 const ColumnsQuery = {
@@ -25,7 +44,7 @@ const ColumnsQuery = {
   lg: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
   md: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
   sm: ['transaction_id', 'timestamp', 'amount', 'account'],
-  xs: ['transaction_id', 'timestamp', 'amount'],
+  xs: ['transaction_id', 'timestamp', 'amount']
 };
 
 interface Types {
@@ -40,10 +59,12 @@ interface Types {
   templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent extends UnsubscribeOnDestroy implements OnInit, AfterContentInit, AfterViewInit {
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  isFetching = false;
 
-  public dataSource: MatTableDataSource<Transaction>;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
+  public dataSource = new MatTableDataSource<Transaction>();
   public account: WalletAccount;
 
   pickerFromField = new FormControl();
@@ -62,27 +83,39 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   language: any;
   unsubscriber = takeUntil(this.unsubscribeAll);
 
+  oldestTransactionDate: Date;
+
+  isMobile = false;
+
   constructor(
-    private accountService: AccountService,
+    private appService: AppService,
+    private ledgerService: LedgerService,
+    private accountManagementService: AccountManagementService,
     private storeService: StoreService,
     private utilService: UtilService,
     private i18nService: I18nService,
-    private observableMedia: MediaObserver
+    private observableMedia: MediaObserver,
+    private warnDialog: MatDialog,
+    private progressBarService: FuseProgressBarService
   ) {
     super();
   }
 
+
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Transaction>();
-    this.storeService.settings
+    this.account = this.accountManagementService.getSelectedAccount();
+    this.dataSource.data = this.account.transactions;
+    this.isMobile = this.appService.isRunningOnMobile();
+
+    this.storeService.settingsUpdated$
       .pipe(this.unsubscriber)
-      .subscribe(({language}) => {
+      .subscribe(({ language }) => {
           this.language = language;
           this.initTypes();
         }
       );
 
-    this.accountService.currentAccount$
+    this.storeService.accountUpdated$
       .pipe(this.unsubscriber)
       .subscribe((acc: WalletAccount) => {
         this.account = acc;
@@ -92,9 +125,12 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   }
 
   private initTypes(): void {
+    this.typeMap = {};
+    let oldestTransactionTimestamp = Number.MAX_SAFE_INTEGER;
     this.dataSource.data.forEach(t => {
+      oldestTransactionTimestamp = Math.min(oldestTransactionTimestamp, t.timestamp);
       const type = this.utilService.translateTransactionSubtype(t, this.account);
-      this.typeMap[type] = {t: t.type, s: t.subtype};
+      this.typeMap[type] = { t: t.type, s: t.subtype };
     });
 
     this.typeOptions = Object.keys(this.typeMap);
@@ -103,9 +139,10 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
     this.recipientTypeMap[''] = '';
     this.recipientTypeMap['self'] = this.i18nService.getTranslation('self');
-    this.recipientTypeMap['burn'] = this.i18nService.getTranslation('burn_address') ;
+    this.recipientTypeMap['burn'] = this.i18nService.getTranslation('burn_address');
 
-    this.recipientTypeOptions = Object.entries(this.recipientTypeMap).map(([k, v]) => ({k, v}));
+    this.recipientTypeOptions = Object.entries(this.recipientTypeMap).map(([k, v]) => ({ k, v }));
+    this.oldestTransactionDate = ChainTime.fromChainTimestamp(oldestTransactionTimestamp).getDate();
   }
 
   public ngAfterContentInit(): void {
@@ -124,37 +161,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
       && this.isOfType(transaction)
       && this.isOfRecipientType(transaction)
       && defaultFilterPredicate(transaction, filterValue);
-  }
 
-  private isTokenHolderDistribution(transaction: Transaction): boolean {
-    return transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetDistributeToHolders;
-  }
-
-  private isMultiOutPayment(transaction: Transaction): boolean {
-    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction) || this.isTokenHolderDistribution(transaction);
-  }
-
-  private isSelf(transaction: Transaction): boolean
-  {
-    if ( this.isMultiOutPayment(transaction)) {
-      return false;
-    }
-
-    if (transaction.sender === transaction.recipient) {
-      return true;
-    }
-    if (transaction.type === TransactionType.Arbitrary) {
-      return transaction.subtype === TransactionArbitrarySubtype.AccountInfo ||
-        transaction.subtype === TransactionArbitrarySubtype.AliasAssignment;
-    }
-    return transaction.type === TransactionType.Mining;
-  }
-
-  private isBurn(transaction: Transaction): boolean {
-    return !transaction.recipient && (
-      (transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetTransfer) ||
-      (transaction.type === TransactionType.Payment && transaction.subtype === TransactionPaymentSubtype.Ordinary)
-    );
   }
 
   private isOfType(transaction: Transaction): boolean {
@@ -176,7 +183,6 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     return true;
   }
 
-  // '1' is always part of the serialized data string
   public applyFilter(filterValue: string = '1'): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -196,12 +202,60 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   private isOfRecipientType(transaction: Transaction): boolean {
     const type = this.recipientTypesField.value;
-    if (type === 'self'){
-      return this.isSelf(transaction);
+    if (type === 'self') {
+      return isSelf(transaction);
     }
-    if (type === 'burn'){
-      return this.isBurn(transaction);
+    if (type === 'burn') {
+      return isBurn(transaction);
     }
     return true;
+  }
+
+  loadAllTransactions(): void {
+
+    const ref = this.warnDialog.open(FuseConfirmDialogComponent, {
+      width: '400px', data: {
+        title: this.i18nService.getTranslation('load_all_transactions'),
+        message: this.i18nService.getTranslation('load_all_transactions_hint')
+      }
+    });
+
+    ref.afterClosed()
+      .subscribe(async (confirmed) => {
+        if (!confirmed) {
+          return;
+        }
+        this.isFetching = true;
+        this.progressBarService.show();
+        await this.loadTransactions();
+        this.progressBarService.hide();
+        this.isFetching = false;
+      });
+  }
+
+  private async loadTransactions(limit = 10_000): Promise<void> {
+    const FetchSize = 500;
+    let firstIndex = 0;
+    let hasMore = true;
+    try {
+      this.account.transactions = [];
+      while (hasMore) {
+        const { transactions } = await this.ledgerService.ledger.account.getAccountTransactions({
+          accountId: this.account.account,
+          resolveDistributions: true,
+          includeIndirect: true,
+          firstIndex,
+          lastIndex: firstIndex + FetchSize
+        });
+
+        transactions.sort((a, b) => b.timestamp - a.timestamp );
+        this.account.transactions.push(...transactions);
+        hasMore = transactions.length >= FetchSize && this.account.transactions.length < limit;
+        firstIndex += FetchSize;
+        this.storeService.saveAccount(this.account);
+      }
+    } catch (e) {
+      console.error('Loading all transactions caused an error', e.message);
+    }
   }
 }

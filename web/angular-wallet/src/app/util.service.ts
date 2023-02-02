@@ -3,13 +3,9 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
 import {
-  Transaction,
-  Account,
-  TransactionPaymentSubtype,
-  TransactionType,
-  TransactionArbitrarySubtype
+  Transaction
 } from '@signumjs/core';
-import {I18nService} from './layout/components/i18n/i18n.service';
+import {I18nService} from './shared/services/i18n.service';
 import {HttpError} from '@signumjs/http';
 import {
   getTransactionSubtypeTranslationKey,
@@ -17,13 +13,11 @@ import {
 } from './util/transaction/getTransactionTypeTranslationKey';
 import {getTransactionFieldTranslationKey} from './util/transaction/getTransactionFieldTranslationKey';
 import {getBlockFieldTranslationKey} from './util/block/getBlockFieldTranslationKey';
-import { WalletAccount } from "./util/WalletAccount";
+import { WalletAccount } from './util/WalletAccount';
 
 
 @Injectable()
 export class UtilService {
-
-  private account: Account;
 
   constructor(private i18nService: I18nService) {
   }
@@ -123,7 +117,7 @@ export class UtilService {
               return this.i18nService.getTranslation('error_dgs_delivery_deadline_expired');
             } else if (response.errorDescription.match(/Invalid effective balance leasing:.*recipient account.*not found or no public key published/)) {
               return this.i18nService.getTranslation('error_invalid_balance_leasing_no_public_key');
-            } else if (response.errorDescription.indexOf('Invalid effective balance leasing') != -1) {
+            } else if (response.errorDescription.indexOf('Invalid effective balance leasing') !== -1) {
               return this.i18nService.getTranslation('error_invalid_balance_leasing');
             } else if (response.errorDescription.match(/Wrong buyer for.*expected:.*/)) {
               return this.i18nService.getTranslation('error_wrong_buyer_for_alias');
@@ -145,9 +139,7 @@ export class UtilService {
       case 3:
         match = response.errorDescription.match(/"([^"]+)" not specified/i);
         if (match && match[1]) {
-          return this.i18nService.getTranslation('error_not_specified', {
-            'name': this.getTranslatedFieldName(match[1]).toLowerCase()
-          });
+          return this.i18nService.getTranslation('error_not_specified');
         }
 
         match = response.errorDescription.match(/At least one of (.*) must be specified/i);
@@ -246,11 +238,11 @@ export class UtilService {
       nameKey = nameKey.substring(1);
     }
 
-    if (this.i18nService.data[nameKey]) {
-      return this.i18nService.getTranslation(nameKey);
-    } else {
+    const translated = this.i18nService.getTranslation(nameKey);
+    if (translated === nameKey) {
       return nameKey.replace(/_/g, ' ');
     }
+    return translated;
   }
 
   public translateTransactionSubtype(transaction: Transaction, account: WalletAccount): string {

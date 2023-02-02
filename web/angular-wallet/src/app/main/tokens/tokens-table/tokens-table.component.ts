@@ -38,7 +38,7 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
   }
 
   ngOnInit(): void {
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({language}) => {
         this.locale = language;

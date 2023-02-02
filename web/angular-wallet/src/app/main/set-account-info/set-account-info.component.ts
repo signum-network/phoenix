@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
 import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
 import { WalletAccount } from 'app/util/WalletAccount';

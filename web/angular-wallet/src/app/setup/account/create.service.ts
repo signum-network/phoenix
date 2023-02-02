@@ -1,9 +1,15 @@
 import {Injectable} from '@angular/core';
-import {AccountService} from './account.service';
 import {Address, AddressPrefix} from '@signumjs/core';
-import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
+import { encryptAES, generateMasterKeys, hashSHA256, PassPhraseGenerator } from '@signumjs/crypto';
 import {NetworkService} from '../../network/network.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
+
+export enum AccountStatus {
+  New,
+  IsVerified,
+  IsNotVerified
+}
 
 
 @Injectable()
@@ -14,9 +20,10 @@ export class CreateService {
   private account: WalletAccount;
   private pin: string;
   private step = 0;
-
+  private accountStatus = AccountStatus.New;
   constructor(
-    private accountService: AccountService,
+    // private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private networkService: NetworkService,
   ) {
   }
@@ -80,11 +87,37 @@ export class CreateService {
   }
 
   public createActiveAccount(): Promise<WalletAccount> {
-    return this.accountService.createActiveAccount({passphrase: this.getPhrase(), pin: this.pin});
+    const account = new WalletAccount();
+    account.type = 'active';
+    const keys = generateMasterKeys(this.phrase);
+    // TODO: improve key stretching....
+    const maskedPin = hashSHA256(this.pin);
+    const encryptedKey = encryptAES(keys.signPrivateKey, maskedPin);
+    const encryptedSignKey = encryptAES(keys.agreementPrivateKey, maskedPin);
+
+    account.keys = {
+      publicKey: keys.publicKey,
+      signPrivateKey: encryptedKey,
+      agreementPrivateKey: encryptedSignKey
+    };
+
+    const address = Address.fromPublicKey(keys.publicKey, this.networkService.getAddressPrefix());
+    account.account = address.getNumericId();
+    account.accountRS = address.getReedSolomonAddress();
+    account.networkName = this.networkService.getNetworkName();
+
+    return this.accountManagementService.addAccount(account);
   }
 
-  public createPassiveAccount(address: string): Promise<WalletAccount> {
-    return this.accountService.createOfflineAccount(address);
+  public async createWatchOnlyAccount(reedSolomonAddress: string): Promise<WalletAccount> {
+    const account = new WalletAccount();
+    const address = Address.fromReedSolomonAddress(reedSolomonAddress);
+    account.type = 'offline';
+    account.accountRS = address.getReedSolomonAddress();
+    account.account = address.getNumericId();
+    account.networkName = this.networkService.getNetworkName();
+    await  this.accountManagementService.addAccount(account);
+    return account;
   }
 
   public reset(): void {
@@ -114,6 +147,14 @@ export class CreateService {
     this.account.accountRS = address.getReedSolomonAddress();
     this.account.account = address.getNumericId();
     return this.account;
+  }
+
+  public setAccountStatus(accountStatus: AccountStatus): void {
+    this.accountStatus = accountStatus;
+  }
+
+  public getAccountStatus(): AccountStatus {
+    return this.accountStatus;
   }
 
 }

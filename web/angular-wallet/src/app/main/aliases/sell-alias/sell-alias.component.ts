@@ -1,22 +1,19 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   SuggestedFees,
   Alias,
   Address,
   TransactionType,
-  TransactionPaymentSubtype,
   TransactionArbitrarySubtype
-} from "@signumjs/core";
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+} from '@signumjs/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { Amount } from '@signumjs/util';
 import { constants } from '../../../constants';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { TransactionService } from '../../transactions/transaction.service';
 import { NotifierService } from 'angular-notifier';
-import { I18nService } from '../../../layout/components/i18n/i18n.service';
+import { I18nService } from 'app/shared/services/i18n.service';
 import { StoreService } from '../../../store/store.service';
-import { takeUntil } from 'rxjs/operators';
 import { getBalancesFromAccount, AccountBalances } from 'app/util/balance';
 import {
   Recipient,
@@ -27,8 +24,6 @@ import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-se
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { AliasService } from '../alias.service';
 import { ExceptionHandlerService } from '../../../shared/services/exceptionhandler.service';
-import { MatCheckbox } from "@angular/material/checkbox";
-import { MatSort } from "@angular/material/sort";
 
 @Component({
   selector: 'app-sell-alias',
@@ -42,7 +37,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
 
   recipient = new Recipient();
 
-  language: string;
   immutable: boolean;
   messageIsText: boolean;
   encrypt: boolean;
@@ -81,14 +75,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
-    this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({ language }) => {
-          this.language = language;
-        }
-      );
   }
 
   onSubmit(event): void {
@@ -112,7 +98,7 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
         aliasName: this.alias.aliasName,
         amountPlanck: Amount.fromSigna(this.amount).getPlanck(),
         feePlanck: Amount.fromSigna(this.fee).getPlanck(),
-        recipientId: this.isPrivateOffer ? Address.fromReedSolomonAddress(this.recipient.addressRS).getNumericId() : undefined,
+        recipientId: this.isPrivateOffer ? this.recipient.addressId : undefined,
         recipientPublicKey: this.isPrivateOffer ? this.recipient.publicKey : undefined,
         keys: this.account.keys,
         pin: this.pin,

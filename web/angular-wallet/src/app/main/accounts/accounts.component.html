@@ -1,21 +1,6 @@
-<app-page title="{{ 'account' | i18n }}" [full]="true" *ngIf="accounts">
+<app-page title="{{ 'manage_accounts' | i18n }}" [full]="true" *ngIf="accounts">
 
-<!--<div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"-->
-<!--       fxLayoutAlign.gt-xs="space-between center">-->
-
-<!--    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">-->
-<!--      <div fxLayout="row" fxLayoutAlign="start center">-->
-<!--        <a [routerLink]="['/dashboard']">-->
-<!--          <mat-icon class="secondary-text s-18">home</mat-icon>-->
-<!--        </a>-->
-<!--        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>-->
-<!--        <span class="secondary-text">{{ 'accounts' | i18n }}</span>-->
-<!--      </div>-->
-<!--      <div class="h1 mt-16">{{ 'accounts' | i18n }}</div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-  <div class="p-24">
+  <div ngClass.gt-sm="p-24 ">
 
     <div class="action-row">
       <div class="inputs">
@@ -24,91 +9,47 @@
         </mat-form-field>
       </div>
       <div class="buttons">
-        <button mat-button color="primary" class="delete" *ngIf="getSelectedAccounts().length"
-                (click)="deleteSelectedAccounts()">Delete Selected
+
+        <button
+          *ngIf="getSelectedAccounts().length"
+          mat-raised-button
+          matTooltip="{{'confirm_delete_accounts_hint' | i18n}}"
+          color="warn"
+          (click)="deleteSelectedAccounts()"
+        >
+          <mat-icon>delete</mat-icon>
+          {{"delete_selected" | i18n}}
         </button>
-        <ng-container *ngIf="!getSelectedAccounts().length">
-          <button mat-button color="primary"
-                  (click)="router.navigate(['/login/passive'])">
-            {{ 'account_watch_short' | i18n }}
-          </button>
-          <button mat-button color="primary"
-                  (click)="router.navigate(['/login/active'])">
-            {{ 'account_import_short' | i18n }}
-          </button>
-          <button mat-button color="primary"
-                  (click)="router.navigate(['/login/active'], { queryParams: { newUser: true } })">
-            {{ 'account_create_new_short' | i18n }}
-          </button>
-        </ng-container>
+
+        <button
+          mat-mini-fab
+          matTooltip="{{'add_account' | i18n}}"
+          [matMenuTriggerFor]="accountMenu"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <mat-menu #accountMenu="matMenu">
+          <ng-container *ngIf="!getSelectedAccounts().length">
+            <button mat-menu-item
+                    (click)="router.navigate(['/login/passive'])">
+              {{ 'account_watch_short' | i18n }}
+            </button>
+            <button mat-menu-item
+                    (click)="router.navigate(['/login/active'])">
+              {{ 'account_import_short' | i18n }}
+            </button>
+            <button mat-menu-item
+                    (click)="router.navigate(['/login/active'], { queryParams: { newUser: true } })">
+              {{ 'account_create_new_short' | i18n }}
+            </button>
+          </ng-container>
+        </mat-menu>
       </div>
     </div>
 
     <mat-table #table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
-          <mat-icon>bookmark_border</mat-icon>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account" fxHide fxShow.gt-xs>
-          <ng-container *ngIf="account.type === 'offline'">
-            <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
-          </ng-container>
-          <ng-container *ngIf="account.type !== 'offline' && account.confirmed">
-            <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
-          </ng-container>
-          <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
-            <mat-icon class="account-type-icon clickable" matTooltip="{{'no_public_key_activate' | i18n}}"
-                      (click)="activateAccount(account)">lock_open
-            </mat-icon>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="account">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>
-          <mat-icon>perm_identity</mat-icon>
-          Id
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account" fxHide fxShow.gt-sm> {{account.account}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="accountRS">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <mat-icon>account_box</mat-icon>
-          Address
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account">
-          <a [routerLink]="['/account', account.account]">{{account.accountRS}}</a>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
-          <mat-icon>account_box</mat-icon>
-          {{'name' | i18n}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account" fxHide fxShow.gt-xs> {{account.name}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="balanceNQT">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <mat-icon>local_atm</mat-icon>
-          {{'balance' | i18n }}
-        </mat-header-cell>
-        <mat-cell
-          *matCellDef="let account">{{account.balanceNQT | amount: 'planck':true }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="selected">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <mat-icon>keyboard_arrow_down</mat-icon>
-          Selected
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account"> {{account.selected}} </mat-cell>
-      </ng-container>
-
       <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-header-cell *matHeaderCellDef>
           <mat-icon>delete</mat-icon>
         </mat-header-cell>
         <mat-cell *matCellDef="let account" class="select-icon">
@@ -116,8 +57,134 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let account">
+          <img [src]="getAvatarUrl(account)" alt="account-avatar">
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="account">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{"account" | i18n}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let account">
+          <div class="account-stack">
+            <a [routerLink]="['/account', account.account]">{{account.account | address:false:true}}</a>
+            <small>{{account.account}}</small>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>
+          {{'name' | i18n}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let account" fxHide.xs> {{account.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="balance">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>
+          {{'balance' | i18n }}
+        </mat-header-cell>
+        <mat-cell
+          fxHide.xs
+          *matCellDef="let account">{{account.balanceNQT | amount: 'planck':true }}</mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{'status' | i18n}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let account">
+          <ng-container *ngIf="account.type === 'offline'">
+            <span class="type-badge offline" matTooltip="{{'hint_offline_account' | i18n}}">
+              <mat-icon class="mr-2">remove_red_eye</mat-icon>
+              <div fxHide.xs>{{"account_offline" | i18n}}</div>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="account.type !== 'offline' && account.confirmed">
+            <span class="type-badge safe" matTooltip="{{'hint_online_account' | i18n}}">
+              <mat-icon class="mr-2">verified_user</mat-icon>
+              <div fxHide.xs>{{"account_safe" | i18n}}</div>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
+            <span class="type-badge unsafe" matTooltip="{{'no_public_key_activate' | i18n}}"
+                  (click)="activateAccount(account)">
+              <mat-icon class="mr-2">lock_open</mat-icon>
+              <div fxHide.xs>{{"account_unsafe" | i18n}}</div>
+            </span>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-icon matTooltip="{{'actions' | i18n}}">directions_run</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let account">
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Actions"
+                  matTooltip="{{'actions' | i18n}}">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              *ngIf="isUnsafeAccount(account)"
+              mat-menu-item (click)="activateAccount(account)">
+              <mat-icon>lock</mat-icon>
+              <span>{{'activate' | i18n}}</span>
+            </button>
+            <button
+              mat-menu-item (click)="selectAccount(account)">
+              <mat-icon>check_box</mat-icon>
+              <span>{{'select_account' | i18n}}</span>
+            </button>
+            <button mat-menu-item (click)="copyToClipboard(account.account)">
+              <mat-icon>file_copy</mat-icon>
+              <span>{{'copy_account_id' | i18n}}</span>
+            </button>
+            <button *ngIf="!!account.keys.publicKey"
+                    mat-menu-item (click)="copyToClipboard(account.keys.publicKey)">
+              <mat-icon>file_copy</mat-icon>
+              <span>{{'copy_account_publickey' | i18n}}</span>
+            </button>
+            <button *ngIf="!!account.accountRSExtended"
+                    mat-menu-item (click)="copyToClipboard(account.accountRSExtended)">
+              <mat-icon>file_copy</mat-icon>
+              <span>{{'copy_account_address_extended' | i18n}}</span>
+            </button>
+            <button mat-menu-item (click)="openInExplorer(account)">
+              <mat-icon>link</mat-icon>
+              <span>{{'show_in_explorer' | i18n}}</span>
+            </button>
+            <button mat-menu-item (click)="routeToAccount(account)">
+              <mat-icon>remove_red_eye</mat-icon>
+              <span>{{'view' | i18n}}</span>
+            </button>
+            <button
+              *ngIf="account.type !== 'offline' && account.confirmed"
+              mat-menu-item (click)="sendToAccount(account)">
+              <mat-icon>publish</mat-icon>
+              <span>{{'send_signa' | i18n}}</span>
+            </button>
+            <button mat-menu-item (click)="deleteAccount(account)">
+              <mat-icon>delete</mat-icon>
+              <span>{{'delete' | i18n}}</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
+    </mat-paginator>
+
   </div>
 </app-page>

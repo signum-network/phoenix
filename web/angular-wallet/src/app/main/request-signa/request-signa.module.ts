@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {AccountResolver} from 'app/setup/account/account.resolver';
+import {AccountResolver} from 'app/shared/resolvers/account.resolver';
 import {RequestSignaComponent} from './request-signa.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,7 +13,6 @@ import {FormsModule} from '@angular/forms';
 import {SetupModule} from 'app/setup/setup.module';
 import {NotifierModule} from 'angular-notifier';
 import {NgxMaskModule} from 'ngx-mask';
-import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
@@ -43,7 +42,6 @@ const routes = [
     CommonModule,
     FormsModule,
     FuseSharedModule,
-    I18nModule,
     LayoutModule,
     MatButtonModule,
     MatCheckboxModule,

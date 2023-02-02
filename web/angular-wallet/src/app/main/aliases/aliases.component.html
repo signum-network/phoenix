@@ -28,125 +28,126 @@
       </a>
     </div>
 
-    <ng-container *ngIf="dataSource.data.length > 0">
-      <mat-table [dataSource]="dataSource" matSort>
+    <mat-table [dataSource]="dataSource" matSort>
 
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <span matTooltip="{{alias.name}}">{{ alias.name }}</span>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span matTooltip="{{alias.name}}">{{ alias.name }}</span>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="owner">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'owner' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <a *ngIf="alias.owner !== selectedAccount.account"
-               [routerLink]="['/account', alias.owner]"
-            >{{toAddress(alias.owner)}}</a>
-            <span class="text-uppercase" *ngIf="alias.owner === selectedAccount.account">{{'self' | i18n}}</span>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="owner">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'owner' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <a *ngIf="alias.owner !== account.account"
+             [routerLink]="['/account', alias.owner]"
+          >{{toAddress(alias.owner)}}</a>
+          <span class="text-uppercase" *ngIf="alias.owner === account.account">{{'self' | i18n}}</span>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="timestamp">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{"created" | i18n}}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <div class="timestamp-content stacked">
-              <div>
-                {{ getDate(alias)}}
-              </div>
+      <ng-container matColumnDef="timestamp">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{"created" | i18n}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <div class="timestamp-content stacked">
+            <div>
+              {{ getDate(alias)}}
             </div>
-          </mat-cell>
-        </ng-container>
+          </div>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="content">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_content_format' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <span class="format {{getContentFormat(alias.content)}}">{{ getContentFormat(alias.content) | i18n }}</span>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="content">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_content_format' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span class="format {{getContentFormat(alias.content)}}">{{ getContentFormat(alias.content) | i18n }}</span>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_status' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_status' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
           <span>{{alias.status | i18n}}
             <mat-icon *ngIf="alias.isDirectOffer" class="ml-4" matTooltip="{{ 'alias_direct_offer' | i18n }}">local_offer</mat-icon>
           </span>
-          </mat-cell>
-        </ng-container>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_price' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <span *ngIf="alias.pricePlanck">{{alias.pricePlanck | amount:'planck'}}</span>
-            <span *ngIf="!alias.pricePlanck">-</span>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_price' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span *ngIf="alias.pricePlanck">{{alias.pricePlanck | amount:'planck'}}</span>
+          <span *ngIf="!alias.pricePlanck">-</span>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="buyer">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_buyer' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
-            <a *ngIf="alias.buyer"
-               [routerLink]="['/account', alias.buyer]"
-            >{{toAddress(alias.buyer)}}</a>
-            <span *ngIf="!alias.buyer">-</span>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="buyer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_buyer' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <a *ngIf="alias.buyer"
+             [routerLink]="['/account', alias.buyer]"
+          >{{toAddress(alias.buyer)}}</a>
+          <span *ngIf="!alias.buyer">-</span>
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
-          <mat-cell *matCellDef="let alias">
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
 
-            <a [routerLink]="[alias.id, 'view']"
-               matTooltip="{{'view' | i18n}}"
+          <a [routerLink]="[alias.id, 'view']"
+             matTooltip="{{'view' | i18n}}"
+             class="mr-4"
+          >
+            <mat-icon>remove_red_eye</mat-icon>
+          </a>
+          <ng-container *ngIf="!watchOnly">
+            <a
+              *ngIf="canEdit(alias)"
+              [routerLink]="[alias.id]"
+              matTooltip="{{'edit' | i18n}}"
+              class="mr-4">
+              <mat-icon>edit</mat-icon>
+            </a>
+
+            <a *ngIf="canBuy(alias)" [routerLink]="[alias.id, 'buy']"
+               matTooltip="{{'buy' | i18n}}"
                class="mr-4"
             >
-              <mat-icon>remove_red_eye</mat-icon>
+              <mat-icon>shopping_cart</mat-icon>
             </a>
-            <ng-container *ngIf="!watchOnly">
-              <a
-                *ngIf="canEdit(alias)"
-                [routerLink]="[alias.id]"
-                matTooltip="{{'edit' | i18n}}"
-                class="mr-4">
-                <mat-icon>edit</mat-icon>
-              </a>
 
-              <a *ngIf="canBuy(alias)" [routerLink]="[alias.id, 'buy']"
-                 matTooltip="{{'buy' | i18n}}"
-                 class="mr-4"
-              >
-                <mat-icon>shopping_cart</mat-icon>
-              </a>
+            <a *ngIf="canSell(alias)" [routerLink]="[alias.id, 'sale']"
+               matTooltip="{{'sell' | i18n}}">
+              <mat-icon>monetization_on</mat-icon>
+            </a>
+            <a *ngIf="canCancel(alias)" [routerLink]="[alias.id, 'sale-off']"
+               matTooltip="{{'cancel' | i18n}}">
+              <mat-icon>money_off</mat-icon>
+            </a>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
 
-              <a *ngIf="canSell(alias)" [routerLink]="[alias.id, 'sale']"
-                 matTooltip="{{'sell' | i18n}}">
-                <mat-icon>monetization_on</mat-icon>
-              </a>
-              <a *ngIf="canCancel(alias)" [routerLink]="[alias.id, 'sale-off']"
-                 matTooltip="{{'cancel' | i18n}}">
-                <mat-icon>money_off</mat-icon>
-              </a>
-            </ng-container>
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="nodata">
+        <td mat-footer-row *matFooterCellDef [colSpan]="displayedColumns.length"
+            style="margin: 0 auto"><h2>{{'no_aliases_available'|i18n}}</h2></td>
+      </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+      <mat-footer-row [hidden]="dataSource.data.length>0" *matFooterRowDef="['nodata']"></mat-footer-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
 
-      <mat-paginator
-        #paginator
-        [pageSize]="10"
-        [pageSizeOptions]="[10, 20, 50]"
-        [showFirstLastButtons]="true"
-      >
-      </mat-paginator>
-    </ng-container>
-    <div *ngIf="dataSource.data.length === 0" class="text-center">
-      <h2>{{'no_aliases_available'|i18n}}</h2>
-    </div>
+
   </div>
 
 </app-page>

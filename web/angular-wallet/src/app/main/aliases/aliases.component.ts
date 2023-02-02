@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreService } from 'app/store/store.service';
@@ -46,22 +46,23 @@ interface AliasData {
 export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   public searchField = new FormControl('');
 
-
-  public dataSource: MatTableDataSource<AliasData>;
+  public dataSource = new MatTableDataSource<AliasData>();
   public displayedColumns: string[];
-  public selectedAccount: WalletAccount;
+  public account: WalletAccount;
 
   public watchOnly = false;
   unsubscriber = takeUntil(this.unsubscribeAll);
   private locale: string;
 
   constructor(
+    private route: ActivatedRoute,
     private storeService: StoreService,
     private aliasService: AliasService,
-    public router: Router,
+    private  router: Router,
+    private cdr: ChangeDetectorRef,
     private observableMedia: MediaObserver
   ) {
     super();
@@ -76,44 +77,37 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
     }
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.displayedColumns = ColumnsQuery.xl;
-    this.dataSource = new MatTableDataSource<AliasData>();
-
-    this.storeService.settings
+    this.account = this.route.snapshot.data.account;
+    this.watchOnly = this.account && this.account.type === 'offline';
+    this.storeService.languageSelected$
       .pipe(this.unsubscriber)
-      .subscribe(({ language }) => {
+      .subscribe((language: string) => {
         this.locale = language;
       });
+    await this.fetchAliases();
 
-    this.storeService.ready
-      .pipe(this.unsubscriber)
-      .subscribe(async (ready) => {
-        if (ready) {
-          this.selectedAccount = await this.storeService.getSelectedAccount();
-          this.watchOnly = this.selectedAccount && this.selectedAccount.type === 'offline';
-          await this.fetchAliases();
-        }
-      });
   }
 
   public ngAfterViewInit(): void {
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-
     this.observableMedia.asObservable()
       .pipe(this.unsubscriber)
       .subscribe((change: MediaChange[]) => {
         this.displayedColumns = ColumnsQuery[change[0].mqAlias];
       });
+
   }
 
 
   private async fetchAliases(): Promise<void> {
     try {
       const [own, offers] = await Promise.all([
-        this.aliasService.getAliases(this.selectedAccount.account),
-        this.aliasService.getAliasesDirectOffers(this.selectedAccount.account),
+        this.aliasService.getAliases(this.account.account),
+        this.aliasService.getAliasesDirectOffers(this.account.account),
       ]);
       this.dataSource.data = [...offers.aliases, ...own.aliases].map((a) => {
         const result: AliasData = {
@@ -125,7 +119,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
           pricePlanck: a.priceNQT,
           buyer: a.buyer,
           status: 'alias_off_sale',
-          isDirectOffer: a.buyer === this.selectedAccount.account
+          isDirectOffer: a.buyer === this.account.account
         };
 
         if (a.priceNQT) {
@@ -173,20 +167,20 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
 
   canBuy(alias: AliasData): boolean {
     if (alias.status === 'alias_on_sale_private') {
-      return alias.buyer === this.selectedAccount.account;
+      return alias.buyer === this.account.account;
     }
     return false;
   }
 
   canEdit(alias: AliasData): boolean {
-    return alias.owner === this.selectedAccount.account;
+    return alias.owner === this.account.account;
   }
 
   canCancel(alias: AliasData): boolean {
-    return alias.status !== 'alias_off_sale' && alias.owner === this.selectedAccount.account;
+    return alias.status !== 'alias_off_sale' && alias.owner === this.account.account;
   }
 
   canSell(alias: AliasData): boolean {
-    return alias.status === 'alias_off_sale' && alias.owner === this.selectedAccount.account;
+    return alias.status === 'alias_off_sale' && alias.owner === this.account.account;
   }
 }

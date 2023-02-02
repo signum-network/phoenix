@@ -13,15 +13,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SetupModule } from 'app/setup/setup.module';
 
 import { NotifierModule } from 'angular-notifier';
-import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoginPassiveComponent } from './login-passive/login-passive.component';
 import { LoginActiveComponent } from './login-active/login-active.component';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {ComponentsModule} from '../components/components.module';
+import { AppSharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
+    AppSharedModule,
     CommonModule,
     TranslateModule,
     routing,
@@ -33,7 +34,6 @@ import {ComponentsModule} from '../components/components.module';
     SetupModule,
     NotifierModule,
     NgxMaskModule,
-    I18nModule,
 
     // Material
     MatButtonModule,

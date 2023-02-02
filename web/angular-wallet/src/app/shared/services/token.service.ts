@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../api.service';
 import {
-  Address,
   Asset,
   TransactionId
 } from '@signumjs/core';
 import {
   Keys
 } from '@signumjs/crypto';
-import { Amount, ChainValue } from "@signumjs/util";
-import { getPrivateSigningKey } from '../../util/security/getPrivateSigningKey';
-import { getPrivateEncryptionKey } from '../../util/security/getPrivateEncryptionKey';
-import { createMessageAttachment } from '../../util/transaction/createMessageAttachment';
-import { Recipient } from '../../components/recipient-input/recipient-input.component';
-import { constants } from '../../constants';
+import { Amount, ChainValue } from '@signumjs/util';
+import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
+import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
+import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
+import { Recipient } from 'app/components/recipient-input/recipient-input.component';
+import { constants } from 'app/constants';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { LedgerService } from 'app/ledger.service';
+import { expMemo, memo } from '../../util/memo';
 
 export interface TokenData {
   id: string;
@@ -50,15 +50,20 @@ interface TransferTokenRequest {
   providedIn: 'root'
 })
 export class TokenService {
+  public memoizedFetchAccountTokens: (key: string, account: WalletAccount) => Promise<TokenData[]>;
 
   constructor(
-    private apiService: ApiService
+    private ledgerService: LedgerService
   ) {
-
+    this.memoizedFetchAccountTokens = expMemo((key: string, account: WalletAccount) => {
+      return this.fetchAccountTokensImpl(account);
+    }, {
+      expiry: 120_000
+    });
   }
 
   private async getToken(assetId: string): Promise<Asset> {
-    return this.apiService.api.asset.getAsset({ assetId });
+    return this.ledgerService.ledger.asset.getAsset({ assetId });
   }
 
   public async fetchTokenData(tokenId: string, account: WalletAccount): Promise<TokenData> {
@@ -69,8 +74,8 @@ export class TokenService {
     return this.gatherTokenData(tokenId, assetBalance.balanceQNT);
   }
 
-  public async getPriceInfo(id: string): Promise<PriceInfo> {
-    const { trades } = await this.apiService.api.service.query('getTrades', {
+  private async getPriceInfo(id: string): Promise<PriceInfo> {
+    const { trades } = await this.ledgerService.ledger.service.query('getTrades', {
       asset: id,
       firstIndex: 0,
       lastIndex: 1
@@ -94,7 +99,7 @@ export class TokenService {
   }
 
 
-  async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
+  private async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
     const [token, priceInfo] = await Promise.all([this.getToken(tokenId), this.getPriceInfo(tokenId)]);
 
     const decimalFactor = Math.pow(10, token.decimals);
@@ -114,13 +119,18 @@ export class TokenService {
     };
   }
 
-  async fetchAccountTokens(account: WalletAccount): Promise<TokenData[]> {
+  async fetchAccountTokens(account: WalletAccount): Promise<TokenData[]>{
+    return this.memoizedFetchAccountTokens(`fetchAccountTokens-${account._id}`, account);
+  }
+
+  private async fetchAccountTokensImpl(account: WalletAccount): Promise<TokenData[]> {
     if (!account.assetBalances) {
       return Promise.resolve([]);
     }
 
     const promises = account.assetBalances.map((balance) => {
       const { asset, balanceQNT } = balance;
+
       return this.gatherTokenData(asset, balanceQNT);
     });
     const tokens = await Promise.all(promises);
@@ -163,11 +173,11 @@ export class TokenService {
     && recipient.publicKey !== '0'
       ? recipient.publicKey
       : undefined;
-    return this.apiService.api.asset.transferAsset({
+    return this.ledgerService.ledger.asset.transferAsset({
       assetId: token.id,
       attachment,
       feePlanck: fee.getPlanck(),
-      recipientId: Address.create(recipient.addressRS).getNumericId(),
+      recipientId: recipient.addressId,
       recipientPublicKey,
       quantity: quantity.getAtomic(),
       amountPlanck: signa ? signa.getPlanck() : undefined,

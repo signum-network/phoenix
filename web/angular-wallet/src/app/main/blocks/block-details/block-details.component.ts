@@ -3,7 +3,7 @@ import { Block } from '@signumjs/core';
 import { ActivatedRoute } from '@angular/router';
 import {BlockCellValue, BlockCellValueMapper} from './block-cell-value-mapper';
 import {UtilService} from '../../../util.service';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {I18nService} from '../../../shared/services/i18n.service';
 import { NetworkService } from '../../../network/network.service';
 import { AppService } from '../../../app.service';
 

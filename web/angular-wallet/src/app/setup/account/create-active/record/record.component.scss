@@ -44,8 +44,10 @@
     }
 
     &__text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       font-weight: 100;
-      width: 50%;
     }
   }
 
@@ -53,6 +55,22 @@
     padding: 10px 0;
     text-align: left;
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    button {
+      margin: 0.5rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .buttons {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
 
   .icon-button {
     box-shadow: none;
@@ -75,10 +93,28 @@
   }
 
   .bordered {
+    padding: 4px;
     border: 1px #E0E0E0 solid;
   }
 
   .navigation {
     margin: 10px;
   }
+
+  mat-icon {
+    &.is-verifying {
+      animation: rotate 1s linear infinite;
+      color: grey !important;
+    }
+
+    &.not-verified {
+      color: darkred !important;
+    }
+
+    &.verified {
+      color: darkgreen !important;
+    }
+  }
+
+
 }

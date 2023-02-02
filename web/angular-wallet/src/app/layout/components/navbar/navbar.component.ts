@@ -9,6 +9,8 @@ import { WalletAccount } from 'app/util/WalletAccount';
 })
 export class NavbarComponent
 {
+
+    @Input() selectedAccount: WalletAccount;
     // Private
     _variant: string;
 
@@ -51,6 +53,4 @@ export class NavbarComponent
         // Add the new class name
         this._renderer.addClass(this._elementRef.nativeElement, value);
     }
-
-    @Input() selectedAccount: WalletAccount;
 }

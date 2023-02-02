@@ -1,12 +1,12 @@
 import {RecipientAmountCsvParser} from './recipientAmountCsvParser';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {I18nService} from '../../../shared/services/i18n.service';
 import {BehaviorSubject, Subject} from 'rxjs';
 
 class MockTranslationService extends I18nService {
   constructor() {
     // @ts-ignore
     super(null, null, {
-      ready: new BehaviorSubject(false)
+      ready$: new BehaviorSubject(false)
     });
   }
 

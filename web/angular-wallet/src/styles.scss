@@ -52,7 +52,7 @@ app-market-overview {
 }
 
 .error-text {
-  color: red;
+  color: red !important;
   animation: pulse 2s infinite;
 }
 
@@ -71,6 +71,12 @@ app-market-overview {
 
 .fullwidth {
   width: 100% !important;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .fullheight {
