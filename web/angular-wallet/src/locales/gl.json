@@ -552,5 +552,15 @@
   "you_own_no_token": "Aínda non tes ningunha ficha",
   "chart_balance_change": "Cambio de saldo durante o período mostrado",
   "waiting_for_payment": "Agardando o pago",
-  "paid": "Pago rexistrado"
+  "paid": "Pago rexistrado",
+  "contact_successfully_deleted": "Contacto ou contactos eliminados correctamente",
+  "edit_name": "Editar o nome",
+  "no_contacts_yet": "Aínda non hai contactos",
+  "confirm_delete_contacts_hint": "Elimina as contas seleccionadas desta carteira",
+  "confirm_delete_contacts_q": "Queres eliminar os contactos seleccionados?",
+  "add_contact": "Engadir contacto",
+  "contact_added": "O contacto engadiuse correctamente",
+  "add_as_contact": "Engadir como contacto",
+  "edit_contact": "Editar contacto",
+  "error_add_contact": "Contacto non engadido. Probablemente xa engadiches esa conta."
 }

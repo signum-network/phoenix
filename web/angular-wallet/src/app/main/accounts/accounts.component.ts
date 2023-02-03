@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NotifierService } from 'angular-notifier';
-import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
+import { DeleteDialogComponent } from './delete-account-dialog/delete-dialog.component';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { takeUntil } from 'rxjs/operators';
@@ -18,6 +18,10 @@ import { NetworkService } from '../../network/network.service';
 import { AppService } from '../../app.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { ContactManagementService } from 'app/shared/services/contact-management.service';
+import { AddContactDialogComponent } from '../../components/add-contact-dialog/add-contact-dialog.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { WalletContact } from '../../util/WalletContact';
 
 @Component({
   selector: 'app-accounts',
@@ -34,6 +38,9 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  contacts: WalletContact[] = [];
+  filter = "";
+  paginationEnabled = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,11 +48,14 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     private appService: AppService,
     private accountService: AccountService,
     private accountManagementService: AccountManagementService,
+    private contactManagementService: ContactManagementService,
     private notificationService: NotifierService,
     private networkService: NetworkService,
     private i18nService: I18nService,
     private deleteDialog: MatDialog,
-    public router: Router
+    public router: Router,
+    private addContactDialog: MatDialog,
+    private breakpointObserver: BreakpointObserver
   ) {
     super();
   }
@@ -55,6 +65,8 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.selectedAccounts = {};
     this.selectedAccount = this.accountManagementService.getSelectedAccount();
     this.accounts = this.accountManagementService.getAllAccounts();
+    this.paginationEnabled = this.accounts.length > 10;
+    this.contacts = this.contactManagementService.getAllContacts();
     this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
     this.dataSource.data = this.accounts;
@@ -110,9 +122,12 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
 
     if (!accounts.length) { return; }
 
-    const dialogRef = this.deleteDialog.open(DeleteAccountDialogComponent, {
+    const dialogRef = this.deleteDialog.open(DeleteDialogComponent, {
       width: '400px',
-      data: accounts
+      data: {
+        mode: 'account',
+        accountIds: accounts.map(({ account }) => account)
+      }
     });
 
     dialogRef.afterClosed()
@@ -123,6 +138,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         const isRemovingSelectedAccount = accounts.findIndex(a => a.account === this.selectedAccount.account) !== -1;
         accounts.forEach( a => this.accountManagementService.removeAccount(a.account));
         this.accounts = this.accountManagementService.getAllAccounts();
+        this.paginationEnabled = this.accounts.length > 10;
         this.dataSource.data = this.accounts;
         if (!this.accounts || !this.accounts.length) {
           await this.accountManagementService.selectAccount(null);
@@ -188,19 +204,8 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     return hashicon(account.account).toDataURL();
   }
 
-
-
   async copyToClipboard(data: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(data);
-      this.notificationService.notify('success',
-        this.i18nService.getTranslation('success_clipboard_copy')
-      );
-    } catch (e) {
-      this.notificationService.notify('error',
-        this.i18nService.getTranslation('error_clipboard_copy')
-      );
-    }
+    this.appService.copyToClipboard(data);
   }
 
   openInExplorer(account: WalletAccount): void {
@@ -227,5 +232,23 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
 
   isUnsafeAccount(account: WalletAccount): boolean {
     return account.type !== 'offline' && !account.confirmed;
+  }
+
+  openAddContactDialog(): void {
+    const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '400px';
+    const dialogRef = this.addContactDialog.open(AddContactDialogComponent, {width});
+    dialogRef
+      .afterClosed()
+      .subscribe(this.addContact.bind(this));
+  }
+
+  private addContact(contact: WalletContact): void {
+    if (!contact) { return; }
+    try{
+      this.contactManagementService.addContact(contact);
+      this.contacts = this.contactManagementService.getAllContacts();
+    }catch (e){
+      this.notificationService.notify('error', this.i18nService.getTranslation('error_add_contact'));
+    }
   }
 }

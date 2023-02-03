@@ -552,5 +552,15 @@
   "you_own_no_token": "Sinulla ei ole vielä tunnuksia",
   "chart_balance_change": "Saldon muutos näytetyn ajanjakson aikana",
   "waiting_for_payment": "Odottaa maksua",
-  "paid": "Maksu rekisteröity"
+  "paid": "Maksu rekisteröity",
+  "contact_successfully_deleted": "Yhteystietojen tai yhteystietojen poistaminen onnistui",
+  "edit_name": "Muokkaa nimeä",
+  "no_contacts_yet": "Ei vielä yhteystietoja",
+  "confirm_delete_contacts_hint": "Poistaa valitut tilit tästä lompakosta",
+  "confirm_delete_contacts_q": "Haluatko poistaa valitut yhteystiedot?",
+  "add_contact": "Lisää yhteystieto",
+  "contact_added": "Yhteyshenkilö lisätty onnistuneesti",
+  "add_as_contact": "Lisää yhteyshenkilöksi",
+  "edit_contact": "Muokkaa yhteystietoa",
+  "error_add_contact": "Yhteystietoa ei lisätty. Todennäköisesti olet jo lisännyt kyseisen tilin."
 }

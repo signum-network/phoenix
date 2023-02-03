@@ -1,0 +1,12 @@
+:host {
+  .address {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .contact-icon {
+    font-size: 21px;
+    opacity: 0.25;
+    margin-left: 4px;
+  }
+}

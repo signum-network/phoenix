@@ -8,9 +8,6 @@
         <a [routerLink]="['/transactions/transaction', transaction.transaction]">
           {{ transaction.transaction }}
         </a>
-        <span *ngIf="transaction.attachment" class="attachment">
-          <mat-icon matTooltip="{{'attachment' | i18n }}">attach_file</mat-icon>
-        </span>
       </div>
     </mat-cell>
   </ng-container>
@@ -79,19 +76,18 @@
         >
           {{"self" | i18n}}
         </div>
-        <a *ngIf="!isMultiOutPayment(transaction) && !isSelf(transaction)"
-           [routerLink]="['/account', transaction.recipient]">{{
-          chopPrefix(transaction.recipientRS)
-          }}</a>
+        <ng-container *ngIf="!isMultiOutPayment(transaction) && !isSelf(transaction)">
+          <app-address [accountId]="transaction.recipient"></app-address>
+        </ng-container>
         <div *ngIf="isMultiOutPayment(transaction)"
              class="text-uppercase"
         >
           {{"multiple_recipients" | i18n}}
         </div>
       </ng-container>
-      <a *ngIf="!isOwnAccount(transaction.sender)"
-         [routerLink]="['/account', transaction.sender]"
-      >{{chopPrefix(transaction.senderRS)}}</a>
+      <ng-container *ngIf="!isOwnAccount(transaction.sender)">
+        <app-address [accountId]="transaction.sender"></app-address>
+      </ng-container>
     </mat-cell>
   </ng-container>
 

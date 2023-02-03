@@ -552,5 +552,15 @@
   "you_own_no_token": "Je hebt nog geen tokens",
   "chart_balance_change": "Saldoverandering over weergegeven periode",
   "waiting_for_payment": "Wachten op betaling",
-  "paid": "Betaling geregistreerd"
+  "paid": "Betaling geregistreerd",
+  "contact_successfully_deleted": "Contact of contacten succesvol verwijderd",
+  "edit_name": "Naam bewerken",
+  "no_contacts_yet": "Nog geen contacten",
+  "confirm_delete_contacts_hint": "Verwijdert de geselecteerde accounts uit deze portemonnee",
+  "confirm_delete_contacts_q": "Wilt u de geselecteerde contacten verwijderen?",
+  "add_contact": "Contactpersoon toevoegen",
+  "contact_added": "Contact succesvol toegevoegd",
+  "add_as_contact": "Toevoegen als contact",
+  "edit_contact": "Bewerk contact",
+  "error_add_contact": "Contactpersoon niet toegevoegd. Waarschijnlijk heb je dat account al toegevoegd."
 }

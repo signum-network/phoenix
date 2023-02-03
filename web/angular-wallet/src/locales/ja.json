@@ -552,5 +552,15 @@
   "you_own_no_token": "まだトークンを持っていません",
   "chart_balance_change": "表示期間の残高推移",
   "waiting_for_payment": "入金待ち",
-  "paid": "支払いが登録されました"
+  "paid": "支払いが登録されました",
+  "contact_successfully_deleted": "連絡先または連絡先が正常に削除されました",
+  "edit_name": "名前を編集",
+  "no_contacts_yet": "まだ連絡先がありません",
+  "confirm_delete_contacts_hint": "選択したアカウントをこのウォレットから削除します",
+  "confirm_delete_contacts_q": "選択した連絡先を削除しますか?",
+  "add_contact": "連絡先を追加",
+  "contact_added": "連絡先が正常に追加されました",
+  "add_as_contact": "連絡先として追加",
+  "edit_contact": "連絡先を編集",
+  "error_add_contact": "連絡先が追加されていません。ほとんどの場合、そのアカウントは既に追加されています。"
 }

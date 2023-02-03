@@ -69,7 +69,6 @@ export class StoreService {
    */
   public accountUpdated$: Subject<WalletAccount> = new Subject();
 
-
   constructor(
     private storeConfig: StoreConfig
   ) {

@@ -23,34 +23,46 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
+import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
+import { EditContactDialogComponent } from './edit-contact-dialog/edit-contact-dialog.component';
+import { AddressComponent } from './address/address.component';
+import { MatMenuModule } from "@angular/material/menu";
+import { ContactSelectorComponent } from './recipient-input/contact-selector/contact-selector.component';
 
 
 @NgModule({
   declarations: [
-    SubmitTransactionComponent,
-    RecipientInputComponent,
+    AddContactDialogComponent,
+    AddressComponent,
     AmountInputComponent,
+    CustomDescriptionFormComponent,
+    EditContactDialogComponent,
+    FeeInputComponent,
+    JsonDescriptionFormComponent,
+    LinkButtonComponent,
+    MessageInputComponent,
     PageComponent,
+    RecipientInputComponent,
+    SubmitTransactionComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
-    LinkButtonComponent,
-    FeeInputComponent,
-    MessageInputComponent,
-    CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent,
+    ContactSelectorComponent,
   ],
   exports: [
-    SubmitTransactionComponent,
-    RecipientInputComponent,
+    AddContactDialogComponent,
+    AddressComponent,
     AmountInputComponent,
+    CustomDescriptionFormComponent,
+    EditContactDialogComponent,
+    FeeInputComponent,
+    JsonDescriptionFormComponent,
+    LinkButtonComponent,
+    MessageInputComponent,
     PageComponent,
+    RecipientInputComponent,
+    SubmitTransactionComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
-    LinkButtonComponent,
-    FeeInputComponent,
-    MessageInputComponent,
-    CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent,
   ],
   imports: [
     AppSharedModule,
@@ -58,6 +70,8 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     FlexModule,
     FormsModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -65,13 +79,14 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     MatProgressSpinnerModule,
     MatTooltipModule,
     Ng5SliderModule,
+    NgJsonEditorModule,
     RouterModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    NgJsonEditorModule
+    MatMenuModule
   ],
   entryComponents: [
-    WarnSendDialogComponent
+    AddContactDialogComponent,
+    EditContactDialogComponent,
+    WarnSendDialogComponent,
   ]
 })
 export class ComponentsModule {

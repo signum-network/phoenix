@@ -126,11 +126,27 @@
 
   .mat-column-delete {
     flex: 0 0 48px;
-    padding-left: 13px;
     @include media-breakpoint('xs') {
       padding-left: 0;
       flex: 0 1 24px;
       justify-items: flex-start;
+    }
+
+    .mat-icon.no-button {
+      left: -12px;
+      position: relative;
+      @include media-breakpoint('xs') {
+        left: 0
+      }
+    }
+
+    .mat-icon-button.mat-warn {
+      left: -20px;
+      top: -1px;
+      background-color: #FFE0E0;
+      @include media-breakpoint('xs') {
+        left: -8px
+      }
     }
   }
 

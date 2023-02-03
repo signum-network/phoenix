@@ -552,5 +552,15 @@
   "you_own_no_token": "Aún no tienes fichas",
   "chart_balance_change": "Cambio de saldo durante el período mostrado",
   "waiting_for_payment": "A la espera del pago",
-  "paid": "Pago registrado"
+  "paid": "Pago registrado",
+  "contact_successfully_deleted": "Contacto o contactos eliminados con éxito",
+  "edit_name": "Editar nombre",
+  "no_contacts_yet": "No hay contactos todavía",
+  "confirm_delete_contacts_hint": "Elimina las cuentas seleccionadas de esta billetera",
+  "confirm_delete_contacts_q": "¿Quieres eliminar los contactos seleccionados?",
+  "add_contact": "Agregar contacto",
+  "contact_added": "Contacto añadido con éxito",
+  "add_as_contact": "Agregar como contacto",
+  "edit_contact": "Editar contacto",
+  "error_add_contact": "Contacto no agregado. Lo más probable es que ya haya agregado esa cuenta."
 }

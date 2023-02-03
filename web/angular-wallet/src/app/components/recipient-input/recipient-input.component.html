@@ -4,11 +4,16 @@
   <mat-label>{{ 'recipient' | i18n }}</mat-label>
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
     <input matInput
+           #recipientInput
            [(ngModel)]="recipientValue"
            (ngModelChange)="onRecipientFieldInputChange(recipientValue)"
            (blur)="validateRecipient(recipientValue)"
+           (click)="contactSelector.openMenu()"
            placeholder="{{ 'enter_recipient' | i18n }}"
-           [disabled]="disabled">
+           [disabled]="disabled"
+           autocomplete="off"
+    >
+    <contact-selector #contactSelector [anchor]="recipientInput"></contact-selector>
 
     <div *ngIf="recipient.type !== 1 && recipient.status !== 'unstoppable-outage'"
          class="recipient-address"

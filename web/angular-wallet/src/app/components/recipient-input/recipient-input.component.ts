@@ -11,6 +11,8 @@ import { constants } from '../../constants';
 import { NetworkService } from '../../network/network.service';
 import { AliasService } from '../../main/aliases/alias.service';
 import { DescriptorData } from '@signumjs/standards';
+import { ContactManagementService } from "../../shared/services/contact-management.service";
+import { ContactSelectorComponent } from "./contact-selector/contact-selector.component";
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -67,6 +69,8 @@ export interface QRData {
 })
 export class RecipientInputComponent implements OnChanges {
 
+  @ViewChild('contactSelector', {static:false}) contactSelector: ElementRef<ContactSelectorComponent>
+
   loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
@@ -108,7 +112,10 @@ export class RecipientInputComponent implements OnChanges {
     private accountService: AccountService,
     private aliasService: AliasService,
     private notifierService: NotifierService,
-    private domainService: DomainService) {
+    private domainService: DomainService,
+    private contactManagementService: ContactManagementService,
+
+  ) {
 
     this.recipientFieldInputChange$.pipe(
       debounceTime(500), distinctUntilChanged()
@@ -342,4 +349,5 @@ export class RecipientInputComponent implements OnChanges {
       this.recipient.publicKeyValid = false;
     }
   }
+
 }

@@ -552,5 +552,15 @@
   "you_own_no_token": "Vous n'avez pas encore de jetons",
   "chart_balance_change": "Variation du solde sur la période affichée",
   "waiting_for_payment": "En attente de paiement",
-  "paid": "Paiement enregistré"
+  "paid": "Paiement enregistré",
+  "contact_successfully_deleted": "Contact ou contacts supprimés avec succès",
+  "edit_name": "Modifier le nom",
+  "no_contacts_yet": "Aucun contact pour le moment",
+  "confirm_delete_contacts_hint": "Supprime les comptes sélectionnés de ce portefeuille",
+  "confirm_delete_contacts_q": "Voulez-vous supprimer les contacts sélectionnés ?",
+  "add_contact": "Ajouter le contact",
+  "contact_added": "Contact ajouté avec succès",
+  "add_as_contact": "Ajouter comme contact",
+  "edit_contact": "Modifier le contact",
+  "error_add_contact": "Contact non ajouté. Vous avez probablement déjà ajouté ce compte."
 }

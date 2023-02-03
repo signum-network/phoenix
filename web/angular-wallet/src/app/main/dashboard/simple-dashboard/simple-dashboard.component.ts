@@ -1,13 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatGridList} from '@angular/material/grid-list';
-import {Transaction} from '@signumjs/core';
-import {Settings} from '../../../store/settings';
-import {MatTableDataSource} from '@angular/material/table';
+import {Settings} from 'app/store/settings';
 import {takeUntil} from 'rxjs/operators';
-import {StoreService} from '../../../store/store.service';
-import {AccountService} from '../../../setup/account/account.service';
-import {NotifierService} from 'angular-notifier';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {StoreService} from 'app/store/store.service';
+import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {DashboardLayoutService} from '../dashboard.layout.service';
 import {
   SimpleDashboardLayoutParameters,
@@ -16,7 +12,7 @@ import {
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { AccountManagementService } from "../../../shared/services/account-management.service";
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 

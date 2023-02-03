@@ -10,7 +10,7 @@ export class ContactManagementService {
   constructor(private storeService: StoreService) {
   }
 
-  public async addContact(contact: WalletContact): Promise<WalletContact> {
+  public addContact(contact: WalletContact): WalletContact {
     const existingContact = this.findContactById(contact.account);
     if (!existingContact) {
       this.storeService.saveContact(contact);
@@ -41,4 +41,7 @@ export class ContactManagementService {
     return [...this.storeService.getAllContacts()];
   }
 
+  public updateContact(contact: WalletContact): void {
+    this.storeService.saveContact(contact);
+  }
 }

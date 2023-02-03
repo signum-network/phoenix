@@ -1,0 +1,6 @@
+<div #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="contactMenu">-</div>
+<mat-menu #contactMenu>
+  <div *ngFor="let contact of contacts">
+    <app-address [accountId]="contact.account" noActions></app-address>
+  </div>
+</mat-menu>

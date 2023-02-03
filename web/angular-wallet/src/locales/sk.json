@@ -552,5 +552,15 @@
   "you_own_no_token": "Zatiaľ nemáte žiadne tokeny",
   "chart_balance_change": "Zmena zostatku za zobrazené obdobie",
   "waiting_for_payment": "Čakanie na platbu",
-  "paid": "Platba zaregistrovaná"
+  "paid": "Platba zaregistrovaná",
+  "contact_successfully_deleted": "Kontakt alebo kontakty boli úspešne odstránené",
+  "edit_name": "Upraviť meno",
+  "no_contacts_yet": "Zatiaľ žiadne kontakty",
+  "confirm_delete_contacts_hint": "Odstráni vybrané účty z tejto peňaženky",
+  "confirm_delete_contacts_q": "Chcete odstrániť vybraté kontakty?",
+  "add_contact": "Pridať kontakt",
+  "contact_added": "Kontakt bol úspešne pridaný",
+  "add_as_contact": "Pridať ako kontakt",
+  "edit_contact": "Upraviť kontakt",
+  "error_add_contact": "Kontakt nebol pridaný. S najväčšou pravdepodobnosťou ste tento účet už pridali."
 }
