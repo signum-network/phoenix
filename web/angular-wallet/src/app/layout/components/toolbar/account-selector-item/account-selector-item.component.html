@@ -7,17 +7,22 @@
         <div class="hint-line secondary-text">
           <small *ngIf="account.name">{{short(shortAddress)}}</small>
           <small *ngIf="!account.name">{{short(account.account)}}</small>
-          <mat-icon *ngIf="account.type === 'offline'"
+          <mat-icon *ngIf="account.isWatchOnly()"
                     class="s-12"
                     matTooltip="{{'hint_offline_account' | i18n}}">
             remove_red_eye
           </mat-icon>
-          <mat-icon *ngIf="account.type !== 'offline' && account.confirmed"
+          <mat-icon *ngIf="!account.isWatchOnly() && account.isNew()"
+                    class="s-12"
+                    matTooltip="{{'hint_new_account' | i18n}}">
+            new_releases
+          </mat-icon>
+          <mat-icon *ngIf="!account.isWatchOnly() && !account.isNew() && !account.isUnsafe()"
                     class="s-12"
                     matTooltip="{{'hint_online_account' | i18n}}">
             verified_user
           </mat-icon>
-          <mat-icon *ngIf="account.type !== 'offline' && !account.confirmed"
+          <mat-icon *ngIf="!account.isWatchOnly() && !account.isNew() && account.isUnsafe()"
                     class="s-12 error-text"
                     matTooltip="{{'error_no_public_key' | i18n}}">
             lock_open

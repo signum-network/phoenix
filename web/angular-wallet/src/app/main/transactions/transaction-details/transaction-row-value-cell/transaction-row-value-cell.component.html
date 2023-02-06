@@ -7,13 +7,13 @@
     <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
     <div *ngIf="!decryptedMessage">
       <mat-form-field>
-        <input matInput [(ngModel)]="pin" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+        <input matInput [(ngModel)]="pin" (keyup)="decryptOnEnter($event)" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
       </mat-form-field>
       <button type="submit"
               class="mr-8"
               mat-button
               color="primary"
-              (click)="decrypt($event)">
+              (click)="decrypt()">
         {{ "decrypt" | i18n }}
       </button>
     </div>
@@ -63,13 +63,13 @@
       <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
       <div *ngIf="!decryptedMessage">
         <mat-form-field>
-          <input matInput [(ngModel)]="pin" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+          <input matInput [(ngModel)]="pin" type="password" name="pin" (keyup)="decryptOnEnter($event)" placeholder="{{ 'input_pin' | i18n }}">
         </mat-form-field>
         <button type="submit"
                 class="mr-8"
                 mat-button
                 color="primary"
-                (click)="decrypt($event)">
+                (click)="decrypt()">
           {{ "decrypt" | i18n }}
         </button>
       </div>

@@ -7,6 +7,7 @@
                 name="message"
                 placeholder="{{ 'message' | i18n }}"
                 cdkTextareaAutosize
+                [cdkAutosizeMinRows]="minRows"
       ></textarea>
   </mat-form-field>
   <div class="message-counter">{{message ? message.length : 0}}/{{MaxMessageLength}}</div>
@@ -15,9 +16,13 @@
       <mat-icon>{{encrypt ? 'lock' : 'no_encryption'}}</mat-icon>
       {{'encrypt_message' | i18n}}
     </small>
-    <small class="badge" [class.selected]="isText" (click)="toggleIsText()">
-      <mat-icon>{{isText ? 'title' : 'code'}}</mat-icon>
+    <small class="badge" [class.selected]="isText" (click)="setIsText(true)">
+      <mat-icon>title</mat-icon>
       {{'message_is_text' | i18n}}
+    </small>
+    <small class="badge" [class.selected]="!isText" (click)="setIsText(false)">
+      <mat-icon>code</mat-icon>
+      {{'message_is_binary' | i18n}}
     </small>
   </div>
   <div *ngIf="isMessageTooLong()" class="error-text message-toolong">{{ "message_too_long" | i18n }}</div>

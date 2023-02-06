@@ -69,8 +69,15 @@ export class AddressComponent extends UnsubscribeOnDestroy implements OnInit {
     }
   }
 
-  sendToAccount(accountId: string): void {
+  sendSignaToAccount(accountId: string): void {
     this.router.navigate(['/send'], {
+      queryParams: {
+        receiver: accountId
+      }
+    });
+  }
+  sendMessageToAccount(accountId: string): void {
+    this.router.navigate(['/send-message'], {
       queryParams: {
         receiver: accountId
       }

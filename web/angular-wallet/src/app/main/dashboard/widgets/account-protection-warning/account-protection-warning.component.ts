@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from '../../../../shared/services/i18n.service';
 import { HttpError } from '@signumjs/http';
+import { AccountManagementService } from '../../../../shared/services/account-management.service';
 
 enum AccountStatus {
   NotRegistered,
@@ -27,6 +28,7 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
 
   constructor(
     private storeService: StoreService,
+    private accountManagementService: AccountManagementService,
     private accountService: AccountService,
     private notificationService: NotifierService,
     private i18nService: I18nService
@@ -35,11 +37,13 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
   }
 
   ngOnInit(): void {
-    this.accountService.currentAccount$
+    this.account = this.accountManagementService.getSelectedAccount();
+    this.checkForAccountsActivation();
+    this.storeService.accountSelected$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(async (a) => {
         this.account = a;
-        await this.checkForAccountsActivation(a);
+        await this.checkForAccountsActivation();
       });
   }
 
@@ -55,15 +59,19 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
     }
   }
 
-  private async checkForAccountsActivation(a: WalletAccount): Promise<void> {
-
+  private async checkForAccountsActivation(): Promise<void> {
+    const a = this.account;
     if (!a) {
       return;
     }
     // ignore watched accounts.
-    if (a.type === 'offline') {
+    if (a.isWatchOnly()) {
       this.status = AccountStatus.Safe;
       return;
+    }
+
+    if (a.isNew()){
+      this.status = AccountStatus.NotRegistered;
     }
 
     try {

@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Uložte tuto přístupovou frázi na bezpečném místě. Tato přístupová fráze je nutná pro přístup k vašemu účtu Signum.",
   "memorize_passphrase_help_addon": "Ztratíte-li přístupovou frázi, nebudete moci provádět žádné transakce, tj. Vaše mince budou ztraceny. Přístupovou frázi nelze obnovit. Tuto přístupovou frázi udržujte v tajnosti. Každý, kdo zná přístupovou frázi, je de facto vlastníkem účtu.",
   "message": "Zpráva",
-  "message_is_text": "Zpráva je text?",
-  "messages": "Zprávy",
+  "message_is_text": "Textová zpráva",
+  "messages": "Konverzace",
   "minimum_fee": "Minimální",
   "multi_out_payment": "Platby",
   "my_assets": "Moje žetony",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Účty byly úspěšně odstraněny",
   "no_public_key_title": "Varování! - Tento účet nevlastní veřejný klíč!",
   "not_registered_title": "Tento účet není registrován v blockchainu",
-  "not_registered_warning": "Tento účet zatím nemá žádné transakce. Pokud máte v úmyslu používat tento účet pro odesílání a/nebo přijímání, doporučujeme nyní tento účet aktivovat.",
+  "not_registered_warning": "Tento účet zatím nemá žádné transakce. Pokud máte v úmyslu používat tento účet pro odesílání a/nebo přijímání, doporučujeme nyní tento účet aktivovat/chránit.",
   "load_all_transactions": "Načíst vše",
   "load_all_transactions_hint": "Načítání všech transakcí nakonec způsobí mnoho požadavků s velkým využitím šířky pásma. V závislosti na vašem a uzlu připojení k internetu a počtu transakcí může tato akce nějakou dobu trvat. Po načtení jsou transakce lokálně ukládány do mezipaměti. Opravdu chcete načíst všechny transakce? (Limit načítání je omezen na 10 tisíc transakcí)",
   "manage_accounts": "Spravovat účty",
@@ -563,5 +563,11 @@
   "add_as_contact": "Přidat jako kontakt",
   "edit_contact": "Upravit kontakt",
   "error_add_contact": "Kontakt nebyl přidán. S největší pravděpodobností jste tento účet již přidali.",
-  "no_contact_found": "Nebyl nalezen žádný kontakt"
+  "no_contact_found": "Nebyl nalezen žádný kontakt",
+  "contact": "Kontakt",
+  "send_single_message": "Poslat zprávu",
+  "message_is_binary": "Datová zpráva",
+  "add_account_or_contact": "Přidat účet nebo kontakt",
+  "hint_new_account": "Toto je nový účet. Zatím není registrován v řetězci, tj. nemá žádné transakce.",
+  "account_new": "Nový"
 }

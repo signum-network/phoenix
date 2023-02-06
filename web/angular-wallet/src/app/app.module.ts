@@ -34,7 +34,7 @@ import {MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material'
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { LedgerService } from './ledger.service';
-import { AppSharedModule } from "./shared/shared.module";
+import { AppSharedModule } from './shared/shared.module';
 
 registerLocales();
 

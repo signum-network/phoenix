@@ -19,6 +19,7 @@ export enum CellValueType {
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
+  Distribution = 'Distribution',
   EncryptedMessage = 'EncryptedMessage',
   Message = 'Message',
   MultiSameOutCreation = 'MultiSameOutCreation',

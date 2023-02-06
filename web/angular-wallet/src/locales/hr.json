@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Molimo vas da ovu lozinku pohranite na sigurno mjesto. Ova lozinka potrebna je za pristup vašem Signum računu.",
   "memorize_passphrase_help_addon": "Ako izgubite lozinku, nećete moći izvršavati nikakve transakcije, tj. Vaši će se novčići izgubiti. Zaporka se ne može povratiti. Držite ovu lozinku u tajnosti. Svatko tko zna zaporku je de facto vlasnik računa.",
   "message": "Poruka",
-  "message_is_text": "Poruka je Tekst?",
-  "messages": "Poruke",
+  "message_is_text": "Tekstualna poruka",
+  "messages": "Razgovori",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Plaćanja",
   "my_assets": "Moji žetoni",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Računi su uspješno uklonjeni",
   "no_public_key_title": "Upozorenje! - Ovaj račun ne posjeduje javni ključ!",
   "not_registered_title": "Ovaj račun nije registriran u blockchainu",
-  "not_registered_warning": "Ovaj račun još nema transakcija. Ako namjeravate koristiti ovaj račun za slanje i/ili primanje, preporučuje se da sada aktivirate ovaj račun.",
+  "not_registered_warning": "Ovaj račun još nema transakcija. Ako namjeravate koristiti ovaj račun za slanje i/ili primanje, preporučuje se da sada aktivirate/zaštitite ovaj račun.",
   "load_all_transactions": "Učitaj sve",
   "load_all_transactions_hint": "Učitavanje svih transakcija na kraju uzrokuje mnogo zahtjeva s velikom upotrebom propusnosti. Ovisno o vašoj internetskoj vezi i vezi čvorova te broju transakcija, ova radnja može potrajati neko vrijeme. Nakon dohvaćanja, transakcije se lokalno predmemoriraju. Želite li stvarno učitati sve transakcije? (Ograničenje dohvaćanja ograničeno je na 10 tisuća transakcija)",
   "manage_accounts": "Upravljanje računima",
@@ -563,5 +563,11 @@
   "add_as_contact": "Dodaj kao kontakt",
   "edit_contact": "Uredi kontakt",
   "error_add_contact": "Kontakt nije dodan. Najvjerojatnije ste već dodali taj račun.",
-  "no_contact_found": "Nije pronađen nijedan kontakt"
+  "no_contact_found": "Nije pronađen nijedan kontakt",
+  "contact": "Kontakt",
+  "send_single_message": "Pošalji poruku",
+  "message_is_binary": "Podatkovna poruka",
+  "add_account_or_contact": "Dodajte račun ili kontakt",
+  "hint_new_account": "Ovo je novi račun. Još nije registriran u lancu, tj. nema transakcija.",
+  "account_new": "Novi"
 }

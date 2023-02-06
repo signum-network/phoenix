@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Harap simpan frasa sandi ini di tempat yang aman. Frasa sandi ini diperlukan untuk mengakses akun Signum Anda.",
   "memorize_passphrase_help_addon": "Jika Anda kehilangan frasa sandi, Anda tidak akan dapat melakukan transaksi apa pun, yaitu koin Anda hilang. Frasa sandi tidak dapat dipulihkan. Jaga kerahasiaan kata sandi ini. Semua orang yang mengetahui frasa sandi secara de facto adalah pemilik akun tersebut.",
   "message": "Pesan",
-  "message_is_text": "Pesan adalah Teks?",
-  "messages": "Pesan",
+  "message_is_text": "Pesan teks",
+  "messages": "Percakapan",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Pembayaran",
   "my_assets": "Token Saya",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Akun berhasil dihapus",
   "no_public_key_title": "Peringatan! - Akun ini tidak memiliki kunci publik!",
   "not_registered_title": "Akun ini tidak terdaftar di blockchain",
-  "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan akun ini sekarang.",
+  "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan/melindungi akun ini sekarang.",
   "load_all_transactions": "Muat Semua",
   "load_all_transactions_hint": "Loading semua transaksi akhirnya menimbulkan banyak permintaan dengan penggunaan bandwidth yang tinggi. Bergantung pada koneksi internet Anda dan node serta jumlah transaksi, tindakan ini dapat memakan waktu lama. Setelah diambil, transaksi di-cache secara lokal. Apakah Anda benar-benar ingin memuat semua transaksi? (Batas pengambilan dibatasi hingga 10 ribu transaksi)",
   "manage_accounts": "Mengelola akun",
@@ -563,5 +563,11 @@
   "add_as_contact": "Tambahkan sebagai Kontak",
   "edit_contact": "Sunting Kontak",
   "error_add_contact": "Kontak tidak ditambahkan. Kemungkinan besar Anda sudah menambahkan akun itu.",
-  "no_contact_found": "Tidak ada kontak yang ditemukan"
+  "no_contact_found": "Tidak ada kontak yang ditemukan",
+  "contact": "Kontak",
+  "send_single_message": "Mengirim pesan",
+  "message_is_binary": "Pesan Data",
+  "add_account_or_contact": "Tambahkan Akun atau Kontak",
+  "hint_new_account": "Ini akun baru. Itu belum terdaftar di rantai, yaitu tidak memiliki transaksi.",
+  "account_new": "Baru"
 }

@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Emmagatzemeu aquesta frase de contrasenya en un lloc segur. Aquesta frase de contrasenya és necessària per accedir al vostre compte Signum.",
   "memorize_passphrase_help_addon": "Si perdeu la frase de contrasenya, no podreu fer cap transacció, és a dir, es perdran les vostres monedes. La frase de contrasenya no es pot recuperar. Mantingueu en secret aquesta frase de contrasenya. Tothom que coneix la contrasenya és de facto el propietari del compte.",
   "message": "Missatge",
-  "message_is_text": "El missatge és text?",
-  "messages": "Missatges",
+  "message_is_text": "Missatge de text",
+  "messages": "Converses",
   "minimum_fee": "Mínim",
   "multi_out_payment": "Pagaments",
   "my_assets": "Les meves fitxes",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Els comptes s'han eliminat correctament",
   "no_public_key_title": "Avís! - Aquest compte no posseeix una clau pública!",
   "not_registered_title": "Aquest compte no està registrat a la cadena de blocs",
-  "not_registered_warning": "Aquest compte encara no té transaccions. Si teniu intenció d'utilitzar aquest compte per enviar i/o rebre, us recomanem que l'activeu ara.",
+  "not_registered_warning": "Aquest compte encara no té transaccions. Si teniu intenció d'utilitzar aquest compte per enviar i/o rebre, es recomana activar/protegir aquest compte ara.",
   "load_all_transactions": "Carregueu-ho tot",
   "load_all_transactions_hint": "La càrrega de totes les transaccions acaba provocant moltes sol·licituds amb un ús elevat d'ample de banda. Depenent de la vostra connexió a Internet i dels nodes i del nombre de transaccions, aquesta acció pot trigar un temps. Un cop obtingudes, les transaccions s'emmagatzemen a la memòria cau localment. Realment voleu carregar totes les transaccions? (El límit d'obtenció té un límit de 10.000 transaccions)",
   "manage_accounts": "Gestionar comptes",
@@ -563,5 +563,11 @@
   "add_as_contact": "Afegeix com a contacte",
   "edit_contact": "Edita el contacte",
   "error_add_contact": "Contacte no afegit. El més probable és que ja hagis afegit aquest compte.",
-  "no_contact_found": "No s'ha trobat cap contacte"
+  "no_contact_found": "No s'ha trobat cap contacte",
+  "contact": "Contacte",
+  "send_single_message": "Enviar missatge",
+  "message_is_binary": "Missatge de dades",
+  "add_account_or_contact": "Afegeix un compte o un contacte",
+  "hint_new_account": "Aquest és un compte nou. Encara no està registrat a la cadena, és a dir, no té transaccions.",
+  "account_new": "Nou"
 }

@@ -1,18 +1,18 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
-import jsQR from 'jsqr';
-import { NotifierService } from 'angular-notifier';
-import { DomainService } from 'app/main/send-money/domain/domain.service';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Address, AddressPrefix } from '@signumjs/core';
-import { AccountService } from '../../setup/account/account.service';
-import { AppService } from '../../app.service';
-import { constants } from '../../constants';
-import { NetworkService } from '../../network/network.service';
-import { AliasService } from '../../main/aliases/alias.service';
-import { DescriptorData } from '@signumjs/standards';
-import { ContactManagementService } from '../../shared/services/contact-management.service';
-import { ContactSelectorComponent } from './contact-selector/contact-selector.component';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from "@angular/core";
+import jsQR from "jsqr";
+import { NotifierService } from "angular-notifier";
+import { DomainService } from "app/main/send-money/domain/domain.service";
+import { Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { Address, AddressPrefix } from "@signumjs/core";
+import { AccountService } from "../../setup/account/account.service";
+import { AppService } from "../../app.service";
+import { constants } from "../../constants";
+import { NetworkService } from "../../network/network.service";
+import { AliasService } from "../../main/aliases/alias.service";
+import { DescriptorData } from "@signumjs/standards";
+import { ContactManagementService } from "../../shared/services/contact-management.service";
+import { ContactSelectorComponent } from "./contact-selector/contact-selector.component";
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -28,23 +28,23 @@ export enum RecipientType {
 }
 
 export enum RecipientValidationStatus {
-  UNKNOWN = 'unknown',
-  INVALID = 'invalid',
-  VALID = 'valid',
-  UNSTOPPABLE_OUTAGE = 'unstoppable-outage',
-  BURN = 'burn'
+  UNKNOWN = "unknown",
+  INVALID = "invalid",
+  VALID = "valid",
+  UNSTOPPABLE_OUTAGE = "unstoppable-outage",
+  BURN = "burn"
 }
 
 export class Recipient {
 
   constructor(
-    public addressRaw = '',
-    public amount = '',
+    public addressRaw = "",
+    public amount = "",
     // public addressRS = '',
-    public addressId = '',
+    public addressId = "",
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN,
-    public publicKey = '',
+    public publicKey = "",
     public publicKeyValid = false
   ) {
 
@@ -63,29 +63,31 @@ export interface QRData {
 }
 
 @Component({
-  selector: 'recipient-input',
-  templateUrl: './recipient-input.component.html',
-  styleUrls: ['./recipient-input.component.scss']
+  selector: "recipient-input",
+  templateUrl: "./recipient-input.component.html",
+  styleUrls: ["./recipient-input.component.scss"]
 })
 export class RecipientInputComponent implements OnChanges {
 
-  @ViewChild('contactSelector', { static: false }) contactSelector: ContactSelectorComponent;
+  @ViewChild("contactSelector", { static: false }) contactSelector: ContactSelectorComponent;
 
   loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
-  _recipientValue = '';
+  _recipientValue = "";
   recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
   needPublicKey = false;
   isPublicKeyValid = false;
   @Input() withQrCode = true;
   // tslint:disable-next-line: no-input-rename
-  @Input('appearance') appearance = '';
+  @Input("appearance") appearance = "";
   // tslint:disable-next-line: no-input-rename
-  @Input('disabled') disabled = false;
+  @Input("disabled") disabled = false;
   // tslint:disable-next-line: no-input-rename
-  @Input('isTestNet') isTestNet = false;
+  @Input("isTestNet") isTestNet = false;
+
+  @Input() noContacts: boolean | undefined;
 
   @Output()
   recipientChange = new EventEmitter();
@@ -103,7 +105,7 @@ export class RecipientInputComponent implements OnChanges {
     this.onRecipientFieldInputChange(recipientValue);
   }
 
-  @ViewChild('file', { static: false }) file: ElementRef;
+  @ViewChild("file", { static: false }) file: ElementRef;
 
   constructor(
     private appService: AppService,
@@ -126,7 +128,9 @@ export class RecipientInputComponent implements OnChanges {
 
   onRecipientFieldInputChange(query: string): void {
     this.recipientFieldInputChange$.next(query);
-    this.contactSelector && this.contactSelector.applyFilter(query);
+    if (this.contactSelector) {
+      this.contactSelector.applyFilter(query);
+    }
   }
 
   ngOnInit(): void {
@@ -174,7 +178,7 @@ export class RecipientInputComponent implements OnChanges {
   applyRecipientType(recipient: string): void {
     const r = recipient.trim();
     this.recipient.addressRaw = r;
-    this.recipient.addressId = '';
+    this.recipient.addressId = "";
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
     if (this.isBurnAddress(r)) {
       this.recipient.type = RecipientType.BURN;
@@ -200,7 +204,7 @@ export class RecipientInputComponent implements OnChanges {
         break;
       case RecipientType.BURN:
         const burnAddress = this.networkService.getBurnAddress();
-        this.recipient.publicKey = '';
+        this.recipient.publicKey = "";
         this.recipient.publicKeyValid = true; // pub key for Burn Address not needed
         this.recipient.addressId = burnAddress.getNumericId();
         this.recipient.status = RecipientValidationStatus.BURN;
@@ -258,34 +262,34 @@ export class RecipientInputComponent implements OnChanges {
   getValidationHint(): string {
     switch (this.recipient.status) {
       case RecipientValidationStatus.BURN:
-        return 'recipient_validation_hint_burn';
+        return "recipient_validation_hint_burn";
       case RecipientValidationStatus.UNKNOWN:
-        return 'recipient_validation_hint_not_verified';
+        return "recipient_validation_hint_not_verified";
       case RecipientValidationStatus.VALID:
-        return 'recipient_validation_hint_verified';
+        return "recipient_validation_hint_verified";
       case RecipientValidationStatus.INVALID:
-        return 'recipient_validation_hint_invalid';
+        return "recipient_validation_hint_invalid";
       case RecipientValidationStatus.UNSTOPPABLE_OUTAGE:
-        return 'recipient_validation_hint_unstoppable_out';
+        return "recipient_validation_hint_unstoppable_out";
     }
   }
 
   getValidationIcon(): string {
     switch (this.recipient.status) {
       case RecipientValidationStatus.BURN:
-        return '🔥';
+        return "🔥";
       case RecipientValidationStatus.UNKNOWN:
-        return 'help_outline';
+        return "help_outline";
       case RecipientValidationStatus.VALID:
-        return 'check_circle';
+        return "check_circle";
       case RecipientValidationStatus.INVALID:
       case RecipientValidationStatus.UNSTOPPABLE_OUTAGE:
-        return 'error_outline';
+        return "error_outline";
     }
   }
 
   getValidationClass(): string {
-    return 'badge ' + this.recipient.status.toString().toLocaleLowerCase();
+    return "badge " + this.recipient.status.toString().toLocaleLowerCase();
   }
 
   parseQR(): void {
@@ -303,30 +307,30 @@ export class RecipientInputComponent implements OnChanges {
 
       const reader = new FileReader();
       reader.onload = async (e: ProgressEvent): Promise<void> => {
-        const canvas = document.createElement('canvas');
+        const canvas = document.createElement("canvas");
         canvas.width = width;
         canvas.height = height;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
         const { data } = ctx.getImageData(0, 0, width, height);
         const qr = jsQR(data, width, height);
         if (qr) {
           const url = new URLSearchParams(qr.data);
-          const recipient = url.get('receiver').trim();
+          const recipient = url.get("receiver").trim();
           this.applyRecipientType(recipient);
           await this.validateRecipient(recipient);
           this.qrCodeUpload.emit({
             recipient: this.recipient,
-            amountNQT: url.get('amountNQT'),
-            feeNQT: url.get('feeNQT'),
-            immutable: url.get('immutable') === 'true',
-            feeSuggestionType: url.get('feeSuggestionType'),
-            messageIsText: url.get('messageIsText') !== 'false',
+            amountNQT: url.get("amountNQT"),
+            feeNQT: url.get("feeNQT"),
+            immutable: url.get("immutable") === "true",
+            feeSuggestionType: url.get("feeSuggestionType"),
+            messageIsText: url.get("messageIsText") !== "false",
             encrypt: false
           });
-          this.notifierService.notify('success', 'QR parsed successfully');
+          this.notifierService.notify("success", "QR parsed successfully");
         } else {
-          this.notifierService.notify('error', 'Error parsing QR code');
+          this.notifierService.notify("error", "Error parsing QR code");
         }
       };
 
@@ -336,7 +340,7 @@ export class RecipientInputComponent implements OnChanges {
   }
 
   private isBurnAddress(r: string): boolean {
-    return r === '0' || r.indexOf('2222-2222-2222-22222') > -1;
+    return r === "0" || r.indexOf("2222-2222-2222-22222") > -1;
   }
 
   onPublickeyChange(): void {
@@ -350,10 +354,12 @@ export class RecipientInputComponent implements OnChanges {
   }
 
   openContactSelector(): void {
-    this.contactSelector
-      .openMenu()
-      .subscribe((selectedContact) => {
-        this.recipientValue = selectedContact.account;
-      });
+    if (this.noContacts === undefined) {
+      this.contactSelector
+        .openMenu()
+        .subscribe((selectedContact) => {
+          this.recipientValue = selectedContact.account;
+        });
+    }
   }
 }

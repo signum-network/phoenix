@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Lütfen bu parolayı güvenli bir yerde saklayın. Signum hesabınıza erişmek için bu parola gereklidir.",
   "memorize_passphrase_help_addon": "Parolayı kaybederseniz herhangi bir işlem yapamazsınız, yani jetonlarınız kaybolur. Parola kurtarılamaz. Bu parolayı gizli tutun. Parolayı bilen herkes fiili olarak hesabın sahibidir.",
   "message": "İleti",
-  "message_is_text": "Mesaj Metin mi?",
-  "messages": "Mesajlar",
+  "message_is_text": "SMS",
+  "messages": "Konuşmalar",
   "minimum_fee": "Asgari",
   "multi_out_payment": "ödemeler",
   "my_assets": "Jetonlarım",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Hesap(lar) başarıyla kaldırıldı",
   "no_public_key_title": "Uyarı! - Bu hesabın ortak anahtarı yok!",
   "not_registered_title": "Bu hesap blok zincirinde kayıtlı değil",
-  "not_registered_warning": "Bu hesapta henüz işlem yok. Bu hesabı göndermek ve/veya almak için kullanmayı düşünüyorsanız, bu hesabı şimdi etkinleştirmeniz önerilir.",
+  "not_registered_warning": "Bu hesapta henüz işlem yok. Bu hesabı göndermek ve/veya almak için kullanmayı düşünüyorsanız, bu hesabı şimdi etkinleştirmeniz/korumanız önerilir.",
   "load_all_transactions": "Hepsini yükle",
   "load_all_transactions_hint": "Tüm işlemlerin yüklenmesi, sonunda yüksek bant genişliği kullanımıyla çok sayıda talebe neden olur. Sizinkine ve düğümlerin internet bağlantısına ve işlem sayısına bağlı olarak bu işlem biraz zaman alabilir. Alındıktan sonra, işlemler yerel olarak önbelleğe alınır. Tüm işlemleri gerçekten yüklemek istiyor musunuz? (Getirme sınırı 10K işlemle sınırlıdır)",
   "manage_accounts": "Hesapları yönet",
@@ -563,5 +563,11 @@
   "add_as_contact": "Kişi listesine ekle",
   "edit_contact": "Kişiyi Düzenle",
   "error_add_contact": "Kişi eklenmedi. Büyük olasılıkla bu hesabı zaten eklemişsinizdir.",
-  "no_contact_found": "Kişi bulunamadı"
+  "no_contact_found": "Kişi bulunamadı",
+  "contact": "Temas etmek",
+  "send_single_message": "Mesaj gönder",
+  "message_is_binary": "Veri Mesajı",
+  "add_account_or_contact": "Hesap veya Kişi Ekle",
+  "hint_new_account": "Bu yeni bir hesap. Henüz zincire kayıtlı değil, yani herhangi bir işlemi yok.",
+  "account_new": "Yeni"
 }

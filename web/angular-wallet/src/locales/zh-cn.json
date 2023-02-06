@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "请将此密码保存在安全的地方。需要此密码才能访问您的 Signum 帐户。",
   "memorize_passphrase_help_addon": "如果您丢失密码短语，您将无法进行任何交易，即您的硬币丢失。密码不可恢复。将此密码保密。每个知道密码短语的人实际上都是该帐户的所有者。",
   "message": "信息",
-  "message_is_text": "消息是文本？",
-  "messages": "留言",
+  "message_is_text": "短信",
+  "messages": "对话",
   "minimum_fee": "最低限度",
   "multi_out_payment": "付款",
   "my_assets": "我的代币",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "帐户已成功删除",
   "no_public_key_title": "警告！ - 此帐户没有公钥！",
   "not_registered_title": "该账户未在区块链中注册",
-  "not_registered_warning": "该帐户还没有任何交易。如果您打算使用此帐户发送和/或接收，建议立即激活此帐户。",
+  "not_registered_warning": "该帐户还没有任何交易。如果您打算使用此帐户发送和/或接收，建议立即激活/保护此帐户。",
   "load_all_transactions": "全部加载",
   "load_all_transactions_hint": "加载所有事务最终会导致大量请求占用大量带宽。根据您和节点的互联网连接以及交易数量，此操作可能需要一些时间。一旦获取，交易就被缓存在本地。您真的要加载所有交易吗？ （获取限制上限为 10K 笔交易）",
   "manage_accounts": "管理帐户",
@@ -563,5 +563,11 @@
   "add_as_contact": "添加为联系人",
   "edit_contact": "更改联系资料",
   "error_add_contact": "未添加联系人。您很可能已经添加了该帐户。",
-  "no_contact_found": "找不到联系人"
+  "no_contact_found": "找不到联系人",
+  "contact": "接触",
+  "send_single_message": "发信息",
+  "message_is_binary": "数据信息",
+  "add_account_or_contact": "添加帐户或联系人",
+  "hint_new_account": "这是一个新帐户。它还没有在链上注册，即没有交易。",
+  "account_new": "新的"
 }

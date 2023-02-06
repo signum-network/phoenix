@@ -25,6 +25,11 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
       return this.storeService.getSelectedAccount();
     }
 
+    const storedAccount = this.storeService.findAccount(route.params.id, networkName);
+    if (storedAccount && storedAccount.isNew()){
+      return storedAccount;
+    }
+
     try{
       const accountId = route.params.id;
       const cacheKey = `${networkName}-${accountId}`;

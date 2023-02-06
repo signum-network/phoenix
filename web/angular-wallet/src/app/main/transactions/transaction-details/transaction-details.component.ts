@@ -9,9 +9,9 @@ import { CellValue, CellValueMapper } from './cell-value-mapper';
 import { NetworkService } from '../../../network/network.service';
 import { AppService } from '../../../app.service';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { AccountManagementService } from "../../../shared/services/account-management.service";
-import { takeUntil } from "rxjs/operators";
-import { UnsubscribeOnDestroy } from "../../../util/UnsubscribeOnDestroy";
+import { AccountManagementService } from '../../../shared/services/account-management.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
 
 export interface TransactionDetailRow {
   k: string;
@@ -62,12 +62,13 @@ export class TransactionDetailsComponent extends UnsubscribeOnDestroy implements
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
         this.updateDetailsData();
-      })
+      });
   }
 
   private updateDetailsData(): void {
     this.detailsData = Object
       .keys(this.transaction)
+      .filter(k => k !== 'distribution')
       .map(k => ({
           k,
           l: this.getFieldNameFromField(k),

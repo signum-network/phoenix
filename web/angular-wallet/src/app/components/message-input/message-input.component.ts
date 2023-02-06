@@ -15,6 +15,8 @@ export class MessageInputComponent implements OnInit {
   @Input() isText = true;
   @Input() canEncrypt = true;
 
+  @Input() minRows = 1;
+
   @Output() messageChange = new EventEmitter<string>();
   @Output() disabledChange = new EventEmitter<boolean>();
   @Output() isTextChange = new EventEmitter<boolean>();
@@ -39,8 +41,8 @@ export class MessageInputComponent implements OnInit {
     this.encryptChange.next(this.encrypt);
   }
 
-  toggleIsText(): void {
-    this.isText = !this.isText;
+  setIsText(isText: boolean): void {
+    this.isText = isText;
     this.isTextChange.next(this.isText);
   }
 }

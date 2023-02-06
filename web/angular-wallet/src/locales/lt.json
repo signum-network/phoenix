@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Prašome saugoti šią slaptafrazę saugioje vietoje. Ši slaptafrazė reikalinga norint pasiekti jūsų „Signum“ paskyrą.",
   "memorize_passphrase_help_addon": "Pamiršę slaptafrazę negalėsite atlikti jokių operacijų, t. Y. Jūsų monetos bus pamestos. Slaptafrazės atkurti negalima. Laikykite šią slaptafrazę paslaptyje. Visi, žinantys slaptafrazę, de facto yra paskyros savininkai.",
   "message": "Pranešimas",
-  "message_is_text": "Pranešimas yra tekstas?",
-  "messages": "Žinutės",
+  "message_is_text": "Žinutė",
+  "messages": "Pokalbiai",
   "minimum_fee": "Minimumas",
   "multi_out_payment": "Mokėjimai",
   "my_assets": "Mano žetonai",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Paskyra (-os) sėkmingai pašalinta (-os).",
   "no_public_key_title": "Įspėjimas! – Šiai paskyrai viešasis raktas nepriklauso!",
   "not_registered_title": "Ši paskyra nėra užregistruota blokų grandinėje",
-  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti dabar.",
+  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti / apsaugoti dabar.",
   "load_all_transactions": "Įkelti viską",
   "load_all_transactions_hint": "Visų operacijų įkėlimas galiausiai sukelia daug užklausų naudojant didelį pralaidumą. Priklausomai nuo jūsų ir mazgų interneto ryšio bei operacijų skaičiaus, šis veiksmas gali užtrukti. Gavus operacijos, jos išsaugomos vietos talpykloje. Ar tikrai norite įkelti visas operacijas? (Gavimo limitas yra 10 tūkst. operacijų)",
   "manage_accounts": "Tvarkyti paskyras",
@@ -563,5 +563,11 @@
   "add_as_contact": "Pridėti kaip kontaktą",
   "edit_contact": "Redaguoti kontaktą",
   "error_add_contact": "Kontaktas nepridėtas. Greičiausiai tą paskyrą jau pridėjote.",
-  "no_contact_found": "Nerasta jokių kontaktų"
+  "no_contact_found": "Nerasta jokių kontaktų",
+  "contact": "kontaktas",
+  "send_single_message": "Siųsti žinutę",
+  "message_is_binary": "Duomenų pranešimas",
+  "add_account_or_contact": "Pridėti paskyrą arba kontaktą",
+  "hint_new_account": "Tai nauja paskyra. Jis dar neužregistruotas tinkle, t. y. neturi sandorių.",
+  "account_new": "Nauja"
 }

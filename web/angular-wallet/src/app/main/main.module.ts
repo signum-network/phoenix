@@ -22,6 +22,7 @@ import {AccountsModule} from './accounts/accounts.module';
 import {SetAccountInfoModule} from './set-account-info/set-account-info.module';
 import {SetRewardRecipientModule} from './set-reward-recipient/set-reward-recipient.module';
 import {SetCommitmentModule} from './set-commitment/set-commitment.module';
+import { SendMessageModule } from "./send-message/send-message.module";
 
 const mainRoutes: Routes = [
   {
@@ -82,6 +83,7 @@ const mainRoutes: Routes = [
     MatMomentDateModule,
     RouterModule.forChild(mainRoutes),
     SendMoneyModule,
+    SendMessageModule,
     SetAccountInfoModule,
     SetCommitmentModule,
     SetRewardRecipientModule,

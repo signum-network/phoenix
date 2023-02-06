@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Garda esta frase de acceso nun lugar seguro. Esta frase de acceso é necesaria para acceder á túa conta Signum.",
   "memorize_passphrase_help_addon": "Se perde a frase de acceso non poderá realizar ningunha transacción, é dicir, pérdense as súas moedas. A frase de acceso non se pode recuperar. Garda esta frase de contrasinal en segredo. Todo o mundo que coñece a frase de acceso é de facto o dono da conta.",
   "message": "Mensaxe",
-  "message_is_text": "A mensaxe é texto?",
-  "messages": "Mensaxes",
+  "message_is_text": "Mensaxe de texto",
+  "messages": "Conversas",
   "minimum_fee": "Mínimo",
   "multi_out_payment": "Pagamentos",
   "my_assets": "As miñas fichas",
@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Elimináronse as contas correctamente",
   "no_public_key_title": "Aviso! - Esta conta non posúe unha chave pública!",
   "not_registered_title": "Esta conta non está rexistrada na cadea de bloques",
-  "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activala agora.",
+  "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activar/protexer esta conta agora.",
   "load_all_transactions": "Cargar todo",
   "load_all_transactions_hint": "A carga de todas as transaccións eventualmente provoca moitas solicitudes cun uso elevado de ancho de banda. Dependendo da túa conexión a Internet e dos nodos e do número de transaccións, esta acción pode levar algún tempo. Unha vez recuperadas, as transaccións almacénanse na caché local. Realmente queres cargar todas as transaccións? (O límite de obtención está limitado a 10 000 transaccións)",
   "manage_accounts": "Xestionar Contas",
@@ -563,5 +563,11 @@
   "add_as_contact": "Engadir como contacto",
   "edit_contact": "Editar contacto",
   "error_add_contact": "Contacto non engadido. Probablemente xa engadiches esa conta.",
-  "no_contact_found": "Non se atopou ningún contacto"
+  "no_contact_found": "Non se atopou ningún contacto",
+  "contact": "Contacto",
+  "send_single_message": "Enviar mensaxe",
+  "message_is_binary": "Mensaxe de datos",
+  "add_account_or_contact": "Engadir conta ou contacto",
+  "hint_new_account": "Esta é unha conta nova. Aínda non está rexistrado na cadea, é dicir, non ten transaccións.",
+  "account_new": "Novo"
 }
