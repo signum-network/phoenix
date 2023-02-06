@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Conserva questa passphrase in un luogo sicuro. Questa passphrase è necessaria per accedere al tuo account Signum.",
   "memorize_passphrase_help_addon": "Se perdi la passphrase non potrai effettuare alcuna transazione, ovvero le tue monete andranno perse. La passphrase non è recuperabile. Mantieni segreta questa passphrase. Chiunque conosca la passphrase è di fatto il proprietario dell'account.",
   "message": "Messaggio",
-  "message_is_text": "Il messaggio è testo?",
-  "messages": "Messaggi",
+  "message_is_text": "Messaggio testuale",
+  "messages": "Conversazioni",
   "minimum_fee": "Minimo",
   "multi_out_payment": "Pagamenti",
   "my_assets": "I miei gettoni",
@@ -563,5 +563,9 @@
   "add_as_contact": "Aggiungi come contatto",
   "edit_contact": "Modifica il contatto",
   "error_add_contact": "Contatto non aggiunto. Molto probabilmente hai già aggiunto quell'account.",
-  "no_contact_found": "Nessun contatto trovato"
+  "no_contact_found": "Nessun contatto trovato",
+  "contact": "Contatto",
+  "send_single_message": "Invia messaggio",
+  "message_is_binary": "Messaggio di dati",
+  "add_account_or_contact": "Aggiungi account o contatto"
 }

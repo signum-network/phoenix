@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Proszę przechowywać to hasło w bezpiecznym miejscu. To hasło jest potrzebne, aby uzyskać dostęp do konta Signum.",
   "memorize_passphrase_help_addon": "Jeśli zgubisz hasło, nie będziesz mógł dokonywać żadnych transakcji, tzn. Twoje monety zostaną utracone. Hasła nie można odzyskać. Zachowaj to hasło w tajemnicy. Każdy, kto zna hasło, jest de facto właścicielem konta.",
   "message": "Wiadomość",
-  "message_is_text": "Wiadomość jest tekstowa?",
-  "messages": "Wiadomości",
+  "message_is_text": "Wiadomość tekstowa",
+  "messages": "Rozmowy",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Płatności",
   "my_assets": "Moje tokeny",
@@ -563,5 +563,9 @@
   "add_as_contact": "Dodaj jako kontakt",
   "edit_contact": "Edytuj kontakt",
   "error_add_contact": "Nie dodano kontaktu. Najprawdopodobniej dodałeś już to konto.",
-  "no_contact_found": "Nie znaleziono kontaktu"
+  "no_contact_found": "Nie znaleziono kontaktu",
+  "contact": "Kontakt",
+  "send_single_message": "Wyślij wiadomość",
+  "message_is_binary": "Wiadomość danych",
+  "add_account_or_contact": "Dodaj konto lub kontakt"
 }

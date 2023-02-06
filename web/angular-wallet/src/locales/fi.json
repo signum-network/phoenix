@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Säilytä tämä tunnuslause turvallisessa paikassa. Tätä salasanaa tarvitaan Signum-tilisi käyttämiseen.",
   "memorize_passphrase_help_addon": "Jos kadotat salasanasi, et voi tehdä mitään tapahtumia, eli kolikkosi menetetään. Salasanaa ei voi palauttaa. Pidä tämä tunnuslause salassa. Kaikki salasanan tuntevat ovat tosiasiallisesti tilin omistajia.",
   "message": "Viesti",
-  "message_is_text": "Viesti on teksti?",
-  "messages": "Viestit",
+  "message_is_text": "Tekstiviesti",
+  "messages": "Keskustelut",
   "minimum_fee": "Minimi",
   "multi_out_payment": "Maksut",
   "my_assets": "Omat merkit",
@@ -563,5 +563,9 @@
   "add_as_contact": "Lisää yhteyshenkilöksi",
   "edit_contact": "Muokkaa yhteystietoa",
   "error_add_contact": "Yhteystietoa ei lisätty. Todennäköisesti olet jo lisännyt kyseisen tilin.",
-  "no_contact_found": "Yhteyttä ei löytynyt"
+  "no_contact_found": "Yhteyttä ei löytynyt",
+  "contact": "Ottaa yhteyttä",
+  "send_single_message": "Lähetä viesti",
+  "message_is_binary": "Dataviesti",
+  "add_account_or_contact": "Lisää tili tai yhteystieto"
 }

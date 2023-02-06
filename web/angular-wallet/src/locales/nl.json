@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Bewaar deze wachtwoordzin op een veilige plaats. Deze wachtwoordzin is nodig om toegang te krijgen tot uw Signum-account.",
   "memorize_passphrase_help_addon": "Als u de wachtwoordzin kwijtraakt, kunt u geen transacties meer uitvoeren, d.w.z. uw munten gaan verloren. De wachtwoordzin kan niet worden hersteld. Houd deze wachtwoordzin geheim. Iedereen die de wachtwoordzin kent, is de facto de eigenaar van het account.",
   "message": "Bericht",
-  "message_is_text": "Bericht is tekst?",
-  "messages": "Berichten",
+  "message_is_text": "Tekst bericht",
+  "messages": "Gesprekken",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Betalingen",
   "my_assets": "Mijn tokens",
@@ -563,5 +563,9 @@
   "add_as_contact": "Toevoegen als contact",
   "edit_contact": "Bewerk contact",
   "error_add_contact": "Contactpersoon niet toegevoegd. Waarschijnlijk heb je dat account al toegevoegd.",
-  "no_contact_found": "Geen contactpersoon gevonden"
+  "no_contact_found": "Geen contactpersoon gevonden",
+  "contact": "Contact",
+  "send_single_message": "Bericht versturen",
+  "message_is_binary": "Gegevens bericht",
+  "add_account_or_contact": "Account of contactpersoon toevoegen"
 }

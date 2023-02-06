@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Garda esta frase de acceso nun lugar seguro. Esta frase de acceso é necesaria para acceder á túa conta Signum.",
   "memorize_passphrase_help_addon": "Se perde a frase de acceso non poderá realizar ningunha transacción, é dicir, pérdense as súas moedas. A frase de acceso non se pode recuperar. Garda esta frase de contrasinal en segredo. Todo o mundo que coñece a frase de acceso é de facto o dono da conta.",
   "message": "Mensaxe",
-  "message_is_text": "A mensaxe é texto?",
-  "messages": "Mensaxes",
+  "message_is_text": "Mensaxe de texto",
+  "messages": "Conversas",
   "minimum_fee": "Mínimo",
   "multi_out_payment": "Pagamentos",
   "my_assets": "As miñas fichas",
@@ -563,5 +563,9 @@
   "add_as_contact": "Engadir como contacto",
   "edit_contact": "Editar contacto",
   "error_add_contact": "Contacto non engadido. Probablemente xa engadiches esa conta.",
-  "no_contact_found": "Non se atopou ningún contacto"
+  "no_contact_found": "Non se atopou ningún contacto",
+  "contact": "Contacto",
+  "send_single_message": "Enviar mensaxe",
+  "message_is_binary": "Mensaxe de datos",
+  "add_account_or_contact": "Engadir conta ou contacto"
 }

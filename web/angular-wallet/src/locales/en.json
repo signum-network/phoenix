@@ -253,8 +253,8 @@
   "memorize_passphrase_help": "Please store this recovery phrase in a secure place. This recovery phrase is needed in order to access your Signum account. ",
   "memorize_passphrase_help_addon": "If you lose the recovery phrase you won't be able to do any transactions, i.e. your coins are lost. The recovery phrase is not recoverable. Keep this recovery phrase secret. Everybody who knows the recovery phrase is de facto the owner of the account.",
   "message": "Message",
-  "message_is_text": "Message is Text?",
-  "messages": "Messages",
+  "message_is_text": "Text Message",
+  "messages": "Conversations",
   "minimum_fee": "Minimum",
   "mint_token": "Token Minting",
   "multi_out_payment": "Payments",
@@ -563,5 +563,9 @@
   "add_as_contact": "Add as Contact",
   "edit_contact": "Edit Contact",
   "error_add_contact": "Contact not added. Most probably you have added that account already.",
-  "no_contact_found": "No contact found"
+  "no_contact_found": "No contact found",
+  "contact": "Contact",
+  "send_single_message": "Send Message",
+  "message_is_binary": "Data Message",
+  "add_account_or_contact": "Add Account or Contact"
 }

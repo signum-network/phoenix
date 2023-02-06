@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Molimo vas da ovu lozinku pohranite na sigurno mjesto. Ova lozinka potrebna je za pristup vašem Signum računu.",
   "memorize_passphrase_help_addon": "Ako izgubite lozinku, nećete moći izvršavati nikakve transakcije, tj. Vaši će se novčići izgubiti. Zaporka se ne može povratiti. Držite ovu lozinku u tajnosti. Svatko tko zna zaporku je de facto vlasnik računa.",
   "message": "Poruka",
-  "message_is_text": "Poruka je Tekst?",
-  "messages": "Poruke",
+  "message_is_text": "Tekstualna poruka",
+  "messages": "Razgovori",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Plaćanja",
   "my_assets": "Moji žetoni",
@@ -563,5 +563,9 @@
   "add_as_contact": "Dodaj kao kontakt",
   "edit_contact": "Uredi kontakt",
   "error_add_contact": "Kontakt nije dodan. Najvjerojatnije ste već dodali taj račun.",
-  "no_contact_found": "Nije pronađen nijedan kontakt"
+  "no_contact_found": "Nije pronađen nijedan kontakt",
+  "contact": "Kontakt",
+  "send_single_message": "Pošalji poruku",
+  "message_is_binary": "Podatkovna poruka",
+  "add_account_or_contact": "Dodajte račun ili kontakt"
 }

@@ -1,0 +1,30 @@
+<form (ngSubmit)="onSubmit($event);" #sendForm="ngForm">
+
+  <recipient-input [recipientValue]="recipient.addressRaw"
+                   (recipientChange)="onRecipientChange($event)"
+                   [disabled]="immutable">
+
+  </recipient-input>
+
+  <app-fee-input *ngIf="!immutable"
+                 [type]="type"
+                 [subtype]="subtype"
+                 [(feeSigna)]="fee"
+                 [payloadLength]="message ? message.length : 0"
+  >
+  </app-fee-input>
+
+  <app-message-input
+    [disabled]="immutable"
+    [(message)]="message"
+    [(isText)]="messageIsText"
+    [(encrypt)]="encrypt"
+    [canEncrypt]="canEncrypt()"
+    minRows="3"
+  >
+  </app-message-input>
+  <app-submit-transaction [(pin)]="pin" [disabled]="!canSubmit()" [isSubmitting]="isSending">
+  </app-submit-transaction>
+  <strong>{{'total' | i18n}}:&nbsp;</strong>
+  <span [class.error-text]="!hasSufficientBalance()">{{ this.fee | amount:'signa' }}</span>
+</form>

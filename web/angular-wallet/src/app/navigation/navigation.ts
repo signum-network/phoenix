@@ -21,14 +21,6 @@ export const navigation: FuseNavigation[] = [
         url: '/transactions'
       },
       {
-        id: 'messages',
-        title: 'Messages',
-        type: 'item',
-        icon: 'messages',
-        url: '/messages',
-        fullAccountOnly: true
-      },
-      {
         id: 'send_signa',
         title: 'Send Burst',
         type: 'item',
@@ -42,6 +34,22 @@ export const navigation: FuseNavigation[] = [
         type: 'item',
         icon: 'get_app',
         url: '/request'
+      },
+      {
+        id: 'send_single_message',
+        title: 'Send Message',
+        type: 'item',
+        icon: 'mail_outline',
+        url: '/send-message',
+        fullAccountOnly: true
+      },
+      {
+        id: 'messages',
+        title: 'Conversations',
+        type: 'item',
+        icon: 'messages',
+        url: '/messages',
+        fullAccountOnly: true
       },
     ]
   },

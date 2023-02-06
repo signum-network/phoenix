@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Veuillez conserver cette phrase secrète dans un endroit sûr. Cette phrase secrète est nécessaire pour accéder à votre compte Signum.",
   "memorize_passphrase_help_addon": "Si vous perdez la phrase secrète, vous ne pourrez effectuer aucune transaction, c'est-à-dire que vos pièces sont perdues. La phrase secrète n'est pas récupérable. Gardez cette phrase secrète secrète. Toute personne connaissant la phrase secrète est de facto le propriétaire du compte.",
   "message": "Un message",
-  "message_is_text": "Le message est un texte ?",
-  "messages": "messages",
+  "message_is_text": "Message texte",
+  "messages": "Conversations",
   "minimum_fee": "Le minimum",
   "multi_out_payment": "Paiements",
   "my_assets": "Mes jetons",
@@ -563,5 +563,9 @@
   "add_as_contact": "Ajouter comme contact",
   "edit_contact": "Modifier le contact",
   "error_add_contact": "Contact non ajouté. Vous avez probablement déjà ajouté ce compte.",
-  "no_contact_found": "Aucun contact trouvé"
+  "no_contact_found": "Aucun contact trouvé",
+  "contact": "Contact",
+  "send_single_message": "Envoyer le message",
+  "message_is_binary": "Message de données",
+  "add_account_or_contact": "Ajouter un compte ou un contact"
 }

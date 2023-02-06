@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "このパスフレーズは安全な場所に保管してください。このパスフレーズは、Signum アカウントにアクセスするために必要です。",
   "memorize_passphrase_help_addon": "パスフレーズを紛失すると、取引ができなくなります。つまり、コインが失われます。パスフレーズは回復できません。このパスフレーズは秘密にしておいてください。パスフレーズを知っている人は誰でも、事実上アカウントの所有者です。",
   "message": "メッセージ",
-  "message_is_text": "メッセージはテキスト?",
-  "messages": "メッセージ",
+  "message_is_text": "メール",
+  "messages": "会話",
   "minimum_fee": "最小",
   "multi_out_payment": "支払い",
   "my_assets": "私のトークン",
@@ -563,5 +563,9 @@
   "add_as_contact": "連絡先として追加",
   "edit_contact": "連絡先を編集",
   "error_add_contact": "連絡先が追加されていません。ほとんどの場合、そのアカウントは既に追加されています。",
-  "no_contact_found": "連絡先が見つかりません"
+  "no_contact_found": "連絡先が見つかりません",
+  "contact": "コンタクト",
+  "send_single_message": "メッセージを送る",
+  "message_is_binary": "データメッセージ",
+  "add_account_or_contact": "アカウントまたは連絡先を追加"
 }

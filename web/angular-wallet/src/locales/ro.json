@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Vă rugăm să stocați această expresie de acces într-un loc sigur. Această expresie de acces este necesară pentru a accesa contul dvs. Signum.",
   "memorize_passphrase_help_addon": "Dacă pierdeți expresia de acces, nu veți putea face nicio tranzacție, adică monedele dvs. se pierd. Expresia de acces nu poate fi recuperată. Păstrați această parolă secretă. Oricine cunoaște fraza de acces este de facto proprietarul contului.",
   "message": "Mesaj",
-  "message_is_text": "Mesajul este text?",
-  "messages": "Mesaje",
+  "message_is_text": "Mesaj text",
+  "messages": "Conversații",
   "minimum_fee": "Minim",
   "multi_out_payment": "Plăți",
   "my_assets": "Jetoanele mele",
@@ -563,5 +563,9 @@
   "add_as_contact": "Adăugați ca contact",
   "edit_contact": "Editați contactul",
   "error_add_contact": "Contactul nu a fost adăugat. Cel mai probabil ați adăugat deja acel cont.",
-  "no_contact_found": "Nu a fost găsit niciun contact"
+  "no_contact_found": "Nu a fost găsit niciun contact",
+  "contact": "a lua legatura",
+  "send_single_message": "Trimite mesaj",
+  "message_is_binary": "Mesaj de date",
+  "add_account_or_contact": "Adăugați cont sau contact"
 }

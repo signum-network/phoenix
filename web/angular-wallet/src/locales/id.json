@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Harap simpan frasa sandi ini di tempat yang aman. Frasa sandi ini diperlukan untuk mengakses akun Signum Anda.",
   "memorize_passphrase_help_addon": "Jika Anda kehilangan frasa sandi, Anda tidak akan dapat melakukan transaksi apa pun, yaitu koin Anda hilang. Frasa sandi tidak dapat dipulihkan. Jaga kerahasiaan kata sandi ini. Semua orang yang mengetahui frasa sandi secara de facto adalah pemilik akun tersebut.",
   "message": "Pesan",
-  "message_is_text": "Pesan adalah Teks?",
-  "messages": "Pesan",
+  "message_is_text": "Pesan teks",
+  "messages": "Percakapan",
   "minimum_fee": "Minimum",
   "multi_out_payment": "Pembayaran",
   "my_assets": "Token Saya",
@@ -563,5 +563,9 @@
   "add_as_contact": "Tambahkan sebagai Kontak",
   "edit_contact": "Sunting Kontak",
   "error_add_contact": "Kontak tidak ditambahkan. Kemungkinan besar Anda sudah menambahkan akun itu.",
-  "no_contact_found": "Tidak ada kontak yang ditemukan"
+  "no_contact_found": "Tidak ada kontak yang ditemukan",
+  "contact": "Kontak",
+  "send_single_message": "Mengirim pesan",
+  "message_is_binary": "Pesan Data",
+  "add_account_or_contact": "Tambahkan Akun atau Kontak"
 }

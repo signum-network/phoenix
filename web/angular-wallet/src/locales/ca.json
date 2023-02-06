@@ -231,8 +231,8 @@
   "memorize_passphrase_help": "Emmagatzemeu aquesta frase de contrasenya en un lloc segur. Aquesta frase de contrasenya és necessària per accedir al vostre compte Signum.",
   "memorize_passphrase_help_addon": "Si perdeu la frase de contrasenya, no podreu fer cap transacció, és a dir, es perdran les vostres monedes. La frase de contrasenya no es pot recuperar. Mantingueu en secret aquesta frase de contrasenya. Tothom que coneix la contrasenya és de facto el propietari del compte.",
   "message": "Missatge",
-  "message_is_text": "El missatge és text?",
-  "messages": "Missatges",
+  "message_is_text": "Missatge de text",
+  "messages": "Converses",
   "minimum_fee": "Mínim",
   "multi_out_payment": "Pagaments",
   "my_assets": "Les meves fitxes",
@@ -563,5 +563,9 @@
   "add_as_contact": "Afegeix com a contacte",
   "edit_contact": "Edita el contacte",
   "error_add_contact": "Contacte no afegit. El més probable és que ja hagis afegit aquest compte.",
-  "no_contact_found": "No s'ha trobat cap contacte"
+  "no_contact_found": "No s'ha trobat cap contacte",
+  "contact": "Contacte",
+  "send_single_message": "Enviar missatge",
+  "message_is_binary": "Missatge de dades",
+  "add_account_or_contact": "Afegeix un compte o un contacte"
 }
