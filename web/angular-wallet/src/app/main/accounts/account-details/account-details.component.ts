@@ -1,39 +1,39 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import {Transaction} from '@signumjs/core';
-import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
-import {AccountService} from 'app/setup/account/account.service';
-import {StoreService} from 'app/store/store.service';
-import hashicon from 'hashicon';
-import {uniqBy} from 'lodash';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import { filter, takeUntil, tap } from 'rxjs/operators';
-import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/progress-bar.service';
-import { TokenData, TokenService } from '../../../shared/services/token.service';
-import { WalletAccount } from 'app/util/WalletAccount';
-import { DescriptorData } from '@signumjs/standards';
-import { NetworkService } from 'app/network/network.service';
-import { AppService } from 'app/app.service';
-import { interval, Subscription } from 'rxjs';
-import { constants } from 'app/constants';
-import { I18nService } from 'app/shared/services/i18n.service';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
+import { Transaction } from "@signumjs/core";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
+import { MatTableDataSource } from "@angular/material/table";
+import { AccountService } from "app/setup/account/account.service";
+import { StoreService } from "app/store/store.service";
+import hashicon from "hashicon";
+import { uniqBy } from "lodash";
+import { MediaChange, MediaObserver } from "@angular/flex-layout";
+import { UnsubscribeOnDestroy } from "../../../util/UnsubscribeOnDestroy";
+import { filter, takeUntil, tap } from "rxjs/operators";
+import { FuseProgressBarService } from "../../../../@fuse/components/progress-bar/progress-bar.service";
+import { TokenData, TokenService } from "../../../shared/services/token.service";
+import { WalletAccount } from "app/util/WalletAccount";
+import { DescriptorData } from "@signumjs/standards";
+import { NetworkService } from "app/network/network.service";
+import { AppService } from "app/app.service";
+import { interval, Subscription } from "rxjs";
+import { constants } from "app/constants";
+import { I18nService } from "app/shared/services/i18n.service";
 
 const ColumnsQuery = {
-  xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
-  lg: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
-  md: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
-  sm: ['transaction_id', 'timestamp', 'amount', 'account'],
-  xs: ['transaction_id', 'timestamp', 'amount'],
+  xl: ["transaction_id", "timestamp", "type", "amount", "account", "confirmations"],
+  lg: ["transaction_id", "timestamp", "type", "amount", "account", "confirmations"],
+  md: ["transaction_id", "timestamp", "type", "amount", "account"],
+  sm: ["transaction_id", "timestamp", "amount", "account"],
+  xs: ["transaction_id", "timestamp", "amount"]
 };
 
 @Component({
-  selector: 'app-account-details',
-  templateUrl: './account-details.component.html',
-  styleUrls: ['./account-details.component.scss']
+  selector: "app-account-details",
+  templateUrl: "./account-details.component.html",
+  styleUrls: ["./account-details.component.scss"]
 })
 export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
-  @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
+  @ViewChild("avatar", { static: false }) avatar: ElementRef<HTMLCanvasElement>;
 
   account: WalletAccount;
   transactions: Transaction[] = [];
@@ -58,7 +58,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
               private i18nService: I18nService,
               private observableMedia: MediaObserver,
               private storeService: StoreService,
-              private progressService: FuseProgressBarService,
+              private progressService: FuseProgressBarService
   ) {
     super();
     // updates on account id changes in route - i.e. when clicked another account id
@@ -92,7 +92,8 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     this.dataSource.data = this.transactions;
     this.language = this.storeService.getSettings().language;
     this.updateAvatar();
-    this.updateTransactions(false).then(() => this.progressService.hide());
+    this.updateTransactions(false)
+      .finally(() => this.progressService.hide());
     this.updateTokens().then(); // non-blocking
     this.listenToAccount();
   }
@@ -115,25 +116,31 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   async updateTransactions(incremental: boolean): Promise<void> {
-    const accountId = this.account.account;
-    let transactionList;
-    if (this.transactions.length > 0 && incremental) {
-      const timestamp = this.transactions[0].timestamp.toString(10);
-      transactionList = await this.accountService.getAccountTransactions({accountId, timestamp});
-    } else {
-      transactionList = await this.accountService.getAccountTransactions({accountId});
+    try {
+      const accountId = this.account.account;
+      let transactionList;
+      if (this.transactions.length > 0 && incremental) {
+        const timestamp = this.transactions[0].timestamp.toString(10);
+        transactionList = await this.accountService.getAccountTransactions({ accountId, timestamp });
+      } else {
+        transactionList = await this.accountService.getAccountTransactions({ accountId });
+      }
+      const { unconfirmedTransactions } = await this.accountService.getUnconfirmedTransactions(accountId);
+      this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), "transaction");
+    } catch (e) {
+      this.transactions = [];
+      console.warn("Account Details - update Transactions", e.message);
+    } finally {
+      this.dataSource.data = this.transactions;
+      this.isLoadingTransactions = false;
     }
-    const {unconfirmedTransactions} = await this.accountService.getUnconfirmedTransactions(accountId);
-    this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), 'transaction');
-    this.dataSource.data = this.transactions;
-    this.isLoadingTransactions = false;
   }
 
   private updateAvatar(): void {
     this.avatarImgSrc = null;
     try {
       const src44 = DescriptorData.parse(this.account.description, false);
-      this.avatarImgSrc = src44.avatar ? this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid) : '';
+      this.avatarImgSrc = src44.avatar ? this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid) : "";
       this.src44 = src44;
     } catch (e) {
       // ignore
@@ -145,27 +152,27 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   private async updateTokens(): Promise<void> {
-      this.isLoadingTokens = true;
-      this.tokens = await this.tokenService.fetchAccountTokens(this.account);
-      this.isLoadingTokens = false;
+    this.isLoadingTokens = true;
+    this.tokens = await this.tokenService.fetchAccountTokens(this.account);
+    this.isLoadingTokens = false;
   }
 
-    openInExplorer(): void {
-      const host = this.networkService.getChainExplorerHost();
-      const url = `${host}/address/${this.account.account}`;
-      if (!this.appService.isDesktop()) {
-      window.open(url, 'blank');
+  openInExplorer(): void {
+    const host = this.networkService.getChainExplorerHost();
+    const url = `${host}/address/${this.account.account}`;
+    if (!this.appService.isDesktop()) {
+      window.open(url, "blank");
     } else {
       this.appService.openInBrowser(url);
     }
   }
 
   getPublicKeyStatus(): string {
-    if (!this.account.keys.publicKey ){
-      return this.i18nService.getTranslation('no_public_key_title');
+    if (!this.account.keys.publicKey) {
+      return this.i18nService.getTranslation("no_public_key_title");
     }
-    if (this.account.keys.publicKey && this.account.keys.publicKey === constants.smartContractPublicKey){
-      return this.i18nService.getTranslation('smart_contract');
+    if (this.account.keys.publicKey && this.account.keys.publicKey === constants.smartContractPublicKey) {
+      return this.i18nService.getTranslation("smart_contract");
     }
     return this.account.keys.publicKey;
   }

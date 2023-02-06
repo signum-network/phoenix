@@ -1,52 +1,59 @@
-<app-page *ngIf="account"
-          [full]="true"
-          [title]="'account_details' | i18n"
-          [subtitle]="account.account | address"
-          [breadcrumbs]="[{label: 'accounts' | i18n , path: '/accounts'}]">
-  <!-- / HEADER -->
+<ng-container *ngIf="!account">
+  <h2> not found </h2>
+</ng-container>
 
-  <div ngClass.gt-sm="p-24" class="account-details">
-    <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openInExplorer()">
-      <mat-icon>link</mat-icon>
-    </div>
-    <div fxLayout="row" fxLayout.xs="column" fxFlexAlign.xs="center center">
-      <div class="avatar-icon">
-        <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
-      </div>
-      <div class="description">
-        <div class="details">
-          <h2 *ngIf="account.name">{{ account.name }}</h2>
-          <h2 *ngIf="!account.name">{{ account.account | address }}</h2>
-          <h3>{{ account.account }}</h3>
-          <small>{{ getPublicKeyStatus() }}</small>
-          <h4>{{ account.balanceNQT | amount:'planck' }}</h4>
-        </div>
-        <div *ngIf="src44" class="src44">
-          <p>{{ src44.description }}</p>
-          <a *ngIf="src44.homePage" [href]="src44.homePage" class="homepage">
-            {{ 'homepage' | i18n }}
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <mat-tab-group>
-      <mat-tab label="{{ 'transactions' | i18n }}">
-        <app-transaction-table
-          [dataSource]="dataSource"
-          [displayedColumns]="columns"
-          [account]="account"
-          [isLoading]="isLoadingTransactions"
-        >
-        </app-transaction-table>
-      </mat-tab>
-      <mat-tab label="{{ 'assets' | i18n }}">
-        <app-tokens-table
-          [tokens]="tokens"
-          [isLoading]="isLoadingTokens"
-          [showActions]="account.type === 'active'"
-        ></app-tokens-table>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-</app-page>
+<ng-container *ngIf="account">
+
+  <app-page [full]="true"
+            [title]="'account_details' | i18n"
+            [subtitle]="account.account | address"
+            [breadcrumbs]="[{label: 'accounts' | i18n , path: '/accounts'}]">
+    <!-- / HEADER -->
+
+    <div ngClass.gt-sm="p-24" class="account-details">
+      <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openInExplorer()">
+        <mat-icon>link</mat-icon>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxFlexAlign.xs="center center">
+        <div class="avatar-icon">
+          <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
+        </div>
+        <div class="description">
+          <div class="details">
+            <h2 *ngIf="account.name">{{ account.name }}</h2>
+            <h2 *ngIf="!account.name">{{ account.account | address }}</h2>
+            <h3>{{ account.account }}</h3>
+            <small>{{ getPublicKeyStatus() }}</small>
+            <h4>{{ account.balanceNQT | amount:'planck' }}</h4>
+          </div>
+          <div *ngIf="src44" class="src44">
+            <p>{{ src44.description }}</p>
+            <a *ngIf="src44.homePage" [href]="src44.homePage" class="homepage">
+              {{ 'homepage' | i18n }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <mat-tab-group>
+        <mat-tab label="{{ 'transactions' | i18n }}">
+          <app-transaction-table
+            [dataSource]="dataSource"
+            [displayedColumns]="columns"
+            [account]="account"
+            [isLoading]="isLoadingTransactions"
+          >
+          </app-transaction-table>
+        </mat-tab>
+        <mat-tab label="{{ 'assets' | i18n }}">
+          <app-tokens-table
+            [tokens]="tokens"
+            [isLoading]="isLoadingTokens"
+            [showActions]="account.type === 'active'"
+          ></app-tokens-table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </app-page>
+</ng-container>

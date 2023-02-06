@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Konta zostały pomyślnie usunięte",
   "no_public_key_title": "Ostrzeżenie! - To konto nie posiada klucza publicznego!",
   "not_registered_title": "To konto nie jest zarejestrowane w łańcuchu bloków",
-  "not_registered_warning": "Na tym koncie nie ma jeszcze żadnych transakcji. Jeśli zamierzasz używać tego konta do wysyłania i/lub odbierania, zalecamy aktywację tego konta teraz.",
+  "not_registered_warning": "Na tym koncie nie ma jeszcze żadnych transakcji. Jeśli zamierzasz używać tego konta do wysyłania i/lub odbierania, zalecamy aktywację/ochronę tego konta teraz.",
   "load_all_transactions": "Załaduj wszystko",
   "load_all_transactions_hint": "Załadowanie wszystkich transakcji ostatecznie powoduje wiele żądań z dużym wykorzystaniem przepustowości. W zależności od połączenia internetowego twojego i węzłów oraz liczby transakcji ta czynność może zająć trochę czasu. Po pobraniu transakcje są buforowane lokalnie. Czy na pewno chcesz załadować wszystkie transakcje? (Limit pobierania jest ograniczony do 10 000 transakcji)",
   "manage_accounts": "Zarządzaj kontami",
@@ -567,5 +567,7 @@
   "contact": "Kontakt",
   "send_single_message": "Wyślij wiadomość",
   "message_is_binary": "Wiadomość danych",
-  "add_account_or_contact": "Dodaj konto lub kontakt"
+  "add_account_or_contact": "Dodaj konto lub kontakt",
+  "hint_new_account": "To jest nowe konto. Nie jest jeszcze zarejestrowany w sieci, czyli nie zawiera żadnych transakcji.",
+  "account_new": "Nowy"
 }

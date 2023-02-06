@@ -39,7 +39,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   contacts: WalletContact[] = [];
-  filter = "";
+  filter = '';
   paginationEnabled = false;
 
   constructor(
@@ -222,7 +222,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.router.navigate(['/account', account.account]);
   }
 
-  sendToAccount(account: WalletAccount): void {
+  sendSignaToAccount(account: WalletAccount): void {
     this.router.navigate(['/send'], {
       queryParams: {
         receiver: account.account
@@ -230,8 +230,12 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     });
   }
 
-  isUnsafeAccount(account: WalletAccount): boolean {
-    return account.type !== 'offline' && !account.confirmed;
+  sendMessageToAccount(account: WalletAccount): void {
+    this.router.navigate(['/send-message'], {
+      queryParams: {
+        receiver: account.account
+      }
+    });
   }
 
   openAddContactDialog(): void {
@@ -250,5 +254,9 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     }catch (e){
       this.notificationService.notify('error', this.i18nService.getTranslation('error_add_contact'));
     }
+  }
+
+  canActivate(account: WalletAccount): boolean {
+    return !account.isWatchOnly() && (account.isNew() || account.isUnsafe());
   }
 }

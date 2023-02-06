@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Konto/Konten erfolgreich entfernt",
   "no_public_key_title": "Warnung! - Dieses Konto besitzt keinen öffentlichen Schlüssel!",
   "not_registered_title": "Dieses Konto ist nicht in der Blockchain registriert",
-  "not_registered_warning": "Dieses Konto hat noch keine Transaktionen. Wenn du beabsichtigst, dieses Konto zum Senden und/oder Empfangen zu verwenden, wird empfohlen, dieses Konto jetzt zu aktivieren.",
+  "not_registered_warning": "Dieses Konto hat noch keine Transaktionen. Wenn Sie beabsichtigen, dieses Konto zum Senden und/oder Empfangen zu verwenden, wird empfohlen, dieses Konto jetzt zu aktivieren/schützen.",
   "load_all_transactions_hint": "Das Laden aller Transaktionen verursacht viele Anfragen mit hoher Bandbreitennutzung. Abhängig von deiner Internetverbindung und der des Knotens und der Anzahl der Transaktionen kann dieser Vorgang einige Zeit dauern. Nach dem Abrufen werden die Transaktionen lokal zwischengespeichert. Möchtest Du wirklich alle Transaktionen laden? (Das Abruflimit ist auf 10.000 Transaktionen begrenzt.)",
   "load_all_transactions": "Alle laden",
   "manage_accounts": "Konten verwalten",
@@ -567,5 +567,7 @@
   "contact": "Kontakt",
   "send_single_message": "Nachricht senden",
   "message_is_binary": "Datennachricht",
-  "add_account_or_contact": "Konto oder Kontakt hinzufügen"
+  "add_account_or_contact": "Konto oder Kontakt hinzufügen",
+  "hint_new_account": "Dies ist ein neues Konto. Es ist noch nicht in der Blockchain registriert, hat also keine Transaktionen.",
+  "account_new": "Neu"
 }

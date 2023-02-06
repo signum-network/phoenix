@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Tilit poistettu onnistuneesti",
   "no_public_key_title": "Varoitus! - Tämä tili ei omista julkista avainta!",
   "not_registered_title": "Tätä tiliä ei ole rekisteröity lohkoketjuun",
-  "not_registered_warning": "Tällä tilillä ei ole vielä tapahtumia. Jos aiot käyttää tätä tiliä lähettämiseen ja/tai vastaanottamiseen, on suositeltavaa aktivoida tämä tili nyt.",
+  "not_registered_warning": "Tällä tilillä ei ole vielä tapahtumia. Jos aiot käyttää tätä tiliä lähettämiseen ja/tai vastaanottamiseen, on suositeltavaa aktivoida/suojata tämä tili nyt.",
   "load_all_transactions": "Lataa kaikki",
   "load_all_transactions_hint": "Kaikkien tapahtumien lataaminen aiheuttaa lopulta paljon pyyntöjä suurella kaistanleveyden käytöllä. Riippuen sinun ja solmujen Internet-yhteydestä ja tapahtumien määrästä tämä toiminto voi kestää jonkin aikaa. Kun tapahtumat on haettu, ne tallennetaan välimuistiin paikallisesti. Haluatko todella ladata kaikki tapahtumat? (Hakuraja on 10 000 tapahtumaa)",
   "manage_accounts": "Hallinnoi tilejä",
@@ -567,5 +567,7 @@
   "contact": "Ottaa yhteyttä",
   "send_single_message": "Lähetä viesti",
   "message_is_binary": "Dataviesti",
-  "add_account_or_contact": "Lisää tili tai yhteystieto"
+  "add_account_or_contact": "Lisää tili tai yhteystieto",
+  "hint_new_account": "Tämä on uusi tili. Se ei ole vielä rekisteröitynyt ketjuun, eli sillä ei ole tapahtumia.",
+  "account_new": "Uusi"
 }

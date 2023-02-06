@@ -55,7 +55,6 @@ export class AccountManagementService {
     });
   }
 
-
   public getSelectedAccount(): WalletAccount {
     return this.storeService.getSelectedAccount();
   }
@@ -85,7 +84,6 @@ export class AccountManagementService {
         await this.synchronizeAccount(account, false);
       });
   }
-
 
   private async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<void> {
     try {

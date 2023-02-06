@@ -39,7 +39,7 @@ interface CIP22Payload {
   templateUrl: './send-message-form.component.html',
   styleUrls: ['./send-message-form.component.scss']
 })
-export class SendMessageFormComponent extends UnsubscribeOnDestroy implements OnInit {
+export class SendMessageFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
   @ViewChild('sendMoneyForm', { static: true }) public sendForm: NgForm;
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
@@ -76,6 +76,14 @@ export class SendMessageFormComponent extends UnsubscribeOnDestroy implements On
           this.language = language;
         }
       );
+    router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        const params = this.route.snapshot.queryParams;
+        if (params && params.receiver){
+          this.onRecipientChange(new Recipient(params.receiver));
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -85,6 +93,16 @@ export class SendMessageFormComponent extends UnsubscribeOnDestroy implements On
     this.encrypt = false;
   }
 
+  ngAfterViewInit(): void {
+    if (this.route.snapshot.queryParams) {
+      const params = this.route.snapshot.queryParams;
+      if (params && params.receiver){
+        setTimeout(() => {
+          this.onRecipientChange(new Recipient(params.receiver));
+        }, 100);
+      }
+    }
+  }
 
   onSubmit(event): void {
     event.stopImmediatePropagation();

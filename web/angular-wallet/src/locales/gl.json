@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Elimináronse as contas correctamente",
   "no_public_key_title": "Aviso! - Esta conta non posúe unha chave pública!",
   "not_registered_title": "Esta conta non está rexistrada na cadea de bloques",
-  "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activala agora.",
+  "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activar/protexer esta conta agora.",
   "load_all_transactions": "Cargar todo",
   "load_all_transactions_hint": "A carga de todas as transaccións eventualmente provoca moitas solicitudes cun uso elevado de ancho de banda. Dependendo da túa conexión a Internet e dos nodos e do número de transaccións, esta acción pode levar algún tempo. Unha vez recuperadas, as transaccións almacénanse na caché local. Realmente queres cargar todas as transaccións? (O límite de obtención está limitado a 10 000 transaccións)",
   "manage_accounts": "Xestionar Contas",
@@ -567,5 +567,7 @@
   "contact": "Contacto",
   "send_single_message": "Enviar mensaxe",
   "message_is_binary": "Mensaxe de datos",
-  "add_account_or_contact": "Engadir conta ou contacto"
+  "add_account_or_contact": "Engadir conta ou contacto",
+  "hint_new_account": "Esta é unha conta nova. Aínda non está rexistrado na cadea, é dicir, non ten transaccións.",
+  "account_new": "Novo"
 }

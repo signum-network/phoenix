@@ -50,7 +50,7 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
     this.dataSource.paginator = this.paginator;
   }
   private update(): void {
-    this.dataSource.data = this.isLoading ? [DummyTokenData, DummyTokenData, DummyTokenData] : this.tokens;
+    this.dataSource.data = this.tokens;
     if (!this.showActions) {
       this.displayedColumns = this.displayedColumns.filter(c => c !== 'actions');
     }

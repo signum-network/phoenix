@@ -51,7 +51,19 @@ export class WalletAccount{
     this.networkName = data.networkName || undefined;
   }
 
-  public isStored() {
+  public isStored(): boolean {
     return !!this._id;
   }
+
+  public isNew(): boolean {
+    return this.type !== 'offline' && this.transactions.length === 0;
+  }
+
+  public isUnsafe(): boolean {
+    return !this.keys.publicKey;
+  }
+  public isWatchOnly(): boolean {
+    return this.type === 'offline';
+  }
+
 }

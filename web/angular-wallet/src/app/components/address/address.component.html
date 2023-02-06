@@ -15,13 +15,19 @@
       </button>
       <button
         *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed"
-        mat-menu-item (click)="sendToAccount(accountId)">
+        mat-menu-item (click)="sendSignaToAccount(accountId)">
         <mat-icon>publish</mat-icon>
         <span>{{'send_signa' | i18n}}</span>
       </button>
+      <button
+        *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed"
+        mat-menu-item (click)="sendMessageToAccount(accountId)">
+        <mat-icon>mail_outline</mat-icon>
+        <span>{{'send_single_message' | i18n}}</span>
+      </button>
       <button *ngIf="!isContact"
         mat-menu-item (click)="addAsContact(accountId)">
-        <mat-icon>publish</mat-icon>
+        <mat-icon>group_add</mat-icon>
         <span>{{'add_as_contact' | i18n}}</span>
       </button>
     </mat-menu>

@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Account(s) succesvol verwijderd",
   "no_public_key_title": "Waarschuwing! - Dit account heeft geen openbare sleutel!",
   "not_registered_title": "Dit account is niet geregistreerd in de blockchain",
-  "not_registered_warning": "Dit account heeft nog geen transacties. Als u van plan bent dit account te gebruiken voor verzenden en/of ontvangen, is het raadzaam om dit account nu te activeren.",
+  "not_registered_warning": "Dit account heeft nog geen transacties. Als u van plan bent dit account te gebruiken voor verzenden en/of ontvangen, is het raadzaam om dit account nu te activeren/beschermen.",
   "load_all_transactions": "Alles laden",
   "load_all_transactions_hint": "Het laden van alle transacties veroorzaakt uiteindelijk veel verzoeken met een hoog bandbreedtegebruik. Afhankelijk van de internetverbinding van jou en de nodes en het aantal transacties kan deze actie enige tijd duren. Eenmaal opgehaald, worden de transacties lokaal in de cache opgeslagen. Wilt u echt alle transacties laden? (Ophaallimiet is beperkt tot 10.000 transacties)",
   "manage_accounts": "Accounts beheren",
@@ -567,5 +567,7 @@
   "contact": "Contact",
   "send_single_message": "Bericht versturen",
   "message_is_binary": "Gegevens bericht",
-  "add_account_or_contact": "Account of contactpersoon toevoegen"
+  "add_account_or_contact": "Account of contactpersoon toevoegen",
+  "hint_new_account": "Dit is een nieuwe rekening. Het is nog niet geregistreerd in de keten, d.w.z. heeft geen transacties.",
+  "account_new": "Nieuw"
 }

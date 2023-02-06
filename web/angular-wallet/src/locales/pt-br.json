@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Conta(s) removida(s) com sucesso",
   "no_public_key_title": "Aviso! - Esta conta não possui uma chave pública!",
   "not_registered_title": "Esta conta não está registrada no blockchain",
-  "not_registered_warning": "Esta conta ainda não tem transações. Se você pretende usar esta conta para enviar e/ou receber, é recomendável ativá-la agora.",
+  "not_registered_warning": "Esta conta ainda não tem transações. Se você pretende usar esta conta para enviar e/ou receber, é recomendável ativar/proteger esta conta agora.",
   "load_all_transactions": "Carregar tudo",
   "load_all_transactions_hint": "O carregamento de todas as transações eventualmente causa muitas solicitações com alto uso de largura de banda. Dependendo da sua conexão com a Internet e do nódulo e do número de transações, essa ação pode levar algum tempo. Depois de buscadas, as transações são armazenadas em cache localmente. Você realmente deseja carregar todas as transações? (O limite de busca é limitado a 10 mil transações)",
   "manage_accounts": "Gerenciar contas",
@@ -567,5 +567,7 @@
   "contact": "Contato",
   "send_single_message": "Enviar Mensagem",
   "message_is_binary": "Mensagem de dados",
-  "add_account_or_contact": "Adicionar conta ou contato"
+  "add_account_or_contact": "Adicionar conta ou contato",
+  "hint_new_account": "Esta é uma nova conta. Ainda não está registrado na rede, ou seja, não possui transações.",
+  "account_new": "Novo"
 }

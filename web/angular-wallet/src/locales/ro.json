@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Conturile au fost eliminate cu succes",
   "no_public_key_title": "Avertizare! - Acest cont nu deține o cheie publică!",
   "not_registered_title": "Acest cont nu este înregistrat în blockchain",
-  "not_registered_warning": "Acest cont nu are încă tranzacții. Dacă intenționați să utilizați acest cont pentru trimitere și/sau primire, este recomandat să activați acest cont acum.",
+  "not_registered_warning": "Acest cont nu are încă tranzacții. Dacă intenționați să utilizați acest cont pentru trimitere și/sau primire, este recomandat să activați/protejați acest cont acum.",
   "load_all_transactions": "Încărcați tot",
   "load_all_transactions_hint": "Încărcarea tuturor tranzacțiilor provoacă în cele din urmă o mulțime de solicitări cu o utilizare mare a lățimii de bandă. În funcție de conexiunea la internet a ta și a nodurilor și de numărul de tranzacții, această acțiune poate dura ceva timp. Odată preluate, tranzacțiile sunt stocate în cache local. Chiar doriți să încărcați toate tranzacțiile? (Limita de preluare este limitată la 10.000 tranzacții)",
   "manage_accounts": "Gestionați Conturile",
@@ -567,5 +567,7 @@
   "contact": "a lua legatura",
   "send_single_message": "Trimite mesaj",
   "message_is_binary": "Mesaj de date",
-  "add_account_or_contact": "Adăugați cont sau contact"
+  "add_account_or_contact": "Adăugați cont sau contact",
+  "hint_new_account": "Acesta este un cont nou. Nu este încă înregistrată în lanț, adică nu are tranzacții.",
+  "account_new": "Nou"
 }

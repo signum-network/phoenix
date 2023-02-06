@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Akun berhasil dihapus",
   "no_public_key_title": "Peringatan! - Akun ini tidak memiliki kunci publik!",
   "not_registered_title": "Akun ini tidak terdaftar di blockchain",
-  "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan akun ini sekarang.",
+  "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan/melindungi akun ini sekarang.",
   "load_all_transactions": "Muat Semua",
   "load_all_transactions_hint": "Loading semua transaksi akhirnya menimbulkan banyak permintaan dengan penggunaan bandwidth yang tinggi. Bergantung pada koneksi internet Anda dan node serta jumlah transaksi, tindakan ini dapat memakan waktu lama. Setelah diambil, transaksi di-cache secara lokal. Apakah Anda benar-benar ingin memuat semua transaksi? (Batas pengambilan dibatasi hingga 10 ribu transaksi)",
   "manage_accounts": "Mengelola akun",
@@ -567,5 +567,7 @@
   "contact": "Kontak",
   "send_single_message": "Mengirim pesan",
   "message_is_binary": "Pesan Data",
-  "add_account_or_contact": "Tambahkan Akun atau Kontak"
+  "add_account_or_contact": "Tambahkan Akun atau Kontak",
+  "hint_new_account": "Ini akun baru. Itu belum terdaftar di rantai, yaitu tidak memiliki transaksi.",
+  "account_new": "Baru"
 }

@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Paskyra (-os) sėkmingai pašalinta (-os).",
   "no_public_key_title": "Įspėjimas! – Šiai paskyrai viešasis raktas nepriklauso!",
   "not_registered_title": "Ši paskyra nėra užregistruota blokų grandinėje",
-  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti dabar.",
+  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti / apsaugoti dabar.",
   "load_all_transactions": "Įkelti viską",
   "load_all_transactions_hint": "Visų operacijų įkėlimas galiausiai sukelia daug užklausų naudojant didelį pralaidumą. Priklausomai nuo jūsų ir mazgų interneto ryšio bei operacijų skaičiaus, šis veiksmas gali užtrukti. Gavus operacijos, jos išsaugomos vietos talpykloje. Ar tikrai norite įkelti visas operacijas? (Gavimo limitas yra 10 tūkst. operacijų)",
   "manage_accounts": "Tvarkyti paskyras",
@@ -567,5 +567,7 @@
   "contact": "kontaktas",
   "send_single_message": "Siųsti žinutę",
   "message_is_binary": "Duomenų pranešimas",
-  "add_account_or_contact": "Pridėti paskyrą arba kontaktą"
+  "add_account_or_contact": "Pridėti paskyrą arba kontaktą",
+  "hint_new_account": "Tai nauja paskyra. Jis dar neužregistruotas tinkle, t. y. neturi sandorių.",
+  "account_new": "Nauja"
 }

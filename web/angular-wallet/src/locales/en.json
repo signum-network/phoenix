@@ -272,7 +272,7 @@
   "no_public_key_title": "Warning! - This account does not own a public key!",
   "no_public_key_warning": "This means it's not protected and at risk. Never hold funds on an unprotected account. Please activate the account to obtain your public key and protect it.",
   "not_registered_title": "This account is not registered in the blockchain",
-  "not_registered_warning": "This account has no transactions yet. If you intend to use this account for sending and/or receiving, it's recommended to activate this account now.",
+  "not_registered_warning": "This account has no transactions yet. If you intend to use this account for sending and/or receiving, it's recommended to activate/protect this account now.",
   "no_transactions_yet": "No transactions yet.",
   "node_hint_no_multiout": "No multiout payments supported",
   "node_not_set": "Could not change node. Most probable it is not reachable.",
@@ -567,5 +567,7 @@
   "contact": "Contact",
   "send_single_message": "Send Message",
   "message_is_binary": "Data Message",
-  "add_account_or_contact": "Add Account or Contact"
+  "add_account_or_contact": "Add Account or Contact",
+  "hint_new_account": "This is a new account. It's not registered on the chain yet, i.e. has no transactions.",
+  "account_new": "New"
 }

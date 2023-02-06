@@ -530,7 +530,7 @@
   "account_successfully_deleted": "Účty boli úspešne odstránené",
   "no_public_key_title": "POZOR! - Tento účet nevlastní verejný kľúč!",
   "not_registered_title": "Tento účet nie je zaregistrovaný v blockchaine",
-  "not_registered_warning": "Tento účet zatiaľ neobsahuje žiadne transakcie. Ak máte v úmysle použiť tento účet na odosielanie a/alebo prijímanie, odporúčame vám teraz tento účet aktivovať.",
+  "not_registered_warning": "Tento účet zatiaľ neobsahuje žiadne transakcie. Ak máte v úmysle použiť tento účet na odosielanie a/alebo prijímanie, odporúča sa teraz tento účet aktivovať/chrániť.",
   "load_all_transactions": "Načítať všetko",
   "load_all_transactions_hint": "Načítanie všetkých transakcií nakoniec spôsobí veľa požiadaviek s veľkým využitím šírky pásma. V závislosti od vášho internetového pripojenia a pripojenia uzlov a počtu transakcií môže táto akcia nejaký čas trvať. Po načítaní sa transakcie uložia do lokálnej vyrovnávacej pamäte. Naozaj chcete načítať všetky transakcie? (Limit načítania je obmedzený na 10 000 transakcií)",
   "manage_accounts": "Spravovať účty",
@@ -567,5 +567,7 @@
   "contact": "Kontakt",
   "send_single_message": "Poslať správu",
   "message_is_binary": "Dátová správa",
-  "add_account_or_contact": "Pridať účet alebo kontakt"
+  "add_account_or_contact": "Pridať účet alebo kontakt",
+  "hint_new_account": "Toto je nový účet. Zatiaľ nie je zaregistrovaný v reťazci, t. j. nemá žiadne transakcie.",
+  "account_new": "Nový"
 }
