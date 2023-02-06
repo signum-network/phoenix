@@ -552,5 +552,16 @@
   "you_own_no_token": "You don't have any tokens yet",
   "chart_balance_change": "Balance change over displayed period",
   "waiting_for_payment": "Waiting for Payment",
-  "paid": "Payment registered"
+  "paid": "Payment registered",
+  "contact_successfully_deleted": "Contact or contacts deleted successfully",
+  "edit_name": "Edit Name",
+  "no_contacts_yet": "No contacts yet",
+  "confirm_delete_contacts_hint": "Deletes the selected accounts from this wallet",
+  "confirm_delete_contacts_q": "Do you want to remove the selected contacts?",
+  "add_contact": "Add Contact",
+  "contact_added": "Contact added successfully",
+  "add_as_contact": "Add as Contact",
+  "edit_contact": "Edit Contact",
+  "error_add_contact": "Contact not added. Most probably you have added that account already.",
+  "no_contact_found": "No contact found"
 }

@@ -552,5 +552,16 @@
   "you_own_no_token": "Încă nu ai niciun token",
   "chart_balance_change": "Modificarea soldului pe perioada afișată",
   "waiting_for_payment": "Asteptand plata",
-  "paid": "Plata inregistrata"
+  "paid": "Plata inregistrata",
+  "contact_successfully_deleted": "Contactul sau contactele au fost șterse cu succes",
+  "edit_name": "Editeaza numele",
+  "no_contacts_yet": "Nicio persoană de contact încă",
+  "confirm_delete_contacts_hint": "Șterge conturile selectate din acest portofel",
+  "confirm_delete_contacts_q": "Doriți să eliminați contactele selectate?",
+  "add_contact": "Adaugă contact",
+  "contact_added": "Contact adăugat cu succes",
+  "add_as_contact": "Adăugați ca contact",
+  "edit_contact": "Editați contactul",
+  "error_add_contact": "Contactul nu a fost adăugat. Cel mai probabil ați adăugat deja acel cont.",
+  "no_contact_found": "Nu a fost găsit niciun contact"
 }

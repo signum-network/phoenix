@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+
+  img {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  .name {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.not-found {
+  line-height: 48px;
+}

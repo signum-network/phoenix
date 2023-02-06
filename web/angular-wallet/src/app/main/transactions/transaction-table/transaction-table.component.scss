@@ -12,11 +12,6 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-
-      .attachment {
-        color: #999999;
-        transform: rotate(10deg) scale(0.8);
-      }
     }
   }
 
@@ -31,6 +26,7 @@
   }
 
   .mat-column-timestamp {
+    flex: 0 1 80px;
     align-items: center;
     margin-left: 0.5rem;
     .timestamp-content {
@@ -41,6 +37,7 @@
   }
 
   .mat-column-account {
+    flex: 1 0 220px;
   }
 
   .mat-column-amount {

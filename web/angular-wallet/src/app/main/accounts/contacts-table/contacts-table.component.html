@@ -1,0 +1,112 @@
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef>
+      <ng-container *ngIf="getSelectedContacts().length === 0">
+        <mat-icon class="no-button">delete</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="getSelectedContacts().length">
+        <button
+          mat-icon-button
+          matTooltip="{{'confirm_delete_contacts_hint' | i18n}}"
+          color="warn"
+          (click)="deleteSelectedContacts()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let contact" class="select-icon">
+      <mat-checkbox [(ngModel)]="selectedContacts[contact.account]"></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="avatar">
+    <mat-header-cell *matHeaderCellDef fxHide.xs></mat-header-cell>
+    <mat-cell *matCellDef="let contact" fxHide.xs>
+      <img [src]="getAvatarUrl(contact)" alt="account-avatar">
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="account">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{"account" | i18n}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+      <div class="account-stack">
+        <a [routerLink]="['/account', contact.account]">{{contact.account | address:false:true}}</a>
+        <small>{{contact.account}}</small>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>
+      {{'name' | i18n}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let contact">{{contact.name}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-icon matTooltip="{{'actions' | i18n}}">directions_run</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Actions"
+              matTooltip="{{'actions' | i18n}}">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed"
+          mat-menu-item (click)="sendToAccount(contact)">
+          <mat-icon>publish</mat-icon>
+          <span>{{'send_signa' | i18n}}</span>
+        </button>
+        <button mat-menu-item (click)="copyToClipboard(contact.account)">
+          <mat-icon>file_copy</mat-icon>
+          <span>{{'copy_account_id' | i18n}}</span>
+        </button>
+        <button mat-menu-item (click)="openInExplorer(contact)">
+          <mat-icon>link</mat-icon>
+          <span>{{'show_in_explorer' | i18n}}</span>
+        </button>
+        <button mat-menu-item (click)="routeToAccount(contact)">
+          <mat-icon>remove_red_eye</mat-icon>
+          <span>{{'view' | i18n}}</span>
+        </button>
+        <button mat-menu-item (click)="openEditContactDialog(contact)">
+          <mat-icon>edit</mat-icon>
+          <span>{{'edit_name' | i18n}}</span>
+        </button>
+
+        <button mat-menu-item (click)="deleteContact(contact)">
+          <mat-icon>delete</mat-icon>
+          <span>{{'delete' | i18n}}</span>
+        </button>
+      </mat-menu>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns">
+  </mat-row>
+
+  <ng-container matColumnDef="nodata">
+    <td mat-footer-row *matFooterCellDef [colSpan]="displayedColumns.length"
+        style="margin: 0 auto"><h2>{{'no_contacts_yet'|i18n}}</h2></td>
+  </ng-container>
+
+  <mat-footer-row [hidden]="dataSource.data.length > 0" *matFooterRowDef="['nodata']"></mat-footer-row>
+
+</mat-table>
+
+<mat-paginator
+  *ngIf="paginationEnabled"
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 20, 50]"
+  [showFirstLastButtons]="true"
+>
+</mat-paginator>

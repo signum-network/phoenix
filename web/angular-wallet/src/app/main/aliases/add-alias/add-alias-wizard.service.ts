@@ -34,7 +34,7 @@ export class AddAliasWizardService {
 
   public reset(): void {
     this.aliasName = '';
-    setTimeout(x => {
+    setTimeout(() => {
       this.step = 0;
     }, 0);
   }

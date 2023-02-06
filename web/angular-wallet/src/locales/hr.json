@@ -552,5 +552,16 @@
   "you_own_no_token": "Još nemate nijedan token",
   "chart_balance_change": "Promjena stanja tijekom prikazanog razdoblja",
   "waiting_for_payment": "Čeka se plaćanje",
-  "paid": "Uplata registrirana"
+  "paid": "Uplata registrirana",
+  "contact_successfully_deleted": "Kontakt ili kontakti uspješno su izbrisani",
+  "edit_name": "Uredi ime",
+  "no_contacts_yet": "Još nema kontakata",
+  "confirm_delete_contacts_hint": "Briše odabrane račune iz ovog novčanika",
+  "confirm_delete_contacts_q": "Želite li ukloniti odabrane kontakte?",
+  "add_contact": "Dodaj kontakt",
+  "contact_added": "Kontakt je uspješno dodan",
+  "add_as_contact": "Dodaj kao kontakt",
+  "edit_contact": "Uredi kontakt",
+  "error_add_contact": "Kontakt nije dodan. Najvjerojatnije ste već dodali taj račun.",
+  "no_contact_found": "Nije pronađen nijedan kontakt"
 }

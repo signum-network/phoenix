@@ -552,5 +552,16 @@
   "you_own_no_token": "您还没有任何代币",
   "chart_balance_change": "显示期间的余额变化",
   "waiting_for_payment": "等待付款",
-  "paid": "付款已注册"
+  "paid": "付款已注册",
+  "contact_successfully_deleted": "联系人或联系人已成功删除",
+  "edit_name": "编辑姓名",
+  "no_contacts_yet": "还没有联系人",
+  "confirm_delete_contacts_hint": "从此钱包中删除选定的帐户",
+  "confirm_delete_contacts_q": "您要删除选定的联系人吗？",
+  "add_contact": "增加联系人",
+  "contact_added": "联系人添加成功",
+  "add_as_contact": "添加为联系人",
+  "edit_contact": "更改联系资料",
+  "error_add_contact": "未添加联系人。您很可能已经添加了该帐户。",
+  "no_contact_found": "找不到联系人"
 }

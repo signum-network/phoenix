@@ -1,0 +1,34 @@
+<div *ngIf="accountId" class="inline">
+  <ng-container *ngIf="!noActions">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Actions" class="secondary-text"
+            matTooltip="{{'actions' | i18n}}">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="copyToClipboard(accountId)">
+        <mat-icon>file_copy</mat-icon>
+        <span>{{'copy_account_id' | i18n}}</span>
+      </button>
+      <button mat-menu-item (click)="openInExplorer(accountId)">
+        <mat-icon>link</mat-icon>
+        <span>{{'show_in_explorer' | i18n}}</span>
+      </button>
+      <button
+        *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed"
+        mat-menu-item (click)="sendToAccount(accountId)">
+        <mat-icon>publish</mat-icon>
+        <span>{{'send_signa' | i18n}}</span>
+      </button>
+      <button *ngIf="!isContact"
+        mat-menu-item (click)="addAsContact(accountId)">
+        <mat-icon>publish</mat-icon>
+        <span>{{'add_as_contact' | i18n}}</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <span class="address">
+    <a class="font-size-16" [routerLink]="['/account', accountId]">{{accountId | address:false:true}}</a>
+    <mat-icon *ngIf="isContact" class="contact-icon" matTooltip="{{'contact' | i18n}}">group</mat-icon>
+  </span>
+</div>

@@ -552,5 +552,16 @@
   "you_own_no_token": "Anda belum memiliki token apa pun",
   "chart_balance_change": "Perubahan saldo selama periode yang ditampilkan",
   "waiting_for_payment": "Menunggu pembayaran",
-  "paid": "Pembayaran terdaftar"
+  "paid": "Pembayaran terdaftar",
+  "contact_successfully_deleted": "Kontak atau kontak berhasil dihapus",
+  "edit_name": "Sunting Nama",
+  "no_contacts_yet": "Belum ada kontak",
+  "confirm_delete_contacts_hint": "Menghapus akun yang dipilih dari dompet ini",
+  "confirm_delete_contacts_q": "Apakah Anda ingin menghapus kontak yang dipilih?",
+  "add_contact": "Tambah kontak",
+  "contact_added": "Kontak berhasil ditambahkan",
+  "add_as_contact": "Tambahkan sebagai Kontak",
+  "edit_contact": "Sunting Kontak",
+  "error_add_contact": "Kontak tidak ditambahkan. Kemungkinan besar Anda sudah menambahkan akun itu.",
+  "no_contact_found": "Tidak ada kontak yang ditemukan"
 }

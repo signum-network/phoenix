@@ -1,0 +1,23 @@
+<div class="p-24">
+    <h1 mat-dialog-title>
+      {{ 'edit_contact' | i18n }}
+    </h1>
+  <div mat-dialog-content>
+    <mat-form-field class="mt-16 w-100-p">
+      <mat-label>{{ 'name' | i18n }}</mat-label>
+      <input matInput
+             type="text"
+             autocomplete="off"
+             [(ngModel)]="contact.name"
+             name="amount"
+             maxlength="48"
+      >
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">{{ 'cancel' | i18n }}</button>
+    <button mat-button (click)="onSubmit()" color="accent">{{ 'submit' | i18n }}</button>
+  </div>
+</div>
+

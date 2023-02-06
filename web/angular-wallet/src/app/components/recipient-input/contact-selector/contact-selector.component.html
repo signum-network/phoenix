@@ -1,0 +1,24 @@
+<div class="contact-menu">
+  <div #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="contactMenu"></div>
+  <mat-menu #contactMenu>
+    <ng-container *ngIf="contacts.length">
+      <button *ngFor="let contact of contacts" mat-menu-item class="p-4 menu-item" (click)="selectContact(contact)">
+        <div class="item p-4">
+          <img src="{{contact.imgUrl}}" alt="account {{contact.name}}">
+          <div class="name">
+            {{contact.name}}
+            <small class="secondary-text">{{contact.address}}</small>
+          </div>
+        </div>
+      </button>
+    </ng-container>
+    <ng-container *ngIf="!contacts.length">
+      <div class="item p-4 not-found">
+        <mat-icon class="mr-4">group</mat-icon>
+        <div class="name">
+          {{'no_contact_found' | i18n}}
+        </div>
+      </div>
+    </ng-container>
+  </mat-menu>
+</div>

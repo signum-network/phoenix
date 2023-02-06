@@ -552,5 +552,16 @@
   "you_own_no_token": "Dar neturite jokių žetonų",
   "chart_balance_change": "Likučio pokytis per rodomą laikotarpį",
   "waiting_for_payment": "Laukiama apmokėjimo",
-  "paid": "Mokėjimas užregistruotas"
+  "paid": "Mokėjimas užregistruotas",
+  "contact_successfully_deleted": "Kontaktas arba kontaktai sėkmingai ištrinti",
+  "edit_name": "Redaguoti vardą",
+  "no_contacts_yet": "Kol kas kontaktų nėra",
+  "confirm_delete_contacts_hint": "Ištrina pasirinktas paskyras iš šios piniginės",
+  "confirm_delete_contacts_q": "Ar norite pašalinti pasirinktus kontaktus?",
+  "add_contact": "Pridėti kontaktą",
+  "contact_added": "Kontaktas sėkmingai pridėtas",
+  "add_as_contact": "Pridėti kaip kontaktą",
+  "edit_contact": "Redaguoti kontaktą",
+  "error_add_contact": "Kontaktas nepridėtas. Greičiausiai tą paskyrą jau pridėjote.",
+  "no_contact_found": "Nerasta jokių kontaktų"
 }

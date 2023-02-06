@@ -1,8 +1,7 @@
 import { Keys } from '@signumjs/crypto';
-// @ts-ignore
 import { AssetBalance, Transaction, UnconfirmedAssetBalance } from '@signumjs/core';
 
-export class WalletAccount {
+export class WalletAccount{
 
   public _id: string;
   public networkName: string;

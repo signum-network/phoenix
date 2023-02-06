@@ -43,8 +43,8 @@ const ColumnsQuery = {
   xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
   lg: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
   md: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
-  sm: ['transaction_id', 'timestamp', 'amount', 'account'],
-  xs: ['transaction_id', 'timestamp', 'amount']
+  sm: ['transaction_id', 'amount', 'account'],
+  xs: ['transaction_id', 'amount']
 };
 
 interface Types {

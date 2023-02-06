@@ -552,5 +552,16 @@
   "you_own_no_token": "Nie masz jeszcze żadnych tokenów",
   "chart_balance_change": "Zmiana salda w wyświetlanym okresie",
   "waiting_for_payment": "Czekać na wypłatę",
-  "paid": "Płatność zarejestrowana"
+  "paid": "Płatność zarejestrowana",
+  "contact_successfully_deleted": "Kontakt lub kontakty zostały pomyślnie usunięte",
+  "edit_name": "Edytuj imię",
+  "no_contacts_yet": "Brak kontaktów",
+  "confirm_delete_contacts_hint": "Usuwa wybrane konta z tego portfela",
+  "confirm_delete_contacts_q": "Czy chcesz usunąć wybrane kontakty?",
+  "add_contact": "Dodaj kontakt",
+  "contact_added": "Pomyślnie dodano kontakt",
+  "add_as_contact": "Dodaj jako kontakt",
+  "edit_contact": "Edytuj kontakt",
+  "error_add_contact": "Nie dodano kontaktu. Najprawdopodobniej dodałeś już to konto.",
+  "no_contact_found": "Nie znaleziono kontaktu"
 }

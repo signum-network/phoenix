@@ -31,6 +31,7 @@ import { isTokenHolderDistribution } from 'app/util/transaction/isTokenHolderDis
   templateUrl: './transaction-table.component.html'
 })
 export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit, OnChanges {
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @Input()
   dataSource: MatTableDataSource<Transaction>;
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
@@ -38,7 +39,6 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   @Input() account: WalletAccount;
 
   @Input() public isLoading = false;
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   locale: string;
 

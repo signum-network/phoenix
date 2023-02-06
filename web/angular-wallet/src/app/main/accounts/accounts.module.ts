@@ -16,7 +16,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
-import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
+import {DeleteDialogComponent} from './delete-account-dialog/delete-dialog.component';
 import {RouterModule} from '@angular/router';
 import {NotifierModule} from 'angular-notifier';
 import {FuseSharedModule} from '@fuse/shared.module';
@@ -30,6 +30,7 @@ import { ComponentsModule } from 'app/components/components.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
+import { ContactsTableComponent } from './contacts-table/contacts-table.component';
 
 
 const routes = [
@@ -79,12 +80,13 @@ const routes = [
   ],
   declarations: [
     AccountsComponent,
-    DeleteAccountDialogComponent,
+    DeleteDialogComponent,
     AccountDetailsComponent,
+    ContactsTableComponent,
   ],
   providers: [
   ],
-  entryComponents: [DeleteAccountDialogComponent]
+  entryComponents: [DeleteDialogComponent]
 })
 export class AccountsModule {
 }

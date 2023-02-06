@@ -552,5 +552,16 @@
   "you_own_no_token": "Encara no tens cap fitxes",
   "chart_balance_change": "Canvi de saldo durant el període mostrat",
   "waiting_for_payment": "Esperant el pagament",
-  "paid": "Pagament registrat"
+  "paid": "Pagament registrat",
+  "contact_successfully_deleted": "Contacte o contactes suprimits correctament",
+  "edit_name": "Edita el nom",
+  "no_contacts_yet": "Encara no hi ha contactes",
+  "confirm_delete_contacts_hint": "Suprimeix els comptes seleccionats d'aquesta cartera",
+  "confirm_delete_contacts_q": "Voleu eliminar els contactes seleccionats?",
+  "add_contact": "Afegeix contacte",
+  "contact_added": "El contacte s'ha afegit correctament",
+  "add_as_contact": "Afegeix com a contacte",
+  "edit_contact": "Edita el contacte",
+  "error_add_contact": "Contacte no afegit. El més probable és que ja hagis afegit aquest compte.",
+  "no_contact_found": "No s'ha trobat cap contacte"
 }

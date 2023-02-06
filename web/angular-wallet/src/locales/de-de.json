@@ -552,5 +552,16 @@
   "you_own_no_token": "Du hast noch keine Token",
   "chart_balance_change": "Saldoänderung über den angezeigten Zeitraum",
   "waiting_for_payment": "Warte auf Zahlung",
-  "paid": "Zahlung registriert"
+  "paid": "Zahlung registriert",
+  "contact_successfully_deleted": "Kontakt oder Kontakte erfolgreich gelöscht",
+  "edit_name": "Namen bearbeiten",
+  "no_contacts_yet": "Noch keine Kontakte",
+  "confirm_delete_contacts_hint": "Löscht die ausgewählten Konten aus dieser Brieftasche",
+  "confirm_delete_contacts_q": "Möchtest Du die ausgewählten Kontakte entfernen?",
+  "add_contact": "Kontakt hinzufügen",
+  "contact_added": "Kontakt erfolgreich hinzugefügt",
+  "add_as_contact": "Als Kontakt hinzufügen",
+  "edit_contact": "Kontakt bearbeiten",
+  "error_add_contact": "Kontakt nicht hinzugefügt. Höchstwahrscheinlich hast du dieses Konto bereits hinzugefügt.",
+  "no_contact_found": "Kein Kontakt gefunden"
 }

@@ -552,5 +552,16 @@
   "you_own_no_token": "Henüz jetonunuz yok",
   "chart_balance_change": "Gösterilen süre boyunca bakiye değişimi",
   "waiting_for_payment": "Ödeme için bekleniyor",
-  "paid": "ödeme kaydedildi"
+  "paid": "ödeme kaydedildi",
+  "contact_successfully_deleted": "Kişi veya kişiler başarıyla silindi",
+  "edit_name": "Adı Düzenle",
+  "no_contacts_yet": "Henüz kişi yok",
+  "confirm_delete_contacts_hint": "Seçilen hesapları bu cüzdandan siler",
+  "confirm_delete_contacts_q": "Seçilen kişileri kaldırmak istiyor musunuz?",
+  "add_contact": "Kişi ekle",
+  "contact_added": "Kişi başarıyla eklendi",
+  "add_as_contact": "Kişi listesine ekle",
+  "edit_contact": "Kişiyi Düzenle",
+  "error_add_contact": "Kişi eklenmedi. Büyük olasılıkla bu hesabı zaten eklemişsinizdir.",
+  "no_contact_found": "Kişi bulunamadı"
 }

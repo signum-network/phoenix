@@ -131,7 +131,7 @@ const routes = [
     CancelSaleAliasComponent,
     BuyAliasComponent,
   ],
-  providers: [AliasResolver, AddAliasWizardService, AliasService],
+  providers: [AliasResolver, AliasService],
   imports: [
     CommonModule,
     FormsModule,

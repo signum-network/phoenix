@@ -11,6 +11,8 @@ import { constants } from '../../constants';
 import { NetworkService } from '../../network/network.service';
 import { AliasService } from '../../main/aliases/alias.service';
 import { DescriptorData } from '@signumjs/standards';
+import { ContactManagementService } from '../../shared/services/contact-management.service';
+import { ContactSelectorComponent } from './contact-selector/contact-selector.component';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -67,6 +69,8 @@ export interface QRData {
 })
 export class RecipientInputComponent implements OnChanges {
 
+  @ViewChild('contactSelector', { static: false }) contactSelector: ContactSelectorComponent;
+
   loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
@@ -89,7 +93,6 @@ export class RecipientInputComponent implements OnChanges {
   qrCodeUpload = new EventEmitter<QRData>();
 
 
-
   @Input()
   get recipientValue(): string {
     return this._recipientValue;
@@ -108,7 +111,9 @@ export class RecipientInputComponent implements OnChanges {
     private accountService: AccountService,
     private aliasService: AliasService,
     private notifierService: NotifierService,
-    private domainService: DomainService) {
+    private domainService: DomainService,
+    private contactManagementService: ContactManagementService
+  ) {
 
     this.recipientFieldInputChange$.pipe(
       debounceTime(500), distinctUntilChanged()
@@ -121,6 +126,7 @@ export class RecipientInputComponent implements OnChanges {
 
   onRecipientFieldInputChange(query: string): void {
     this.recipientFieldInputChange$.next(query);
+    this.contactSelector && this.contactSelector.applyFilter(query);
   }
 
   ngOnInit(): void {
@@ -150,10 +156,10 @@ export class RecipientInputComponent implements OnChanges {
   private async fetchAccountIdFromAlias(alias: string): Promise<string> {
     const { aliasURI } = await this.aliasService.getAliasByName(alias);
 
-    try{
+    try {
       const src44 = DescriptorData.parse(aliasURI);
       return src44.account;
-    }catch (e){
+    } catch (e) {
       // legacy format
       const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
       if (matches.length >= 2) {
@@ -338,8 +344,16 @@ export class RecipientInputComponent implements OnChanges {
       const numericIdPublicKey = Address.fromPublicKey(this.recipient.publicKey).getNumericId();
       const numericIdRecipient = Address.create(this.recipient.addressRaw).getNumericId();
       this.recipient.publicKeyValid = numericIdPublicKey === numericIdRecipient;
-    }catch (e) {
+    } catch (e) {
       this.recipient.publicKeyValid = false;
     }
+  }
+
+  openContactSelector(): void {
+    this.contactSelector
+      .openMenu()
+      .subscribe((selectedContact) => {
+        this.recipientValue = selectedContact.account;
+      });
   }
 }
