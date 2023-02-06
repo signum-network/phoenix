@@ -562,5 +562,6 @@
   "contact_added": "Kontaktas sėkmingai pridėtas",
   "add_as_contact": "Pridėti kaip kontaktą",
   "edit_contact": "Redaguoti kontaktą",
-  "error_add_contact": "Kontaktas nepridėtas. Greičiausiai tą paskyrą jau pridėjote."
+  "error_add_contact": "Kontaktas nepridėtas. Greičiausiai tą paskyrą jau pridėjote.",
+  "no_contact_found": "Nerasta jokių kontaktų"
 }

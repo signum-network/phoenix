@@ -562,5 +562,6 @@
   "contact_added": "O contacto engadiuse correctamente",
   "add_as_contact": "Engadir como contacto",
   "edit_contact": "Editar contacto",
-  "error_add_contact": "Contacto non engadido. Probablemente xa engadiches esa conta."
+  "error_add_contact": "Contacto non engadido. Probablemente xa engadiches esa conta.",
+  "no_contact_found": "Non se atopou ningún contacto"
 }

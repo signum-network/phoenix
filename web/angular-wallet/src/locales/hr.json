@@ -562,5 +562,6 @@
   "contact_added": "Kontakt je uspješno dodan",
   "add_as_contact": "Dodaj kao kontakt",
   "edit_contact": "Uredi kontakt",
-  "error_add_contact": "Kontakt nije dodan. Najvjerojatnije ste već dodali taj račun."
+  "error_add_contact": "Kontakt nije dodan. Najvjerojatnije ste već dodali taj račun.",
+  "no_contact_found": "Nije pronađen nijedan kontakt"
 }

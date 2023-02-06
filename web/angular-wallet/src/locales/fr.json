@@ -562,5 +562,6 @@
   "contact_added": "Contact ajouté avec succès",
   "add_as_contact": "Ajouter comme contact",
   "edit_contact": "Modifier le contact",
-  "error_add_contact": "Contact non ajouté. Vous avez probablement déjà ajouté ce compte."
+  "error_add_contact": "Contact non ajouté. Vous avez probablement déjà ajouté ce compte.",
+  "no_contact_found": "Aucun contact trouvé"
 }

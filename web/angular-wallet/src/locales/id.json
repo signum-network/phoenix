@@ -562,5 +562,6 @@
   "contact_added": "Kontak berhasil ditambahkan",
   "add_as_contact": "Tambahkan sebagai Kontak",
   "edit_contact": "Sunting Kontak",
-  "error_add_contact": "Kontak tidak ditambahkan. Kemungkinan besar Anda sudah menambahkan akun itu."
+  "error_add_contact": "Kontak tidak ditambahkan. Kemungkinan besar Anda sudah menambahkan akun itu.",
+  "no_contact_found": "Tidak ada kontak yang ditemukan"
 }

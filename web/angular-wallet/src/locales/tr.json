@@ -562,5 +562,6 @@
   "contact_added": "Kişi başarıyla eklendi",
   "add_as_contact": "Kişi listesine ekle",
   "edit_contact": "Kişiyi Düzenle",
-  "error_add_contact": "Kişi eklenmedi. Büyük olasılıkla bu hesabı zaten eklemişsinizdir."
+  "error_add_contact": "Kişi eklenmedi. Büyük olasılıkla bu hesabı zaten eklemişsinizdir.",
+  "no_contact_found": "Kişi bulunamadı"
 }

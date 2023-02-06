@@ -562,5 +562,6 @@
   "contact_added": "Kontakt byl úspěšně přidán",
   "add_as_contact": "Přidat jako kontakt",
   "edit_contact": "Upravit kontakt",
-  "error_add_contact": "Kontakt nebyl přidán. S největší pravděpodobností jste tento účet již přidali."
+  "error_add_contact": "Kontakt nebyl přidán. S největší pravděpodobností jste tento účet již přidali.",
+  "no_contact_found": "Nebyl nalezen žádný kontakt"
 }

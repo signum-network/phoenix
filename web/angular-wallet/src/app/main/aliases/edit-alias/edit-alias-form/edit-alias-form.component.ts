@@ -11,8 +11,6 @@ import { isTextIsJson } from 'app/util/isTextIsJson';
 import { isTextIsSrc44 } from 'app/util/isTextIsSrc44';
 import { NetworkService } from 'app/network/network.service';
 import { AliasService } from '../../alias.service';
-import { takeUntil } from "rxjs/operators";
-import { StoreService } from "../../../../store/store.service";
 
 
 @Component({

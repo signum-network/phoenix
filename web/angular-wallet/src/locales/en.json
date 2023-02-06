@@ -562,5 +562,6 @@
   "contact_added": "Contact added successfully",
   "add_as_contact": "Add as Contact",
   "edit_contact": "Edit Contact",
-  "error_add_contact": "Contact not added. Most probably you have added that account already."
+  "error_add_contact": "Contact not added. Most probably you have added that account already.",
+  "no_contact_found": "No contact found"
 }

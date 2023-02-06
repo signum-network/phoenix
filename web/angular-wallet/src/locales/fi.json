@@ -562,5 +562,6 @@
   "contact_added": "Yhteyshenkilö lisätty onnistuneesti",
   "add_as_contact": "Lisää yhteyshenkilöksi",
   "edit_contact": "Muokkaa yhteystietoa",
-  "error_add_contact": "Yhteystietoa ei lisätty. Todennäköisesti olet jo lisännyt kyseisen tilin."
+  "error_add_contact": "Yhteystietoa ei lisätty. Todennäköisesti olet jo lisännyt kyseisen tilin.",
+  "no_contact_found": "Yhteyttä ei löytynyt"
 }

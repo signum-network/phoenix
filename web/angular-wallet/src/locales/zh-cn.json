@@ -562,5 +562,6 @@
   "contact_added": "联系人添加成功",
   "add_as_contact": "添加为联系人",
   "edit_contact": "更改联系资料",
-  "error_add_contact": "未添加联系人。您很可能已经添加了该帐户。"
+  "error_add_contact": "未添加联系人。您很可能已经添加了该帐户。",
+  "no_contact_found": "找不到联系人"
 }

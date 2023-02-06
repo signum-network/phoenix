@@ -21,6 +21,7 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
+import { AccountManagementService } from './shared/services/account-management.service';
 
 const BlockchainStatusInterval = 30_000;
 
@@ -48,7 +49,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     @Inject(DOCUMENT) private document: any,
     private _platform: Platform,
     private storeService: StoreService,
-    private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private networkService: NetworkService,
     private notifierService: NotifierService,
     private utilService: UtilService,
@@ -69,6 +70,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
         if (!ready) {return; }
+        this.initAccountListener();
         const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
         setTimeout(checkBlockchainStatus, 1000);
         this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
@@ -242,5 +244,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         }
       });
 
+  }
+
+  private initAccountListener(): void {
+    const selectedAccount = this.accountManagementService.getSelectedAccount();
+    console.log('First load of account...', selectedAccount.accountRS);
+    this.accountManagementService.selectAccount(selectedAccount);
   }
 }

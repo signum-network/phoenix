@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { SuggestedFees } from '@signumjs/core';
 import {ActivatedRoute} from '@angular/router';
 import { WalletAccount } from 'app/util/WalletAccount';
@@ -7,7 +7,8 @@ import { AddAliasWizardService } from './add-alias-wizard.service';
 @Component({
   selector: 'app-add-alias',
   templateUrl: './add-alias.component.html',
-  styleUrls: ['./add-alias.component.scss']
+  styleUrls: ['./add-alias.component.scss'],
+  providers: [AddAliasWizardService]
 })
 export class AddAliasComponent implements OnInit {
 
@@ -20,6 +21,7 @@ export class AddAliasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.wizardService.reset();
     this.account = this.route.snapshot.data.account as WalletAccount;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
   }

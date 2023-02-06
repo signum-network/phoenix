@@ -562,5 +562,6 @@
   "contact_added": "Contact succesvol toegevoegd",
   "add_as_contact": "Toevoegen als contact",
   "edit_contact": "Bewerk contact",
-  "error_add_contact": "Contactpersoon niet toegevoegd. Waarschijnlijk heb je dat account al toegevoegd."
+  "error_add_contact": "Contactpersoon niet toegevoegd. Waarschijnlijk heb je dat account al toegevoegd.",
+  "no_contact_found": "Geen contactpersoon gevonden"
 }

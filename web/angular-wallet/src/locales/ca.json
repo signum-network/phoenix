@@ -562,5 +562,6 @@
   "contact_added": "El contacte s'ha afegit correctament",
   "add_as_contact": "Afegeix com a contacte",
   "edit_contact": "Edita el contacte",
-  "error_add_contact": "Contacte no afegit. El més probable és que ja hagis afegit aquest compte."
+  "error_add_contact": "Contacte no afegit. El més probable és que ja hagis afegit aquest compte.",
+  "no_contact_found": "No s'ha trobat cap contacte"
 }
