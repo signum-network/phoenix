@@ -7,7 +7,7 @@ import {
   ApplicationRef
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { delay, filter, take, takeUntil } from 'rxjs/operators';
+import { delay, filter, take, takeUntil, merge, concat } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
@@ -132,6 +132,18 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
           this.updateAvatar();
           this.updateNavigation();
           this.appRef.tick();
+        }
+      );
+
+    this.storeService.accountUpdated$
+      .pipe(this.unsubscribe)
+      .subscribe((account: WalletAccount) => {
+          if (this.selectedAccount.account === account.account) {
+            this.selectedAccount = account;
+            this.updateAvatar();
+            // navigation does not need to be updated
+            this.appRef.tick();
+          }
         }
       );
 
