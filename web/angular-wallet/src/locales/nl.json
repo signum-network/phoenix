@@ -571,5 +571,8 @@
   "hint_new_account": "Dit is een nieuwe rekening. Het is nog niet geregistreerd in de keten, d.w.z. heeft geen transacties.",
   "account_new": "Nieuw",
   "page_not_found_title": "Bron Niet gevonden",
-  "page_not_found_hint": "Zelfs met blockchain zijn sommige ruimtes nog steeds onbedekt. Zoals deze hier!"
+  "page_not_found_hint": "Zelfs met blockchain zijn sommige ruimtes nog steeds onbedekt. Zoals deze hier!",
+  "danger_zone": "Gevarenzone",
+  "reset_wallet": "Portefeuille resetten",
+  "reset_wallet_hint": "Door de portemonnee opnieuw in te stellen, worden alle lokaal opgeslagen gegevens, accounts en instellingen uit de portemonnee verwijderd. U kunt al uw accounts opnieuw importeren met behulp van de respectieve herstelzin. Je Signa en tokens staan veilig opgeslagen op de blockchain en zijn dus niet verloren zolang je in het bezit bent van de herstelzinnen."
 }

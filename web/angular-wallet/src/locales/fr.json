@@ -571,5 +571,8 @@
   "hint_new_account": "Ceci est un nouveau compte. Il n'est pas encore enregistré sur la chaîne, c'est-à-dire qu'il n'a aucune transaction.",
   "account_new": "Nouveau",
   "page_not_found_title": "Ressource non trouvée",
-  "page_not_found_hint": "Même avec la blockchain, certains espaces sont encore découverts. Comme celui-ci ici !"
+  "page_not_found_hint": "Même avec la blockchain, certains espaces sont encore découverts. Comme celui-ci ici !",
+  "danger_zone": "Zone dangereuse",
+  "reset_wallet": "Réinitialiser le portefeuille",
+  "reset_wallet_hint": "La réinitialisation du portefeuille supprime toutes les données, comptes et paramètres stockés localement du portefeuille. Vous pouvez réimporter tous vos comptes à l'aide de la phrase de récupération correspondante. Vos Signa et tokens sont stockés en toute sécurité sur la blockchain et ne sont donc pas perdus tant que vous êtes en possession des phrases de récupération."
 }

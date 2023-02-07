@@ -571,5 +571,8 @@
   "hint_new_account": "Bu yeni bir hesap. Henüz zincire kayıtlı değil, yani herhangi bir işlemi yok.",
   "account_new": "Yeni",
   "page_not_found_title": "Kaynak bulunamadı",
-  "page_not_found_hint": "Blockchain ile bile bazı alanlar hala açığa çıkarılmıştır. Buradaki gibi!"
+  "page_not_found_hint": "Blockchain ile bile bazı alanlar hala açığa çıkarılmıştır. Buradaki gibi!",
+  "danger_zone": "Tehlikeli bölge",
+  "reset_wallet": "Cüzdanı Sıfırla",
+  "reset_wallet_hint": "Cüzdanın sıfırlanması, yerel olarak saklanan tüm verileri, hesapları ve ayarları cüzdandan kaldırır. İlgili kurtarma ifadesini kullanarak tüm hesaplarınızı yeniden içe aktarabilirsiniz. Signa'nız ve jetonlarınız blok zincirinde güvenli bir şekilde saklanır ve bu nedenle kurtarma ifadelerine sahip olduğunuz sürece kaybolmaz."
 }

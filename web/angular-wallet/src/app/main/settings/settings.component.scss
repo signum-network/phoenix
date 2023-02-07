@@ -6,6 +6,15 @@
     animation: rotate 1s linear infinite;
   }
 
+  .reset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 1px lightgrey;
+    border-radius: 4px;
+    padding: 16px;
+  }
+
   .node-selector {
       display: block;
 

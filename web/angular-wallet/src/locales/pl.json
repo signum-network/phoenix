@@ -571,5 +571,8 @@
   "hint_new_account": "To jest nowe konto. Nie jest jeszcze zarejestrowany w sieci, czyli nie zawiera żadnych transakcji.",
   "account_new": "Nowy",
   "page_not_found_title": "Nie znaleziono zasobu",
-  "page_not_found_hint": "Nawet z blockchainem niektóre przestrzenie są wciąż odkryte. Jak ten tutaj!"
+  "page_not_found_hint": "Nawet z blockchainem niektóre przestrzenie są wciąż odkryte. Jak ten tutaj!",
+  "danger_zone": "Strefa niebezpieczeństwa",
+  "reset_wallet": "Zresetuj portfel",
+  "reset_wallet_hint": "Zresetowanie portfela powoduje usunięcie wszystkich przechowywanych lokalnie danych, kont i ustawień z portfela. Możesz ponownie zaimportować wszystkie swoje konta, używając odpowiedniej frazy odzyskiwania. Twoje Signa i tokeny są bezpiecznie przechowywane w łańcuchu blokowym i dlatego nie zostaną utracone, dopóki posiadasz frazy odzyskiwania."
 }

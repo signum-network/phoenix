@@ -14,6 +14,8 @@ import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
 import { AppService } from '../../app.service';
 import { LedgerService } from 'app/ledger.service';
 import { AccountManagementService } from '../../shared/services/account-management.service';
+import { FuseConfirmDialogComponent } from '../../../@fuse/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from "@angular/material/dialog";
 
 interface NodeInformation {
   url: string;
@@ -38,7 +40,9 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
               private ledgerService: LedgerService,
               private accountManagementService: AccountManagementService,
               private appService: AppService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private warnDialog: MatDialog,
+  ) {
     super();
   }
 
@@ -105,7 +109,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
     this.selectedNode.valueChanges
       .pipe(
-        takeUntil(this.unsubscribeAll),
+        takeUntil(this.unsubscribeAll)
         // waitASecond
       ).subscribe(updateVersion);
 
@@ -127,7 +131,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     try {
       this.isFetchingNodeInfo = true;
 
-      const {networkName: previousNetworkName} = this.storeService.getSelectedNode();
+      const { networkName: previousNetworkName } = this.storeService.getSelectedNode();
       const newNode = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
       const networkChanged = newNode.networkName !== previousNetworkName;
       this.isFetchingNodeInfo = false;
@@ -137,7 +141,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
         addressPrefix: newNode.addressPrefix
       }, true);
 
-      if (networkChanged){
+      if (networkChanged) {
         const selectedAccount = this.accountManagementService.getSelectedAccount();
         const accountToBeSelected = this.accountManagementService.findAccount(selectedAccount.account, newNode.networkName);
         this.accountManagementService.selectAccount(accountToBeSelected).then(); // non-blocking update
@@ -211,5 +215,21 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.appService.showDesktopMessage('Phoenix', this.i18nService.getTranslation('notifications_enabled'));
     }
 
+  }
+
+  resetWallet(): void {
+    const ref = this.warnDialog.open(FuseConfirmDialogComponent, {
+      width: '400px', data: {
+        title: this.i18nService.getTranslation('reset_wallet'),
+        message: this.i18nService.getTranslation('reset_wallet_hint')
+      }
+    });
+
+    ref.afterClosed()
+      .subscribe(async (confirmed) => {
+        if (confirmed) {
+          this.storeService.reset();
+        }
+      });
   }
 }

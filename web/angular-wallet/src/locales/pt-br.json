@@ -571,5 +571,8 @@
   "hint_new_account": "Esta é uma nova conta. Ainda não está registrado na rede, ou seja, não possui transações.",
   "account_new": "Novo",
   "page_not_found_title": "Recurso não encontrado",
-  "page_not_found_hint": "Mesmo com blockchain alguns espaços ainda são descobertos. Como este aqui!"
+  "page_not_found_hint": "Mesmo com blockchain alguns espaços ainda são descobertos. Como este aqui!",
+  "danger_zone": "Zona de perigo",
+  "reset_wallet": "Redefinir Carteira",
+  "reset_wallet_hint": "Redefinir a carteira remove todos os dados, contas e configurações armazenados localmente da carteira. Você pode reimportar todas as suas contas usando a respectiva frase de recuperação. Seu Signa e tokens são armazenados com segurança no blockchain e, portanto, não são perdidos enquanto você estiver de posse das frases de recuperação."
 }

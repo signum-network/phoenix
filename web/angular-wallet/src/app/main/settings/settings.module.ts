@@ -4,12 +4,14 @@ import {SettingsComponent} from './settings.component';
 import {RouterModule} from '@angular/router';
 import {SettingsResolver} from './settings.resolver';
 import {MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatListModule, MatDividerModule} from '@angular/material';
-import {FuseSharedModule} from '../../../@fuse/shared.module';
+import {FuseSharedModule} from '@fuse/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
-import {ComponentsModule} from '../../components/components.module';
-import { AppSharedModule } from "../../shared/shared.module";
+import {ComponentsModule} from 'app/components/components.module';
+import { AppSharedModule } from 'app/shared/shared.module';
+import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { FuseConfirmDialogModule } from "@fuse/components";
 
 const routes = [
   {
@@ -38,10 +40,14 @@ const routes = [
     MatIconModule,
     MatSlideToggleModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    FuseConfirmDialogModule
   ],
   providers: [
     SettingsResolver,
+  ],
+  entryComponents: [
+    FuseConfirmDialogComponent
   ]
 })
 export class SettingsModule {

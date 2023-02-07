@@ -1,8 +1,6 @@
 import {
   AfterContentInit,
   AfterViewInit,
-  ApplicationRef,
-  ChangeDetectorRef,
   Component,
   OnInit,
   ViewChild
@@ -11,16 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-import {
-  Transaction,
-  TransactionType,
-  TransactionArbitrarySubtype,
-  isMultiOutSameTransaction,
-  isMultiOutTransaction,
-  TransactionAssetSubtype,
-  TransactionPaymentSubtype,
-  TransactionSmartContractSubtype, TransactionEscrowSubtype
-} from '@signumjs/core';
+import { Transaction, } from '@signumjs/core';
 import { ChainTime } from '@signumjs/util';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
@@ -46,13 +35,6 @@ const ColumnsQuery = {
   sm: ['transaction_id', 'amount', 'account'],
   xs: ['transaction_id', 'amount']
 };
-
-interface Types {
-  type: number;
-  subtype: number;
-  text: string;
-}
-
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],

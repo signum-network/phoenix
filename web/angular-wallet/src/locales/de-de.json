@@ -571,5 +571,8 @@
   "hint_new_account": "Dies ist ein neues Konto. Es ist noch nicht in der Blockchain registriert, hat also keine Transaktionen.",
   "account_new": "Neu",
   "page_not_found_title": "Ressource nicht gefunden",
-  "page_not_found_hint": "Auch bei der Blockchain sind noch einige Lücken offen. So wie diese hier!"
+  "page_not_found_hint": "Auch bei der Blockchain sind noch einige Lücken offen. So wie diese hier!",
+  "danger_zone": "Gefahrenzone",
+  "reset_wallet": "Wallet zurücksetzen",
+  "reset_wallet_hint": "Mit dem Zurücksetzen der Wallet entfernst du alle lokal gespeicherten Daten, Konten und Einstellungen der Wallet. Du kannst alle Deine Konten mittels der jeweilgen Recovery Phrase erneut importieren. Deine Signa und Tokens sind sicher auf der Blockchain gespeichert und somit nicht verloren, solange Du im Besitz der Recovery Phrasen bist."
 }

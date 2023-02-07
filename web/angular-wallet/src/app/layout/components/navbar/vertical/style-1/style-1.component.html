@@ -1,75 +1,92 @@
-<div *ngIf="selectedAccount" class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-  <div class="logo">
-    <img src="assets/images/logos/logo_white_horizontal.svg" class="logo-unfolded">
-    <img src="assets/images/logos/icon_white.svg" class="logo-folded">
-    <small id="version" class="logo-unfolded">{{getVersion()}}</small>
+  <div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+
+    <div class="logo">
+      <img src="assets/images/logos/logo_white_horizontal.svg" class="logo-unfolded" alt="Signum Logo">
+      <img src="assets/images/logos/icon_white.svg" class="logo-folded" alt="Signum Logo">
+      <small id="version" class="logo-unfolded">{{getVersion()}}</small>
+    </div>
+
+    <div class="buttons">
+
+      <button mat-icon-button class="toggle-sidebar-folded" (click)="toggleSidebarFolded()" fxHide.lt-lg>
+        <mat-icon class="secondary-text">menu</mat-icon>
+      </button>
+
+      <button mat-icon-button class="toggle-sidebar-opened" (click)="toggleSidebarOpened()" fxHide.gt-md>
+        <mat-icon class="secondary-text">arrow_back</mat-icon>
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="buttons">
 
-    <button mat-icon-button class="toggle-sidebar-folded" (click)="toggleSidebarFolded()" fxHide.lt-lg>
-      <mat-icon class="secondary-text">menu</mat-icon>
-    </button>
+  <div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground" fusePerfectScrollbar
+       [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
 
-    <button mat-icon-button class="toggle-sidebar-opened" (click)="toggleSidebarOpened()" fxHide.gt-md>
-      <mat-icon class="secondary-text">arrow_back</mat-icon>
-    </button>
+    <div *ngIf="selectedAccount" class="user" fxLayout="column"
+         [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-  </div>
-
-</div>
-
-
-<div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground" fusePerfectScrollbar
-     [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
-
-  <div *ngIf="selectedAccount" class="user" fxLayout="column"
-       [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
-
-    <div class="h3 username">{{ selectedAccount.account | address }}</div>
-    <div class="h5 username">{{ getBalance() | amount:'planck':true }}</div>
-    <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type !== 'offline'" [matMenuTriggerFor]="menu">
+      <div class="h3 username">{{ selectedAccount.account | address }}</div>
+      <div class="h5 username">{{ getBalance() | amount:'planck':true }}</div>
+      <div class="h5 alias hint-text mt-4" [matMenuTriggerFor]="menu">
       <span>{{ getAccountName() }}
         <mat-icon>keyboard_arrow_down</mat-icon></span>
-    </div>
-    <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type === 'offline'">
-      <span>{{'hint_offline_account' | i18n}}</span>
-    </div>
-    <a
-      class="avatar-container"
-      [routerLink]="['set-account-profile']"
-    >
-      <img #hashAvatar *ngIf="hashIconImgSrc && !avatarLoaded" [src]="hashIconImgSrc" alt="avatar-image" />
-      <img #ipfsAvatar [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)" alt="avatar-image" />
-
-      <div *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed"
-           class="unsafe-badge"
-           matTooltip="{{'account_unsafe' | i18n}}"
-      >
-        <mat-icon>lock_open</mat-icon>
       </div>
-    </a>
+      <a
+        class="avatar-container"
+        [routerLink]="['set-account-profile']"
+      >
+        <img #hashAvatar *ngIf="hashIconImgSrc && !avatarLoaded" [src]="hashIconImgSrc" alt="avatar-image" />
+        <img #ipfsAvatar [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)"
+             alt="avatar-image" />
+
+        <div *ngIf="selectedAccount.isUnsafe()"
+             class="badge unsafe"
+             matTooltip="{{'account_unsafe' | i18n}}"
+        >
+          <mat-icon>lock_open</mat-icon>
+        </div>
+        <div *ngIf="selectedAccount.isWatchOnly()"
+             class="badge watch"
+             matTooltip="{{'hint_offline_account' | i18n}}"
+        >
+          <mat-icon>remove_red_eye</mat-icon>
+        </div>
+        <div *ngIf="selectedAccount.isNew()"
+             class="badge new"
+             matTooltip="{{'hint_new_account' | i18n}}"
+        >
+          <mat-icon>new_releases</mat-icon>
+        </div>
+      </a>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['/account', selectedAccount.account]" >
+        <span>{{ 'account_details' | i18n }}</span>
+      </button>
+      <button mat-menu-item (click)="openInExplorer(selectedAccount.account)">
+        <span>{{ 'show_in_explorer' | i18n }}</span>
+      </button>
+      <button mat-menu-item (click)="copy(selectedAccount.account)">
+        <span>{{ 'copy_account_id' | i18n }}</span>
+      </button>
+      <button mat-menu-item (click)="copy(selectedAccount.accountRS)">
+        <span>{{ 'copy_account_address' | i18n }}</span>
+      </button>
+      <button *ngIf="selectedAccount.accountRSExtended" mat-menu-item (click)="copy(selectedAccount.accountRSExtended)">
+        <span>{{ 'copy_account_address_extended' | i18n }}</span>
+      </button>
+      <button *ngIf="selectedAccount.keys && selectedAccount.keys.publicKey" mat-menu-item
+              (click)="copy(selectedAccount.keys.publicKey)">
+        <span>{{ 'copy_account_publickey' | i18n }}</span>
+      </button>
+    </mat-menu>
+
+    <div class="navbar-content">
+      <fuse-navigation class="material2" layout="vertical" [navigation]="navigation"></fuse-navigation>
+    </div>
+
   </div>
-
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="copy(selectedAccount.account)">
-      <span>{{ 'copy_account_id' | i18n }}</span>
-    </button>
-    <button mat-menu-item (click)="copy(selectedAccount.accountRS)">
-      <span>{{ 'copy_account_address' | i18n }}</span>
-    </button>
-    <button *ngIf="selectedAccount.accountRSExtended" mat-menu-item (click)="copy(selectedAccount.accountRSExtended)">
-      <span>{{ 'copy_account_address_extended' | i18n }}</span>
-    </button>
-    <button *ngIf="selectedAccount.keys && selectedAccount.keys.publicKey" mat-menu-item (click)="copy(selectedAccount.keys.publicKey)">
-      <span>{{ 'copy_account_publickey' | i18n }}</span>
-    </button>
-  </mat-menu>
-
-  <div class="navbar-content">
-    <fuse-navigation class="material2" layout="vertical" [navigation]="navigation"></fuse-navigation>
-  </div>
-
-</div>
-

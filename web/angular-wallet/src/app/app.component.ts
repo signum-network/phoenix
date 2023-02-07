@@ -248,7 +248,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
   private initAccountListener(): void {
     const selectedAccount = this.accountManagementService.getSelectedAccount();
-    console.log('First load of account...', selectedAccount.accountRS);
-    this.accountManagementService.selectAccount(selectedAccount);
+    if (selectedAccount){
+      console.log('First load of account...', selectedAccount.accountRS);
+      this.accountManagementService.selectAccount(selectedAccount);
+    }
   }
 }

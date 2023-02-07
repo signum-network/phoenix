@@ -450,4 +450,10 @@ export class StoreService {
       this.persist();
     });
   }
+
+  public reset(): void {
+    this.store.deleteDatabase(() => {
+      this.init();
+    });
+  }
 }

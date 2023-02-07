@@ -571,5 +571,8 @@
   "hint_new_account": "This is a new account. It's not registered on the chain yet, i.e. has no transactions.",
   "account_new": "New",
   "page_not_found_title": "Resource Not found",
-  "page_not_found_hint": "Even with blockchain some spaces are still uncovered. Like this one here!"
+  "page_not_found_hint": "Even with blockchain some spaces are still uncovered. Like this one here!",
+  "danger_zone": "Danger Zone",
+  "reset_wallet": "Reset Wallet",
+  "reset_wallet_hint": "Resetting the wallet removes all locally stored data, accounts and settings from the wallet. You can re-import all your accounts using the respective recovery phrase. Your Signa and tokens are securely stored on the blockchain and are therefore not lost as long as you are in possession of the recovery phrases."
 }

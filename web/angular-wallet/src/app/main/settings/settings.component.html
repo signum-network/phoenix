@@ -106,5 +106,15 @@
         </div>
       </ng-container>
     </mat-list>
+    <div>
+      <mat-divider class="my-24"></mat-divider>
+      <div class="font-size-14 font-weight-600 mb-8 secondary-text">{{"danger_zone" | i18n}}</div>
+      <div class="reset">
+        <small class="mb-8">
+          {{ 'reset_wallet_hint' | i18n }}
+        </small>
+        <button mat-raised-button color="warn" (click)="resetWallet()">{{'reset_wallet' | i18n }}</button>
+      </div>
+    </div>
   </div>
 </app-page>

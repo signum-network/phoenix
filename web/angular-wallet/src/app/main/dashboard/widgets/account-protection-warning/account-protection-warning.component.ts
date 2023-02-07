@@ -71,13 +71,19 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
     if (!a) {
       return;
     }
-    if (a.isWatchOnly() || !a.isUnsafe()) {
-      this.status = AccountStatus.Safe;
-      return;
-    }
-
     if (a.isNew()){
       this.status = AccountStatus.NotRegistered;
+    }
+    else if (!a.isWatchOnly() && a.isUnsafe()) {
+      this.status = AccountStatus.NoPublicKey;
+    }
+    else if (!a.isWatchOnly() && !a.isUnsafe()) {
+      this.status = AccountStatus.Safe;
+      return; // skip further checks, as we do not need check safe accounts
+    }
+    else if (a.isWatchOnly()) {
+      this.status = AccountStatus.Safe;
+      return; // skip further checks, as we do not need check watchOnly accounts - we cannot activate them
     }
 
     try {

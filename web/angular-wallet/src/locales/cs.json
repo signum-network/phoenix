@@ -571,5 +571,8 @@
   "hint_new_account": "Toto je nový účet. Zatím není registrován v řetězci, tj. nemá žádné transakce.",
   "account_new": "Nový",
   "page_not_found_title": "Zdroj nenalezen",
-  "page_not_found_hint": "I s blockchainem jsou některá místa stále nepokrytá. Jako tenhle tady!"
+  "page_not_found_hint": "I s blockchainem jsou některá místa stále nepokrytá. Jako tenhle tady!",
+  "danger_zone": "Nebezpečná zóna",
+  "reset_wallet": "Resetovat Peněženku",
+  "reset_wallet_hint": "Resetováním peněženky se z peněženky odstraní všechna lokálně uložená data, účty a nastavení. Všechny své účty můžete znovu importovat pomocí příslušné fráze pro obnovení. Vaše Signa a tokeny jsou bezpečně uloženy na blockchainu, a proto se neztratí, dokud budete mít fráze pro obnovení."
 }

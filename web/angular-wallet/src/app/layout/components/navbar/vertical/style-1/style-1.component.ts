@@ -25,6 +25,8 @@ import hashicon from 'hashicon';
 import { FuseNavigation } from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { NetworkService } from "../../../../../network/network.service";
+import { AppService } from "../../../../../app.service";
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -57,7 +59,9 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     private i18nService: I18nService,
     private notifierService: NotifierService,
     private router: Router,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private networkService: NetworkService,
+    private appService: AppService,
   ) {
     super();
     // Set the private defaults
@@ -155,14 +159,15 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
       });
 
     // Get current navigation
-    this.fuseNavigationService.onNavigationChanged
-      .pipe(
-        filter(value => value !== null),
-        this.unsubscribe
-      )
-      .subscribe(() => {
-        this.updateAvatar();
-      });
+    // this.fuseNavigationService.onNavigationChanged
+    //   .pipe(
+    //     filter(value => value !== null),
+    //     this.unsubscribe
+    //   )
+    //   .subscribe(() => {
+    //
+    //     this.updateAvatar();
+    //   });
   }
 
   private updateAvatar(): void {
@@ -200,16 +205,7 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
   }
 
   async copy(val: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(val);
-      this.notifierService.notify('success',
-        this.i18nService.getTranslation('success_clipboard_copy')
-      );
-    } catch (e) {
-      this.notifierService.notify('error',
-        this.i18nService.getTranslation('error_clipboard_copy')
-      );
-    }
+    await this.appService.copyToClipboard(val);
   }
 
   getBalance(): string {
@@ -220,7 +216,7 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
 
     const navigation = this.fuseNavigationService.getCurrentNavigation() as FuseNavigation[];
 
-    const isFullAccount = this.selectedAccount.type !== 'offline';
+    const isFullAccount = !this.selectedAccount.isWatchOnly();
 
     const traverse = (n: FuseNavigation) => {
       n.hidden = n.fullAccountOnly && !isFullAccount;
@@ -232,4 +228,13 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     this.navigation = navigation;
   }
 
+  openInExplorer(account: string): void {
+      const host = this.networkService.getChainExplorerHost();
+      const url = `${host}/address/${account}`;
+      if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
+  }
 }

@@ -571,5 +571,8 @@
   "hint_new_account": "Acesta este un cont nou. Nu este încă înregistrată în lanț, adică nu are tranzacții.",
   "account_new": "Nou",
   "page_not_found_title": "Resursa nu a fost găsită",
-  "page_not_found_hint": "Chiar și cu blockchain, unele spații sunt încă descoperite. Ca acesta aici!"
+  "page_not_found_hint": "Chiar și cu blockchain, unele spații sunt încă descoperite. Ca acesta aici!",
+  "danger_zone": "Zona periculoasă",
+  "reset_wallet": "Resetați portofelul",
+  "reset_wallet_hint": "Resetarea portofelului elimină toate datele, conturile și setările stocate local din portofel. Puteți reimporta toate conturile folosind expresia de recuperare respectivă. Semnele și jetoanele dvs. sunt stocate în siguranță pe blockchain și, prin urmare, nu sunt pierdute atâta timp cât sunteți în posesia frazelor de recuperare."
 }
