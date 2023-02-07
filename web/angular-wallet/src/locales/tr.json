@@ -569,5 +569,7 @@
   "message_is_binary": "Veri Mesajı",
   "add_account_or_contact": "Hesap veya Kişi Ekle",
   "hint_new_account": "Bu yeni bir hesap. Henüz zincire kayıtlı değil, yani herhangi bir işlemi yok.",
-  "account_new": "Yeni"
+  "account_new": "Yeni",
+  "page_not_found_title": "Kaynak bulunamadı",
+  "page_not_found_hint": "Blockchain ile bile bazı alanlar hala açığa çıkarılmıştır. Buradaki gibi!"
 }

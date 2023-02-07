@@ -569,5 +569,7 @@
   "message_is_binary": "Mensaje de datos",
   "add_account_or_contact": "Agregar cuenta o contacto",
   "hint_new_account": "Esta es una cuenta nueva. Todavía no está registrado en la cadena, es decir, no tiene transacciones.",
-  "account_new": "Nuevo"
+  "account_new": "Nuevo",
+  "page_not_found_title": "Recurso no encontrado",
+  "page_not_found_hint": "Incluso con blockchain, algunos espacios aún están descubiertos. ¡Como este de aquí!"
 }

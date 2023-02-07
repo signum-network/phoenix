@@ -569,5 +569,7 @@
   "message_is_binary": "Dataviesti",
   "add_account_or_contact": "Lisää tili tai yhteystieto",
   "hint_new_account": "Tämä on uusi tili. Se ei ole vielä rekisteröitynyt ketjuun, eli sillä ei ole tapahtumia.",
-  "account_new": "Uusi"
+  "account_new": "Uusi",
+  "page_not_found_title": "Resurssia ei löydy",
+  "page_not_found_hint": "Jopa lohkoketjussa jotkut tilat jäävät vielä auki. Kuten tämä täällä!"
 }

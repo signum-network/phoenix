@@ -569,5 +569,7 @@
   "message_is_binary": "Mesaj de date",
   "add_account_or_contact": "Adăugați cont sau contact",
   "hint_new_account": "Acesta este un cont nou. Nu este încă înregistrată în lanț, adică nu are tranzacții.",
-  "account_new": "Nou"
+  "account_new": "Nou",
+  "page_not_found_title": "Resursa nu a fost găsită",
+  "page_not_found_hint": "Chiar și cu blockchain, unele spații sunt încă descoperite. Ca acesta aici!"
 }

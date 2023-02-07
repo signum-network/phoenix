@@ -569,5 +569,7 @@
   "message_is_binary": "Datová zpráva",
   "add_account_or_contact": "Přidat účet nebo kontakt",
   "hint_new_account": "Toto je nový účet. Zatím není registrován v řetězci, tj. nemá žádné transakce.",
-  "account_new": "Nový"
+  "account_new": "Nový",
+  "page_not_found_title": "Zdroj nenalezen",
+  "page_not_found_hint": "I s blockchainem jsou některá místa stále nepokrytá. Jako tenhle tady!"
 }

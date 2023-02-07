@@ -569,5 +569,7 @@
   "message_is_binary": "数据信息",
   "add_account_or_contact": "添加帐户或联系人",
   "hint_new_account": "这是一个新帐户。它还没有在链上注册，即没有交易。",
-  "account_new": "新的"
+  "account_new": "新的",
+  "page_not_found_title": "找不到资源",
+  "page_not_found_hint": "即使使用区块链，一些空间仍未被发现。就像这里的这个！"
 }

@@ -569,5 +569,7 @@
   "message_is_binary": "Podatkovna poruka",
   "add_account_or_contact": "Dodajte račun ili kontakt",
   "hint_new_account": "Ovo je novi račun. Još nije registriran u lancu, tj. nema transakcija.",
-  "account_new": "Novi"
+  "account_new": "Novi",
+  "page_not_found_title": "Izvor nije pronađen",
+  "page_not_found_hint": "Čak i s blockchainom neki su prostori još uvijek nepokriveni. Kao ovaj ovdje!"
 }

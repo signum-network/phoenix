@@ -569,5 +569,7 @@
   "message_is_binary": "Pesan Data",
   "add_account_or_contact": "Tambahkan Akun atau Kontak",
   "hint_new_account": "Ini akun baru. Itu belum terdaftar di rantai, yaitu tidak memiliki transaksi.",
-  "account_new": "Baru"
+  "account_new": "Baru",
+  "page_not_found_title": "Sumber Daya Tidak ditemukan",
+  "page_not_found_hint": "Bahkan dengan blockchain, beberapa ruang masih terbuka. Seperti ini di sini!"
 }

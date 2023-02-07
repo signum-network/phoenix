@@ -10,7 +10,7 @@ export class TransactionResolver implements Resolve<Promise<Transaction>> {
   constructor(private ledgerService: LedgerService, private accountManagementService: AccountManagementService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
+  async resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
     const selectedAccount =  this.accountManagementService.getSelectedAccount();
     if (selectedAccount){
       const tx = selectedAccount.transactions.find( ({transaction}) => transaction === route.params.id);
@@ -18,6 +18,11 @@ export class TransactionResolver implements Resolve<Promise<Transaction>> {
         return Promise.resolve(tx);
       }
     }
-    return this.ledgerService.ledger.transaction.getTransaction(route.params.id);
+    try{
+      return (await this.ledgerService.ledger.transaction.getTransaction(route.params.id));
+    } catch (e){
+      console.warn('Transaction not found', e.message);
+      return null;
+    }
   }
 }

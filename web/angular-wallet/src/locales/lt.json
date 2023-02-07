@@ -569,5 +569,7 @@
   "message_is_binary": "Duomenų pranešimas",
   "add_account_or_contact": "Pridėti paskyrą arba kontaktą",
   "hint_new_account": "Tai nauja paskyra. Jis dar neužregistruotas tinkle, t. y. neturi sandorių.",
-  "account_new": "Nauja"
+  "account_new": "Nauja",
+  "page_not_found_title": "Išteklius nerastas",
+  "page_not_found_hint": "Net naudojant „blockchain“, kai kurios erdvės vis dar neuždengtos. Kaip šis čia!"
 }

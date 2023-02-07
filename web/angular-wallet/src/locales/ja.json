@@ -569,5 +569,7 @@
   "message_is_binary": "データメッセージ",
   "add_account_or_contact": "アカウントまたは連絡先を追加",
   "hint_new_account": "これは新しいアカウントです。まだチェーンに登録されていません。つまり、トランザクションはありません。",
-  "account_new": "新しい"
+  "account_new": "新しい",
+  "page_not_found_title": "リソースが見つかりません",
+  "page_not_found_hint": "ブロックチェーンを使用しても、いくつかのスペースがまだ明らかにされています。ここのように！"
 }

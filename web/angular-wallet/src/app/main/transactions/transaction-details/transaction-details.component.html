@@ -1,20 +1,28 @@
-<app-page [title]="'transaction_details' | i18n"
-          [subtitle]="transaction.transaction"
-          [breadcrumbs]="[{label:'transactions' | i18n, path: '/transactions'}]"
-          [wide]="true"
->
-  <div class="info table">
-    <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openExplorer()">
+<ng-container *ngIf="!transaction">
+  <div class="w-100-p">
+    <app-not-found-page></app-not-found-page>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="transaction">
+  <app-page [title]="'transaction_details' | i18n"
+            [subtitle]="transaction.transaction"
+            [breadcrumbs]="[{label:'transactions' | i18n, path: '/transactions'}]"
+            [wide]="true"
+  >
+    <div class="info table">
+      <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openExplorer()">
         <mat-icon>link</mat-icon>
-    </div>
-    <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
-      <div class="label">{{row.l | i18n}}</div>
-      <div class="value">
-        <app-transaction-row-value-cell
-          [value]="row.v"
-          [transaction]="transaction">
-        </app-transaction-row-value-cell>
+      </div>
+      <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
+        <div class="label">{{row.l | i18n}}</div>
+        <div class="value">
+          <app-transaction-row-value-cell
+            [value]="row.v"
+            [transaction]="transaction">
+          </app-transaction-row-value-cell>
+        </div>
       </div>
     </div>
-  </div>
-</app-page>
+  </app-page>
+</ng-container>

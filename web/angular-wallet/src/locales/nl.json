@@ -569,5 +569,7 @@
   "message_is_binary": "Gegevens bericht",
   "add_account_or_contact": "Account of contactpersoon toevoegen",
   "hint_new_account": "Dit is een nieuwe rekening. Het is nog niet geregistreerd in de keten, d.w.z. heeft geen transacties.",
-  "account_new": "Nieuw"
+  "account_new": "Nieuw",
+  "page_not_found_title": "Bron Niet gevonden",
+  "page_not_found_hint": "Zelfs met blockchain zijn sommige ruimtes nog steeds onbedekt. Zoals deze hier!"
 }

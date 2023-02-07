@@ -569,5 +569,7 @@
   "message_is_binary": "Missatge de dades",
   "add_account_or_contact": "Afegeix un compte o un contacte",
   "hint_new_account": "Aquest és un compte nou. Encara no està registrat a la cadena, és a dir, no té transaccions.",
-  "account_new": "Nou"
+  "account_new": "Nou",
+  "page_not_found_title": "No s'ha trobat el recurs",
+  "page_not_found_hint": "Fins i tot amb blockchain alguns espais encara queden al descobert. Com aquest aquí!"
 }
