@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { DisclaimerComponent } from './disclaimer.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ComponentsModule } from "../components/components.module";
 
 
 const routes = [
@@ -20,7 +21,8 @@ const routes = [
   imports: [
     RouterModule.forChild(routes),
     FuseSharedModule,
-    MatButtonModule
+    MatButtonModule,
+    ComponentsModule
   ]
 })
 export class DisclaimerModule {

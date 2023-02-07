@@ -22,6 +22,7 @@ import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
 import { AccountManagementService } from './shared/services/account-management.service';
+import { FuseSplashScreenService } from "../@fuse/services/splash-screen.service";
 
 const BlockchainStatusInterval = 30_000;
 
@@ -58,6 +59,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private newVersionDialog: MatDialog,
     private router: Router,
     private applicationRef: ApplicationRef,
+    private splashScreen: FuseSplashScreenService,
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -76,6 +78,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
         this.isReady = true;
       });
+
+
+   // setTimeout(() => this.splashScreen.hide(), 5000)
 
     if (this.appService.isDesktop()) {
       this.initDesktopUpdater();
@@ -249,7 +254,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   private initAccountListener(): void {
     const selectedAccount = this.accountManagementService.getSelectedAccount();
     if (selectedAccount){
-      console.log('First load of account...', selectedAccount.accountRS);
       this.accountManagementService.selectAccount(selectedAccount);
     }
   }

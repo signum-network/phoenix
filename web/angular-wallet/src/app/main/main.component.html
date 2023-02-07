@@ -1,5 +1,7 @@
 <fuse-progress-bar></fuse-progress-bar>
-<vertical-layout-1></vertical-layout-1>
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
+  <vertical-layout-1></vertical-layout-1>
+</ng-container>
 
 <!-- THEME OPTIONS PANEL -->
 <!-- This is from the original fuse theme, and can be interesting to keep...as this shows how to theme certain things -->

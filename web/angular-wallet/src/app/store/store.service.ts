@@ -72,14 +72,18 @@ export class StoreService {
   constructor(
     private storeConfig: StoreConfig
   ) {
-    this.store = new Loki(storeConfig.databaseName, {
-      autoload: true,
-      autoloadCallback: this.init.bind(this),
-      adapter: storeConfig.persistenceAdapter,
-      verbose: !environment.production
-    });
+    this.store = this.createStoreInstance(storeConfig);
   }
 
+  private createStoreInstance(config: StoreConfig): Loki {
+    return new Loki(config.databaseName, {
+      autoload: true,
+      autoloadCallback: this.init.bind(this),
+      adapter: config.persistenceAdapter,
+      verbose: !environment.production
+    });
+
+  }
   private persist(): void {
     this.store.saveDatabase();
   }
@@ -451,9 +455,20 @@ export class StoreService {
     });
   }
 
-  public reset(): void {
-    this.store.deleteDatabase(() => {
-      this.init();
+  public async reset(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      Object.values(CollectionName).forEach( name => {
+        this.store.removeCollection(name);
+      });
+      this.store.deleteDatabase((err) => {
+        if (err){
+          reject(err);
+        }else {
+          this.store = this.createStoreInstance(this.storeConfig);
+          resolve();
+
+        }
+      });
     });
   }
 }

@@ -6,7 +6,7 @@ import { constants } from '../../constants';
 import { environment } from '../../../environments/environment.hmr';
 import { I18nService } from '../../shared/services/i18n.service';
 import { StoreService } from '../../store/store.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 import { LedgerClientFactory } from '@signumjs/core';
 import { NotifierService } from 'angular-notifier';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -42,6 +42,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
               private appService: AppService,
               private route: ActivatedRoute,
               private warnDialog: MatDialog,
+              private router: Router
   ) {
     super();
   }
@@ -228,7 +229,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     ref.afterClosed()
       .subscribe(async (confirmed) => {
         if (confirmed) {
-          this.storeService.reset();
+          await this.storeService.reset();
+          await this.router.navigate(['/login']);
         }
       });
   }
