@@ -1,38 +1,25 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
-import { Amount, convertBase64StringToString, CurrencySymbol } from '@signumjs/util';
+import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/shared/services/i18n.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { StoreService } from '../../../store/store.service';
+import { StoreService } from 'app/store/store.service';
 import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { AccountBalances, getBalancesFromAccount } from '../../../util/balance';
-import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
+import { isKeyDecryptionError } from 'app/util/exceptions/isKeyDecryptionError';
 import {
-  QRData,
   Recipient,
   RecipientValidationStatus
 } from 'app/components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
-import { asBool, isNotEmpty } from 'app/util/forms';
-import { constants } from '../../../constants';
+import { isNotEmpty } from 'app/util/forms';
+import { constants } from 'app/constants';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { SendMessageService } from '../send-message.service';
-
-interface CIP22Payload {
-  amountPlanck: string | number;
-  deadline: string | number;
-  encrypt: string | boolean;
-  feePlanck: string | number;
-  immutable: string | boolean;
-  message: string;
-  messageIsText: string | boolean;
-  recipient: string;
-}
-
 
 @Component({
   selector: 'app-send-message-form',
@@ -40,7 +27,7 @@ interface CIP22Payload {
   styleUrls: ['./send-message-form.component.scss']
 })
 export class SendMessageFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  @ViewChild('sendMoneyForm', { static: true }) public sendForm: NgForm;
+  @ViewChild('sendForm', { static: true }) public sendForm: NgForm;
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: true }) public encrypt: boolean;
