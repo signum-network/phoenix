@@ -5,7 +5,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { StoreService } from 'app/store/store.service';
 import { Router } from '@angular/router';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
-import {version} from '../../../package.json';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'disclaimer',
@@ -14,29 +14,9 @@ import {version} from '../../../package.json';
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
-export class DisclaimerComponent implements AfterViewInit {
-  version;
-  ngAfterViewInit(): void {
-    this.splashScreen.hide();
-    setTimeout(() => {
-      this._fuseConfigService.config = {
-        layout: {
-          navbar: {
-            hidden: true
-          },
-          toolbar: {
-            hidden: true
-          },
-          footer: {
-            hidden: true
-          },
-          sidepanel: {
-            hidden: true
-          }
-        }
-      };
-    }, 0);
-  }
+export class DisclaimerComponent {
+  version = environment.version;
+
 
   constructor(
     private _fuseConfigService: FuseConfigService,
@@ -44,10 +24,29 @@ export class DisclaimerComponent implements AfterViewInit {
     private router: Router,
     private splashScreen: FuseSplashScreenService
   ) {
-    this.version = version;
   }
 
-
+  // ngAfterViewInit(): void {
+  //   this.splashScreen.hide();
+  //   setTimeout(() => {
+  //     this._fuseConfigService.config = {
+  //       layout: {
+  //         navbar: {
+  //           hidden: true
+  //         },
+  //         toolbar: {
+  //           hidden: true
+  //         },
+  //         footer: {
+  //           hidden: true
+  //         },
+  //         sidepanel: {
+  //           hidden: true
+  //         }
+  //       }
+  //     };
+  //   }, 0);
+  // }
   agree(): void {
     try {
       this.storeService.updateSettings({ agree: true });

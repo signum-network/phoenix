@@ -574,5 +574,6 @@
   "page_not_found_hint": "Dokonca aj s blockchainom sú niektoré miesta stále nepokryté. Ako tento tu!",
   "danger_zone": "Nebezpečná zóna",
   "reset_wallet": "Resetovať Peňaženku",
-  "reset_wallet_hint": "Resetovaním peňaženky sa z peňaženky odstránia všetky lokálne uložené dáta, účty a nastavenia. Všetky svoje účty môžete znova importovať pomocou príslušnej frázy na obnovenie. Vaše Signa a tokeny sú bezpečne uložené na blockchaine, a preto sa nestratia, pokiaľ vlastníte frázy na obnovenie."
+  "reset_wallet_hint": "Resetovaním peňaženky sa z peňaženky odstránia všetky lokálne uložené dáta, účty a nastavenia. Všetky svoje účty môžete znova importovať pomocou príslušnej frázy na obnovenie. Vaše Signa a tokeny sú bezpečne uložené na blockchaine, a preto sa nestratia, pokiaľ vlastníte frázy na obnovenie.",
+  "welcome_to_wallet": "Vitajte v Peňaženke Signum Phoenix"
 }

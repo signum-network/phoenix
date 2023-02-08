@@ -574,5 +574,6 @@
   "page_not_found_hint": "Anche con blockchain alcuni spazi sono ancora scoperti. Come questo qui!",
   "danger_zone": "Zona pericolosa",
   "reset_wallet": "Ripristina portafoglio",
-  "reset_wallet_hint": "Il ripristino del portafoglio rimuove tutti i dati, gli account e le impostazioni memorizzati localmente dal portafoglio. Puoi reimportare tutti i tuoi account utilizzando la rispettiva frase di recupero. I tuoi Signa e i token sono archiviati in modo sicuro sulla blockchain e pertanto non vengono persi finché sei in possesso delle frasi di ripristino."
+  "reset_wallet_hint": "Il ripristino del portafoglio rimuove tutti i dati, gli account e le impostazioni memorizzati localmente dal portafoglio. Puoi reimportare tutti i tuoi account utilizzando la rispettiva frase di recupero. I tuoi Signa e i token sono archiviati in modo sicuro sulla blockchain e pertanto non vengono persi finché sei in possesso delle frasi di ripristino.",
+  "welcome_to_wallet": "Benvenuto nel Portafoglio Signum Phoenix"
 }

@@ -230,7 +230,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       .subscribe(async (confirmed) => {
         if (confirmed) {
           await this.storeService.reset();
-          await this.router.navigate(['/login']);
+          await this.router.navigate(['/'], {replaceUrl: true});
+          window.location.reload();
         }
       });
   }

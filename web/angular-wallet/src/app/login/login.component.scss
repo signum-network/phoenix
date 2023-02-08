@@ -10,31 +10,82 @@ $new-color: #1e88e5;
 $text-color: #333333;
 $text-alt-color: #003D6E;
 
-.login {
+@import "src/@fuse/scss/fuse";
+
+.content-container {
+  background-color: #003d6e;
+  position: relative;
   display: flex;
-  height: calc(100vh - 64px);
-  width: 100vw;
+  flex-direction: column;
+  flex: 1;
   align-items: center;
-  //background: #003D6E;
+  animation: appear 500ms ease-in-out;
 
-  background: #003D6E;
-
-  &__panel {
-    @include mat-elevation(16);
-    background: #fff;
-    padding: 3rem 2rem;
-    justify-self: center;
-    position: absolute;
-    top: 10%;
-    left: 0;
-    width: auto;
-    border-radius: 4px;
-    @media screen and (min-width: $media-query-tablet) {
-      left: 25%;
-      width: 50%;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 
+  @include media-breakpoint('xs') {
+    height: 100%;
+    //background: white;
+  }
+
+  h1 {
+    position: relative;
+    color: white;
+    font-size: 18px;
+
+    .version {
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      font-size: 12px;
+
+    }
+  }
+
+  .content {
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    height: fit-content;
+    padding: 16px;
+    width: 100%;
+    margin: 2em 0;
+    text-align: center;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    @include media-breakpoint('xs') {
+      margin: 0;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 8px;
+    }
+
+    .title {
+      font-size: 28px;
+      margin-top: 16px;
+    }
+
+    .text {
+      margin: 16px 0;
+      text-align: justify;
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 15px;
+    }
+  }
+}
+
+.logo {
+  width: 240px;
+  margin-top: 2rem;
+}
+
+.login {
   &__header {
     text-align: center;
   }

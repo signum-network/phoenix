@@ -574,5 +574,6 @@
   "page_not_found_hint": "Bahkan dengan blockchain, beberapa ruang masih terbuka. Seperti ini di sini!",
   "danger_zone": "Zona Bahaya",
   "reset_wallet": "Atur Ulang Dompet",
-  "reset_wallet_hint": "Menyetel ulang dompet menghapus semua data, akun, dan pengaturan yang disimpan secara lokal dari dompet. Anda dapat mengimpor ulang semua akun Anda menggunakan frase pemulihan masing-masing. Signa dan token Anda disimpan dengan aman di blockchain dan karenanya tidak hilang selama Anda memiliki frase pemulihan."
+  "reset_wallet_hint": "Menyetel ulang dompet menghapus semua data, akun, dan pengaturan yang disimpan secara lokal dari dompet. Anda dapat mengimpor ulang semua akun Anda menggunakan frase pemulihan masing-masing. Signa dan token Anda disimpan dengan aman di blockchain dan karenanya tidak hilang selama Anda memiliki frase pemulihan.",
+  "welcome_to_wallet": "Selamat datang di Dompet Signum Phoenix"
 }

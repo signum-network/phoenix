@@ -75,10 +75,15 @@ export class StoreService {
     this.store = this.createStoreInstance(storeConfig);
   }
 
-  private createStoreInstance(config: StoreConfig): Loki {
+  private createStoreInstance(config: StoreConfig,callback?: any): Loki {
     return new Loki(config.databaseName, {
       autoload: true,
-      autoloadCallback: this.init.bind(this),
+      autoloadCallback: () => {
+        this.init();
+        if(callback) {
+          callback()
+        }
+      },
       adapter: config.persistenceAdapter,
       verbose: !environment.production
     });
@@ -464,9 +469,7 @@ export class StoreService {
         if (err){
           reject(err);
         }else {
-          this.store = this.createStoreInstance(this.storeConfig);
-          resolve();
-
+          this.store = this.createStoreInstance(this.storeConfig, resolve);
         }
       });
     });

@@ -574,5 +574,6 @@
   "page_not_found_hint": "Net naudojant „blockchain“, kai kurios erdvės vis dar neuždengtos. Kaip šis čia!",
   "danger_zone": "Pavojaus zona",
   "reset_wallet": "Iš naujo nustatyti Piniginę",
-  "reset_wallet_hint": "Iš naujo nustatant piniginę iš piniginės pašalinami visi vietoje saugomi duomenys, paskyros ir nustatymai. Galite iš naujo importuoti visas savo paskyras naudodami atitinkamą atkūrimo frazę. Jūsų „Signa“ ir žetonai yra saugiai saugomi „blockchain“, todėl neprarandami tol, kol turite atkūrimo frazes."
+  "reset_wallet_hint": "Iš naujo nustatant piniginę iš piniginės pašalinami visi vietoje saugomi duomenys, paskyros ir nustatymai. Galite iš naujo importuoti visas savo paskyras naudodami atitinkamą atkūrimo frazę. Jūsų „Signa“ ir žetonai yra saugiai saugomi „blockchain“, todėl neprarandami tol, kol turite atkūrimo frazes.",
+  "welcome_to_wallet": "Sveiki atvykę į „Signum Phoenix“ piniginę"
 }

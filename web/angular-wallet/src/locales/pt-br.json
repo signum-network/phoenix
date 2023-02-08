@@ -574,5 +574,6 @@
   "page_not_found_hint": "Mesmo com blockchain alguns espaços ainda são descobertos. Como este aqui!",
   "danger_zone": "Zona de perigo",
   "reset_wallet": "Redefinir Carteira",
-  "reset_wallet_hint": "Redefinir a carteira remove todos os dados, contas e configurações armazenados localmente da carteira. Você pode reimportar todas as suas contas usando a respectiva frase de recuperação. Seu Signa e tokens são armazenados com segurança no blockchain e, portanto, não são perdidos enquanto você estiver de posse das frases de recuperação."
+  "reset_wallet_hint": "Redefinir a carteira remove todos os dados, contas e configurações armazenados localmente da carteira. Você pode reimportar todas as suas contas usando a respectiva frase de recuperação. Seu Signa e tokens são armazenados com segurança no blockchain e, portanto, não são perdidos enquanto você estiver de posse das frases de recuperação.",
+  "welcome_to_wallet": "Bem-vindo à Carteira Signum Phoenix"
 }

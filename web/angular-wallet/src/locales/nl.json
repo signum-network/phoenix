@@ -574,5 +574,6 @@
   "page_not_found_hint": "Zelfs met blockchain zijn sommige ruimtes nog steeds onbedekt. Zoals deze hier!",
   "danger_zone": "Gevarenzone",
   "reset_wallet": "Portefeuille resetten",
-  "reset_wallet_hint": "Door de portemonnee opnieuw in te stellen, worden alle lokaal opgeslagen gegevens, accounts en instellingen uit de portemonnee verwijderd. U kunt al uw accounts opnieuw importeren met behulp van de respectieve herstelzin. Je Signa en tokens staan veilig opgeslagen op de blockchain en zijn dus niet verloren zolang je in het bezit bent van de herstelzinnen."
+  "reset_wallet_hint": "Door de portemonnee opnieuw in te stellen, worden alle lokaal opgeslagen gegevens, accounts en instellingen uit de portemonnee verwijderd. U kunt al uw accounts opnieuw importeren met behulp van de respectieve herstelzin. Je Signa en tokens staan veilig opgeslagen op de blockchain en zijn dus niet verloren zolang je in het bezit bent van de herstelzinnen.",
+  "welcome_to_wallet": "Welkom bij de Signum Phoenix-portemonnee"
 }

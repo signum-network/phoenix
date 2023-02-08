@@ -574,5 +574,6 @@
   "page_not_found_hint": "Incluso con blockchain, algunos espacios aún están descubiertos. ¡Como este de aquí!",
   "danger_zone": "Zona peligrosa",
   "reset_wallet": "Restablecer billetera",
-  "reset_wallet_hint": "Restablecer la billetera elimina todos los datos, cuentas y configuraciones almacenados localmente de la billetera. Puede volver a importar todas sus cuentas utilizando la frase de recuperación respectiva. Su Signa y tokens se almacenan de forma segura en la cadena de bloques y, por lo tanto, no se pierden mientras esté en posesión de las frases de recuperación."
+  "reset_wallet_hint": "Restablecer la billetera elimina todos los datos, cuentas y configuraciones almacenados localmente de la billetera. Puede volver a importar todas sus cuentas utilizando la frase de recuperación respectiva. Su Signa y tokens se almacenan de forma segura en la cadena de bloques y, por lo tanto, no se pierden mientras esté en posesión de las frases de recuperación.",
+  "welcome_to_wallet": "Bienvenido a la cartera Signum Phoenix"
 }

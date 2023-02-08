@@ -219,7 +219,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       }
       this.firstTime = false;
     } catch (e) {
-      return this.notifierService.notify('error', this.utilService.translateServerError(e));
+      console.warn('Error while checking for blockchain', e.message);
     }
   }
 

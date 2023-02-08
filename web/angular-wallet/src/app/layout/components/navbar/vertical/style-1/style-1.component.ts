@@ -25,8 +25,8 @@ import hashicon from 'hashicon';
 import { FuseNavigation } from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
-import { NetworkService } from "../../../../../network/network.service";
-import { AppService } from "../../../../../app.service";
+import { NetworkService } from 'app/network/network.service';
+import { AppService } from 'app/app.service';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -194,10 +194,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
 
   toggleSidebarFolded(): void {
     this.fuseSidebarService.getSidebar('navbar').toggleFold();
-  }
-
-  getAccountName(): string {
-    return this.selectedAccount.name || this.i18nService.getTranslation('account_info');
   }
 
   getVersion(): string {

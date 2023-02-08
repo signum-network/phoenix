@@ -7,7 +7,7 @@
   flex-direction: column;
   flex: 1;
   align-items: center;
-  //animation: appear 500ms ease-in-out;
+  animation: appear 500ms ease-in-out;
 
   @keyframes appear {
     0% {
@@ -42,7 +42,7 @@
     background: white;
     border-radius: 8px;
     height: fit-content;
-    padding: 16px;
+    padding: 24px;
     width: 100%;
     margin: 2em 0;
     text-align: center;
