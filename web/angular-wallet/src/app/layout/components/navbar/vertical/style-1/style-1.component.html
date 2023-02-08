@@ -38,7 +38,7 @@
       matTooltip="{{'account_info' | i18n}}"
     >
       <img #hashAvatar *ngIf="hashIconImgSrc && !avatarLoaded" [src]="hashIconImgSrc" alt="avatar-image" />
-      <img #ipfsAvatar [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)"
+      <img #ipfsAvatar *ngIf="avatarImgSrc" [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)"
            alt="avatar-image" />
 
       <div *ngIf="selectedAccount.isUnsafe()"

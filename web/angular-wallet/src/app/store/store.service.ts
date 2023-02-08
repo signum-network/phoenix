@@ -230,9 +230,7 @@ export class StoreService {
       }
 
       this.persist();
-      if (this.getSelectedAccount().account === account.account){
-        this.accountUpdated$.next(new WalletAccount(updatedAccount));
-      }
+      this.accountUpdated$.next(new WalletAccount(updatedAccount));
     });
   }
 

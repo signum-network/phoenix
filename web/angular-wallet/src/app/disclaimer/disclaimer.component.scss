@@ -1,6 +1,6 @@
 @import "src/@fuse/scss/fuse";
 
-.content-container {
+.disclaimer-content-container {
   background-color: #003d6e;
   position: relative;
   display: flex;
@@ -73,60 +73,3 @@
   margin-top: 2rem;
 }
 
-//disclaimer {
-//
-//  #disclaimer {
-//    width: 100%;
-//    background-color: #00579D;
-//
-//    #disclaimer-form-wrapper {
-//      flex: 1 0 auto;
-//      padding: 32px;
-//
-//      @include media-breakpoint('xs') {
-//        padding: 16px;
-//      }
-//
-//      #disclaimer-form {
-//        max-width: 684px;
-//        padding: 48px;
-//        text-align: center;
-//        @include mat-elevation(16);
-//
-//        @include media-breakpoint('xs') {
-//          padding: 24px;
-//          width: 100%;
-//        }
-//
-//        .logo {
-//          width: 180px;
-//          margin: 32px auto;
-//        }
-//
-//        .title {
-//          font-size: 28px;
-//          margin-top: 16px;
-//        }
-//
-//        .subtitle {
-//          margin: 16px 0;
-//          max-width: 600px;
-//          color: rgba(0, 0, 0, 0.54);
-//          font-size: 15px;
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//@keyframes bg {
-//  0% {
-//    background-position: 0 50%
-//  }
-//  50% {
-//    background-position: 100% 50%
-//  }
-//  100% {
-//    background-position: 0% 50%
-//  }
-//}

@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   hmr: false,
   version,
-  defaultNode: 'http://localhost:8125',
+  defaultNode: 'https://europe.signum.network',
   defaultNodeNetwork: 'Signum',
   market: {
     tickerUrl: 'https://api.coingecko.com/api/v3/coins/signum?tickers=false&community_data=false&developer_data=false&market_data=true',
