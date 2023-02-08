@@ -522,7 +522,7 @@
   "account_offline": "Beobachten",
   "account_safe": "Sicher",
   "account_unsafe": "Unsicher!",
-  "error_connection_fail": "Es konnte keine Verbindung zu einem Knoten/Peer hergestellt werden. Bitte wähle einen anderen aus",
+  "error_connection_fail": "Es konnte keine Verbindung zu einem Knoten/Peer hergestellt werden. Bitte wähle einen anderen aus.",
   "delete_selected": "Ausgewählte entfernen",
   "confirm_delete_accounts": "Entfernen bestätigen",
   "confirm_delete_accounts_hint": "Die Konten werden nur aus dieser Anwendung entfernt. Alle deine Werte werden sicher in der Blockchain gespeichert und du kannst entfernte Konten jederzeit mit deiner Recovery-Phrase erneut importieren.",
@@ -575,5 +575,6 @@
   "danger_zone": "Gefahrenzone",
   "reset_wallet": "Wallet zurücksetzen",
   "reset_wallet_hint": "Mit dem Zurücksetzen der Wallet entfernst du alle lokal gespeicherten Daten, Konten und Einstellungen der Wallet. Du kannst alle Deine Konten mittels der jeweilgen Recovery Phrase erneut importieren. Deine Signa und Tokens sind sicher auf der Blockchain gespeichert und somit nicht verloren, solange Du im Besitz der Recovery Phrasen bist.",
-  "welcome_to_wallet": "Willkommen bei der Signum Phoenix Wallet"
+  "welcome_to_wallet": "Willkommen bei der Signum Phoenix Wallet",
+  "refresh_transactions_hint": "Letzte Transaktionen neu laden/aktualisieren"
 }

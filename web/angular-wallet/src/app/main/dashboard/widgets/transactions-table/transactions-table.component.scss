@@ -1,7 +1,19 @@
 :host {
+  //.refresh-btn {
+  //  position: absolute;
+  //  top: 4px;
+  //  right: 4px;
+  //}
+
+  .is-loading {
+    animation: rotate 1s linear infinite;
+  }
+
   .button-link-container {
-    position: absolute;
-    right: 0;
-    bottom: -36px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    align-items: center;
   }
 }

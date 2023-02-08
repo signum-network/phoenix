@@ -575,5 +575,6 @@
   "danger_zone": "Vaaravyöhyke",
   "reset_wallet": "Nollaa lompakko",
   "reset_wallet_hint": "Lompakon nollaaminen poistaa kaikki paikallisesti tallennetut tiedot, tilit ja asetukset lompakosta. Voit tuoda kaikki tilisi uudelleen käyttämällä vastaavaa palautuslauseketta. Signasi ja tunnuksesi on tallennettu turvallisesti lohkoketjuun, joten ne eivät häviä niin kauan kuin sinulla on palautuslausekkeet.",
-  "welcome_to_wallet": "Tervetuloa Signum Phoenix Walletiin"
+  "welcome_to_wallet": "Tervetuloa Signum Phoenix Walletiin",
+  "refresh_transactions_hint": "Päivitä/päivitä viimeisimmät tapahtumat"
 }

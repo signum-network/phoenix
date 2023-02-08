@@ -211,6 +211,9 @@ export class StoreService {
       } else {
         const existingAccount = accounts.by('_id', account._id);
         existingAccount.balanceNQT = account.balanceNQT;
+        existingAccount.effectiveBalanceNQT = account.effectiveBalanceNQT;
+        existingAccount.commitmentNQT = account.commitmentNQT;
+        existingAccount.unconfirmedAssetBalances = account.unconfirmedAssetBalances;
         existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
         existingAccount.committedBalanceNQT = account.committedBalanceNQT;
         existingAccount.accountRSExtended = account.accountRSExtended;

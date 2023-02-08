@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-import { Transaction, } from '@signumjs/core';
+import { Transaction } from '@signumjs/core';
 import { ChainTime } from '@signumjs/util';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
@@ -27,20 +27,12 @@ import { AppService } from 'app/app.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { LedgerService } from 'app/ledger.service';
 
-
-const ColumnsQuery = {
-  xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
-  lg: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
-  md: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
-  sm: ['transaction_id', 'amount', 'account'],
-  xs: ['transaction_id', 'amount']
-};
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],
   templateUrl: './transactions.component.html'
 })
-export class TransactionsComponent extends UnsubscribeOnDestroy implements OnInit, AfterContentInit, AfterViewInit {
+export class TransactionsComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
   isFetching = false;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -57,7 +49,6 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   typeOptions: string[] = [];
   recipientTypeOptions: { k: string, v: string }[] = [];
-  columns: string[] = ColumnsQuery.xl;
   today = new Date();
   minDate: Date;
   typeMap: object = {};
@@ -100,9 +91,11 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     this.storeService.accountUpdated$
       .pipe(this.unsubscriber)
       .subscribe((acc: WalletAccount) => {
-        this.account = acc;
-        this.dataSource.data = acc.transactions;
-        this.initTypes();
+        if (this.account && this.account.account === acc.account) {
+          this.account = acc;
+          this.dataSource.data = acc.transactions;
+          this.initTypes();
+        }
       });
   }
 
@@ -125,14 +118,6 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
     this.recipientTypeOptions = Object.entries(this.recipientTypeMap).map(([k, v]) => ({ k, v }));
     this.oldestTransactionDate = ChainTime.fromChainTimestamp(oldestTransactionTimestamp).getDate();
-  }
-
-  public ngAfterContentInit(): void {
-    this.observableMedia.asObservable()
-      .pipe(this.unsubscriber)
-      .subscribe((change: MediaChange[]) => {
-        this.columns = ColumnsQuery[change[0].mqAlias];
-      });
   }
 
   public ngAfterViewInit(): void {
@@ -208,9 +193,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
           return;
         }
         this.isFetching = true;
-        this.progressBarService.show();
         await this.loadTransactions();
-        this.progressBarService.hide();
         this.isFetching = false;
       });
   }
@@ -220,6 +203,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     let firstIndex = 0;
     let hasMore = true;
     try {
+      this.progressBarService.show();
       this.account.transactions = [];
       while (hasMore) {
         const { transactions } = await this.ledgerService.ledger.account.getAccountTransactions({
@@ -230,7 +214,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
           lastIndex: firstIndex + FetchSize
         });
 
-        transactions.sort((a, b) => b.timestamp - a.timestamp );
+        transactions.sort((a, b) => b.timestamp - a.timestamp);
         this.account.transactions.push(...transactions);
         hasMore = transactions.length >= FetchSize && this.account.transactions.length < limit;
         firstIndex += FetchSize;
@@ -238,6 +222,12 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
       }
     } catch (e) {
       console.error('Loading all transactions caused an error', e.message);
+    } finally {
+      this.progressBarService.hide();
     }
+  }
+
+  async refreshTransactions(): Promise<void> {
+    await this.loadTransactions(500);
   }
 }

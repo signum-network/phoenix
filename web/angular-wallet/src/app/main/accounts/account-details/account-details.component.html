@@ -40,7 +40,6 @@
         <mat-tab label="{{ 'transactions' | i18n }}">
           <app-transaction-table
             [dataSource]="dataSource"
-            [displayedColumns]="columns"
             [account]="account"
             [isLoading]="isLoadingTransactions"
           >

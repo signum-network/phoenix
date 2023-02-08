@@ -575,5 +575,6 @@
   "danger_zone": "Zona de perigo",
   "reset_wallet": "Restablecer carteira",
   "reset_wallet_hint": "Restablecer a carteira elimina todos os datos, contas e configuracións almacenados localmente da carteira. Podes volver importar todas as túas contas usando a frase de recuperación respectiva. Os teus signos e tokens almacénanse de forma segura na cadea de bloques e, polo tanto, non se perden mentres esteas en posesión das frases de recuperación.",
-  "welcome_to_wallet": "Benvido a Signum Phoenix Wallet"
+  "welcome_to_wallet": "Benvido a Signum Phoenix Wallet",
+  "refresh_transactions_hint": "Recarga/Actualiza as últimas transaccións"
 }

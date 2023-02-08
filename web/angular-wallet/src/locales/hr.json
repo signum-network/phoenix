@@ -575,5 +575,6 @@
   "danger_zone": "Zona opasnosti",
   "reset_wallet": "Poništi novčanik",
   "reset_wallet_hint": "Ponovno postavljanje novčanika uklanja sve lokalno pohranjene podatke, račune i postavke iz novčanika. Možete ponovno uvesti sve svoje račune pomoću odgovarajuće fraze za oporavak. Vaša Signa i tokeni sigurno su pohranjeni na blockchainu i stoga se ne gube sve dok imate fraze za oporavak.",
-  "welcome_to_wallet": "Dobro došli u Signum Phoenix novčanik"
+  "welcome_to_wallet": "Dobro došli u Signum Phoenix novčanik",
+  "refresh_transactions_hint": "Ponovno učitaj/osvježi najnovije transakcije"
 }

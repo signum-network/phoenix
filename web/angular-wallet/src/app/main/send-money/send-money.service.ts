@@ -80,20 +80,21 @@ export class SendMoneyService {
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
       const recipient = await this.accountService.getAccount(recipientId);
+      if (!recipient.keys.publicKey) {
+        throw new ErrorEvent('error_recipient_no_public_key');
+      }
       const agreementPrivateKey = getPrivateEncryptionKey(pin, keys);
       let encryptedMessage: EncryptedMessage | EncryptedData;
       if (messageIsText) {
         encryptedMessage = encryptMessage(
           message,
-          // @ts-ignore
-          recipient.publicKey,
+          recipient.keys.publicKey,
           agreementPrivateKey
         );
       } else {
         encryptedMessage = encryptData(
           new Uint8Array(convertHexStringToByteArray(message)),
-          // @ts-ignore
-          recipient.publicKey,
+          recipient.keys.publicKey,
           agreementPrivateKey
         );
       }

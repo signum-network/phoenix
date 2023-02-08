@@ -575,5 +575,6 @@
   "danger_zone": "Tehlikeli bölge",
   "reset_wallet": "Cüzdanı Sıfırla",
   "reset_wallet_hint": "Cüzdanın sıfırlanması, yerel olarak saklanan tüm verileri, hesapları ve ayarları cüzdandan kaldırır. İlgili kurtarma ifadesini kullanarak tüm hesaplarınızı yeniden içe aktarabilirsiniz. Signa'nız ve jetonlarınız blok zincirinde güvenli bir şekilde saklanır ve bu nedenle kurtarma ifadelerine sahip olduğunuz sürece kaybolmaz.",
-  "welcome_to_wallet": "Signum Phoenix Wallet'a hoş geldiniz"
+  "welcome_to_wallet": "Signum Phoenix Wallet'a hoş geldiniz",
+  "refresh_transactions_hint": "En son işlemleri yeniden yükle/yenile"
 }

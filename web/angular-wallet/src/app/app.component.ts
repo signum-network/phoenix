@@ -1,7 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, ApplicationRef} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
-import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
 import {BlockchainStatus} from '@signumjs/core';
 import {parseDeeplink} from '@signumjs/util';
@@ -22,7 +21,7 @@ import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
 import { AccountManagementService } from './shared/services/account-management.service';
-import { FuseSplashScreenService } from "../@fuse/services/splash-screen.service";
+import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 
 const BlockchainStatusInterval = 30_000;
 
@@ -94,16 +93,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     super.ngOnDestroy();
     clearInterval(this.blockchainStatusInterval);
   }
-
-  // private updateAccounts(network:string): void {
-  //   this.storeService
-  //     .getAllAccountsByNetwork(network)
-  //     .forEach((id) =>
-  //       this.accountService.getAccount(id.account)
-  //         .then( account => this.storeService.saveAccount(account))
-  //         .catch(e => console.warn('Could not update account', e.message))
-  //     );
-  // }
 
   private initDeepLinkHandler(): void {
     this.appService.onIpcMessage('deep-link-clicked', async (url) => {

@@ -28,8 +28,9 @@ export class AccountManagementService {
   }
 
   private async fetchAccountsRecentTransactions(account: WalletAccount): Promise<Transaction[]> {
-    const lastKnownTransactionTimestamp = account.transactions.length
-      ? account.transactions[0].timestamp
+    const confirmedTransactions = account.transactions.filter(({confirmations}) => confirmations !== undefined);
+    const lastKnownConfirmedTransactionTimestamp = confirmedTransactions.length
+      ? confirmedTransactions[0].timestamp
       : 0;
 
 
@@ -37,7 +38,7 @@ export class AccountManagementService {
       accountId: account.account,
       includeIndirect: true,
       resolveDistributions: true,
-      timestamp: lastKnownTransactionTimestamp.toString(10)
+      timestamp: lastKnownConfirmedTransactionTimestamp.toString(10)
     });
     return transactions;
   }

@@ -575,5 +575,6 @@
   "danger_zone": "Zona periculoasă",
   "reset_wallet": "Resetați portofelul",
   "reset_wallet_hint": "Resetarea portofelului elimină toate datele, conturile și setările stocate local din portofel. Puteți reimporta toate conturile folosind expresia de recuperare respectivă. Semnele și jetoanele dvs. sunt stocate în siguranță pe blockchain și, prin urmare, nu sunt pierdute atâta timp cât sunteți în posesia frazelor de recuperare.",
-  "welcome_to_wallet": "Bine ați venit la Signum Phoenix Wallet"
+  "welcome_to_wallet": "Bine ați venit la Signum Phoenix Wallet",
+  "refresh_transactions_hint": "Reîncărcați/Actualizați cele mai recente tranzacții"
 }

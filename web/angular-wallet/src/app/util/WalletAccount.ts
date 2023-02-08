@@ -21,6 +21,7 @@ export class WalletAccount{
   public commitmentNQT: string;
   public committedBalanceNQT: string;
   public confirmed: boolean;
+  public confirmations: number | undefined;
 
   constructor(data: any = {}) {
     this._id = data._id;

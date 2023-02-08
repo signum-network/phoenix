@@ -575,5 +575,6 @@
   "danger_zone": "Pavojaus zona",
   "reset_wallet": "Iš naujo nustatyti Piniginę",
   "reset_wallet_hint": "Iš naujo nustatant piniginę iš piniginės pašalinami visi vietoje saugomi duomenys, paskyros ir nustatymai. Galite iš naujo importuoti visas savo paskyras naudodami atitinkamą atkūrimo frazę. Jūsų „Signa“ ir žetonai yra saugiai saugomi „blockchain“, todėl neprarandami tol, kol turite atkūrimo frazes.",
-  "welcome_to_wallet": "Sveiki atvykę į „Signum Phoenix“ piniginę"
+  "welcome_to_wallet": "Sveiki atvykę į „Signum Phoenix“ piniginę",
+  "refresh_transactions_hint": "Iš naujo įkelti / atnaujinti naujausias operacijas"
 }

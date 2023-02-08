@@ -575,5 +575,6 @@
   "danger_zone": "Strefa niebezpieczeństwa",
   "reset_wallet": "Zresetuj portfel",
   "reset_wallet_hint": "Zresetowanie portfela powoduje usunięcie wszystkich przechowywanych lokalnie danych, kont i ustawień z portfela. Możesz ponownie zaimportować wszystkie swoje konta, używając odpowiedniej frazy odzyskiwania. Twoje Signa i tokeny są bezpiecznie przechowywane w łańcuchu blokowym i dlatego nie zostaną utracone, dopóki posiadasz frazy odzyskiwania.",
-  "welcome_to_wallet": "Witamy w portfelu Signum Phoenix"
+  "welcome_to_wallet": "Witamy w portfelu Signum Phoenix",
+  "refresh_transactions_hint": "Przeładuj/Odśwież ostatnie transakcje"
 }

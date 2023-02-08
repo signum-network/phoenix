@@ -3,14 +3,11 @@ import { DashboardLayoutService } from '../dashboard.layout.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { PowerDashboardLayoutParameters, PowerDashboardLayoutConfiguration } from './PowerDashboardLayoutConfiguration';
-import { Account } from '@signumjs/core';
 import { StoreService } from 'app/store/store.service';
-import { AccountService } from '../../../setup/account/account.service';
-import { NotifierService } from 'angular-notifier';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { AccountManagementService } from "../../../shared/services/account-management.service";
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
 

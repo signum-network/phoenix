@@ -14,6 +14,7 @@ import { WalletContact } from 'app/util/WalletContact';
 import { NotifierService } from 'angular-notifier';
 import { MatDialog } from '@angular/material/dialog';
 import { I18nService } from 'app/shared/services/i18n.service';
+import { Address } from '@signumjs/core';
 
 @Component({
   selector: 'app-address',
@@ -55,8 +56,8 @@ export class AddressComponent extends UnsubscribeOnDestroy implements OnInit {
     this.isContact = !!this.contactManagementService.findContactById(this.accountId);
   }
 
-  copyToClipboard(accountId: string): void {
-    this.appService.copyToClipboard(accountId);
+  copyToClipboard(data: string): void {
+    this.appService.copyToClipboard(data);
   }
 
   openInExplorer(accountId: string): void {
@@ -100,6 +101,15 @@ export class AddressComponent extends UnsubscribeOnDestroy implements OnInit {
       this.notificationService.notify('success', this.i18nService.getTranslation('contact_added'));
     }catch (e){
       this.notificationService.notify('error', this.i18nService.getTranslation('error_add_contact'));
+    }
+  }
+
+  copyAccountAddress(accountId: string): void{
+    try{
+      const address = Address.fromNumericId(accountId);
+      this.copyToClipboard(address.getReedSolomonAddress());
+    }catch (e){
+      this.notificationService.notify('error', this.i18nService.getTranslation('error_clipboard_copy'));
     }
   }
 }
