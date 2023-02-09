@@ -1,4 +1,9 @@
 <div *ngIf="accountId" class="inline">
+  <span class="address">
+    <a class="font-size-16" [routerLink]="['/account', accountId]">{{accountId | address:false:true}}</a>
+    <mat-icon *ngIf="isContact" class="contact-icon" matTooltip="{{'contact' | i18n}}">group</mat-icon>
+  </span>
+
   <ng-container *ngIf="!noActions">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Actions" class="secondary-text"
             matTooltip="{{'actions' | i18n}}">
@@ -8,6 +13,10 @@
       <button mat-menu-item (click)="copyToClipboard(accountId)">
         <mat-icon>file_copy</mat-icon>
         <span>{{'copy_account_id' | i18n}}</span>
+      </button>
+      <button mat-menu-item (click)="copyAccountAddress(accountId)">
+        <mat-icon>file_copy</mat-icon>
+        <span>{{'copy_account_address' | i18n}}</span>
       </button>
       <button mat-menu-item (click)="openInExplorer(accountId)">
         <mat-icon>link</mat-icon>
@@ -32,9 +41,4 @@
       </button>
     </mat-menu>
   </ng-container>
-
-  <span class="address">
-    <a class="font-size-16" [routerLink]="['/account', accountId]">{{accountId | address:false:true}}</a>
-    <mat-icon *ngIf="isContact" class="contact-icon" matTooltip="{{'contact' | i18n}}">group</mat-icon>
-  </span>
 </div>

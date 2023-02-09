@@ -1,110 +1,15 @@
-<app-page title="{{ 'settings' | i18n }}">
+<app-page title="{{ 'settings' | i18n }}" [wide]="true">
   <div class="p-20" fxLayout="column">
-    <mat-list>
-      <div class="node-selector">
-        <h2 class="mb-8 secondary-text">{{"settings_node" | i18n}}</h2>
-        <div class="node-selector__automatic">
-          <small>
-            {{ 'selected_node' | i18n }}
-          </small>
-          <div class="selected">
-            <p class="font-size-16 font-weight-700">
-              {{selectedNode.value}}
-            </p>
-            <div>
-              <div class="version-info secondary-text font-size-10">
-                {{getVersion()}}
-              </div>
-              <mat-icon *ngIf="showConnectionErrorIcon"
-                        class="error-icon"
-                        matTooltip="{{'error_server_connect' | i18n}}"
-              >
-                error_outline
-              </mat-icon>
-              <mat-icon *ngIf="!showConnectionErrorIcon"
-                        class="ok-icon"
-                        matTooltip="{{'node_successfully_connected' | i18n}}"
-              >
-                check_circle_outline
-              </mat-icon>
-              <mat-icon class="cursor-pointer secondary-text"
-                        [class.isFetching]="isFetchingNodeInfo"
-                        matTooltip="{{'click_to_refresh' | i18n}}"
-                        (click)="autoSelectNode()"
-              >
-                refresh
-              </mat-icon>
-            </div>
-          </div>
-          <div class="full-width">
-
-          </div>
-        </div>
-        <mat-slide-toggle
-          [(ngModel)]="isAutomatic" name="isManual"
-          (change)="setSelectionMode()"
-          matTooltip="{{'toggle_nodeselection_mode' | i18n}}"
-        >
-          {{(isAutomatic ? 'automatic_nodeselection' : "manual_nodeselection") | i18n}}
-        </mat-slide-toggle>
-        <div class="node-selector__manual mt-20" *ngIf="!isAutomatic">
-          <small class="mb-8">
-            {{ 'select_node_description' | i18n }}
-          </small>
-          <mat-form-field>
-            <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-              <input type="text"
-                     placeholder="{{ 'select_node' | i18n }}"
-                     matInput
-                     [formControl]="selectedNode"
-                     [matAutocomplete]="auto">
-              <div class="version-info secondary-text font-size-10">
-                {{getVersion()}}
-                <mat-icon *ngIf="showConnectionErrorIcon"
-                          class="error-icon"
-                          matTooltip="{{'error_server_connect' | i18n}}"
-                >
-                  error_outline
-                </mat-icon>
-              </div>
-            </div>
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let node of nodes" [value]="node">
-                {{node}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-
-          <mat-checkbox class="font-size-14" [formControl]="showTestnet"
-                        name="showTestnet">{{ "show_testnet_nodes" | i18n }}</mat-checkbox>
-
-          <div class="button-wrapper">
-            <ul class="unfeatures">
-              <li *ngFor="let feature of getUnsupportedFeatures()"
-                  class="secondary-text font-size-10"
-              >
-                {{feature}}
-              </li>
-            </ul>
-            <button mat-raised-button color="accent" (click)="selectNode()"
-                    disabled="{{isFetchingNodeInfo}}">{{'select_node' | i18n }}</button>
-          </div>
-        </div>
-      </div>
-
-      <ng-container *ngIf="isDesktop">
-        <mat-divider class="my-24"></mat-divider>
-        <div>
-          <div class="font-size-14 font-weight-600 mb-8 secondary-text">{{"settings_notification" | i18n}}</div>
-          <mat-slide-toggle
-            [(ngModel)]="showDesktopNotifications"
-            (change)="setDesktopNotifications()"
-            matTooltip="{{'toggle_desktop_notification' | i18n}}"
-          >
-            {{(showDesktopNotifications ? 'notifications_enabled' : "notifications_disabled") | i18n}}
-          </mat-slide-toggle>
-        </div>
-      </ng-container>
-    </mat-list>
+    <mat-tab-group>
+      <mat-tab label="{{ 'settings_node' | i18n }}">
+        <settings-node-selector></settings-node-selector>
+      </mat-tab>
+      <mat-tab label="{{ 'desktop' | i18n }}">
+        <settings-desktop></settings-desktop>
+      </mat-tab>
+      <mat-tab label="{{ 'danger_zone' | i18n }}">
+        <settings-danger-zone></settings-danger-zone>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </app-page>

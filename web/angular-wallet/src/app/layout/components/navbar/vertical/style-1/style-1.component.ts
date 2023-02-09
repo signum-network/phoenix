@@ -7,7 +7,7 @@ import {
   ApplicationRef
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { delay, filter, take, takeUntil } from 'rxjs/operators';
+import { delay, filter, take, takeUntil, merge, concat } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
@@ -25,6 +25,8 @@ import hashicon from 'hashicon';
 import { FuseNavigation } from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { NetworkService } from 'app/network/network.service';
+import { AppService } from 'app/app.service';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -57,7 +59,9 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     private i18nService: I18nService,
     private notifierService: NotifierService,
     private router: Router,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private networkService: NetworkService,
+    private appService: AppService,
   ) {
     super();
     // Set the private defaults
@@ -135,21 +139,23 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
         }
       );
 
+    this.storeService.accountUpdated$
+      .pipe(this.unsubscribe)
+      .subscribe((account: WalletAccount) => {
+          if (this.selectedAccount.account === account.account) {
+            this.selectedAccount = account;
+            this.updateAvatar();
+            // navigation does not need to be updated
+            this.appRef.tick();
+          }
+        }
+      );
+
     // Subscribe to the config changes
     this.fuseConfigService.config
       .pipe(this.unsubscribe)
       .subscribe((config) => {
         this.fuseConfig = config;
-      });
-
-    // Get current navigation
-    this.fuseNavigationService.onNavigationChanged
-      .pipe(
-        filter(value => value !== null),
-        this.unsubscribe
-      )
-      .subscribe(() => {
-        this.updateAvatar();
       });
   }
 
@@ -179,25 +185,12 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     this.fuseSidebarService.getSidebar('navbar').toggleFold();
   }
 
-  getAccountName(): string {
-    return this.selectedAccount.name || this.i18nService.getTranslation('account_info');
-  }
-
   getVersion(): string {
     return environment.version;
   }
 
   async copy(val: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(val);
-      this.notifierService.notify('success',
-        this.i18nService.getTranslation('success_clipboard_copy')
-      );
-    } catch (e) {
-      this.notifierService.notify('error',
-        this.i18nService.getTranslation('error_clipboard_copy')
-      );
-    }
+    await this.appService.copyToClipboard(val);
   }
 
   getBalance(): string {
@@ -208,7 +201,7 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
 
     const navigation = this.fuseNavigationService.getCurrentNavigation() as FuseNavigation[];
 
-    const isFullAccount = this.selectedAccount.type !== 'offline';
+    const isFullAccount = !this.selectedAccount.isWatchOnly();
 
     const traverse = (n: FuseNavigation) => {
       n.hidden = n.fullAccountOnly && !isFullAccount;
@@ -220,4 +213,13 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     this.navigation = navigation;
   }
 
+  openInExplorer(account: string): void {
+      const host = this.networkService.getChainExplorerHost();
+      const url = `${host}/address/${account}`;
+      if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
+  }
 }

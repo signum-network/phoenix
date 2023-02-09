@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Het account van de ontvanger heeft geen openbare sleutel.",
   "error_recipient_no_public_key_announcement": "Ontvangeraccount heeft geen openbare sleutel, moet een aankondiging van een openbare sleutel bijvoegen.",
   "error_refund_already_sent": "Terugbetaling al verzonden.",
-  "error_send_money": "Er is een onbekende fout opgetreden! Signa kan al dan niet worden verzonden.",
+  "error_send_money": "Hmm... de overdracht is om onbekende redenen mislukt. Sorry, voor het ongemak 🤷",
   "error_server_connect": "Kon geen verbinding maken met de server.",
   "error_set_reward_recipient": "Er is een onbekende fout opgetreden! Je kon niet in het zwembad.",
   "error_transaction_already_signed": "Transactie al getekend.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Gegevens bericht",
   "add_account_or_contact": "Account of contactpersoon toevoegen",
   "hint_new_account": "Dit is een nieuwe rekening. Het is nog niet geregistreerd in de keten, d.w.z. heeft geen transacties.",
-  "account_new": "Nieuw"
+  "account_new": "Nieuw",
+  "page_not_found_title": "Bron Niet gevonden",
+  "page_not_found_hint": "Zelfs met blockchain zijn sommige ruimtes nog steeds onbedekt. Zoals deze hier!",
+  "danger_zone": "Gevarenzone",
+  "reset_wallet": "Portefeuille resetten",
+  "reset_wallet_hint": "Door de portemonnee opnieuw in te stellen, worden alle lokaal opgeslagen gegevens, accounts en instellingen uit de portemonnee verwijderd. U kunt al uw accounts opnieuw importeren met behulp van de respectieve herstelzin. Je Signa en tokens staan veilig opgeslagen op de blockchain en zijn dus niet verloren zolang je in het bezit bent van de herstelzinnen.",
+  "welcome_to_wallet": "Welkom bij de Signum Phoenix-portemonnee",
+  "refresh_transactions_hint": "Laad/vernieuw de laatste transacties",
+  "desktop": "Bureaublad",
+  "success_send_message": "Bericht succesvol verzonden",
+  "error_send_message": "Hmm... het verzenden van het bericht is om onbekende redenen mislukt."
 }

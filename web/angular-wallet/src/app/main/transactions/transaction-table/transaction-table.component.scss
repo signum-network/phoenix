@@ -3,10 +3,22 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
+    justify-content: center !important;
+  }
+
+  mat-header-cell:first-child,
+  mat-cell:first-child
+  {
+    justify-content: start !important;
+  }
+
+  mat-header-cell:last-child,
+  mat-cell:last-child
+  {
+    justify-content: flex-end !important;
   }
 
   .mat-column-transaction_id {
-    flex: 0 1 220px;
     .transaction-content {
       display: flex;
       flex-direction: row;
@@ -26,7 +38,6 @@
   }
 
   .mat-column-timestamp {
-    flex: 0 1 80px;
     align-items: center;
     margin-left: 0.5rem;
     .timestamp-content {
@@ -37,14 +48,16 @@
   }
 
   .mat-column-account {
-    flex: 1 0 220px;
+    min-width: 295px;
   }
 
   .mat-column-amount {
 
     .amount-content {
       color: rgb(0, 35, 65);
-
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .amount {
         padding: 0.25rem 1rem;
         border-radius: 10px;
@@ -69,14 +82,11 @@
     }
   }
 
-  .mat-column-confirmations {
-    flex: 0 0 140px
-  }
-
   .mat-cell {
     word-wrap: normal;
     white-space: nowrap;
     overflow: hidden;
+    justify-content: center !important;
   }
 
   .self {

@@ -1,6 +1,6 @@
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="transaction_id">
-    <mat-header-cell *matHeaderCellDef >
+    <mat-header-cell *matHeaderCellDef>
       {{"transaction_id" | i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
@@ -13,10 +13,10 @@
   </ng-container>
 
   <ng-container matColumnDef="timestamp">
-    <mat-header-cell *matHeaderCellDef >
+    <mat-header-cell *matHeaderCellDef fxHide.xs >
       {{"date" | i18n}}
     </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction" fxHide.xs>
       <div class="timestamp-content stacked">
         <div>
           {{ getDate(transaction)}}
@@ -29,7 +29,7 @@
   </ng-container>
 
   <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef >
+    <mat-header-cell *matHeaderCellDef>
       {{"type" | i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
@@ -61,10 +61,10 @@
   </ng-container>
 
   <ng-container matColumnDef="account">
-    <mat-header-cell *matHeaderCellDef >
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>
       {{ "account" | i18n }}
     </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction" fxHide fxShow.gt-sm>
       <ng-container *ngIf="isOwnAccount(transaction.sender)">
         <div *ngIf="isBurn(transaction)"
              class="text-uppercase"
@@ -88,16 +88,6 @@
       <ng-container *ngIf="!isOwnAccount(transaction.sender)">
         <app-address [accountId]="transaction.sender"></app-address>
       </ng-container>
-    </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="confirmations">
-    <mat-header-cell *matHeaderCellDef >{{
-      "confirmations" | i18n
-      }}</mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>
-      <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>
     </mat-cell>
   </ng-container>
 

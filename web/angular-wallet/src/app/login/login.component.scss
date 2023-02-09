@@ -1,151 +1,200 @@
 @import "src/@fuse/scss/fuse";
+:host {
+  $media-query-mobile: 0;
+  $media-query-tablet: 768px;
+  $media-query-desktop: 992px;
+  $media-query-screen: 1200px;
 
-$media-query-mobile: 0;
-$media-query-tablet: 768px;
-$media-query-desktop: 992px;
-$media-query-screen: 1200px;
+  $existing-color: #b3b3b3;
+  $new-color: #1e88e5;
+  $text-color: #333333;
+  $text-alt-color: #003D6E;
 
-$existing-color: #b3b3b3;
-$new-color: #1e88e5;
-$text-color: #333333;
-$text-alt-color: #003D6E;
-
-.login {
-  display: flex;
-  height: calc(100vh - 64px);
-  width: 100vw;
-  align-items: center;
-  //background: #003D6E;
-
-  background: #003D6E;
-
-  &__panel {
-    @include mat-elevation(16);
-    background: #fff;
-    padding: 3rem 2rem;
-    justify-self: center;
-    position: absolute;
-    top: 10%;
-    left: 0;
-    width: auto;
-    border-radius: 4px;
-    @media screen and (min-width: $media-query-tablet) {
-      left: 25%;
-      width: 50%;
-    }
-  }
-
-  &__header {
-    text-align: center;
-  }
-
-  &__logo {
-    width: 150px;
-    margin:0 auto;
-  }
-
-  &__version {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-  &__body {
+  .content-container {
+    background-color: #003d6e;
+    position: relative;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 6rem);
-    justify-content: center;
-    @media screen and (min-width: $media-query-mobile) {
-      padding: 0 2rem;
-    }
-    @media screen and (min-width: $media-query-tablet) {
-      padding: 0 4rem;
-    }
-    @media screen and (min-width: $media-query-desktop) {
-      padding: 0 6rem;
-    }
-  }
-
-  &__title {
-    color: $text-color;
-    font-weight: 700;
-    margin: 20px 0 0;
-    line-height: 3rem;
-    @media screen and (min-width: $media-query-mobile) {
-      font-size: 2rem;
-    }
-    @media screen and (min-width: $media-query-tablet) {
-      font-size: 3rem;
-    }
-  }
-
-  &__info {
-    color: $text-alt-color;
-    font-size: 1.75rem;
-  }
-
-  &__actions {
+    flex: 1;
     align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 2rem 0;
-    text-align: center;
-  }
+    animation: appear 500ms ease-in-out;
 
-  &__link {
-    border-radius: 50px;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    padding: 1rem 2rem;
-    text-decoration: none !important;
-    transition: background .15s ease-in;
-    width: 85%;
-
-    @media screen and (min-width: $media-query-tablet) {
-      width: 75%;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    &--new {
-      @extend .login__link;
-      background: $new-color;
-      color: #fdfdfd;
-
-      &:hover {
-        background: darken($new-color, 5%);
+    @keyframes appear {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
       }
     }
 
-    &--existing {
-      @extend .login__link;
-      background: $existing-color;
+    @include media-breakpoint('xs') {
+      height: 100%;
+    }
+
+    h1 {
+      position: relative;
+      color: white;
+      font-size: 18px;
+
+      .version {
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        font-size: 12px;
+
+      }
+    }
+
+    .content {
+      max-width: 800px;
+      background: white;
+      border-radius: 8px;
+      height: fit-content;
+      padding: 16px;
+      width: 100%;
+      margin: 2em 0;
+      text-align: center;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+      @include media-breakpoint('xs') {
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 8px;
+      }
+
+      .title {
+        font-size: 28px;
+        margin-top: 16px;
+      }
+
+      .text {
+        margin: 16px 0;
+        text-align: justify;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 15px;
+      }
+    }
+  }
+
+  .logo {
+    width: 240px;
+    margin-top: 2rem;
+  }
+
+  .login {
+    &__header {
+      text-align: center;
+    }
+
+    &__logo {
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    &__version {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 6rem);
+      justify-content: center;
+      @media screen and (min-width: $media-query-mobile) {
+        padding: 0 2rem;
+      }
+      @media screen and (min-width: $media-query-tablet) {
+        padding: 0 4rem;
+      }
+      @media screen and (min-width: $media-query-desktop) {
+        padding: 0 6rem;
+      }
+    }
+
+    &__title {
       color: $text-color;
+      font-weight: 700;
+      margin: 20px 0 0;
+      line-height: 3rem;
+      @media screen and (min-width: $media-query-mobile) {
+        font-size: 2rem;
+      }
+      @media screen and (min-width: $media-query-tablet) {
+        font-size: 3rem;
+      }
+    }
+
+    &__info {
+      color: $text-alt-color;
       font-size: 1.75rem;
+    }
 
-      &:hover {
-        background: darken($existing-color, 5%);
+    &__actions {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    &__link {
+      border-radius: 50px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      padding: 1rem 2rem;
+      text-decoration: none !important;
+      transition: background .15s ease-in;
+      width: 85%;
+
+      @media screen and (min-width: $media-query-tablet) {
+        width: 75%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &--new {
+        @extend .login__link;
+        background: $new-color;
+        color: #fdfdfd;
+
+        &:hover {
+          background: darken($new-color, 5%);
+        }
+      }
+
+      &--existing {
+        @extend .login__link;
+        background: $existing-color;
+        color: $text-color;
+        font-size: 1.75rem;
+
+        &:hover {
+          background: darken($existing-color, 5%);
+        }
+      }
+
+      &--default {
+        color: $text-color;
       }
     }
 
-    &--default {
-      color: $text-color;
-    }
-  }
+    &__divider {
+      color: $text-alt-color;
 
-  &__divider {
-    color: $text-alt-color;
+      &::before {
+        content: '-';
+        margin-right: .5rem;
+      }
 
-    &::before {
-      content: '-';
-      margin-right: .5rem;
-    }
-
-    &::after {
-      content: '-';
-      margin-left: .5rem;
+      &::after {
+        content: '-';
+        margin-left: .5rem;
+      }
     }
   }
 }

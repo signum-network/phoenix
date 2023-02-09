@@ -1,0 +1,89 @@
+<mat-list class="py-24">
+  <div class="node-selector">
+    <div class="node-selector__automatic">
+      <small>
+        {{ 'selected_node' | i18n }}
+      </small>
+      <div class="selected">
+        <p class="font-size-16 font-weight-700">
+          {{selectedNode.value}}
+        </p>
+        <span>
+          <div class="version-info secondary-text font-size-10 mr-4">
+            {{getVersion()}}
+          </div>
+          <mat-icon *ngIf="showConnectionErrorIcon"
+                    class="error-icon"
+                    matTooltip="{{'error_server_connect' | i18n}}"
+          >
+            error_outline
+          </mat-icon>
+          <mat-icon *ngIf="!showConnectionErrorIcon"
+                    class="ok-icon"
+                    matTooltip="{{'node_successfully_connected' | i18n}}"
+          >
+            check_circle_outline
+          </mat-icon>
+          <mat-icon class="cursor-pointer secondary-text"
+                    [class.isFetching]="isFetchingNodeInfo"
+                    matTooltip="{{'click_to_refresh' | i18n}}"
+                    (click)="autoSelectNode()"
+          >
+            refresh
+          </mat-icon>
+        </span>
+      </div>
+    </div>
+    <mat-slide-toggle
+      [(ngModel)]="isAutomatic" name="isManual"
+      (change)="setSelectionMode()"
+      matTooltip="{{'toggle_nodeselection_mode' | i18n}}"
+    >
+      {{(isAutomatic ? 'automatic_nodeselection' : "manual_nodeselection") | i18n}}
+    </mat-slide-toggle>
+    <div class="node-selector__manual mt-20" *ngIf="!isAutomatic">
+      <small class="mb-8">
+        {{ 'select_node_description' | i18n }}
+      </small>
+      <mat-form-field>
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+          <input type="text"
+                 placeholder="{{ 'select_node' | i18n }}"
+                 matInput
+                 [formControl]="selectedNode"
+                 [matAutocomplete]="auto">
+          <div class="version-info secondary-text font-size-10">
+            {{getVersion()}}
+            <mat-icon *ngIf="showConnectionErrorIcon"
+                      class="error-icon"
+                      matTooltip="{{'error_server_connect' | i18n}}"
+            >
+              error_outline
+            </mat-icon>
+          </div>
+        </div>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let node of nodes" [value]="node">
+            {{node}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-checkbox class="font-size-14" [formControl]="showTestnet"
+                    name="showTestnet">{{ "show_testnet_nodes" | i18n }}</mat-checkbox>
+
+      <div class="button-wrapper">
+        <ul class="unfeatures">
+          <li *ngFor="let feature of getUnsupportedFeatures()"
+              class="secondary-text font-size-10"
+          >
+            {{feature}}
+          </li>
+        </ul>
+        <button mat-raised-button color="accent" (click)="selectNode()"
+                disabled="{{isFetchingNodeInfo}}">{{'select_node' | i18n }}</button>
+      </div>
+    </div>
+  </div>
+
+</mat-list>

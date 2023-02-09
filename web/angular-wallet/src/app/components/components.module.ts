@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {SubmitTransactionComponent} from './submit-transaction/submit-transaction.component';
 import {RouterModule} from '@angular/router';
-import {FlexModule} from '@angular/flex-layout';
+import { ExtendedModule, FlexModule } from "@angular/flex-layout";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -28,6 +28,7 @@ import { EditContactDialogComponent } from './edit-contact-dialog/edit-contact-d
 import { AddressComponent } from './address/address.component';
 import { MatMenuModule } from "@angular/material/menu";
 import { ContactSelectorComponent } from './recipient-input/contact-selector/contact-selector.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ContactSelectorComponent } from './recipient-input/contact-selector/con
     WarnSendDialogComponent,
     WatermarkComponent,
     ContactSelectorComponent,
+    NotFoundPageComponent,
   ],
   exports: [
     AddContactDialogComponent,
@@ -63,6 +65,7 @@ import { ContactSelectorComponent } from './recipient-input/contact-selector/con
     SubmitTransactionComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
+    NotFoundPageComponent
   ],
   imports: [
     AppSharedModule,
@@ -81,7 +84,8 @@ import { ContactSelectorComponent } from './recipient-input/contact-selector/con
     Ng5SliderModule,
     NgJsonEditorModule,
     RouterModule,
-    MatMenuModule
+    MatMenuModule,
+    ExtendedModule
   ],
   entryComponents: [
     AddContactDialogComponent,

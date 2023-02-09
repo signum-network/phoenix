@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Účet príjemcu nemá verejný kľúč.",
   "error_recipient_no_public_key_announcement": "Účet príjemcu nemá verejný kľúč, je potrebné pripojiť oznámenie o verejnom kľúči.",
   "error_refund_already_sent": "Vrátenie platby už bolo odoslané.",
-  "error_send_money": "Vyskytla sa neznáma chyba! Signa môže, ale nemusí byť odoslaná.",
+  "error_send_money": "Hmm... prenos zlyhal z neznámych príčin. Prepáčte, za nepríjemnosti 🤷",
   "error_server_connect": "Nepodarilo sa pripojiť k serveru.",
   "error_set_reward_recipient": "Vyskytla sa neznáma chyba! Nemohli ste sa pripojiť k bazénu.",
   "error_transaction_already_signed": "Transakcia je už podpísaná.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Dátová správa",
   "add_account_or_contact": "Pridať účet alebo kontakt",
   "hint_new_account": "Toto je nový účet. Zatiaľ nie je zaregistrovaný v reťazci, t. j. nemá žiadne transakcie.",
-  "account_new": "Nový"
+  "account_new": "Nový",
+  "page_not_found_title": "Zdroj sa nenašiel",
+  "page_not_found_hint": "Dokonca aj s blockchainom sú niektoré miesta stále nepokryté. Ako tento tu!",
+  "danger_zone": "Nebezpečná zóna",
+  "reset_wallet": "Resetovať Peňaženku",
+  "reset_wallet_hint": "Resetovaním peňaženky sa z peňaženky odstránia všetky lokálne uložené dáta, účty a nastavenia. Všetky svoje účty môžete znova importovať pomocou príslušnej frázy na obnovenie. Vaše Signa a tokeny sú bezpečne uložené na blockchaine, a preto sa nestratia, pokiaľ vlastníte frázy na obnovenie.",
+  "welcome_to_wallet": "Vitajte v Peňaženke Signum Phoenix",
+  "refresh_transactions_hint": "Znovu načítať/obnoviť najnovšie transakcie",
+  "desktop": "Desktop",
+  "success_send_message": "správa bola úspešne odoslaná",
+  "error_send_message": "Hmm... odoslanie správy z neznámych dôvodov zlyhalo."
 }

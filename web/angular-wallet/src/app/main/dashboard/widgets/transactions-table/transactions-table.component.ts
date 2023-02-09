@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Transaction } from '@signumjs/core';
 import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { StoreService } from 'app/store/store.service';
+import { LedgerService } from 'app/ledger.service';
+import { uniqBy } from 'lodash';
 
 @Component({
   selector: 'app-transactions-table-widget',
@@ -13,15 +15,15 @@ import { StoreService } from 'app/store/store.service';
 })
 export class TransactionsTableComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  @Input() displayedColumns: string[] = undefined;
   @Input() account: WalletAccount;
 
   transactionsDataSource = new MatTableDataSource<Transaction>();
-
+  isLoading = false;
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
     private storeService: StoreService,
+    private ledgerService: LedgerService
   ) {
     super();
   }
@@ -38,4 +40,25 @@ export class TransactionsTableComponent extends UnsubscribeOnDestroy implements 
 
   }
 
+  async refreshTransactions(): Promise<void> {
+    try{
+      this.isLoading = true;
+      const [pending, confirmed] = await Promise.all([
+        this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(this.account.account),
+        await this.ledgerService.ledger.account.getAccountTransactions({
+          accountId: this.account.account,
+          resolveDistributions: true,
+          includeIndirect: true,
+        })
+      ]);
+      const prunedTransactions = uniqBy([...pending.unconfirmedTransactions, ...confirmed.transactions], 'transaction');
+      prunedTransactions.sort((a, b) => b.timestamp - a.timestamp);
+      this.account.transactions = prunedTransactions;
+      this.storeService.saveAccount(this.account);
+    }catch (e){
+      console.error('err', e.message);
+    } finally {
+      this.isLoading = false;
+    }
+  }
 }

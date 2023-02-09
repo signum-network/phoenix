@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Konto odbiorcy nie ma klucza publicznego.",
   "error_recipient_no_public_key_announcement": "Konto odbiorcy nie posiada klucza publicznego, musi dołączyć ogłoszenie o kluczu publicznym.",
   "error_refund_already_sent": "Zwrot pieniędzy został już wysłany.",
-  "error_send_money": "Wystąpił nieznany błąd! Signa może, ale nie musi zostać wysłana.",
+  "error_send_money": "Hmm... transfer nie powiódł się z nieznanych przyczyn. Przepraszamy za utrudnienia 🤷",
   "error_server_connect": "Nie można połączyć się z serwerem.",
   "error_set_reward_recipient": "Wystąpił nieznany błąd! Nie możesz dołączyć do puli.",
   "error_transaction_already_signed": "Transakcja już podpisana.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Wiadomość danych",
   "add_account_or_contact": "Dodaj konto lub kontakt",
   "hint_new_account": "To jest nowe konto. Nie jest jeszcze zarejestrowany w sieci, czyli nie zawiera żadnych transakcji.",
-  "account_new": "Nowy"
+  "account_new": "Nowy",
+  "page_not_found_title": "Nie znaleziono zasobu",
+  "page_not_found_hint": "Nawet z blockchainem niektóre przestrzenie są wciąż odkryte. Jak ten tutaj!",
+  "danger_zone": "Strefa niebezpieczeństwa",
+  "reset_wallet": "Zresetuj portfel",
+  "reset_wallet_hint": "Zresetowanie portfela powoduje usunięcie wszystkich przechowywanych lokalnie danych, kont i ustawień z portfela. Możesz ponownie zaimportować wszystkie swoje konta, używając odpowiedniej frazy odzyskiwania. Twoje Signa i tokeny są bezpiecznie przechowywane w łańcuchu blokowym i dlatego nie zostaną utracone, dopóki posiadasz frazy odzyskiwania.",
+  "welcome_to_wallet": "Witamy w portfelu Signum Phoenix",
+  "refresh_transactions_hint": "Przeładuj/Odśwież ostatnie transakcje",
+  "desktop": "Pulpit",
+  "success_send_message": "Wiadomość wysłano poprawnie",
+  "error_send_message": "Hmm... wysłanie wiadomości nie powiodło się z nieznanych przyczyn."
 }

@@ -1,3 +1,5 @@
+@import "src/@fuse/scss/fuse";
+
 :host {
 
   --logo-size: 1024px;
@@ -9,5 +11,8 @@
     right: calc(var(--logo-size) / -2);
     bottom: calc(var(--logo-size) / -2);
     opacity: 0.05;
+    @include media-breakpoint('xs') {
+      display: none;
+    }
   }
 }

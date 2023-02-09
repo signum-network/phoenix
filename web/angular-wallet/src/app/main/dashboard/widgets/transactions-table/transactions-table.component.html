@@ -3,9 +3,22 @@
       [dataSource]="transactionsDataSource"
       [account]="account"
       [paginationEnabled]="false"
-      [displayedColumns]="displayedColumns"
     ></app-transaction-table>
-    <div *ngIf="account.transactions.length > 10" class="button-link-container">
+  <span class="button-link-container">
+    <div *ngIf="account.transactions.length > 0" >
       <app-link-button [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</app-link-button>
     </div>
+    <button
+      *ngIf="account.transactions.length > 0"
+      class="ml-8 refresh-btn"
+      [class.is-loading]="isLoading"
+      mat-icon-button
+      matTooltip="{{'refresh_transactions_hint' | i18n}}"
+      (click)="refreshTransactions()"
+      [disabled]="isLoading"
+    ><a>
+      <mat-icon>refresh</mat-icon>
+    </a>
+    </button>
+  </span>
 </div>

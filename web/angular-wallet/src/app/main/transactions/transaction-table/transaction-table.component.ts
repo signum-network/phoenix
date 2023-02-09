@@ -34,12 +34,12 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @Input()
   dataSource: MatTableDataSource<Transaction>;
-  @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: WalletAccount;
 
   @Input() public isLoading = false;
 
+  displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account'];
   locale: string;
 
   constructor(private utilService: UtilService,
@@ -137,7 +137,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||
-      (row.recipient === this.account.account && row.sender === this.account.account)
+      (row.recipient === this.account.account && row.sender === this.account.account) ||
+      (row.type === TransactionType.Arbitrary && row.subtype === TransactionArbitrarySubtype.Message)
     ) {
       return cx('self');
     }

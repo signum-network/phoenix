@@ -27,8 +27,10 @@ export class AccountSelectorItemComponent implements OnChanges {
       return;
     }
 
-    setTimeout(() => this.updateAvatar());
-    this.shortAddress = Address.create(this.account.account).getReedSolomonAddress(false);
+    if (this.account){
+      setTimeout(() => this.updateAvatar());
+      this.shortAddress = Address.create(this.account.account).getReedSolomonAddress(false);
+    }
   }
 
   private updateAvatar(): void {

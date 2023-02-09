@@ -16,8 +16,6 @@ import { I18nService } from './i18n.service';
 })
 export class AccountManagementService {
 
-  private accountPolling$: Subscription;
-
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
               private progressBarService: FuseProgressBarService,
@@ -28,8 +26,9 @@ export class AccountManagementService {
   }
 
   private async fetchAccountsRecentTransactions(account: WalletAccount): Promise<Transaction[]> {
-    const lastKnownTransactionTimestamp = account.transactions.length
-      ? account.transactions[0].timestamp
+    const confirmedTransactions = account.transactions.filter(({confirmations}) => confirmations !== undefined);
+    const lastKnownConfirmedTransactionTimestamp = confirmedTransactions.length
+      ? confirmedTransactions[0].timestamp
       : 0;
 
 
@@ -37,7 +36,7 @@ export class AccountManagementService {
       accountId: account.account,
       includeIndirect: true,
       resolveDistributions: true,
-      timestamp: lastKnownTransactionTimestamp.toString(10)
+      timestamp: lastKnownConfirmedTransactionTimestamp.toString(10)
     });
     return transactions;
   }
@@ -66,26 +65,10 @@ export class AccountManagementService {
       this.progressBarService.show();
       await this.synchronizeAccount(account, false);
       this.progressBarService.hide();
-      this.listenToAccount(account);
     }
   }
 
-  private listenToAccount(account: WalletAccount): void {
-    if (this.accountPolling$) {
-      this.accountPolling$.unsubscribe();
-    }
-    // check for pending tx all 10 secs, but only all 30 secs for confirmed tx
-    this.accountPolling$ = interval(10_000)
-      .pipe(
-        tap(async () => this.synchronizeAccount(account, true)),
-        filter(i => i % 3 === 0)
-      )
-      .subscribe(async () => {
-        await this.synchronizeAccount(account, false);
-      });
-  }
-
-  private async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<void> {
+  public async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<WalletAccount> {
     try {
       if (pendingOnly) {
         await this.syncPendingAccountTransactions(accountRef);
@@ -96,6 +79,7 @@ export class AccountManagementService {
         ]);
       }
       this.storeService.saveAccount(accountRef);
+      return accountRef;
     } catch (e) {
       console.warn('Error while syncing account', accountRef.accountRS, e);
       if (e.name === 'QuotaExceededError'){

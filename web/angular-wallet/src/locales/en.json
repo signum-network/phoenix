@@ -193,7 +193,7 @@
   "error_recipient_no_public_key": "Recipient account does not have public key.",
   "error_recipient_no_public_key_announcement": "Recipient account does not have a public key, must attach a public key announcement.",
   "error_refund_already_sent": "Refund already sent.",
-  "error_send_money": "An unknown error occurred! Signa may or may not be sent.",
+  "error_send_money": "Hmm... the transfer failed for some unknown reasons. Sorry, for inconvencience 🤷",
   "error_server_connect": "Could not connect to server.",
   "error_set_reward_recipient": "An unknown error occurred! You could not join the pool.",
   "error_transaction_already_signed": "Transaction already signed.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Data Message",
   "add_account_or_contact": "Add Account or Contact",
   "hint_new_account": "This is a new account. It's not registered on the chain yet, i.e. has no transactions.",
-  "account_new": "New"
+  "account_new": "New",
+  "page_not_found_title": "Resource Not found",
+  "page_not_found_hint": "Even with blockchain some spaces are still uncovered. Like this one here!",
+  "danger_zone": "Danger Zone",
+  "reset_wallet": "Reset Wallet",
+  "reset_wallet_hint": "Resetting the wallet removes all locally stored data, accounts and settings from the wallet. You can re-import all your accounts using the respective recovery phrase. Your Signa and tokens are securely stored on the blockchain and are therefore not lost as long as you are in possession of the recovery phrases.",
+  "welcome_to_wallet": "Welcome to Signum Phoenix Wallet",
+  "refresh_transactions_hint": "Reload/Refresh latest transactions",
+  "desktop": "Desktop",
+  "success_send_message": "Message sent successfully",
+  "error_send_message": "Hmm... sending the message failed for some unknown reasons."
 }

@@ -1,7 +1,13 @@
 :host {
+  .is-loading {
+    animation: rotate 1s linear infinite;
+  }
+
   .button-link-container {
-    position: absolute;
-    right: 0;
-    bottom: -36px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
   }
 }

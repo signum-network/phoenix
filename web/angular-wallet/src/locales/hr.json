@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Račun primatelja nema javni ključ.",
   "error_recipient_no_public_key_announcement": "Račun primatelja nema javni ključ, mora priložiti najavu javnog ključa.",
   "error_refund_already_sent": "Povrat je već poslan.",
-  "error_send_money": "Dogodila se nepoznata pogreška! Signa se može i ne mora slati.",
+  "error_send_money": "Hmm... prijenos nije uspio iz nepoznatih razloga. Oprostite zbog neugodnosti 🤷",
   "error_server_connect": "Nije moguće spojiti se sa serverom.",
   "error_set_reward_recipient": "Dogodila se nepoznata pogreška! Nisi se mogao pridružiti bazenu.",
   "error_transaction_already_signed": "Transakcija je već potpisana.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Podatkovna poruka",
   "add_account_or_contact": "Dodajte račun ili kontakt",
   "hint_new_account": "Ovo je novi račun. Još nije registriran u lancu, tj. nema transakcija.",
-  "account_new": "Novi"
+  "account_new": "Novi",
+  "page_not_found_title": "Izvor nije pronađen",
+  "page_not_found_hint": "Čak i s blockchainom neki su prostori još uvijek nepokriveni. Kao ovaj ovdje!",
+  "danger_zone": "Zona opasnosti",
+  "reset_wallet": "Poništi novčanik",
+  "reset_wallet_hint": "Ponovno postavljanje novčanika uklanja sve lokalno pohranjene podatke, račune i postavke iz novčanika. Možete ponovno uvesti sve svoje račune pomoću odgovarajuće fraze za oporavak. Vaša Signa i tokeni sigurno su pohranjeni na blockchainu i stoga se ne gube sve dok imate fraze za oporavak.",
+  "welcome_to_wallet": "Dobro došli u Signum Phoenix novčanik",
+  "refresh_transactions_hint": "Ponovno učitaj/osvježi najnovije transakcije",
+  "desktop": "Radna površina",
+  "success_send_message": "poruka je uspješno poslana",
+  "error_send_message": "Hmm... slanje poruke nije uspjelo iz nepoznatih razloga."
 }

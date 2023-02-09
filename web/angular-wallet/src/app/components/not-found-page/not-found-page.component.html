@@ -1,0 +1,9 @@
+<app-page [wide]="true"
+          [title]="'page_not_found_title' | i18n"
+>
+  <div ngClass.gt-sm="p-24" class="text-center">
+    <h1>{{'page_not_found_title' | i18n}}</h1>
+    <img src="/assets/images/not_found.png" width="300" alt="Not Found">
+    <h2>{{'page_not_found_hint' | i18n}}</h2>
+  </div>
+</app-page>

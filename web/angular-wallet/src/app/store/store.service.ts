@@ -72,14 +72,23 @@ export class StoreService {
   constructor(
     private storeConfig: StoreConfig
   ) {
-    this.store = new Loki(storeConfig.databaseName, {
-      autoload: true,
-      autoloadCallback: this.init.bind(this),
-      adapter: storeConfig.persistenceAdapter,
-      verbose: !environment.production
-    });
+    this.store = this.createStoreInstance(storeConfig);
   }
 
+  private createStoreInstance(config: StoreConfig,callback?: any): Loki {
+    return new Loki(config.databaseName, {
+      autoload: true,
+      autoloadCallback: () => {
+        this.init();
+        if(callback) {
+          callback()
+        }
+      },
+      adapter: config.persistenceAdapter,
+      verbose: !environment.production
+    });
+
+  }
   private persist(): void {
     this.store.saveDatabase();
   }
@@ -202,6 +211,9 @@ export class StoreService {
       } else {
         const existingAccount = accounts.by('_id', account._id);
         existingAccount.balanceNQT = account.balanceNQT;
+        existingAccount.effectiveBalanceNQT = account.effectiveBalanceNQT;
+        existingAccount.commitmentNQT = account.commitmentNQT;
+        existingAccount.unconfirmedAssetBalances = account.unconfirmedAssetBalances;
         existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
         existingAccount.committedBalanceNQT = account.committedBalanceNQT;
         existingAccount.accountRSExtended = account.accountRSExtended;
@@ -221,9 +233,7 @@ export class StoreService {
       }
 
       this.persist();
-      if (this.getSelectedAccount().account === account.account){
-        this.accountUpdated$.next(new WalletAccount(updatedAccount));
-      }
+      this.accountUpdated$.next(new WalletAccount(updatedAccount));
     });
   }
 
@@ -448,6 +458,21 @@ export class StoreService {
       const collection = this.store.getCollection<WalletContact>(CollectionName.Contacts);
       collection.chain().find({ account: contactId }).remove();
       this.persist();
+    });
+  }
+
+  public async reset(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      Object.values(CollectionName).forEach( name => {
+        this.store.removeCollection(name);
+      });
+      this.store.deleteDatabase((err) => {
+        if (err){
+          reject(err);
+        }else {
+          this.store = this.createStoreInstance(this.storeConfig, resolve);
+        }
+      });
     });
   }
 }

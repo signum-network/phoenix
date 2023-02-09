@@ -102,21 +102,6 @@ export class AccountService {
     }
   }
 
-  public generateSendTransactionQRCodeAddress(
-    id: string,
-    amountNQT?: number,
-    feeSuggestionType?: string,
-    feeNQT?: number,
-    immutable?: boolean): Promise<string> {
-    return this.ledgerService.ledger.account.generateSendTransactionQRCodeAddress(
-      id,
-      amountNQT,
-      feeSuggestionType,
-      feeNQT,
-      immutable
-    );
-  }
-
   private getPrivateKey(keys, pin): string {
     try {
       const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
@@ -209,123 +194,7 @@ export class AccountService {
       : this.ledgerService.ledger.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
-  // public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
-  //   return new Promise(async (resolve) => {
-  //     const account = new WalletAccount();
-  //     account.type = 'active';
-  //     const keys = generateMasterKeys(passphrase);
-  //     const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
-  //     const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-  //
-  //     account.keys = {
-  //       publicKey: keys.publicKey,
-  //       signPrivateKey: encryptedKey,
-  //       agreementPrivateKey: encryptedSignKey
-  //     };
-  //
-  //     const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
-  //     account.account = address.getNumericId();
-  //     account.accountRS = address.getReedSolomonAddress();
-  //
-  //     await this.selectAccount(account);
-  //     const savedAccount = await this.synchronizeAccount(account);
-  //     resolve(savedAccount);
-  //   });
-  // }
 
-  // public async createOfflineAccount(reedSolomonAddress: string): Promise<WalletAccount> {
-  //   const account = new WalletAccount();
-  //   const address = Address.fromReedSolomonAddress(reedSolomonAddress);
-  //   const existingAccount = await this.storeService.findAccountByIdLegacy(address.getNumericId());
-  //   if (existingAccount === undefined) {
-  //     account.type = 'offline';
-  //     account.accountRS = reedSolomonAddress;
-  //     account.account = address.getNumericId();
-  //     await this.selectAccount(account);
-  //     return this.synchronizeAccount(account);
-  //   } else {
-  //     throw new Error('Address already imported!');
-  //   }
-  // }
-
-  // public removeAccount(account: WalletAccount): Promise<boolean> {
-  //   return this.storeService.removeAccountLegacy(account).catch(error => error);
-  // }
-
-  // public async selectAccount(account: WalletAccount): Promise<WalletAccount> {
-  //   this.currentAccount$.next(account);
-  //   let acc = await this.storeService.selectAccountLegacy(account);
-  //   acc = await this.synchronizeAccount(acc);
-  //   return acc;
-  // }
-
-  // public async synchronizeAccount(account: WalletAccount, onlyPendingTransactions = false): Promise<WalletAccount> {
-  //   if (onlyPendingTransactions) {
-  //     await this.syncAccountUnconfirmedTransactions(account);
-  //   } else {
-  //     await Promise.all([
-  //       this.syncAccountDetails(account),
-  //       this.syncAccountTransactions(account),
-  //       this.syncAccountUnconfirmedTransactions(account)
-  //     ]);
-  //   }
-  //   // TODO: verify if this really works
-  //   // if (account.account === this.currentAccount$.getValue().account) {
-  //   //   this.updateCurrentAccount(account); // emits update event
-  //   // }
-  //
-  //   // this.storeService.saveAccount(account);
-  //   return account;
-  // }
-
-  public isNewTransaction(transactionId: string): boolean {
-    return (!this.transactionsSeenInNotifications[transactionId]);
-  }
-
-  public sendNewTransactionNotification(transaction: Transaction): void {
-
-    if (!this.showDesktopNotifications) {
-      return;
-    }
-
-    // TODO: create a notification factory according the type and show proper notifications
-    if (transaction.type !== TransactionType.Payment) {
-      return;
-    }
-
-    this.transactionsSeenInNotifications[transaction.transaction] = true;
-    const incoming = transaction.recipient === this.currentAccount$.value.account;
-    const amount = Amount.fromPlanck(transaction.amountNQT);
-    const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
-
-
-    let header = '';
-    let body = '';
-    if (incoming) {
-      // Account __a__ got __b__ from __c__
-      header = this.i18nService.getTranslation('youve_got_burst');
-      body = this.i18nService.getTranslation('youve_got_from')
-        .replace('__a__', transaction.recipientRS)
-        .replace('__b__', amount.toString())
-        .replace('__c__', transaction.senderRS);
-    } else {
-      // Account __a__ sent __b__ to __c__
-      header = this.i18nService.getTranslation('you_sent_burst');
-      body = this.i18nService.getTranslation('you_sent_to')
-        .replace('__a__', transaction.senderRS)
-        .replace('__b__', totalAmount.toString())
-        .replace('__c__', transaction.recipientRS);
-    }
-
-    // @ts-ignore
-    return window.Notification && new window.Notification(
-      header,
-      {
-        body,
-        title: 'Phoenix'
-      });
-
-  }
 
   // private async syncAccountUnconfirmedTransactions(account: WalletAccount): Promise<void> {
   //   try {

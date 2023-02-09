@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "A conta do destinatário não tem chave pública.",
   "error_recipient_no_public_key_announcement": "A conta do destinatário não tem uma chave pública, deve anexar um anúncio de chave pública.",
   "error_refund_already_sent": "Reembolso já enviado.",
-  "error_send_money": "Ocorreu um erro desconhecido! Signa pode ou não ser enviada.",
+  "error_send_money": "Hmm... a transferência falhou por alguns motivos desconhecidos. Desculpe, pelo inconveniente 🤷",
   "error_server_connect": "Não pode conectar ao servidor.",
   "error_set_reward_recipient": "Ocorreu um erro desconhecido! O destinatário do seu prêmio não foi definido.",
   "error_transaction_already_signed": "Transação já assinada.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Mensagem de dados",
   "add_account_or_contact": "Adicionar conta ou contato",
   "hint_new_account": "Esta é uma nova conta. Ainda não está registrado na rede, ou seja, não possui transações.",
-  "account_new": "Novo"
+  "account_new": "Novo",
+  "page_not_found_title": "Recurso não encontrado",
+  "page_not_found_hint": "Mesmo com blockchain alguns espaços ainda são descobertos. Como este aqui!",
+  "danger_zone": "Zona de perigo",
+  "reset_wallet": "Redefinir Carteira",
+  "reset_wallet_hint": "Redefinir a carteira remove todos os dados, contas e configurações armazenados localmente da carteira. Você pode reimportar todas as suas contas usando a respectiva frase de recuperação. Seu Signa e tokens são armazenados com segurança no blockchain e, portanto, não são perdidos enquanto você estiver de posse das frases de recuperação.",
+  "welcome_to_wallet": "Bem-vindo à Carteira Signum Phoenix",
+  "refresh_transactions_hint": "Recarregar/atualizar últimas transações",
+  "desktop": "Área de Trabalho",
+  "success_send_message": "mensagem enviada com sucesso",
+  "error_send_message": "Hmm... o envio da mensagem falhou por alguns motivos desconhecidos."
 }

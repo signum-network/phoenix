@@ -1,5 +1,16 @@
 @import "src/@fuse/scss/fuse";
 
+.unsafe {
+  color: red;
+}
+.watch {
+  color: lightgrey;
+}
+.new {
+  color: greenyellow;
+}
+
+
 fuse-sidebar {
 
   &.navbar-fuse-sidebar {
@@ -53,12 +64,12 @@ fuse-sidebar {
                 cursor: pointer;
                 filter: drop-shadow(0 0 4px black);
 
-                .unsafe-badge {
+                .badge {
                   position: absolute;
-                  color: red;
-                  top: 0;
-                  right: 0;
+                  top: 8px;
+                  right: -4px;
                 }
+
 
                 img {
                   position: relative;
@@ -72,6 +83,7 @@ fuse-sidebar {
               .alias {
                 display: none;
               }
+
             }
 
             .navbar-content {
@@ -198,12 +210,11 @@ navbar {
           filter: drop-shadow(0 0 4px black);
           margin-top: 1rem;
 
-          .unsafe-badge {
+          .badge {
             position: absolute;
             background-color: transparent;
-            color: red;
-            bottom: 40px;
-            right: 80px;
+            top: -8px;
+            right: -24px;
             filter: drop-shadow(0 0 4px black);
           }
 
@@ -214,7 +225,7 @@ navbar {
         }
       }
 
-      .alias {
+      .clickable {
         cursor: pointer;
 
         &:hover {

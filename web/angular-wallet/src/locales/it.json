@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "L'account del destinatario non ha una chiave pubblica.",
   "error_recipient_no_public_key_announcement": "L'account del destinatario non dispone di una chiave pubblica, deve allegare un annuncio di chiave pubblica.",
   "error_refund_already_sent": "Rimborso già inviato.",
-  "error_send_money": "Si è verificato un errore sconosciuto! Signa può essere inviato o meno.",
+  "error_send_money": "Hmm... il trasferimento è fallito per ragioni sconosciute. Scusa, per il disagio 🤷",
   "error_server_connect": "Non poteva connettersi al server.",
   "error_set_reward_recipient": "Si è verificato un errore sconosciuto! Non potevi entrare in piscina.",
   "error_transaction_already_signed": "Transazione già firmata.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Messaggio di dati",
   "add_account_or_contact": "Aggiungi account o contatto",
   "hint_new_account": "Questo è un nuovo account. Non è ancora registrato sulla catena, cioè non ha transazioni.",
-  "account_new": "Nuovo"
+  "account_new": "Nuovo",
+  "page_not_found_title": "Risorsa Non trovata",
+  "page_not_found_hint": "Anche con blockchain alcuni spazi sono ancora scoperti. Come questo qui!",
+  "danger_zone": "Zona pericolosa",
+  "reset_wallet": "Ripristina portafoglio",
+  "reset_wallet_hint": "Il ripristino del portafoglio rimuove tutti i dati, gli account e le impostazioni memorizzati localmente dal portafoglio. Puoi reimportare tutti i tuoi account utilizzando la rispettiva frase di recupero. I tuoi Signa e i token sono archiviati in modo sicuro sulla blockchain e pertanto non vengono persi finché sei in possesso delle frasi di ripristino.",
+  "welcome_to_wallet": "Benvenuto nel Portafoglio Signum Phoenix",
+  "refresh_transactions_hint": "Ricarica/Aggiorna le ultime transazioni",
+  "desktop": "Scrivania",
+  "success_send_message": "messaggio inviato con successo",
+  "error_send_message": "Hmm... l'invio del messaggio non è riuscito per ragioni sconosciute."
 }

@@ -1,10 +1,10 @@
 <ng-container *ngIf="!account">
-  <h2> not found </h2>
+  <div class="w-100-p">
+    <app-not-found-page></app-not-found-page>
+  </div>
 </ng-container>
 
-
 <ng-container *ngIf="account">
-
   <app-page [full]="true"
             [title]="'account_details' | i18n"
             [subtitle]="account.account | address"
@@ -40,7 +40,6 @@
         <mat-tab label="{{ 'transactions' | i18n }}">
           <app-transaction-table
             [dataSource]="dataSource"
-            [displayedColumns]="columns"
             [account]="account"
             [isLoading]="isLoadingTransactions"
           >

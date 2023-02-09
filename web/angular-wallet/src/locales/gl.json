@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "A conta do destinatario non ten clave pública.",
   "error_recipient_no_public_key_announcement": "A conta do destinatario non ten unha clave pública, debe anexar un anuncio de clave pública.",
   "error_refund_already_sent": "Reembolso xa enviado.",
-  "error_send_money": "Produciuse un erro descoñecido. Signa pódese enviar ou non.",
+  "error_send_money": "Hmm... a transferencia fallou por uns motivos descoñecidos. Perdón, polas molestias 🤷",
   "error_server_connect": "Non se puido conectar ao servidor.",
   "error_set_reward_recipient": "Produciuse un erro descoñecido. Non podías unirte á piscina.",
   "error_transaction_already_signed": "Transacción xa asinada.",
@@ -569,5 +569,15 @@
   "message_is_binary": "Mensaxe de datos",
   "add_account_or_contact": "Engadir conta ou contacto",
   "hint_new_account": "Esta é unha conta nova. Aínda non está rexistrado na cadea, é dicir, non ten transaccións.",
-  "account_new": "Novo"
+  "account_new": "Novo",
+  "page_not_found_title": "Non se atopou o recurso",
+  "page_not_found_hint": "Mesmo con blockchain algúns espazos aínda están ao descuberto. Como este aquí!",
+  "danger_zone": "Zona de perigo",
+  "reset_wallet": "Restablecer carteira",
+  "reset_wallet_hint": "Restablecer a carteira elimina todos os datos, contas e configuracións almacenados localmente da carteira. Podes volver importar todas as túas contas usando a frase de recuperación respectiva. Os teus signos e tokens almacénanse de forma segura na cadea de bloques e, polo tanto, non se perden mentres esteas en posesión das frases de recuperación.",
+  "welcome_to_wallet": "Benvido a Signum Phoenix Wallet",
+  "refresh_transactions_hint": "Recarga/Actualiza as últimas transaccións",
+  "desktop": "Escritorio",
+  "success_send_message": "Mensaxe enviada correctamente",
+  "error_send_message": "Hmm... non se puido enviar a mensaxe por algúns motivos descoñecidos."
 }
