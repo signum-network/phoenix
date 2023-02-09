@@ -9,6 +9,7 @@ import { StoreService } from '../../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { NetworkService } from '../../../../network/network.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { interval } from 'rxjs';
 
 interface ForgedBlockInfo {
   count: number;
@@ -21,7 +22,7 @@ interface ForgedBlockInfo {
   templateUrl: './blockforged.component.html',
   styleUrls: ['./blockforged.component.scss', '../widget.shared.scss']
 })
-export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
+export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit {
   @Input() public account: WalletAccount;
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
@@ -32,8 +33,6 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   isLoading = true;
   blockInfo: ForgedBlockInfo;
   // isMainNet = false;
-  private interval: NodeJS.Timeout;
-
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
@@ -51,33 +50,18 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
 
   async ngOnInit(): Promise<void> {
     await this.updateForgedBlocks();
-    this.isLoading = false;
-    this.interval = setInterval(
-      () => this.updateForgedBlocks(),
-      2 * 60 * 1000);
 
-    // this.networkService.networkInfo$
-    //   .pipe(this.unsubscribe)
-    //   .subscribe( () => {
-    //     this.isMainNet = this.networkService.isMainNet();
-    //   });
+    interval(120_000)
+      .pipe(this.unsubscribe)
+      .subscribe(() => {this.updateForgedBlocks()})
 
     this.storeService.settingsUpdated$
       .pipe(this.unsubscribe)
       .subscribe((settings: Settings) => {
         this.locale = settings.language;
       });
+    this.isLoading = false;
   }
-
-  ngOnChanges(): void {
-    this.updateForgedBlocks();
-  }
-
-  ngOnDestroy(): void {
-    super.ngOnDestroy();
-    clearInterval(this.interval);
-  }
-
 
   private async updateForgedBlocks(): Promise<void> {
     const { blocks } = await this.accountService.getForgedBlocks(this.account);

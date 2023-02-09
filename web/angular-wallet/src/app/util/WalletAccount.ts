@@ -21,7 +21,6 @@ export class WalletAccount{
   public commitmentNQT: string;
   public committedBalanceNQT: string;
   public confirmed: boolean;
-  public confirmations: number | undefined;
 
   constructor(data: any = {}) {
     this._id = data._id;
@@ -39,7 +38,6 @@ export class WalletAccount{
       signPrivateKey: data.keys ? data.keys.signPrivateKey : undefined,
       agreementPrivateKey: data.keys ? data.keys.agreementPrivateKey : undefined,
     };
-    this.confirmed = !!this.keys.publicKey;
     this.name = data.name || undefined;
     if (data.transactions !== undefined && data.transactions.length > 0) {
       this.transactions = data.transactions;
@@ -50,6 +48,7 @@ export class WalletAccount{
     this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
     this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
     this.networkName = data.networkName || undefined;
+    this.confirmed = !!this.keys.publicKey && this.transactions.length > 0;
   }
 
   public isStored(): boolean {

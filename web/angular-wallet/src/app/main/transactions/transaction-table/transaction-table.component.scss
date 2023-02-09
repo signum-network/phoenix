@@ -15,7 +15,7 @@
   mat-header-cell:last-child,
   mat-cell:last-child
   {
-    justify-content: end !important;
+    justify-content: flex-end !important;
   }
 
   .mat-column-transaction_id {

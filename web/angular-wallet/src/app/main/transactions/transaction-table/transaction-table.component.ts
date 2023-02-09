@@ -137,7 +137,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||
-      (row.recipient === this.account.account && row.sender === this.account.account)
+      (row.recipient === this.account.account && row.sender === this.account.account) ||
+      (row.type === TransactionType.Arbitrary && row.subtype === TransactionArbitrarySubtype.Message)
     ) {
       return cx('self');
     }

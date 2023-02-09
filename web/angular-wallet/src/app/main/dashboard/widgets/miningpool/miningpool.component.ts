@@ -31,23 +31,22 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
     this.isLoading = false;
   }
 
-  async ngOnChanges(changes: SimpleChanges): Promise<void> {
-    if (changes.account) {
-      this.fetchPoolAccount();
-    }
-  }
-
   private async fetchPoolAccount(): Promise<void> {
+    try{
+
     const rewardRecipient = await this.accountService.getRewardRecipient(this.account.account);
     this.poolAccount = rewardRecipient.account !== this.account.account ? rewardRecipient : null;
     if (this.poolAccount) {
+      this.poolName = this.getPoolUrlOrName();
       const assignments = await this.accountService.getAccountTransactions({
         accountId: this.account.account,
         type: TransactionType.Mining,
         subtype: TransactionMiningSubtype.RewardRecipientAssignment
       });
       this.lastPoolAssignment = ChainTime.fromChainTimestamp(assignments.transactions[0].timestamp).getDate();
-      this.poolName = this.getPoolUrlOrName();
+    }
+    }catch(e){
+      console.warn("MiningPool Compenent", e.message);
     }
   }
 

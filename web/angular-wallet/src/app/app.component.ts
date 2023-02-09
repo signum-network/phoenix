@@ -1,27 +1,28 @@
-import {Component, Inject, OnDestroy, OnInit, ApplicationRef} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {Platform} from '@angular/cdk/platform';
-import {StoreService} from './store/store.service';
-import {BlockchainStatus} from '@signumjs/core';
-import {parseDeeplink} from '@signumjs/util';
-import {NotifierService} from 'angular-notifier';
-import {NetworkService} from './network/network.service';
-import {UtilService} from './util.service';
-import {I18nService} from './shared/services/i18n.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { Component, Inject, OnDestroy, OnInit, ApplicationRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
+import { StoreService } from './store/store.service';
+import { BlockchainStatus, Transaction, TransactionType } from '@signumjs/core';
+import { Amount, parseDeeplink } from '@signumjs/util';
+import { NotifierService } from 'angular-notifier';
+import { NetworkService } from './network/network.service';
+import { UtilService } from './util.service';
+import { I18nService } from './shared/services/i18n.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   CertificationInfo,
   NewVersionDialogComponent,
   UpdateInfo
 } from './components/new-version-dialog/new-version-dialog.component';
 
-import {version} from '../../package.json';
-import {AppService} from './app.service';
-import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
-import {takeUntil} from 'rxjs/operators';
-import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
+import { version } from '../../package.json';
+import { AppService } from './app.service';
+import { UnsubscribeOnDestroy } from './util/UnsubscribeOnDestroy';
+import { takeUntil } from 'rxjs/operators';
+import { Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 import { AccountManagementService } from './shared/services/account-management.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
+import { interval } from 'rxjs';
 
 const BlockchainStatusInterval = 30_000;
 
@@ -44,6 +45,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
   private blockchainStatusInterval: NodeJS.Timeout;
+  private transactionsSeenInNotifications: any = {};
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -58,7 +60,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private newVersionDialog: MatDialog,
     private router: Router,
     private applicationRef: ApplicationRef,
-    private splashScreen: FuseSplashScreenService,
+    private splashScreen: FuseSplashScreenService
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -67,26 +69,24 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   ngOnInit(): void {
-   this.storeService.ready$
+    this.storeService.ready$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
-        if (!ready) {return; }
-        this.initAccountListener();
+        if (!ready) {
+          return;
+        }
         const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
         setTimeout(checkBlockchainStatus, 1000);
         this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
         this.isReady = true;
+        this.initAccountListener();
       });
-
-
-   // setTimeout(() => this.splashScreen.hide(), 5000)
 
     if (this.appService.isDesktop()) {
       this.initDesktopUpdater();
       this.initDeepLinkHandler();
       this.initRouteToHandler();
     }
-
   }
 
   ngOnDestroy(): void {
@@ -122,8 +122,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         this.notifierService.notify('warning', `Unknown deep link action: ${parts.action}`);
     }
 
-    const {payload} = parts;
-    await this.router.navigate([route], {queryParams: {cip22: true, payload}});
+    const { payload } = parts;
+    await this.router.navigate([route], { queryParams: { cip22: true, payload } });
   }
 
   private async routeLegacyDeeplink(url: string): Promise<void> {
@@ -149,8 +149,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     this.appService.onIpcMessage('new-version', (newVersion) => {
       this.newVersionAvailable = true;
 
-      const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
-      const {domain, issuer, validThru, isValid} = validCert;
+      const { assets, releaseVersion, platform, validCert, htmlUrl } = newVersion;
+      const { domain, issuer, validThru, isValid } = validCert;
 
       const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
 
@@ -241,9 +241,75 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   private initAccountListener(): void {
-    const selectedAccount = this.accountManagementService.getSelectedAccount();
-    if (selectedAccount){
-      this.accountManagementService.selectAccount(selectedAccount);
+    interval(10_000)
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(async (counter) => {
+        const selectedAccount = this.accountManagementService.getSelectedAccount();
+        if (selectedAccount) {
+          // checks all 10 secs for pending tx, and all 60 secs for confirmations
+          const updatedAccount = await this.accountManagementService.synchronizeAccount(
+            selectedAccount,
+            counter % 6 !== 0
+          );
+
+          if (updatedAccount.transactions.length){
+            const mostRecentTransaction = selectedAccount.transactions[0];
+            const isPending = mostRecentTransaction.confirmations === undefined;
+            const hasNotifiedAlready = this.transactionsSeenInNotifications[mostRecentTransaction.transaction];
+            if (isPending && !hasNotifiedAlready){
+              this.dispatchDesktopNotification(mostRecentTransaction);
+            }
+          }
+        }
+      });
+  }
+
+  private dispatchDesktopNotification(transaction: Transaction): void {
+    console.log('Desktop Notification', transaction);
+    if (!this.storeService.getSettings().showDesktopNotifications) {
+      return;
     }
+    const selectedAccount = this.storeService.getSelectedAccount();
+    if (!selectedAccount){
+      return;
+    }
+
+    // TODO: create a notification factory according the type and show proper notifications
+    if (transaction.type !== TransactionType.Payment) {
+      return;
+    }
+
+    this.transactionsSeenInNotifications[transaction.transaction] = true;
+    const incoming = transaction.recipient === selectedAccount.account;
+    const amount = Amount.fromPlanck(transaction.amountNQT);
+    const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
+
+
+    let header = '';
+    let body = '';
+    if (incoming) {
+      // Account __a__ got __b__ from __c__
+      header = this.i18nService.getTranslation('youve_got_burst');
+      body = this.i18nService.getTranslation('youve_got_from')
+        .replace('__a__', transaction.recipientRS)
+        .replace('__b__', amount.toString())
+        .replace('__c__', transaction.senderRS);
+    } else {
+      // Account __a__ sent __b__ to __c__
+      header = this.i18nService.getTranslation('you_sent_burst');
+      body = this.i18nService.getTranslation('you_sent_to')
+        .replace('__a__', transaction.senderRS)
+        .replace('__b__', totalAmount.toString())
+        .replace('__c__', transaction.recipientRS);
+    }
+
+    // @ts-ignore
+    return window.Notification && new window.Notification(
+      header,
+      {
+        body,
+        title: 'Phoenix'
+      });
+
   }
 }

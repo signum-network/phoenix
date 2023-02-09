@@ -32,9 +32,7 @@
   "linux": {
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
     "target": [
-      "AppImage",
-      "deb",
-      "tar.gz"
+      "deb"
     ],
     "publish": [
       {
