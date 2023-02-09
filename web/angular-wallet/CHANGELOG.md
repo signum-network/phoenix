@@ -21,6 +21,7 @@
 - Performance Issues (should be solved now) (#1605)
 - Open Settings on start up if node is not reachable (#1527)
 - Copyable Deep Link (#1316)
+- Selects window.location.origin in web version as default - if not set
 
 ## 1.5.0-alpha
 
