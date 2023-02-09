@@ -1,45 +1,11 @@
-import { getRecipientsAmount, Transaction, TransactionAssetSubtype, TransactionType } from "@signumjs/core";
+import { getRecipientsAmount, Transaction, TransactionAssetSubtype, TransactionType } from '@signumjs/core';
 import {Amount} from '@signumjs/util';
 import {BalanceHistoryItem} from './typings';
-import {flow, map, filter} from 'lodash/fp';
+import {flow, map} from 'lodash/fp';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
 
 const isDistribution = (t: Transaction): boolean => t.type === TransactionType.Asset && t.subtype === TransactionAssetSubtype.AssetDistributeToHolders;
-
-/**
- * distribution
- * :
- * account
- * :
- * "16107620026796983538"
- * amountNQT
- * :
- * "205479452"
- * assetId
- * :
- * "7884873558753153777"
- * confirmations
- * :
- * 33
- * distributedAssetId
- * :
- * null
- * height
- * :
- * 1108969
- * quantityQNT
- * :
- * "0"
- * requestProcessingTime
- * :
- * 1
- * transaction
- * :
- * "6124309833838609292"
- * @param accountId
- * @param transaction
- */
 
 function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
 
@@ -52,8 +18,8 @@ function getRelativeTransactionAmount(accountId: string, transaction: Transactio
   }
 
   // incoming
-  if(isDistribution(transaction)){
-    const amount = Amount.fromPlanck(transaction.distribution.amountNQT || '0');
+  if (isDistribution(transaction)){
+    const amount = Amount.fromPlanck(transaction.distribution ? transaction.distribution.amountNQT || '0' : '0');
     return parseFloat(amount.getSigna());
   }
 
