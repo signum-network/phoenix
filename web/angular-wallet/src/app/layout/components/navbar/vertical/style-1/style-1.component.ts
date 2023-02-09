@@ -157,17 +157,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
       .subscribe((config) => {
         this.fuseConfig = config;
       });
-
-    // Get current navigation
-    // this.fuseNavigationService.onNavigationChanged
-    //   .pipe(
-    //     filter(value => value !== null),
-    //     this.unsubscribe
-    //   )
-    //   .subscribe(() => {
-    //
-    //     this.updateAvatar();
-    //   });
   }
 
   private updateAvatar(): void {

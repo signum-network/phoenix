@@ -91,14 +91,6 @@
     </mat-cell>
   </ng-container>
 
-<!--  <ng-container matColumnDef="confirmations">-->
-<!--    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>{{"confirmations" | i18n}}</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let transaction" fxHide fxShow.gt-md>-->
-<!--      <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>-->
-<!--      <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>-->
-<!--    </mat-cell>-->
-<!--  </ng-container>-->
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"
            [class]="getRowClass(row)"

@@ -25,28 +25,6 @@ export class DisclaimerComponent {
     private splashScreen: FuseSplashScreenService
   ) {
   }
-
-  // ngAfterViewInit(): void {
-  //   this.splashScreen.hide();
-  //   setTimeout(() => {
-  //     this._fuseConfigService.config = {
-  //       layout: {
-  //         navbar: {
-  //           hidden: true
-  //         },
-  //         toolbar: {
-  //           hidden: true
-  //         },
-  //         footer: {
-  //           hidden: true
-  //         },
-  //         sidepanel: {
-  //           hidden: true
-  //         }
-  //       }
-  //     };
-  //   }, 0);
-  // }
   agree(): void {
     try {
       this.storeService.updateSettings({ agree: true });
