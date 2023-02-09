@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Recharger/Actualiser les dernières transactions",
   "desktop": "Bureau",
   "success_send_message": "message envoyé avec succès",
-  "error_send_message": "Hmm... l'envoi du message a échoué pour des raisons inconnues."
+  "error_send_message": "Hmm... l'envoi du message a échoué pour des raisons inconnues.",
+  "copy_deep_link": "Copier le lien de la demande"
 }

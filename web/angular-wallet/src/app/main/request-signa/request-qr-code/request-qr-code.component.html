@@ -1,11 +1,11 @@
 <div class="request-container">
-
   <qrcode [qrdata]="getDeepLink()" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
-
-  <ul>
+  <button mat-raised-button (click)="copyDeeplink()">{{'copy_deep_link' | i18n}}</button>
+  <ul class="mt-16">
     <li><strong>{{ 'recipient' | i18n }}</strong>: {{ recipientRS }}</li>
     <li><strong>{{ 'amount' | i18n }}</strong>: {{ amount | amount }}</li>
     <li><strong>{{ 'fee' | i18n }}</strong>: {{ fee | amount }}</li>
     <li><strong>{{ 'immutable' | i18n }}</strong>: {{ !!immutable }}</li>
   </ul>
+
 </div>

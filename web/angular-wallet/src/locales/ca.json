@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Recarrega/Actualitza les últimes transaccions",
   "desktop": "Escriptori",
   "success_send_message": "Missatge enviat correctament",
-  "error_send_message": "Hmm... l'enviament del missatge ha fallat per alguns motius desconeguts."
+  "error_send_message": "Hmm... l'enviament del missatge ha fallat per alguns motius desconeguts.",
+  "copy_deep_link": "Copia l'enllaç de sol·licitud"
 }

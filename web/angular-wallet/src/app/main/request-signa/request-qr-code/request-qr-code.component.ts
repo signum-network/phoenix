@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Amount, createDeeplink } from '@signumjs/util';
+import { AppService } from "../../../app.service";
 
 @Component({
   selector: 'app-request-qr-code',
@@ -13,6 +14,8 @@ export class RequestQrCodeComponent{
   @Input() amount: string;
   @Input() fee: string;
 
+  constructor(private appService: AppService) {
+  }
 
   getDeepLink(): string {
 
@@ -33,5 +36,9 @@ export class RequestQrCodeComponent{
       payload
     });
 
+  }
+
+  copyDeeplink(): void {
+    this.appService.copyToClipboard(this.getDeepLink());
   }
 }

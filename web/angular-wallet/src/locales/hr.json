@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Ponovno učitaj/osvježi najnovije transakcije",
   "desktop": "Radna površina",
   "success_send_message": "poruka je uspješno poslana",
-  "error_send_message": "Hmm... slanje poruke nije uspjelo iz nepoznatih razloga."
+  "error_send_message": "Hmm... slanje poruke nije uspjelo iz nepoznatih razloga.",
+  "copy_deep_link": "Kopiraj vezu zahtjeva"
 }

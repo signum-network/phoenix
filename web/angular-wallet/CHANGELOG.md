@@ -3,12 +3,26 @@
 
 ### Feature
 - Revamped Account Management
-- Transaction Table allows loading up to 10k transactions now. 
+- Added Contact 
+- Address Context Menus for immediate actions
+- Wallet Factory Reset
+- Added Single Message Sending 
+- Massively reduced peer bandwidth usage by complete overhaul of internal update mechanics
+- Overall UX improvements, e.g. using memoization to speed up, many layout tweaks
+- Back/Forward Navigation
+
+
 
 ### Bug Fixes
 
 - Fixed Disabled Activate Button (#1688)
 - Fixed Sending to unknown Accounts (#1664)
+- Distributions considered in Balance Chart
+- Network change updates UI correctly (#1689)
+- Improved Tx Caching (#1707)
+- Performance Issues (should be solved now) (#1605)
+- Open Settings on start up if node is not reachable (#1527)
+- Copyable 
 
 ## 1.5.0-alpha
 

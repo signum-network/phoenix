@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Znovu načíst/obnovit nejnovější transakce",
   "desktop": "plocha počítače",
   "success_send_message": "Zpráva úspěšně odeslána",
-  "error_send_message": "Hmm... odeslání zprávy se z neznámých důvodů nezdařilo."
+  "error_send_message": "Hmm... odeslání zprávy se z neznámých důvodů nezdařilo.",
+  "copy_deep_link": "Kopírovat odkaz žádosti"
 }

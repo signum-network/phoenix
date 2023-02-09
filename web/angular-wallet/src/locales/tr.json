@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "En son işlemleri yeniden yükle/yenile",
   "desktop": "masaüstü",
   "success_send_message": "Mesaj başarıyla gönderildi",
-  "error_send_message": "Hmm... Bilinmeyen bazı nedenlerden dolayı mesaj gönderilemedi."
+  "error_send_message": "Hmm... Bilinmeyen bazı nedenlerden dolayı mesaj gönderilemedi.",
+  "copy_deep_link": "İstek Bağlantısını Kopyala"
 }

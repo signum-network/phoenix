@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Iš naujo įkelti / atnaujinti naujausias operacijas",
   "desktop": "Darbalaukis",
   "success_send_message": "Pranešimas sėkmingai išsiųstas",
-  "error_send_message": "Hmm... dėl nežinomų priežasčių nepavyko išsiųsti pranešimo."
+  "error_send_message": "Hmm... dėl nežinomų priežasčių nepavyko išsiųsti pranešimo.",
+  "copy_deep_link": "Nukopijuokite užklausos nuorodą"
 }

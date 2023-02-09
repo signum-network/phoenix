@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Reîncărcați/Actualizați cele mai recente tranzacții",
   "desktop": "Desktop",
   "success_send_message": "mesaj trimis cu succes",
-  "error_send_message": "Hmm... trimiterea mesajului a eșuat din motive necunoscute."
+  "error_send_message": "Hmm... trimiterea mesajului a eșuat din motive necunoscute.",
+  "copy_deep_link": "Copiați linkul de solicitare"
 }

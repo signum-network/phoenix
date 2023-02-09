@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "最新のトランザクションをリロード/リフレッシュ",
   "desktop": "デスクトップ",
   "success_send_message": "送信に成功しました",
-  "error_send_message": "うーん...不明な理由でメッセージの送信に失敗しました。"
+  "error_send_message": "うーん...不明な理由でメッセージの送信に失敗しました。",
+  "copy_deep_link": "リクエストリンクをコピー"
 }

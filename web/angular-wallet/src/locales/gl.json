@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Recarga/Actualiza as últimas transaccións",
   "desktop": "Escritorio",
   "success_send_message": "Mensaxe enviada correctamente",
-  "error_send_message": "Hmm... non se puido enviar a mensaxe por algúns motivos descoñecidos."
+  "error_send_message": "Hmm... non se puido enviar a mensaxe por algúns motivos descoñecidos.",
+  "copy_deep_link": "Copiar a ligazón de solicitude"
 }

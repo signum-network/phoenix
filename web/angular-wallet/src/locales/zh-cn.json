@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "重新加载/刷新最新交易",
   "desktop": "桌面",
   "success_send_message": "消息已成功发送",
-  "error_send_message": "嗯...发送消息失败，原因不明。"
+  "error_send_message": "嗯...发送消息失败，原因不明。",
+  "copy_deep_link": "复制请求链接"
 }

@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Päivitä/päivitä viimeisimmät tapahtumat",
   "desktop": "Työpöytä",
   "success_send_message": "Viesti lähetetty onnistuneesti",
-  "error_send_message": "Hmm... viestin lähettäminen epäonnistui tuntemattomista syistä."
+  "error_send_message": "Hmm... viestin lähettäminen epäonnistui tuntemattomista syistä.",
+  "copy_deep_link": "Kopioi pyyntölinkki"
 }

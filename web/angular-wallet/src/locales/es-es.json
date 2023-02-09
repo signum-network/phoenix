@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Recargar/Actualizar últimas transacciones",
   "desktop": "Escritorio",
   "success_send_message": "Mensaje enviado con éxito",
-  "error_send_message": "Hmm... el envío del mensaje falló por razones desconocidas."
+  "error_send_message": "Hmm... el envío del mensaje falló por razones desconocidas.",
+  "copy_deep_link": "Copiar enlace de solicitud"
 }

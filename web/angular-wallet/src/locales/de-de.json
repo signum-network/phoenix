@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Letzte Transaktionen neu laden/aktualisieren",
   "desktop": "Desktop",
   "success_send_message": "Nachricht erfolgreich gesendet",
-  "error_send_message": "Hmm ... das Senden der Nachricht ist aus unbekannten Gründen fehlgeschlagen."
+  "error_send_message": "Hmm ... das Senden der Nachricht ist aus unbekannten Gründen fehlgeschlagen.",
+  "copy_deep_link": "Anforderungslink kopieren"
 }

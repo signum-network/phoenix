@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Reload/Refresh transaksi terbaru",
   "desktop": "Desktop",
   "success_send_message": "Pesan berhasil dikirim",
-  "error_send_message": "Hmm... pengiriman pesan gagal karena beberapa alasan yang tidak diketahui."
+  "error_send_message": "Hmm... pengiriman pesan gagal karena beberapa alasan yang tidak diketahui.",
+  "copy_deep_link": "Salin Tautan Permintaan"
 }

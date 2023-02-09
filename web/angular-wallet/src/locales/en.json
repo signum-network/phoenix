@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Reload/Refresh latest transactions",
   "desktop": "Desktop",
   "success_send_message": "Message sent successfully",
-  "error_send_message": "Hmm... sending the message failed for some unknown reasons."
+  "error_send_message": "Hmm... sending the message failed for some unknown reasons.",
+  "copy_deep_link": "Copy Request Link"
 }

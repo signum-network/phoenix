@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Laad/vernieuw de laatste transacties",
   "desktop": "Bureaublad",
   "success_send_message": "Bericht succesvol verzonden",
-  "error_send_message": "Hmm... het verzenden van het bericht is om onbekende redenen mislukt."
+  "error_send_message": "Hmm... het verzenden van het bericht is om onbekende redenen mislukt.",
+  "copy_deep_link": "Kopieer verzoeklink"
 }

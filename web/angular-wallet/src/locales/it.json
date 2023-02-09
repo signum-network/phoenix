@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Ricarica/Aggiorna le ultime transazioni",
   "desktop": "Scrivania",
   "success_send_message": "messaggio inviato con successo",
-  "error_send_message": "Hmm... l'invio del messaggio non è riuscito per ragioni sconosciute."
+  "error_send_message": "Hmm... l'invio del messaggio non è riuscito per ragioni sconosciute.",
+  "copy_deep_link": "Copia collegamento richiesta"
 }

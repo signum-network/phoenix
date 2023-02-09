@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Znovu načítať/obnoviť najnovšie transakcie",
   "desktop": "Desktop",
   "success_send_message": "správa bola úspešne odoslaná",
-  "error_send_message": "Hmm... odoslanie správy z neznámych dôvodov zlyhalo."
+  "error_send_message": "Hmm... odoslanie správy z neznámych dôvodov zlyhalo.",
+  "copy_deep_link": "Kopírovať odkaz žiadosti"
 }

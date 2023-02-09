@@ -579,5 +579,6 @@
   "refresh_transactions_hint": "Przeładuj/Odśwież ostatnie transakcje",
   "desktop": "Pulpit",
   "success_send_message": "Wiadomość wysłano poprawnie",
-  "error_send_message": "Hmm... wysłanie wiadomości nie powiodło się z nieznanych przyczyn."
+  "error_send_message": "Hmm... wysłanie wiadomości nie powiodło się z nieznanych przyczyn.",
+  "copy_deep_link": "Skopiuj link żądania"
 }
