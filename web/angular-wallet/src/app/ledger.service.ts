@@ -4,6 +4,7 @@ import { StoreService } from './store/store.service';
 import { constants } from './constants';
 import { NodeInfo } from './shared/types';
 import { syncMemo } from 'app/util/memo';
+import { AppService } from './app.service';
 
 
 @Injectable({

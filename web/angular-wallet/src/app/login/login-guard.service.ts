@@ -8,6 +8,7 @@ import { LedgerClientFactory } from '@signumjs/core';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { NodeInfo } from 'app/shared/types';
 import { memo } from 'app/util/memo';
+import { AppService } from "../app.service";
 
 async function _fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
   try {
@@ -34,6 +35,7 @@ export class LoginGuard implements CanActivate {
   constructor(private storeService: StoreService,
               private accountManagementService: AccountManagementService,
               private networkService: NetworkService,
+              private appService: AppService,
               private router: Router) {
   }
 
@@ -48,6 +50,10 @@ export class LoginGuard implements CanActivate {
         if (!(settings && settings.agree)) {
           await this.router.navigate(['/disclaimer']);
           return false;
+        }
+
+        if (!this.appService.isDesktop() && settings.node === '__origin__'){
+          settings.node = window.location.origin;
         }
 
         const nodeInfo = await fetchNodeInfo(settings.node);

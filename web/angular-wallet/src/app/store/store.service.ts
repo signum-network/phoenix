@@ -334,10 +334,6 @@ export class StoreService {
       if (hasNetworkChanged){
         this.migrateAccountsBetweenNetworks(previousNetworkName, networkName, addressPrefix);
         this.networkChanged$.next(networkName);
-        const selectedAccount = this.getSelectedAccount();
-        // const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
-        // const newSelectedAccount = accounts.by('_id', `${networkName}-${selectedAccount.account}`);
-        // this.accountSelected$.next(new WalletAccount(newSelectedAccount));
        }
     });
   }
