@@ -2,25 +2,25 @@ import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Transaction } from '@signumjs/core';
-import { AccountManagementService } from '../../shared/services/account-management.service';
 import { LedgerService } from 'app/ledger.service';
+import { expMemo } from 'app/util/memo';
+import { StoreService } from 'app/store/store.service';
 
+const fetchTransaction = expMemo((key: string, txId: string, ledgerService: LedgerService) => {
+  return ledgerService.ledger.transaction.getTransaction(txId);
+}, { expiry: 120_000 });
 @Injectable()
 export class TransactionResolver implements Resolve<Promise<Transaction>> {
-  constructor(private ledgerService: LedgerService, private accountManagementService: AccountManagementService) {
+  constructor(private ledgerService: LedgerService, private storeService: StoreService) {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
-    const selectedAccount =  this.accountManagementService.getSelectedAccount();
-    if (selectedAccount){
-      const tx = selectedAccount.transactions.find( ({transaction}) => transaction === route.params.id);
-      if (tx){
-        return Promise.resolve(tx);
-      }
-    }
     try{
-      return (await this.ledgerService.ledger.transaction.getTransaction(route.params.id));
-    } catch (e){
+      const {networkName} = this.storeService.getSelectedNode();
+      const txId = route.params.id;
+      const cacheKey = `${networkName}-${txId}`;
+      return (await fetchTransaction(cacheKey, txId, this.ledgerService) );
+    } catch (e) {
       console.warn('Transaction not found', e.message);
       return null;
     }
