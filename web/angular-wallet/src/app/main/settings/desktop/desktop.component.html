@@ -1,0 +1,10 @@
+<div class="py-24">
+  <div class="font-size-14 font-weight-600 mb-8 secondary-text">{{"settings_notification" | i18n}}</div>
+  <mat-slide-toggle
+    [(ngModel)]="showDesktopNotifications"
+    (change)="setDesktopNotifications()"
+    matTooltip="{{'toggle_desktop_notification' | i18n}}"
+  >
+    {{(showDesktopNotifications ? 'notifications_enabled' : "notifications_disabled") | i18n}}
+  </mat-slide-toggle>
+</div>

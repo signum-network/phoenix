@@ -576,5 +576,6 @@
   "reset_wallet": "Wallet zurücksetzen",
   "reset_wallet_hint": "Mit dem Zurücksetzen der Wallet entfernst du alle lokal gespeicherten Daten, Konten und Einstellungen der Wallet. Du kannst alle Deine Konten mittels der jeweilgen Recovery Phrase erneut importieren. Deine Signa und Tokens sind sicher auf der Blockchain gespeichert und somit nicht verloren, solange Du im Besitz der Recovery Phrasen bist.",
   "welcome_to_wallet": "Willkommen bei der Signum Phoenix Wallet",
-  "refresh_transactions_hint": "Letzte Transaktionen neu laden/aktualisieren"
+  "refresh_transactions_hint": "Letzte Transaktionen neu laden/aktualisieren",
+  "desktop": "Desktop"
 }

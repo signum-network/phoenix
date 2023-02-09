@@ -44,7 +44,7 @@ export class LedgerService {
       const nodeUrl = await this.ledger.service.selectBestHost(false);
       const { networkName, addressPrefix } = await this.ledger.network.getNetworkInfo();
       return {
-        nodeUrl,
+        nodeUrl: nodeUrl.replace(':443', ''),
         networkName,
         addressPrefix
       };

@@ -576,5 +576,6 @@
   "reset_wallet": "Restableix Wallet",
   "reset_wallet_hint": "El restabliment de la cartera elimina totes les dades, els comptes i la configuració emmagatzemats localment de la cartera. Podeu tornar a importar tots els vostres comptes mitjançant la frase de recuperació corresponent. El vostre signe i fitxes s'emmagatzemen de forma segura a la cadena de blocs i, per tant, no es perden mentre tingueu les frases de recuperació.",
   "welcome_to_wallet": "Benvingut a Signum Phoenix Wallet",
-  "refresh_transactions_hint": "Recarrega/Actualitza les últimes transaccions"
+  "refresh_transactions_hint": "Recarrega/Actualitza les últimes transaccions",
+  "desktop": "Escriptori"
 }

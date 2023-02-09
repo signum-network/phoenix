@@ -576,5 +576,6 @@
   "reset_wallet": "Ripristina portafoglio",
   "reset_wallet_hint": "Il ripristino del portafoglio rimuove tutti i dati, gli account e le impostazioni memorizzati localmente dal portafoglio. Puoi reimportare tutti i tuoi account utilizzando la rispettiva frase di recupero. I tuoi Signa e i token sono archiviati in modo sicuro sulla blockchain e pertanto non vengono persi finché sei in possesso delle frasi di ripristino.",
   "welcome_to_wallet": "Benvenuto nel Portafoglio Signum Phoenix",
-  "refresh_transactions_hint": "Ricarica/Aggiorna le ultime transazioni"
+  "refresh_transactions_hint": "Ricarica/Aggiorna le ultime transazioni",
+  "desktop": "Scrivania"
 }

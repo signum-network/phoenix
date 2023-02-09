@@ -576,5 +576,6 @@
   "reset_wallet": "重置钱包",
   "reset_wallet_hint": "重置钱包会从钱包中删除所有本地存储的数据、帐户和设置。您可以使用相应的恢复短语重新导入所有帐户。您的 Signa 和代币安全地存储在区块链上，因此只要您拥有助记词就不会丢失。",
   "welcome_to_wallet": "欢迎使用 Signum Phoenix 钱包",
-  "refresh_transactions_hint": "重新加载/刷新最新交易"
+  "refresh_transactions_hint": "重新加载/刷新最新交易",
+  "desktop": "桌面"
 }
