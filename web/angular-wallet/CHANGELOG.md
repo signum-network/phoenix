@@ -3,15 +3,13 @@
 
 ### Feature
 - Revamped Account Management
-- Added Contact 
+- Added Contacts 
 - Address Context Menus for immediate actions
-- Wallet Factory Reset
+- Wallet Factory Reset possible now
 - Added Single Message Sending 
 - Massively reduced peer bandwidth usage by complete overhaul of internal update mechanics
 - Overall UX improvements, e.g. using memoization to speed up, many layout tweaks
 - Back/Forward Navigation
-
-
 
 ### Bug Fixes
 
@@ -22,7 +20,7 @@
 - Improved Tx Caching (#1707)
 - Performance Issues (should be solved now) (#1605)
 - Open Settings on start up if node is not reachable (#1527)
-- Copyable 
+- Copyable Deep Link (#1316)
 
 ## 1.5.0-alpha
 
