@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Le compte du destinataire n'a pas de clé publique.",
   "error_recipient_no_public_key_announcement": "Le compte du destinataire n'a pas de clé publique, doit joindre une annonce de clé publique.",
   "error_refund_already_sent": "Remboursement déjà envoyé.",
-  "error_send_money": "Une erreur inconnue s'est produite ! Signa peut être envoyé ou non.",
+  "error_send_money": "Hmm... le transfert a échoué pour des raisons inconnues. Désolé, pour la gêne occasionnée 🤷",
   "error_server_connect": "N'a pas pu se connecter au serveur.",
   "error_set_reward_recipient": "Une erreur inconnue s'est produite ! Vous ne pouviez pas rejoindre la piscine.",
   "error_transaction_already_signed": "Transaction déjà signée.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "La réinitialisation du portefeuille supprime toutes les données, comptes et paramètres stockés localement du portefeuille. Vous pouvez réimporter tous vos comptes à l'aide de la phrase de récupération correspondante. Vos Signa et tokens sont stockés en toute sécurité sur la blockchain et ne sont donc pas perdus tant que vous êtes en possession des phrases de récupération.",
   "welcome_to_wallet": "Bienvenue dans le portefeuille Signum Phoenix",
   "refresh_transactions_hint": "Recharger/Actualiser les dernières transactions",
-  "desktop": "Bureau"
+  "desktop": "Bureau",
+  "success_send_message": "message envoyé avec succès",
+  "error_send_message": "Hmm... l'envoi du message a échoué pour des raisons inconnues."
 }

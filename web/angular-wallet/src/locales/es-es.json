@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "La cuenta del destinatario no tiene clave pública.",
   "error_recipient_no_public_key_announcement": "La cuenta del destinatario no tiene una clave pública, debe adjuntar un anuncio de clave pública.",
   "error_refund_already_sent": "Reembolso ya enviado.",
-  "error_send_money": "¡Un error desconocido ocurrió! Signa puede enviarse o no.",
+  "error_send_money": "Hmm... la transferencia falló por razones desconocidas. Disculpen las molestias 🤷",
   "error_server_connect": "No se pudo conectar al servidor.",
   "error_set_reward_recipient": "¡Un error desconocido ocurrió! No pudiste unirte a la pool.",
   "error_transaction_already_signed": "Transacción ya firmada.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Restablecer la billetera elimina todos los datos, cuentas y configuraciones almacenados localmente de la billetera. Puede volver a importar todas sus cuentas utilizando la frase de recuperación respectiva. Su Signa y tokens se almacenan de forma segura en la cadena de bloques y, por lo tanto, no se pierden mientras esté en posesión de las frases de recuperación.",
   "welcome_to_wallet": "Bienvenido a la cartera Signum Phoenix",
   "refresh_transactions_hint": "Recargar/Actualizar últimas transacciones",
-  "desktop": "Escritorio"
+  "desktop": "Escritorio",
+  "success_send_message": "Mensaje enviado con éxito",
+  "error_send_message": "Hmm... el envío del mensaje falló por razones desconocidas."
 }

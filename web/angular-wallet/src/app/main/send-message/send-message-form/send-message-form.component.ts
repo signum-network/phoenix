@@ -124,14 +124,14 @@ export class SendMessageFormComponent extends UnsubscribeOnDestroy implements On
       }else{
         await this.sendMessageService.sendMessage(params);
       }
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_message'));
       this.sendForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
       if (isKeyDecryptionError(e)) {
         this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
       } else {
-        this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_send_message'));
       }
     } finally {
       this.immutable = false;

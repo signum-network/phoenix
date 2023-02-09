@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Alıcı hesabının ortak anahtarı yok.",
   "error_recipient_no_public_key_announcement": "Alıcı hesabının açık anahtarı yoktur, açık anahtar duyurusu eklemelidir.",
   "error_refund_already_sent": "Geri ödeme zaten gönderildi.",
-  "error_send_money": "Bilinmeyen bir hata oluştu! Signa gönderilebilir veya gönderilmeyebilir.",
+  "error_send_money": "Hmm... aktarım bazı bilinmeyen nedenlerle başarısız oldu. Rahatsızlık verdiğim için özür dilerim 🤷",
   "error_server_connect": "Server'a bağlanılamadı.",
   "error_set_reward_recipient": "Bilinmeyen bir hata oluştu! Havuza giremediniz.",
   "error_transaction_already_signed": "İşlem zaten imzalandı.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Cüzdanın sıfırlanması, yerel olarak saklanan tüm verileri, hesapları ve ayarları cüzdandan kaldırır. İlgili kurtarma ifadesini kullanarak tüm hesaplarınızı yeniden içe aktarabilirsiniz. Signa'nız ve jetonlarınız blok zincirinde güvenli bir şekilde saklanır ve bu nedenle kurtarma ifadelerine sahip olduğunuz sürece kaybolmaz.",
   "welcome_to_wallet": "Signum Phoenix Wallet'a hoş geldiniz",
   "refresh_transactions_hint": "En son işlemleri yeniden yükle/yenile",
-  "desktop": "masaüstü"
+  "desktop": "masaüstü",
+  "success_send_message": "Mesaj başarıyla gönderildi",
+  "error_send_message": "Hmm... Bilinmeyen bazı nedenlerden dolayı mesaj gönderilemedi."
 }

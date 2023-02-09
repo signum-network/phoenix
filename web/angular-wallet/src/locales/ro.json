@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Contul destinatarului nu are cheie publică.",
   "error_recipient_no_public_key_announcement": "Contul destinatarului nu are o cheie publică, trebuie să atașeze un anunț de cheie publică.",
   "error_refund_already_sent": "Rambursarea a fost deja trimisă.",
-  "error_send_money": "A apărut o eroare necunoscută! Signa poate fi sau nu trimisă.",
+  "error_send_money": "Hmm... transferul a eșuat din motive necunoscute. Scuze, pentru neplăceri 🤷",
   "error_server_connect": "Nu se poate conecta la server.",
   "error_set_reward_recipient": "A apărut o eroare necunoscută! Nu ai putut să te alături piscinei.",
   "error_transaction_already_signed": "Tranzacția este deja semnată.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Resetarea portofelului elimină toate datele, conturile și setările stocate local din portofel. Puteți reimporta toate conturile folosind expresia de recuperare respectivă. Semnele și jetoanele dvs. sunt stocate în siguranță pe blockchain și, prin urmare, nu sunt pierdute atâta timp cât sunteți în posesia frazelor de recuperare.",
   "welcome_to_wallet": "Bine ați venit la Signum Phoenix Wallet",
   "refresh_transactions_hint": "Reîncărcați/Actualizați cele mai recente tranzacții",
-  "desktop": "Desktop"
+  "desktop": "Desktop",
+  "success_send_message": "mesaj trimis cu succes",
+  "error_send_message": "Hmm... trimiterea mesajului a eșuat din motive necunoscute."
 }

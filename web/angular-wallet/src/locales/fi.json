@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Vastaanottajan tilillä ei ole julkista avainta.",
   "error_recipient_no_public_key_announcement": "Vastaanottajan tilillä ei ole julkista avainta, sen on liitettävä julkisen avaimen ilmoitus.",
   "error_refund_already_sent": "Hyvitys on jo lähetetty.",
-  "error_send_money": "Tapahtui tuntematon virhe! Signa voidaan lähettää tai olla lähettämättä.",
+  "error_send_money": "Hmm... siirto epäonnistui tuntemattomista syistä. Anteeksi haitasta 🤷",
   "error_server_connect": "Palvelimeen ei saatu yhteyttä.",
   "error_set_reward_recipient": "Tapahtui tuntematon virhe! Et voinut liittyä uima-altaaseen.",
   "error_transaction_already_signed": "Tapahtuma on jo allekirjoitettu.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Lompakon nollaaminen poistaa kaikki paikallisesti tallennetut tiedot, tilit ja asetukset lompakosta. Voit tuoda kaikki tilisi uudelleen käyttämällä vastaavaa palautuslauseketta. Signasi ja tunnuksesi on tallennettu turvallisesti lohkoketjuun, joten ne eivät häviä niin kauan kuin sinulla on palautuslausekkeet.",
   "welcome_to_wallet": "Tervetuloa Signum Phoenix Walletiin",
   "refresh_transactions_hint": "Päivitä/päivitä viimeisimmät tapahtumat",
-  "desktop": "Työpöytä"
+  "desktop": "Työpöytä",
+  "success_send_message": "Viesti lähetetty onnistuneesti",
+  "error_send_message": "Hmm... viestin lähettäminen epäonnistui tuntemattomista syistä."
 }

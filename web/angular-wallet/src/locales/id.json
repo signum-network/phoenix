@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Akun penerima tidak memiliki kunci publik.",
   "error_recipient_no_public_key_announcement": "Akun penerima tidak memiliki kunci publik, harus melampirkan pengumuman kunci publik.",
   "error_refund_already_sent": "Pengembalian dana sudah dikirim.",
-  "error_send_money": "Terjadi kesalahan yang tidak diketahui! Signa mungkin atau mungkin tidak dikirim.",
+  "error_send_money": "Hmm... transfer gagal karena beberapa alasan yang tidak diketahui. Maaf, atas ketidaknyamanannya 🤷",
   "error_server_connect": "Tidak bisa terhubung ke server.",
   "error_set_reward_recipient": "Terjadi kesalahan yang tidak diketahui! Anda tidak dapat bergabung dengan kumpulan.",
   "error_transaction_already_signed": "Transaksi sudah ditandatangani.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Menyetel ulang dompet menghapus semua data, akun, dan pengaturan yang disimpan secara lokal dari dompet. Anda dapat mengimpor ulang semua akun Anda menggunakan frase pemulihan masing-masing. Signa dan token Anda disimpan dengan aman di blockchain dan karenanya tidak hilang selama Anda memiliki frase pemulihan.",
   "welcome_to_wallet": "Selamat datang di Dompet Signum Phoenix",
   "refresh_transactions_hint": "Reload/Refresh transaksi terbaru",
-  "desktop": "Desktop"
+  "desktop": "Desktop",
+  "success_send_message": "Pesan berhasil dikirim",
+  "error_send_message": "Hmm... pengiriman pesan gagal karena beberapa alasan yang tidak diketahui."
 }

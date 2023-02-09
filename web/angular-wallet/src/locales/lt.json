@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Gavėjo paskyra neturi viešojo rakto.",
   "error_recipient_no_public_key_announcement": "Gavėjo paskyra neturi viešojo rakto, turi pridėti viešojo rakto skelbimą.",
   "error_refund_already_sent": "Grąžinimas jau išsiųstas.",
-  "error_send_money": "Įvyko nežinoma klaida! Signa gali būti ir nesiųsta.",
+  "error_send_money": "Hmm... perkėlimas nepavyko dėl nežinomų priežasčių. Atsiprašome už nepatogumus 🤷",
   "error_server_connect": "Neįmanoma prisijungti prie serverio.",
   "error_set_reward_recipient": "Įvyko nežinoma klaida! Jūs negalėjote prisijungti prie baseino.",
   "error_transaction_already_signed": "Sandoris jau pasirašytas.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Iš naujo nustatant piniginę iš piniginės pašalinami visi vietoje saugomi duomenys, paskyros ir nustatymai. Galite iš naujo importuoti visas savo paskyras naudodami atitinkamą atkūrimo frazę. Jūsų „Signa“ ir žetonai yra saugiai saugomi „blockchain“, todėl neprarandami tol, kol turite atkūrimo frazes.",
   "welcome_to_wallet": "Sveiki atvykę į „Signum Phoenix“ piniginę",
   "refresh_transactions_hint": "Iš naujo įkelti / atnaujinti naujausias operacijas",
-  "desktop": "Darbalaukis"
+  "desktop": "Darbalaukis",
+  "success_send_message": "Pranešimas sėkmingai išsiųstas",
+  "error_send_message": "Hmm... dėl nežinomų priežasčių nepavyko išsiųsti pranešimo."
 }

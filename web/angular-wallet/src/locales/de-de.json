@@ -176,7 +176,7 @@
   "error_recipient_no_public_key": "Das Empfängerkonto hat keinen öffentlichen Schlüssel.",
   "error_recipient_no_public_key_announcement": "Empfängerkonto hat keinen öffentlichen Schlüssel, muss eine Ankündigung des öffentlichen Schlüssels anhängen.",
   "error_refund_already_sent": "Rückerstattung bereits gesendet.",
-  "error_send_money": "Ein unbekannter Fehler ist aufgetreten! Signa kann gesendet werden oder nicht.",
+  "error_send_money": "Hmm ... die Übertragung ist aus unbekannten Gründen fehlgeschlagen. Sorry, für Unannehmlichkeiten 🤷",
   "error_server_connect": "Es konnte keine Verbindung zum Server hergestellt werden.",
   "error_set_reward_recipient": "Ein unbekannter Fehler ist aufgetreten! Du konntest dem Pool nicht beitreten.",
   "error_transaction_already_signed": "Transaktion bereits unterschrieben.",
@@ -577,5 +577,7 @@
   "reset_wallet_hint": "Mit dem Zurücksetzen der Wallet entfernst du alle lokal gespeicherten Daten, Konten und Einstellungen der Wallet. Du kannst alle Deine Konten mittels der jeweilgen Recovery Phrase erneut importieren. Deine Signa und Tokens sind sicher auf der Blockchain gespeichert und somit nicht verloren, solange Du im Besitz der Recovery Phrasen bist.",
   "welcome_to_wallet": "Willkommen bei der Signum Phoenix Wallet",
   "refresh_transactions_hint": "Letzte Transaktionen neu laden/aktualisieren",
-  "desktop": "Desktop"
+  "desktop": "Desktop",
+  "success_send_message": "Nachricht erfolgreich gesendet",
+  "error_send_message": "Hmm ... das Senden der Nachricht ist aus unbekannten Gründen fehlgeschlagen."
 }
