@@ -1,0 +1,26 @@
+#!/bin/bash
+
+######################################################################
+#
+# Signs all .exe files in the release folder and copies into a signed folder
+#
+# This is an alternative if the build-and-sign-win32.sh does not work :shrug
+#
+# Needs osslsigncode:
+# sudo apt-get update -y
+# sudo apt-get install -y osslsigncode
+#
+######################################################################
+
+CERT_PATH=
+CERT_PASS=
+EXE_PATH=./release-builds
+OUT_PATH="${EXE_PATH}/signed"
+mkdir -p "${OUT_PATH}"
+for winFile in ${EXE_PATH}/*.exe
+do
+    echo ${winFile}
+    osslsigncode sign -pkcs12 "${CERT_PATH}" -pass "${CERT_PASS}" \
+      -n "Phoenix Signum Wallet" -i https://phoenix-wallet.rocks/ \
+      -in ${winFile} -out "${OUT_PATH}/${winFile##*/}"
+done

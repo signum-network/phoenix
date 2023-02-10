@@ -57,4 +57,32 @@ _Example_:
 With `electron-builder` it is sufficient to set the env vars `CSC_LINK` (path to .pfx file) and `CSC_KEY_PASSWORD` and then run the win32 build script.
 There is a bash script example called `build-and-sign-win32.sh.example` as a template.
 
-> Note that signed files must be called `win-phoenix-signum-wallet-setup-signed.1.x.y.exe` or `win-phoenix-signum-wallet-signed.1.x.y.exe`
+
+## Using OSSLSIGNCODE
+
+Recently, I had problems with code signing using electron-builder. An additional signing script is `sign-win32.sh` which makes use of
+`osslsigncode`
+
+> We use a pfx/pkcs12 cert file
+
+### Install OSSLSIGNCODE
+
+```bash 
+sudo apt-get update -y
+sudo apt-get install -y osslsigncode
+```
+
+### Sign
+
+Make a copy of `sign-win32.sh.example` and add your certificate path and the password. Run the script _after_ you built the windows executables and
+run your signing script. If all went fine your signed executables should be available under `./release-builds/signed`.
+
+
+### Verify
+
+You can verify the executables with the command:
+
+```bash
+osslsigncode verify <file>
+```
+

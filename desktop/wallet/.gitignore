@@ -13,4 +13,5 @@ Thumbs.db
 
 # arbitrary
 build-and-sign-win32.sh
+sign-win32.sh
 
