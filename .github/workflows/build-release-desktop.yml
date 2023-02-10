@@ -70,6 +70,7 @@ jobs:
         with:
           python-version: '2.7'
       - name: Display Python version
+        if: ${{ matrix.os == 'macos-latest' }}
         run: |
           echo $Python_ROOT_DIR
           ln -s $Python_ROOT_DIR/python /usr/bin/python
