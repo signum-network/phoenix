@@ -59,7 +59,7 @@
       </button>
       <mat-menu #menu="matMenu">
         <button
-          *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed"
+          *ngIf="selectedAccount.type !== 'offline' && selectedAccount.isSafe"
           mat-menu-item (click)="sendToAccount(contact)">
           <mat-icon>publish</mat-icon>
           <span>{{'send_signa' | i18n}}</span>

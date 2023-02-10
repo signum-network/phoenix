@@ -89,8 +89,8 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     const dir = (result: number) => sort.direction === 'asc' ? result : -result;
 
     const typeValue = (a: WalletAccount) => {
-      if (a.type !== 'offline' && !a.confirmed) { return 0; }
-      if (a.type !== 'offline' && a.confirmed) { return 1; }
+      if (a.type !== 'offline' && !a.isSafe) { return 0; }
+      if (a.type !== 'offline' && a.isSafe) { return 1; }
       if (a.type === 'offline') { return 2; }
     };
 

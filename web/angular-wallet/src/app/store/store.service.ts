@@ -227,7 +227,7 @@ export class StoreService {
           existingAccount.keys.publicKey = account.keys.publicKey;
         }
         existingAccount.transactions = account.transactions;
-        existingAccount.confirmed = account.confirmed;
+        existingAccount.isSafe = account.isSafe;
         accounts.update(existingAccount);
         updatedAccount = existingAccount;
       }

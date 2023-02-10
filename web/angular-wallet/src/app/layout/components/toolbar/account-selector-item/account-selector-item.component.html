@@ -12,7 +12,7 @@
                     matTooltip="{{'hint_offline_account' | i18n}}">
             remove_red_eye
           </mat-icon>
-          <mat-icon *ngIf="!account.isWatchOnly() && account.isNew()"
+          <mat-icon *ngIf="account.isNew()"
                     class="s-12"
                     matTooltip="{{'hint_new_account' | i18n}}">
             new_releases

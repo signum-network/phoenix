@@ -20,7 +20,7 @@ export class WalletAccount{
   public unconfirmedBalanceNQT: string;
   public commitmentNQT: string;
   public committedBalanceNQT: string;
-  public confirmed: boolean;
+  public isSafe: boolean;
 
   constructor(data: any = {}) {
     this._id = data._id;
@@ -48,7 +48,7 @@ export class WalletAccount{
     this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
     this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
     this.networkName = data.networkName || undefined;
-    this.confirmed = !!this.keys.publicKey && this.transactions.length > 0;
+    this.isSafe = data.isSafe || false;
   }
 
   public isStored(): boolean {
@@ -60,7 +60,7 @@ export class WalletAccount{
   }
 
   public isUnsafe(): boolean {
-    return !this.keys.publicKey;
+    return !this.isSafe;
   }
   public isWatchOnly(): boolean {
     return this.type === 'offline';

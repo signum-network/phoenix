@@ -21,12 +21,8 @@ export class AccountSelectorItemComponent implements OnChanges {
   constructor(private networkService: NetworkService) {
   }
 
+
   ngOnChanges(changes: SimpleChanges): void {
-
-    if (changes.account.previousValue === changes.account.currentValue){
-      return;
-    }
-
     if (this.account){
       setTimeout(() => this.updateAvatar());
       this.shortAddress = Address.create(this.account.account).getReedSolomonAddress(false);

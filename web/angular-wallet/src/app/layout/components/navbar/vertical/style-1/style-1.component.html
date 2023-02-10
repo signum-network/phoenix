@@ -41,17 +41,17 @@
       <img #ipfsAvatar *ngIf="avatarImgSrc" [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)"
            alt="avatar-image" />
 
-      <div *ngIf="selectedAccount.isUnsafe()"
-           class="badge unsafe"
-           matTooltip="{{'account_unsafe' | i18n}}"
-      >
-        <mat-icon>lock_open</mat-icon>
-      </div>
       <div *ngIf="selectedAccount.isWatchOnly()"
            class="badge watch"
            matTooltip="{{'hint_offline_account' | i18n}}"
       >
         <mat-icon>remove_red_eye</mat-icon>
+      </div>
+      <div *ngIf="!selectedAccount.isNew() && selectedAccount.isUnsafe()"
+           class="badge unsafe"
+           matTooltip="{{'account_unsafe' | i18n}}"
+      >
+        <mat-icon>lock_open</mat-icon>
       </div>
       <div *ngIf="selectedAccount.isNew()"
            class="badge new"

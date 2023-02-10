@@ -26,7 +26,7 @@ export class AccountManagementService {
   }
 
   private async fetchAccountsRecentTransactions(account: WalletAccount): Promise<Transaction[]> {
-    const confirmedTransactions = account.transactions.filter(({confirmations}) => confirmations !== undefined);
+    const confirmedTransactions = account.transactions.filter(({ confirmations }) => confirmations !== undefined);
     const lastKnownConfirmedTransactionTimestamp = confirmedTransactions.length
       ? confirmedTransactions[0].timestamp
       : 0;
@@ -79,15 +79,16 @@ export class AccountManagementService {
         ]);
       }
       this.storeService.saveAccount(accountRef);
-      return accountRef;
     } catch (e) {
       console.warn('Error while syncing account', accountRef.accountRS, e);
-      if (e.name === 'QuotaExceededError'){
+      if (e.name === 'QuotaExceededError') {
         this.notificationService.show({
           type: 'error',
           message: this.i18nService.getTranslation('error_storage_quota_exceeded')
         });
       }
+    } finally {
+      return accountRef;
     }
   }
 
@@ -109,13 +110,6 @@ export class AccountManagementService {
     prunedTransactions.sort((a, b) => b.timestamp - a.timestamp);
     accountRef.transactions = prunedTransactions;
 
-    // TODO: desktop notifications - maybe better in a central component?
-    //     // @ts-ignore - Send notifications for new transactions
-    //     if (window.Notification) {
-    //       unconfirmed
-    //         .filter(({ transaction }) => this.isNewTransaction(transaction))
-    //         .map((transaction) => this.sendNewTransactionNotification(transaction));
-    //     }
   }
 
   private async syncAccountDetails(accountRef: WalletAccount): Promise<void> {
@@ -136,6 +130,7 @@ export class AccountManagementService {
     if (!accountRef.keys.publicKey && remoteAccount.publicKey) {
       accountRef.keys.publicKey = remoteAccount.publicKey;
     }
+    accountRef.isSafe = !!remoteAccount.publicKey;
   }
 
   public async addAccount(account: WalletAccount): Promise<WalletAccount> {
@@ -150,7 +145,7 @@ export class AccountManagementService {
   }
 
   public hasAccounts(): boolean {
-      return this.storeService.getAllAccounts().length > 0;
+    return this.storeService.getAllAccounts().length > 0;
   }
 
   public removeAccount(accountId: string): void {
@@ -162,7 +157,7 @@ export class AccountManagementService {
   }
 
   public getAllAccounts(): WalletAccount[] {
-    const  {networkName} = this.storeService.getSelectedNode();
+    const { networkName } = this.storeService.getSelectedNode();
     // this forces change detection
     return [...this.storeService.getAllAccountsByNetwork(networkName)];
   }
