@@ -55,26 +55,27 @@ jobs:
 
     strategy:
       matrix:
-#        Windows is signed and needs to be uploaded manually
+#        Windows is signed and needs to be uploaded manually, Mac OS build fails due to old python version of electron builder
 #        os: [ macos-latest, ubuntu-latest, windows-latest ]
-        os: [ macos-latest, ubuntu-latest ]
+#        os: [ macos-latest, ubuntu-latest ]
+        os: [ ubuntu-latest ]
         package_manager: [ npm ]
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        if: ${{ matrix.os == 'macos-latest' }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: '2.7'
-      - name: Display Python version
-        if: ${{ matrix.os == 'macos-latest' }}
-        run: |
-          echo $Python_ROOT_DIR
-          ln -s $Python_ROOT_DIR/python /usr/bin/python
-          /usr/bin/python --version
+#      - name: Set up Python
+#        if: ${{ matrix.os == 'macos-latest' }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '2.7'
+#      - name: Display Python version
+#        if: ${{ matrix.os == 'macos-latest' }}
+#        run: |
+#          echo $Python_ROOT_DIR
+#          ln -s $Python_ROOT_DIR/python /usr/bin/python
+#          /usr/bin/python --version
 
       - name: Install Node.js
         uses: actions/setup-node@v3
