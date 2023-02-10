@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
+import { ApplicationRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -107,6 +107,14 @@ export class ToolbarComponent
       .subscribe((account) => {
         this.selectedAccount = account;
         this.accounts = this.accountManagementService.getAllAccounts();
+      });
+
+    this.storeService.accountUpdated$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((account) => {
+        if (this.selectedAccount.account === account.account){
+          this.selectedAccount = account;
+        }
       });
 
     this.storeService.nodeSelected$

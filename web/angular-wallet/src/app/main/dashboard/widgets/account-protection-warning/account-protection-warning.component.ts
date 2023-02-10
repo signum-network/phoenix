@@ -48,9 +48,11 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
 
     this.storeService.accountUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(async () => {
-        console.log('updated')
-        await this.checkForAccountsActivation();
+      .subscribe(async (account) => {
+        if (account.account === this.account.account){
+          this.account = account;
+          await this.checkForAccountsActivation();
+        }
       });
   }
 
@@ -84,20 +86,6 @@ export class AccountProtectionWarningComponent extends UnsubscribeOnDestroy impl
     else if (a.isWatchOnly()) {
       this.status = AccountStatus.Safe;
       return; // skip further checks, as we do not need check watchOnly accounts - we cannot activate them
-    }
-
-    try {
-      // checking real current status, to see if the unsafe account got a key now!
-      const remoteAccount = await this.accountService.getAccount(a.account);
-      this.status = remoteAccount.keys.publicKey ? AccountStatus.Safe : AccountStatus.NoPublicKey;
-    } catch (e) {
-      if (e instanceof HttpError) {
-        if (e.message.indexOf('Unknown account') !== -1) {
-          this.status = AccountStatus.NotRegistered;
-          return;
-        }
-      }
-      console.error(e.message);
     }
   }
 

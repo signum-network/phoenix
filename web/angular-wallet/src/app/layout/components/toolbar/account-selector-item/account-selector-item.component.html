@@ -17,7 +17,12 @@
                     matTooltip="{{'hint_new_account' | i18n}}">
             new_releases
           </mat-icon>
-          <mat-icon *ngIf="!account.isNew() && account.isUnsafe()"
+          <mat-icon *ngIf="!account.isWatchOnly() && !account.isNew() && !account.isUnsafe()"
+                    class="s-12"
+                    matTooltip="{{'hint_online_account' | i18n}}">
+            verified_user
+          </mat-icon>
+          <mat-icon *ngIf="!account.isWatchOnly() && !account.isNew() && account.isUnsafe()"
                     class="s-12 error-text"
                     matTooltip="{{'error_no_public_key' | i18n}}">
             lock_open
