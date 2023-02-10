@@ -67,7 +67,10 @@ jobs:
         with:
           python-version: '2.7'
       - name: Display Python version
-        run: python --version
+        run: |
+          echo $Python_ROOT_DIR
+          ln -s $Python_ROOT_DIR/python /usr/bin/python
+          /usr/bin/python --version
 
       - name: Install Node.js
         uses: actions/setup-node@v3
