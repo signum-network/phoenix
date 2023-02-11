@@ -42,8 +42,16 @@
     flex-direction: column;
   }
 
-  .mat-column-actions {
-    flex: 0 1 64px;
+  mat-header-cell:first-child,
+  mat-cell:first-child
+  {
+    justify-content: start !important;
+  }
+
+  mat-header-cell:last-child,
+  mat-cell:last-child
+  {
+    justify-content: flex-end !important;
   }
 
   .wrapper {

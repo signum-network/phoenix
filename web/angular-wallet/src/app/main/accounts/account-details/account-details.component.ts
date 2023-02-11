@@ -1,45 +1,37 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
-import { Transaction } from "@signumjs/core";
-import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
-import { MatTableDataSource } from "@angular/material/table";
-import { AccountService } from "app/setup/account/account.service";
-import { StoreService } from "app/store/store.service";
-import hashicon from "hashicon";
-import { uniqBy } from "lodash";
-import { MediaChange, MediaObserver } from "@angular/flex-layout";
-import { UnsubscribeOnDestroy } from "../../../util/UnsubscribeOnDestroy";
-import { filter, takeUntil, tap } from "rxjs/operators";
-import { FuseProgressBarService } from "../../../../@fuse/components/progress-bar/progress-bar.service";
-import { TokenData, TokenService } from "../../../shared/services/token.service";
-import { WalletAccount } from "app/util/WalletAccount";
-import { DescriptorData } from "@signumjs/standards";
-import { NetworkService } from "app/network/network.service";
-import { AppService } from "app/app.service";
-import { interval, Subscription } from "rxjs";
-import { constants } from "app/constants";
-import { I18nService } from "app/shared/services/i18n.service";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Transaction } from '@signumjs/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { AccountService } from 'app/setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
+import hashicon from 'hashicon';
+import { uniqBy } from 'lodash';
+import { MediaObserver } from '@angular/flex-layout';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { filter, takeUntil, tap } from 'rxjs/operators';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { TokenData, TokenService } from 'app/shared/services/token.service';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
+import { NetworkService } from 'app/network/network.service';
+import { AppService } from 'app/app.service';
+import { interval, Subscription } from 'rxjs';
+import { constants } from 'app/constants';
+import { I18nService } from 'app/shared/services/i18n.service';
 
-const ColumnsQuery = {
-  xl: ["transaction_id", "timestamp", "type", "amount", "account", "confirmations"],
-  lg: ["transaction_id", "timestamp", "type", "amount", "account", "confirmations"],
-  md: ["transaction_id", "timestamp", "type", "amount", "account"],
-  sm: ["transaction_id", "timestamp", "amount", "account"],
-  xs: ["transaction_id", "timestamp", "amount"]
-};
 
 @Component({
-  selector: "app-account-details",
-  templateUrl: "./account-details.component.html",
-  styleUrls: ["./account-details.component.scss"]
+  selector: 'app-account-details',
+  templateUrl: './account-details.component.html',
+  styleUrls: ['./account-details.component.scss']
 })
 export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
-  @ViewChild("avatar", { static: false }) avatar: ElementRef<HTMLCanvasElement>;
+  @ViewChild('avatar', { static: false }) avatar: ElementRef<HTMLCanvasElement>;
 
   account: WalletAccount;
   transactions: Transaction[] = [];
   dataSource = new MatTableDataSource<Transaction>();
   language: string;
-  columns: string[] = [];
   tokens: TokenData[] = [];
   isLoadingTokens = true;
   isLoadingTransactions = true;
@@ -74,17 +66,8 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   async ngOnInit(): Promise<void> {
-    await this.update();
+    this.update();
   }
-
-  public ngAfterContentInit(): void {
-    this.observableMedia.asObservable()
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe((change: MediaChange[]) => {
-        this.columns = ColumnsQuery[change[0].mqAlias];
-      });
-  }
-
 
   update(): void {
     this.progressService.show();
@@ -126,10 +109,10 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
         transactionList = await this.accountService.getAccountTransactions({ accountId });
       }
       const { unconfirmedTransactions } = await this.accountService.getUnconfirmedTransactions(accountId);
-      this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), "transaction");
+      this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), 'transaction');
     } catch (e) {
       this.transactions = [];
-      console.warn("Account Details - update Transactions", e.message);
+      console.warn('Account Details - update Transactions', e.message);
     } finally {
       this.dataSource.data = this.transactions;
       this.isLoadingTransactions = false;
@@ -140,7 +123,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     this.avatarImgSrc = null;
     try {
       const src44 = DescriptorData.parse(this.account.description, false);
-      this.avatarImgSrc = src44.avatar ? this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid) : "";
+      this.avatarImgSrc = src44.avatar ? this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid) : '';
       this.src44 = src44;
     } catch (e) {
       // ignore
@@ -161,7 +144,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     const host = this.networkService.getChainExplorerHost();
     const url = `${host}/address/${this.account.account}`;
     if (!this.appService.isDesktop()) {
-      window.open(url, "blank");
+      window.open(url, 'blank');
     } else {
       this.appService.openInBrowser(url);
     }
@@ -169,10 +152,10 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   getPublicKeyStatus(): string {
     if (!this.account.keys.publicKey) {
-      return this.i18nService.getTranslation("no_public_key_title");
+      return this.i18nService.getTranslation('no_public_key_title');
     }
     if (this.account.keys.publicKey && this.account.keys.publicKey === constants.smartContractPublicKey) {
-      return this.i18nService.getTranslation("smart_contract");
+      return this.i18nService.getTranslation('smart_contract');
     }
     return this.account.keys.publicKey;
   }

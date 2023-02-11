@@ -1,17 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { FuseProgressBarService } from '../../../@fuse/components/progress-bar/progress-bar.service';
-import { TokenData, TokenService } from '../../shared/services/token.service';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { TokenData, TokenService } from 'app/shared/services/token.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { interval } from "rxjs";
+import { UnsubscribeOnDestroy } from "app/util/UnsubscribeOnDestroy";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: 'app-tokens',
   styleUrls: ['./tokens.component.scss'],
   templateUrl: './tokens.component.html'
 })
-export class TokensComponent implements OnInit, OnDestroy {
+export class TokensComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   public selectedAccount: WalletAccount;
   public tokens: TokenData[] = [];
 
@@ -24,6 +26,7 @@ export class TokensComponent implements OnInit, OnDestroy {
     private progressService: FuseProgressBarService,
     private tokenService: TokenService
   ) {
+    super();
   }
 
   ngOnInit(): void {
@@ -36,14 +39,11 @@ export class TokensComponent implements OnInit, OnDestroy {
         this.progressService.hide();
       });
     }
-    this.intervalHandle = setInterval(() => {
-      this.fetchTokens();
-    }, 60 * 1000);
+    interval(120_000)
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => this.fetchTokens());
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.intervalHandle);
-  }
 
   async fetchTokens(): Promise<void> {
     this.tokens = await this.tokenService.fetchAccountTokens(this.selectedAccount);

@@ -7,6 +7,7 @@ import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
 import { getBalancesFromAccount } from '../../../util/balance';
 import { TokenData } from '../../../shared/services/token.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from "../../../shared/services/account-management.service";
 
 @Component({
   selector: 'app-token-transfer',
@@ -22,7 +23,7 @@ export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnIn
 
   constructor(
     private route: ActivatedRoute,
-    private storeService: StoreService
+    private storeService: StoreService,
   ) {
     super();
   }

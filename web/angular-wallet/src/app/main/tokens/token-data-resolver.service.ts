@@ -11,6 +11,6 @@ export class TokenDataResolver implements Resolve<Promise<TokenData>> {
 
   async resolve(route: ActivatedRouteSnapshot): Promise<TokenData> {
     const currentAccount = this.storeService.getSelectedAccount();
-    return this.tokenService.fetchTokenData(route.params.id, currentAccount);
+    return this.tokenService.fetchTokenData(route.params.tokenId, currentAccount);
   }
 }

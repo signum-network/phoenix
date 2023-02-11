@@ -32,8 +32,12 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
 
     try{
       const accountId = route.params.id;
-      const cacheKey = `${networkName}-${accountId}`;
-      return (await fetchAccount(cacheKey, accountId, this.accountService) );
+      const entityId = `${networkName}-${accountId}`;
+      const account = await fetchAccount(`fetchAccount-${entityId}`, accountId, this.accountService);
+      // establish compatibility...
+      account._id = entityId;
+      account.networkName = networkName;
+      return account;
     } catch (e) {
       return null;
     }

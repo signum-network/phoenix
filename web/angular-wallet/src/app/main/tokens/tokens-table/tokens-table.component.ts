@@ -1,11 +1,12 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 import {MatTableDataSource} from '@angular/material/table';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import { TokenData } from '../../../shared/services/token.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { AppService } from '../../../app.service';
+import { AppService } from 'app/app.service';
+import { WalletAccount } from "app/util/WalletAccount";
 
 const DummyTokenData: TokenData = {
   id: '',
@@ -23,10 +24,10 @@ const DummyTokenData: TokenData = {
   templateUrl: './tokens-table.component.html',
   styleUrls: ['./tokens-table.component.scss']
 })
-export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
+export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges, AfterViewInit {
   @Input() public tokens: TokenData[] = [];
-  @Input() public showActions = true;
   @Input() public isLoading = true;
+  @Input() public account: WalletAccount;
   @Input() public displayedColumns = ['token', 'balance', 'lastPrice', 'supply', 'actions'];
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -44,16 +45,15 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
         this.locale = language;
       });
 
-    this.update();
   }
-  public ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+
+  ngAfterViewInit(): void {
+      this.dataSource.paginator = this.paginator;
   }
+
   private update(): void {
     this.dataSource.data = this.tokens;
-    if (!this.showActions) {
-      this.displayedColumns = this.displayedColumns.filter(c => c !== 'actions');
-    }
+    // this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(): void {

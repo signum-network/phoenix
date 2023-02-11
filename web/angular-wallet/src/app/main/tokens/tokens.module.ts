@@ -35,7 +35,7 @@ import {TokenTransferFormComponent} from './token-transfer/token-transfer-form/t
 import {TokenDataResolver} from './token-data-resolver.service';
 import {ComponentsModule} from '../../components/components.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
-import { AccountResolver } from "app/shared/resolvers/account.resolver";
+import { AccountResolver } from 'app/shared/resolvers/account.resolver';
 
 const routes = [
   {
@@ -47,7 +47,7 @@ const routes = [
     }
   },
   {
-    path: 'transfer/:id',
+    path: 'transfer/:tokenId',
     component: TokenTransferComponent,
     canActivate: [LoginGuard],
     resolve: {
