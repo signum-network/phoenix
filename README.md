@@ -4,30 +4,35 @@
 
 Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoin) blockchain. It's actually two applications: a mobile app, and a desktop/web app.
 
-![image](assets/wallet/collage.jpg)
+![image](assets/1.5/collage.jpg)
+
+> More [screenshots](assets/1.5)
 
 ### Key features:
 
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server.
 - Multi-account support - Manage multiple accounts within your wallet.
+- Contact List
 - Offline account support - Watch an account without using the passphrase for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
-- Dashboard - with Market Information and Interactive Balance History Diagram.
+- Different Dashboard Layouts - for different user profiles with Market Information and Interactive Balance History Diagram, Mining Informtion
 - Powered by <a href="https://signum-network.gitbook.io/signumjs"><img src="./assets/signumjs.png" height="32" /></a>
 
 ## Additional features:
 
 - Multi-out support - Send and view Multi-out & Multi-out-same Payments
 - QR Codes - View account QR codes and create custom QR codes for merchants/POS terminals.
-- Deep Linking - Make your apps interact with Phoenix (see [here](./DEEPLINKING.md))
-- Alias support - View and register Signum Aliases.
+- Deep Linking - Make your apps interact with Phoenix (see [here](./DEEPLINKING.md))- [SRC22 compatible](https://github.com/signum-network/SIPs/blob/master/SIP/sip-22.md)
+- Support [SRC44](https://github.com/signum-network/SIPs/blob/master/SIP/sip-44.md) - Structured descriptor data for accounts and aliases 
+- Alias support - View and register Signum Aliases, i.e. mutable on chain data
+- Account Description - Edit your account profile
 - Messages support - Send and receive encrypted and unencrypted messages.
 - Mining Setup - Allows to set your reward recipient and commitment (PoC+)
 - View peers, blocks, and transactions.
 - Node Configuration - Select from a predefined list of nodes or use your own, or just let select automatically
 - Account Activation - Once created an account, it gets activated by the network without the need of a faucet
 - Update Notification - Be up-to-date with inbuilt update download
-- Localized in 30 languages.
+- Localized in 25 languages.
 - Responsive UI
 
 _Some features not available on mobile._
