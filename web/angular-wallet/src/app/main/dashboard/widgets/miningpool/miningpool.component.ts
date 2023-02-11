@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {TransactionMiningSubtype, TransactionType } from '@signumjs/core';
 import { AccountService } from '../../../../setup/account/account.service';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
@@ -10,7 +10,7 @@ import { WalletAccount } from 'app/util/WalletAccount';
   templateUrl: './miningpool.component.html',
   styleUrls: ['./miningpool.component.scss', '../widget.shared.scss']
 })
-export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit {
+export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
   @Input() public account: WalletAccount;
 
@@ -31,6 +31,11 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
     this.isLoading = false;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.account && changes.account.previousValue !== changes.account.currentValue){
+      this.fetchPoolAccount();
+    }
+  }
   private async fetchPoolAccount(): Promise<void> {
     try{
 
@@ -45,8 +50,8 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
       });
       this.lastPoolAssignment = ChainTime.fromChainTimestamp(assignments.transactions[0].timestamp).getDate();
     }
-    }catch(e){
-      console.warn("MiningPool Compenent", e.message);
+    }catch (e){
+      console.warn('MiningPool Component', e.message);
     }
   }
 

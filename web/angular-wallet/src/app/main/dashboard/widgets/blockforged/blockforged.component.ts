@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Block } from '@signumjs/core';
 import { AccountService } from '../../../../setup/account/account.service';
 import { ChainTime } from '@signumjs/util';
@@ -22,7 +22,7 @@ interface ForgedBlockInfo {
   templateUrl: './blockforged.component.html',
   styleUrls: ['./blockforged.component.scss', '../widget.shared.scss']
 })
-export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit {
+export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
   @Input() public account: WalletAccount;
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
@@ -32,7 +32,6 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   locale = 'en';
   isLoading = true;
   blockInfo: ForgedBlockInfo;
-  // isMainNet = false;
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
@@ -99,5 +98,11 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
 
   getExplorerLink(): string {
     return`${this.networkService.getChainExplorerHost()}/blocks/?m=${this.account.account}`;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.account && changes.account.previousValue !== changes.account.currentValue){
+      this.updateForgedBlocks();
+    }
   }
 }

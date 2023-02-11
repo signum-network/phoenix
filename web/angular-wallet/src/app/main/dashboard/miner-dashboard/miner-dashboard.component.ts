@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { StoreService } from 'app/store/store.service';
-import { NotifierService } from 'angular-notifier';
-import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
-import { DashboardLayoutService } from '../dashboard.layout.service';
-import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
-import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
-import { MinerDashboardLayoutConfiguration, MinerDashboardLayoutParameters } from './MinerDashboardLayoutConfiguration';
-import { WalletAccount } from 'app/util/WalletAccount';
-import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { Component, OnInit } from "@angular/core";
+import { takeUntil } from "rxjs/operators";
+import { StoreService } from "app/store/store.service";
+import { NotifierService } from "angular-notifier";
+import { MarketServiceCoinGecko } from "../widgets/market/services/coingecko/coingecko.market.service";
+import { DashboardLayoutService } from "../dashboard.layout.service";
+import { MarketInfoCoingecko } from "../widgets/market/services/coingecko/types";
+import { UnsubscribeOnDestroy } from "app/util/UnsubscribeOnDestroy";
+import { MinerDashboardLayoutConfiguration, MinerDashboardLayoutParameters } from "./MinerDashboardLayoutConfiguration";
+import { WalletAccount } from "app/util/WalletAccount";
+import { AccountManagementService } from "app/shared/services/account-management.service";
 
 const LayoutConfiguration = new MinerDashboardLayoutConfiguration();
 
 @Component({
-  selector: 'app-miner-dashboard',
-  templateUrl: './miner-dashboard.component.html',
-  styleUrls: ['./miner-dashboard.component.scss']
+  selector: "app-miner-dashboard",
+  templateUrl: "./miner-dashboard.component.html",
+  styleUrls: ["./miner-dashboard.component.scss"]
 })
 export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 
@@ -43,10 +43,19 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
     this.account = this.accountManagementService.getSelectedAccount();
 
-    this.storeService.accountUpdated$
+    this.storeService.accountSelected$
       .pipe(this.unsubscribe)
       .subscribe((account: WalletAccount) => {
           this.account = account;
+        }
+      );
+
+    this.storeService.accountUpdated$
+      .pipe(this.unsubscribe)
+      .subscribe((account: WalletAccount) => {
+          if (account.account === this.account.account) {
+            this.account = account;
+          }
         }
       );
 
@@ -62,7 +71,7 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
     this.layoutService.layout$
       .pipe(this.unsubscribe)
       .subscribe((layoutParams: MinerDashboardLayoutParameters) => {
-          this.layoutParameters = layoutParams;
+        this.layoutParameters = layoutParams;
       });
   }
 

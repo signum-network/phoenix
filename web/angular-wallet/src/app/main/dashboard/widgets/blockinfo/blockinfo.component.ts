@@ -1,13 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NetworkService } from '../../../../network/network.service';
+import { Component, OnInit } from '@angular/core';
+import { NetworkService } from 'app/network/network.service';
 import { MiningInfo } from '@signumjs/core';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-blockinfo',
   templateUrl: './blockinfo.component.html',
   styleUrls: ['./blockinfo.component.scss']
 })
-export class BlockinfoComponent implements OnInit, OnDestroy {
+export class BlockinfoComponent extends UnsubscribeOnDestroy implements OnInit {
 
   public isLoading = true;
   public miningInfo: MiningInfo = {
@@ -18,21 +21,19 @@ export class BlockinfoComponent implements OnInit, OnDestroy {
     generationSignature: '',
     timestamp: ''
   };
-  private interval: NodeJS.Timeout;
 
   constructor(private networkService: NetworkService) {
+    super();
   }
 
   async ngOnInit(): Promise<void> {
     this.miningInfo = await this.networkService.getMiningInfo();
     this.isLoading = false;
-    this.interval = setInterval(async () => {
-      this.miningInfo = await this.networkService.getMiningInfo();
-    }, 4 * 60 * 1000);
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.interval);
+    interval(120_000)
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(async () => {
+          this.miningInfo = await this.networkService.getMiningInfo();
+      });
   }
 
   public getNetworkCapacity(): string {
