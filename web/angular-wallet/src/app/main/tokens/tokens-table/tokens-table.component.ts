@@ -75,7 +75,8 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
   }
 
   openSignumSwap(id: string): void {
-    const url = `https://www.signumswap.com/tokens/${id}`;
+    const  {networkName} = this.storeService.getSelectedNode();
+    const url = networkName === 'Signum' ? `https://www.signumswap.com/tokens/${id}` : `https://test.signumswap.com/tokens/${id}`;
     if (!this.appService.isDesktop()) {
       window.open(url, 'blank');
     } else {
