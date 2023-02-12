@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import {TransactionMiningSubtype, TransactionType } from '@signumjs/core';
-import { AccountService } from '../../../../setup/account/account.service';
-import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TransactionMiningSubtype, TransactionType } from '@signumjs/core';
+import { AccountService } from 'app/setup/account/account.service';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { ChainTime } from '@signumjs/util';
 import { WalletAccount } from 'app/util/WalletAccount';
 
@@ -10,7 +10,7 @@ import { WalletAccount } from 'app/util/WalletAccount';
   templateUrl: './miningpool.component.html',
   styleUrls: ['./miningpool.component.scss', '../widget.shared.scss']
 })
-export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit {
+export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
   @Input() public account: WalletAccount;
 
@@ -31,22 +31,27 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
     this.isLoading = false;
   }
 
-  private async fetchPoolAccount(): Promise<void> {
-    try{
-
-    const rewardRecipient = await this.accountService.getRewardRecipient(this.account.account);
-    this.poolAccount = rewardRecipient.account !== this.account.account ? rewardRecipient : null;
-    if (this.poolAccount) {
-      this.poolName = this.getPoolUrlOrName();
-      const assignments = await this.accountService.getAccountTransactions({
-        accountId: this.account.account,
-        type: TransactionType.Mining,
-        subtype: TransactionMiningSubtype.RewardRecipientAssignment
-      });
-      this.lastPoolAssignment = ChainTime.fromChainTimestamp(assignments.transactions[0].timestamp).getDate();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.account && changes.account.previousValue !== changes.account.currentValue) {
+      this.fetchPoolAccount();
     }
-    }catch(e){
-      console.warn("MiningPool Compenent", e.message);
+  }
+
+  private async fetchPoolAccount(): Promise<void> {
+    try {
+      const rewardRecipient = await this.accountService.getRewardRecipient(this.account.account);
+      this.poolAccount = rewardRecipient.account !== this.account.account ? rewardRecipient : null;
+      if (this.poolAccount) {
+        this.poolName = this.getPoolUrlOrName();
+        const assignments = await this.accountService.getAccountTransactions({
+          accountId: this.account.account,
+          type: TransactionType.Mining,
+          subtype: TransactionMiningSubtype.RewardRecipientAssignment
+        });
+        this.lastPoolAssignment = ChainTime.fromChainTimestamp(assignments.transactions[0].timestamp).getDate();
+      }
+    } catch (e) {
+      console.warn('MiningPool Component', e.message);
     }
   }
 

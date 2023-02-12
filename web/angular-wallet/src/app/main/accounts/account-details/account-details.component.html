@@ -49,7 +49,7 @@
           <app-tokens-table
             [tokens]="tokens"
             [isLoading]="isLoadingTokens"
-            [showActions]="account.type === 'active'"
+            [account]="account"
           ></app-tokens-table>
         </mat-tab>
       </mat-tab-group>

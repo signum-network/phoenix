@@ -1,65 +1,68 @@
-<form (ngSubmit)="onSubmit($event)">
-  <recipient-input [recipientValue]="recipient.addressRaw"
-                   (recipientChange)="onRecipientChange($event)"
-                   [disabled]="immutable"
-                   withQrCode="{{false}}"
-  >
-  </recipient-input>
+<ng-container *ngIf="account && token && fees">
 
-  <app-amount-input [maxAmount]="token.balance"
-                    [symbol]="token.name"
-                    [(amount)]="quantity"
-                    [disabled]="immutable">
-  </app-amount-input>
+  <form (ngSubmit)="onSubmit($event)">
+    <recipient-input [recipientValue]="recipient.addressRaw"
+                     (recipientChange)="onRecipientChange($event)"
+                     [disabled]="immutable"
+                     withQrCode="{{false}}"
+    >
+    </recipient-input>
 
-
-  <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="shouldSendSigna"
-                name="showMessage">{{ "send_signa" | i18n }}
-  </mat-checkbox>
-  <ng-container *ngIf="shouldSendSigna">
-    <app-amount-input [maxAmount]="balances.availableBalance.getSigna()"
-                      [(amount)]="signa"
+    <app-amount-input [maxAmount]="token.balance"
+                      [symbol]="token.name"
+                      [(amount)]="quantity"
                       [disabled]="immutable">
     </app-amount-input>
-  </ng-container>
 
-  <app-fee-input *ngIf="!immutable"
-                 [type]="type"
-                 [subtype]="subtype"
-                 [(feeSigna)]="fee"
-                 [payloadLength]="message ? message.length : 0"
-  >
-  </app-fee-input>
 
-  <mat-checkbox labelPosition="before"
-                [disabled]="immutable"
-                [(ngModel)]="showMessage"
-                name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
-  <ng-container *ngIf="showMessage">
-    <app-message-input
-      [disabled]="immutable"
-      [(message)]="message"
-      [(isText)]="messageIsText"
-      [(encrypt)]="encrypt"
-      [canEncrypt]="canEncrypt()"
+    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="shouldSendSigna"
+                  name="showMessage">{{ "send_signa" | i18n }}
+    </mat-checkbox>
+    <ng-container *ngIf="shouldSendSigna">
+      <app-amount-input [maxAmount]="balances.availableBalance.getSigna()"
+                        [(amount)]="signa"
+                        [disabled]="immutable">
+      </app-amount-input>
+    </ng-container>
+
+    <app-fee-input *ngIf="!immutable"
+                   [type]="type"
+                   [subtype]="subtype"
+                   [(feeSigna)]="fee"
+                   [payloadLength]="message ? message.length : 0"
     >
-    </app-message-input>
-  </ng-container>
+    </app-fee-input>
+
+    <mat-checkbox labelPosition="before"
+                  [disabled]="immutable"
+                  [(ngModel)]="showMessage"
+                  name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+    <ng-container *ngIf="showMessage">
+      <app-message-input
+        [disabled]="immutable"
+        [(message)]="message"
+        [(isText)]="messageIsText"
+        [(encrypt)]="encrypt"
+        [canEncrypt]="canEncrypt()"
+      >
+      </app-message-input>
+    </ng-container>
 
 
-  <app-submit-transaction [disabled]="!canSubmit()"
-                          [isSubmitting]="isSubmitting"
-                          [(pin)]="pin"
-  >
-  </app-submit-transaction>
-  <div class="inlined">
-    <div class="total">
-      <strong>{{'total' | i18n}}:&nbsp;</strong>
-      <span [class.error-text]="!hasSufficientQuantity()">{{token.name}} {{ getQuantity() }} </span> -
-      <span [class.error-text]="!hasSufficientBalance()">{{ getSignaTotal().getSigna() | amount:'signa'}}</span>
+    <app-submit-transaction [disabled]="!canSubmit()"
+                            [isSubmitting]="isSubmitting"
+                            [(pin)]="pin"
+    >
+    </app-submit-transaction>
+    <div class="inlined">
+      <div class="total">
+        <strong>{{'total' | i18n}}:&nbsp;</strong>
+        <span [class.error-text]="!hasSufficientQuantity()">{{token.name}} {{ getQuantity() }} </span> -
+        <span [class.error-text]="!hasSufficientBalance()">{{ getSignaTotal().getSigna() | amount:'signa'}}</span>
+      </div>
+      <div>
+        <span class="error-text">{{getErrorHint()}}</span>
+      </div>
     </div>
-    <div>
-      <span class="error-text">{{getErrorHint()}}</span>
-    </div>
-  </div>
-</form>
+  </form>
+</ng-container>

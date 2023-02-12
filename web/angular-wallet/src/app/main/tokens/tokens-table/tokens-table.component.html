@@ -57,10 +57,10 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let token">
         <ng-container *ngIf="!isLoading">
-          <a href="" (click)="openSignumSwap(token.id)">
+          <a (click)="openSignumSwap(token.id)">
             <mat-icon class="actions-icon" matTooltip="{{'asset_trade' | i18n}}">trending_up</mat-icon>
           </a>
-          <a [routerLink]="['/tokens/transfer', token.id]">
+          <a *ngIf="!account.isWatchOnly()" [routerLink]="['/tokens/transfer', token.id]">
             <mat-icon class="actions-icon" matTooltip="{{'asset_transfer' | i18n}}">publish</mat-icon>
           </a>
         </ng-container>
