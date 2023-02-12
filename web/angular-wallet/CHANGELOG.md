@@ -1,8 +1,20 @@
 # Changelog
+## 1.5.0-beta.1
+
+No more features.
+
+### Bug Fixes
+
+- Dashboards widgets not updating on account selection (#1728)
+- Account details is not loading owned tokens (#1729)
+- Transfer Tokens Screen broken (#1730)
+- Opening SignumSwap via Token Panel causes blank screen (#1731)
+- Correct update of toolbar account selector in case of remved/added accounts
+
 ## 1.5.0-beta
 
 ### Feature
-- Revamped Account Management
+- Revamped Account Management`
 - Added Contacts 
 - Address Context Menus for immediate actions
 - Wallet Factory Reset possible now
