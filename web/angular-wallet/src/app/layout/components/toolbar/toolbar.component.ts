@@ -112,8 +112,15 @@ export class ToolbarComponent
     this.storeService.accountUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((account) => {
+        // eventually, updates the selected accounts status
         if (this.selectedAccount.account === account.account){
           this.selectedAccount = account;
+        }
+
+        // check, if the account list has changed, i.e. added/removed and eventually update the list
+        const eventuallyUpdatedAccounts = this.accountManagementService.getAllAccounts();
+        if (this.accounts.length !== eventuallyUpdatedAccounts.length){
+          this.accounts = eventuallyUpdatedAccounts;
         }
       });
 
