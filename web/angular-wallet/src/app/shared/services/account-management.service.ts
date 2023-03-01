@@ -55,7 +55,15 @@ export class AccountManagementService {
   }
 
   public getSelectedAccount(): WalletAccount {
-    return this.storeService.getSelectedAccount();
+    let selected = this.storeService.getSelectedAccount();
+    if (!selected){
+      const all = this.storeService.getAllAccounts();
+      if (all.length > 0) {
+        selected = all[0];
+        this.storeService.setSelectedAccount(selected);
+      }
+    }
+    return selected;
   }
 
   public async selectAccount(account: WalletAccount): Promise<void> {

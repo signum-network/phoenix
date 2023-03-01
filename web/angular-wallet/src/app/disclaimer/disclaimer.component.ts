@@ -22,7 +22,6 @@ export class DisclaimerComponent {
     private _fuseConfigService: FuseConfigService,
     private storeService: StoreService,
     private router: Router,
-    private splashScreen: FuseSplashScreenService
   ) {
   }
   agree(): void {
