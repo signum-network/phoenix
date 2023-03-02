@@ -62,7 +62,7 @@ export class TokenService {
     });
   }
 
-  private async getToken(assetId: string): Promise<Asset> {
+  public async fetchSingleTokenInfo(assetId: string): Promise<Asset> {
     return this.ledgerService.ledger.asset.getAsset({ assetId });
   }
 
@@ -100,7 +100,7 @@ export class TokenService {
 
 
   private async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
-    const [token, priceInfo] = await Promise.all([this.getToken(tokenId), this.getPriceInfo(tokenId)]);
+    const [token, priceInfo] = await Promise.all([this.fetchSingleTokenInfo(tokenId), this.getPriceInfo(tokenId)]);
 
     const decimalFactor = Math.pow(10, token.decimals);
     const supply = parseInt(token.quantityQNT, 10) / decimalFactor;

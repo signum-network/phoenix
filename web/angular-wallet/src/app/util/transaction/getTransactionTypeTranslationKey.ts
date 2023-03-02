@@ -60,6 +60,8 @@ function getKeyForAssetSubtype(transaction: Transaction): string {
       return 'asset_issuance';
     case TransactionAssetSubtype.AssetTransfer:
       return 'asset_transfer';
+    case TransactionAssetSubtype.AssetMultiTransfer:
+      return 'asset_transfer_multi';
     case TransactionAssetSubtype.AskOrderPlacement:
       return 'ask_order_placement';
     case TransactionAssetSubtype.BidOrderPlacement:
@@ -74,6 +76,10 @@ function getKeyForAssetSubtype(transaction: Transaction): string {
       return 'mint_token';
     case TransactionAssetSubtype.AssetAddTreasureyAccount:
       return 'add_treasury_account';
+      // FIXME: update signumjs, once available
+    case 10: // TransactionAssetSubtype.AssetTransferOwnership
+      return 'asset_transfer_ownership';
+
   }
 }
 

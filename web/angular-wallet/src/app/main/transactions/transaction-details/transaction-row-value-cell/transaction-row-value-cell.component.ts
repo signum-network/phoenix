@@ -1,5 +1,5 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {Address, Transaction} from '@signumjs/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Address, Asset, Transaction } from '@signumjs/core';
 import {decryptMessage, EncryptedMessage} from '@signumjs/crypto';
 import {AccountService} from 'app/setup/account/account.service';
 import {CellValue} from '../cell-value-mapper';
@@ -8,27 +8,48 @@ import {I18nService} from 'app/shared/services/i18n.service';
 import {NetworkService} from 'app/network/network.service';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
+import { TokenService } from '../../../../shared/services/token.service';
+import { ChainValue } from '@signumjs/util';
+import { AppService } from "../../../../app.service";
+
+
+interface AssetInfo {
+  name: string;
+  id: string;
+  qnt: string;
+}
 
 @Component({
   selector: 'app-transaction-row-value-cell',
   templateUrl: './transaction-row-value-cell.component.html',
   styleUrls: ['./transaction-row-value-cell.component.scss']
 })
-export class TransactionRowValueCellComponent {
+export class TransactionRowValueCellComponent implements OnInit {
 
   @Input() value: CellValue;
   @Input() transaction: Transaction;
   @ViewChild('pin', {static: false}) pin: string;
 
+
+  fetchedMultiAssets: AssetInfo[] | null =  null;
   decryptedMessage = '';
   constructor(
     private accountService: AccountService,
     private accountManagementService: AccountManagementService,
     private notifierService: NotifierService,
+    private appService: AppService,
     private i18nService: I18nService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private tokenService: TokenService
   ) {
   }
+
+    ngOnInit(): void {
+
+      if (this.value.type === 'AssetMultiTransfer'){
+        this.fetchMultiAssets(this.value);
+      }
+    }
 
 
   public async decrypt(): Promise<void> {
@@ -58,6 +79,37 @@ export class TransactionRowValueCellComponent {
   decryptOnEnter($event: KeyboardEvent): void {
     if ($event.key === 'Enter'){
       this.decrypt();
+    }
+  }
+
+
+  private async fetchMultiAssets(value: CellValue): Promise<void> {
+    try{
+      const fetchTokens = value.data.assetIds.map(tokenIds => this.tokenService.fetchSingleTokenInfo(tokenIds));
+      const tokens  = (await Promise.all(fetchTokens)) as Asset[];
+
+      this.fetchedMultiAssets = tokens.map((t, index) => {
+        return  {
+          qnt: ChainValue.create(t.decimals).setAtomic(value.data.quantitiesQNT[index]).getCompound(),
+          name: t.name,
+          id: t.asset
+        };
+      });
+
+      console.log(this.fetchedMultiAssets)
+
+    }catch (e){
+      console.error('Could not fetch tokens', e.message);
+    }
+  }
+
+  openAssetInExplorer(assetInfo: AssetInfo): void {
+    const host = this.networkService.getChainExplorerHost();
+    const url = `${host}/asset/${assetInfo.id}`;
+    if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
     }
   }
 }

@@ -16,6 +16,8 @@ export enum CellValueType {
   AccountInfo = 'AccountInfo',
   Asset = 'Asset',
   AssetTransfer = 'AssetTransfer',
+  AssetMultiTransfer = 'AssetMultiTransfer',
+  AssetTransferOwnership = 'AssetTransferOwnership',
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
@@ -96,6 +98,8 @@ export class CellValueMapper {
         return new CellValue(attachment, CellValueType.Asset);
       case 'AssetTransfer':
         return new CellValue(attachment, CellValueType.AssetTransfer);
+      case 'AssetMultiTransfer':
+        return new CellValue(attachment, CellValueType.AssetMultiTransfer);
       case 'MultiSameOutCreation':
         return new CellValue(attachment, CellValueType.MultiSameOutCreation);
       case 'MultiOutCreation':
@@ -107,7 +111,7 @@ export class CellValueMapper {
       case 'AssetDistributeToHolders':
         return new CellValue(attachment, CellValueType.AssetDistributeToHolders);
       default:
-        return this.transaction['attachment'];
+        return this.getGenericJSONAttachment(this.transaction);
     }
 
   }
@@ -137,5 +141,14 @@ export class CellValueMapper {
     }
 
     return new CellValue(attachment.message);
+  }
+
+  private getGenericJSONAttachment(transaction: Transaction) : CellValue {
+    const {attachment} = transaction;
+    try {
+        return new CellValue(JSON.stringify(attachment));
+    }catch(e){
+      return new CellValue('');
+    }
   }
 }

@@ -24,6 +24,7 @@ const keyMap = {
   recipient: 'recipient_id',
   recipientRS: 'recipient_address',
   cashBackId: 'cashback_id',
+  referencedTransactionFullHash: 'referenced_transaction_full_hash'
 };
 
 export function getTransactionFieldTranslationKey(key: string): string {
