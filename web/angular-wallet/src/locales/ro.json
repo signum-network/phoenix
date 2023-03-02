@@ -580,5 +580,7 @@
   "desktop": "Desktop",
   "success_send_message": "mesaj trimis cu succes",
   "error_send_message": "Hmm... trimiterea mesajului a eșuat din motive necunoscute.",
-  "copy_deep_link": "Copiați linkul de solicitare"
+  "copy_deep_link": "Copiați linkul de solicitare",
+  "asset_transfer_multi": "Transferuri de jetoane",
+  "asset_transfer_ownership": "Transferul proprietății tokenului"
 }

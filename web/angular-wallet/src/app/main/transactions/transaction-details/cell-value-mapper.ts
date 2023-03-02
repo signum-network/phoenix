@@ -3,8 +3,8 @@ import {
   Transaction,
   TransactionSmartContractSubtype,
   TransactionType,
-  getAttachmentVersion
-} from '@signumjs/core';
+  getAttachmentVersion, TransactionAssetSubtype
+} from "@signumjs/core";
 import {UtilService} from '../../../util.service';
 import {Amount, ChainTime, convertHexStringToString} from '@signumjs/util';
 import { WalletAccount } from 'app/util/WalletAccount';
@@ -17,7 +17,6 @@ export enum CellValueType {
   Asset = 'Asset',
   AssetTransfer = 'AssetTransfer',
   AssetMultiTransfer = 'AssetMultiTransfer',
-  AssetTransferOwnership = 'AssetTransferOwnership',
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
@@ -29,6 +28,7 @@ export enum CellValueType {
   CommitmentAdd = 'CommitmentAdd',
   CommitmentRemove = 'CommitmentRemove',
   AssetDistributeToHolders = 'AssetDistributeToHolders',
+  AssetTransferOwnershipReference = 'AssetTransferOwnershipReference'
 }
 
 export class CellValue {
@@ -59,7 +59,8 @@ export class CellValueMapper {
     this.map = {
       type: this.getTransactionType(),
       subtype: this.getTransactionSubtype(),
-      attachment: this.getAttachment(),
+      attachment: this.getTypedAttachment(),
+      referencedTransactionFullHash: this.getTypedReferenceHash(),
       feeNQT: this.getAmount(this.transaction.feeNQT),
       amountNQT: this.getAmount(this.transaction.amountNQT),
       senderRS: this.getTypedValue(this.transaction.senderRS, CellValueType.AccountAddress),
@@ -82,7 +83,7 @@ export class CellValueMapper {
     return new CellValue(this.utilService.translateTransactionSubtype(this.transaction, this.account));
   }
 
-  private getAttachment(): CellValue {
+  private getTypedAttachment(): CellValue {
 
     const {attachment} = this.transaction;
 
@@ -150,5 +151,15 @@ export class CellValueMapper {
     }catch(e){
       return new CellValue('');
     }
+  }
+
+  private getTypedReferenceHash(): CellValue {
+    const {referencedTransactionFullHash, type, subtype} = this.transaction;
+
+    // FIXME: use signumjs new subtype
+    if(type === TransactionType.Asset && subtype === 10){
+      return new CellValue(referencedTransactionFullHash, CellValueType.AssetTransferOwnershipReference);
+    }
+    return new CellValue(referencedTransactionFullHash);
   }
 }

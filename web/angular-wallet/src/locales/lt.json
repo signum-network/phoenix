@@ -580,5 +580,7 @@
   "desktop": "Darbalaukis",
   "success_send_message": "Pranešimas sėkmingai išsiųstas",
   "error_send_message": "Hmm... dėl nežinomų priežasčių nepavyko išsiųsti pranešimo.",
-  "copy_deep_link": "Nukopijuokite užklausos nuorodą"
+  "copy_deep_link": "Nukopijuokite užklausos nuorodą",
+  "asset_transfer_multi": "Žetonų pervedimai",
+  "asset_transfer_ownership": "Tokeno nuosavybės teisės perdavimas"
 }

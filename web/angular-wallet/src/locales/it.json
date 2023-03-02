@@ -580,5 +580,7 @@
   "desktop": "Scrivania",
   "success_send_message": "messaggio inviato con successo",
   "error_send_message": "Hmm... l'invio del messaggio non è riuscito per ragioni sconosciute.",
-  "copy_deep_link": "Copia collegamento richiesta"
+  "copy_deep_link": "Copia collegamento richiesta",
+  "asset_transfer_multi": "Trasferimenti di token",
+  "asset_transfer_ownership": "Trasferimento della proprietà del token"
 }

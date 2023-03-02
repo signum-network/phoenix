@@ -580,5 +580,7 @@
   "desktop": "Escritorio",
   "success_send_message": "Mensaxe enviada correctamente",
   "error_send_message": "Hmm... non se puido enviar a mensaxe por algúns motivos descoñecidos.",
-  "copy_deep_link": "Copiar a ligazón de solicitude"
+  "copy_deep_link": "Copiar a ligazón de solicitude",
+  "asset_transfer_multi": "Transferencias de fichas",
+  "asset_transfer_ownership": "Transferencia de propiedade do token"
 }

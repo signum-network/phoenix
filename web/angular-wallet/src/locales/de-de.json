@@ -580,5 +580,7 @@
   "desktop": "Desktop",
   "success_send_message": "Nachricht erfolgreich gesendet",
   "error_send_message": "Hmm ... das Senden der Nachricht ist aus unbekannten Gründen fehlgeschlagen.",
-  "copy_deep_link": "Anforderungslink kopieren"
+  "copy_deep_link": "Anforderungslink kopieren",
+  "asset_transfer_multi": "Token-Transfers",
+  "asset_transfer_ownership": "Token-Eigentumsübertragung"
 }

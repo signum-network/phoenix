@@ -580,5 +580,7 @@
   "desktop": "Área de Trabalho",
   "success_send_message": "mensagem enviada com sucesso",
   "error_send_message": "Hmm... o envio da mensagem falhou por alguns motivos desconhecidos.",
-  "copy_deep_link": "Link de solicitação de cópia"
+  "copy_deep_link": "Link de solicitação de cópia",
+  "asset_transfer_multi": "Transferências de Token",
+  "asset_transfer_ownership": "Transferência de propriedade de token"
 }

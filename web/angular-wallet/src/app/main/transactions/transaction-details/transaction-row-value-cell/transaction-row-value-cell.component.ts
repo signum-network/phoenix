@@ -11,6 +11,7 @@ import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionK
 import { TokenService } from '../../../../shared/services/token.service';
 import { ChainValue } from '@signumjs/util';
 import { AppService } from "../../../../app.service";
+import { LedgerService } from "../../../../ledger.service";
 
 
 interface AssetInfo {
@@ -33,6 +34,7 @@ export class TransactionRowValueCellComponent implements OnInit {
 
   fetchedMultiAssets: AssetInfo[] | null =  null;
   decryptedMessage = '';
+  fetchedAssetOwnershipReference: AssetInfo | null = null;
   constructor(
     private accountService: AccountService,
     private accountManagementService: AccountManagementService,
@@ -40,7 +42,8 @@ export class TransactionRowValueCellComponent implements OnInit {
     private appService: AppService,
     private i18nService: I18nService,
     private networkService: NetworkService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private ledgerService: LedgerService,
   ) {
   }
 
@@ -49,7 +52,7 @@ export class TransactionRowValueCellComponent implements OnInit {
       if (this.value.type === 'AssetMultiTransfer'){
         this.fetchMultiAssets(this.value);
       }
-    }
+         }
 
 
   public async decrypt(): Promise<void> {

@@ -580,5 +580,7 @@
   "desktop": "デスクトップ",
   "success_send_message": "送信に成功しました",
   "error_send_message": "うーん...不明な理由でメッセージの送信に失敗しました。",
-  "copy_deep_link": "リクエストリンクをコピー"
+  "copy_deep_link": "リクエストリンクをコピー",
+  "asset_transfer_multi": "トークン転送",
+  "asset_transfer_ownership": "トークン所有権の譲渡"
 }

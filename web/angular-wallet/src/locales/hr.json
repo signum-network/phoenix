@@ -580,5 +580,7 @@
   "desktop": "Radna površina",
   "success_send_message": "poruka je uspješno poslana",
   "error_send_message": "Hmm... slanje poruke nije uspjelo iz nepoznatih razloga.",
-  "copy_deep_link": "Kopiraj vezu zahtjeva"
+  "copy_deep_link": "Kopiraj vezu zahtjeva",
+  "asset_transfer_multi": "Prijenosi tokena",
+  "asset_transfer_ownership": "Prijenos vlasništva tokena"
 }

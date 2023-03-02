@@ -129,6 +129,20 @@
     </div>
   </div>
 
+  <div *ngSwitchCase="'AssetMultiTransfer'">
+    <div *ngIf="!fetchedMultiAssets">
+      <span class="fetching">Fetching Data...</span>
+    </div>
+    <div *ngIf="fetchedMultiAssets">
+      <label>{{'assets' | i18n}}</label>
+      <div class="chip-list">
+      <span *ngFor="let assetInfo of fetchedMultiAssets" class="chip" (click)="openAssetInExplorer(assetInfo)">
+          {{assetInfo.qnt}}&nbsp;{{assetInfo.name}}
+      </span>
+      </div>
+    </div>
+  </div>
+
   <div *ngSwitchCase="'AssetDistributeToHolders'">
     <div>
       <label class="mr-8">{{'asset' | i18n}}:</label>

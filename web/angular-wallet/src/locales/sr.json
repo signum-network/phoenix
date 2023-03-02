@@ -580,5 +580,7 @@
   "desktop": "Десктоп",
   "success_send_message": "Порука је послата",
   "error_send_message": "Хмм... слање поруке није успело из непознатих разлога.",
-  "copy_deep_link": "Копирај везу захтева"
+  "copy_deep_link": "Копирај везу захтева",
+  "asset_transfer_multi": "Токен-Трансферс",
+  "asset_transfer_ownership": "Пренос власништва над токеном"
 }

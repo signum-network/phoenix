@@ -580,5 +580,7 @@
   "desktop": "Työpöytä",
   "success_send_message": "Viesti lähetetty onnistuneesti",
   "error_send_message": "Hmm... viestin lähettäminen epäonnistui tuntemattomista syistä.",
-  "copy_deep_link": "Kopioi pyyntölinkki"
+  "copy_deep_link": "Kopioi pyyntölinkki",
+  "asset_transfer_multi": "Token-siirrot",
+  "asset_transfer_ownership": "Token omistusoikeuden siirto"
 }

@@ -580,5 +580,7 @@
   "desktop": "Bureau",
   "success_send_message": "message envoyé avec succès",
   "error_send_message": "Hmm... l'envoi du message a échoué pour des raisons inconnues.",
-  "copy_deep_link": "Copier le lien de la demande"
+  "copy_deep_link": "Copier le lien de la demande",
+  "asset_transfer_multi": "Transferts de jetons",
+  "asset_transfer_ownership": "Transfert de propriété du jeton"
 }

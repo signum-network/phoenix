@@ -580,5 +580,7 @@
   "desktop": "Desktop",
   "success_send_message": "správa bola úspešne odoslaná",
   "error_send_message": "Hmm... odoslanie správy z neznámych dôvodov zlyhalo.",
-  "copy_deep_link": "Kopírovať odkaz žiadosti"
+  "copy_deep_link": "Kopírovať odkaz žiadosti",
+  "asset_transfer_multi": "Prevody tokenov",
+  "asset_transfer_ownership": "Prevod vlastníctva tokenov"
 }

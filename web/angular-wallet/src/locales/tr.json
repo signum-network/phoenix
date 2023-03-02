@@ -580,5 +580,7 @@
   "desktop": "masaüstü",
   "success_send_message": "Mesaj başarıyla gönderildi",
   "error_send_message": "Hmm... Bilinmeyen bazı nedenlerden dolayı mesaj gönderilemedi.",
-  "copy_deep_link": "İstek Bağlantısını Kopyala"
+  "copy_deep_link": "İstek Bağlantısını Kopyala",
+  "asset_transfer_multi": "Jeton Transferleri",
+  "asset_transfer_ownership": "Belirteç Sahipliği Aktarımı"
 }

@@ -580,5 +580,7 @@
   "desktop": "Escriptori",
   "success_send_message": "Missatge enviat correctament",
   "error_send_message": "Hmm... l'enviament del missatge ha fallat per alguns motius desconeguts.",
-  "copy_deep_link": "Copia l'enllaç de sol·licitud"
+  "copy_deep_link": "Copia l'enllaç de sol·licitud",
+  "asset_transfer_multi": "Transferències de fitxes",
+  "asset_transfer_ownership": "Transferència de propietat del testimoni"
 }

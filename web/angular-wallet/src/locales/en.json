@@ -582,5 +582,5 @@
   "error_send_message": "Hmm... sending the message failed for some unknown reasons.",
   "copy_deep_link": "Copy Request Link",
   "asset_transfer_ownership": "Token Ownership Transfer",
-  "asset_transfer_multi": "Multi Asset Transfer"
+  "asset_transfer_multi": "Token-Transfers"
 }
