@@ -10,26 +10,38 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   img {
     border-radius: 4px;
     max-height: 36px;
     max-width: 36px;
+    height: auto;
+    width: auto;
+    object-fit: fill;
   }
 
   .address-box {
     margin: 0 8px;
     text-align: start;
-    width: 100px;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
     font-weight: bold;
 
     .hint-line {
-      justify-content: space-between;
+      justify-content: flex-start;
+      align-items: center;
       width: 100%;
       display: flex;
       font-weight: normal;
+
+      mat-icon {
+        margin-right: 0.2rem;
+      }
     }
   }
 
