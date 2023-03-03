@@ -55,10 +55,7 @@ jobs:
 
     strategy:
       matrix:
-#        Windows is signed and needs to be uploaded manually, Mac OS build fails due to old python version of electron builder
-#        os: [ macos-latest, ubuntu-latest, windows-latest ]
-#        os: [ macos-latest, ubuntu-latest ]
-        os: [ ubuntu-latest ]
+        os: [ macos-latest, ubuntu-latest ]
         package_manager: [ npm ]
 
     steps:
