@@ -26,7 +26,7 @@
   ],
   "main": "main.js",
   "engines": {
-    "node": ">=12"
+    "node": "14"
   },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 node ../../scripts/build.js --target desktop",

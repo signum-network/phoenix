@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-nvm use 12
+nvm use 16
 cd ./scripts
 npm i
 cd ../web/angular-wallet
