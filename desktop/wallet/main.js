@@ -32,6 +32,7 @@ function getBrowserWindowConfig() {
         webPreferences: {
             devTools: context.isDevToolsEnabled(),
             nodeIntegration: true,
+            sandbox:false,
             contextIsolation: false,
         }
     };
