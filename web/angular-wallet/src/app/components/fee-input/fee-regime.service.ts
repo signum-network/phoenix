@@ -43,6 +43,7 @@ export class FeeRegimeService {
     this.setFeeRegime(TransactionType.Arbitrary, TransactionArbitrarySubtype.AccountInfo, 1, 6);
     this.setFeeRegime(TransactionType.Asset, TransactionAssetSubtype.AssetIssuance, 15000, 15000);
     this.setFeeRegime(TransactionType.Asset, TransactionAssetSubtype.AssetTransfer, 1, 6);
+    this.setFeeRegime(TransactionType.Asset, TransactionAssetSubtype.AssetTransferOwnership, 15000, 15000);
     this.setFeeRegime(TransactionType.Escrow, TransactionEscrowSubtype.SubscriptionSubscribe, 1, 6);
   }
 

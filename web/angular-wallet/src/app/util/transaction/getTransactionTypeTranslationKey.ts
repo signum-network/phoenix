@@ -76,8 +76,7 @@ function getKeyForAssetSubtype(transaction: Transaction): string {
       return 'mint_token';
     case TransactionAssetSubtype.AssetAddTreasureyAccount:
       return 'add_treasury_account';
-      // FIXME: update signumjs, once available
-    case 10: // TransactionAssetSubtype.AssetTransferOwnership
+    case TransactionAssetSubtype.AssetTransferOwnership:
       return 'asset_transfer_ownership';
 
   }
