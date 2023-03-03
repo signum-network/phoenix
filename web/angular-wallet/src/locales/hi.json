@@ -580,5 +580,7 @@
   "desktop": "डेस्कटॉप",
   "success_send_message": "संदेश सफलतापूर्वक भेजा जा चुका है",
   "error_send_message": "हम्म... कुछ अज्ञात कारणों से संदेश भेजना विफल रहा.",
-  "copy_deep_link": "कॉपी रिक्वेस्ट लिंक"
+  "copy_deep_link": "कॉपी रिक्वेस्ट लिंक",
+  "asset_transfer_multi": "टोकन-स्थानान्तरण",
+  "asset_transfer_ownership": "टोकन स्वामित्व हस्तांतरण"
 }

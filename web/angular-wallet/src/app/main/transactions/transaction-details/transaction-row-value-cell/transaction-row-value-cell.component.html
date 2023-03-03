@@ -7,7 +7,8 @@
     <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
     <div *ngIf="!decryptedMessage">
       <mat-form-field>
-        <input matInput [(ngModel)]="pin" (keyup)="decryptOnEnter($event)" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+        <input matInput [(ngModel)]="pin" (keyup)="decryptOnEnter($event)" type="password" name="pin"
+               placeholder="{{ 'input_pin' | i18n }}">
       </mat-form-field>
       <button type="submit"
               class="mr-8"
@@ -63,7 +64,8 @@
       <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
       <div *ngIf="!decryptedMessage">
         <mat-form-field>
-          <input matInput [(ngModel)]="pin" type="password" name="pin" (keyup)="decryptOnEnter($event)" placeholder="{{ 'input_pin' | i18n }}">
+          <input matInput [(ngModel)]="pin" type="password" name="pin" (keyup)="decryptOnEnter($event)"
+                 placeholder="{{ 'input_pin' | i18n }}">
         </mat-form-field>
         <button type="submit"
                 class="mr-8"
@@ -110,6 +112,34 @@
     <div>
       <label class="mr-8">{{'amount' | i18n}}:</label>
       <span>{{value.data.amountNQT | amount:'planck':true}}</span>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'AssetMultiTransfer'">
+    <div *ngIf="!fetchedMultiAssets">
+      <span class="fetching">Fetching Data...</span>
+    </div>
+    <div *ngIf="fetchedMultiAssets">
+      <label>{{'assets' | i18n}}</label>
+      <div class="chip-list">
+      <span *ngFor="let assetInfo of fetchedMultiAssets" class="chip" (click)="openAssetInExplorer(assetInfo)">
+          {{assetInfo.qnt}}&nbsp;{{assetInfo.name}}
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'AssetMultiTransfer'">
+    <div *ngIf="!fetchedMultiAssets">
+      <span class="fetching">Fetching Data...</span>
+    </div>
+    <div *ngIf="fetchedMultiAssets">
+      <label>{{'assets' | i18n}}</label>
+      <div class="chip-list">
+      <span *ngFor="let assetInfo of fetchedMultiAssets" class="chip" (click)="openAssetInExplorer(assetInfo)">
+          {{assetInfo.qnt}}&nbsp;{{assetInfo.name}}
+      </span>
+      </div>
     </div>
   </div>
 

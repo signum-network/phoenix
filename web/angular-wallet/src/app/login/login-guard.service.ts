@@ -47,7 +47,7 @@ export class LoginGuard implements CanActivate {
         const settings = this.storeService.getSettings();
 
         // User must agree to disclaimer
-        if (!(settings && settings.agree)) {
+        if (!settings.agree) {
           await this.router.navigate(['/disclaimer']);
           return false;
         }
@@ -62,15 +62,11 @@ export class LoginGuard implements CanActivate {
           return false;
         }
         this.storeService.setSelectedNode(nodeInfo);
-
-        const selectedAccount = this.accountManagementService.getSelectedAccount();
-        const hasAccounts = this.accountManagementService.hasAccounts();
-        if (selectedAccount) {
+        if (this.accountManagementService.getSelectedAccount()) {
           return true;
-        } else if (hasAccounts) {
-          await this.router.navigate(['/dashboard']);
-          return false;
-        } else {
+        }
+
+        if(!this.accountManagementService.hasAccounts()){
           await this.router.navigate(['/login']);
           return false;
         }

@@ -580,5 +580,7 @@
   "desktop": "桌面",
   "success_send_message": "消息已成功发送",
   "error_send_message": "嗯...发送消息失败，原因不明。",
-  "copy_deep_link": "复制请求链接"
+  "copy_deep_link": "复制请求链接",
+  "asset_transfer_multi": "令牌转移",
+  "asset_transfer_ownership": "代币所有权转移"
 }

@@ -580,5 +580,7 @@
   "desktop": "Pulpit",
   "success_send_message": "Wiadomość wysłano poprawnie",
   "error_send_message": "Hmm... wysłanie wiadomości nie powiodło się z nieznanych przyczyn.",
-  "copy_deep_link": "Skopiuj link żądania"
+  "copy_deep_link": "Skopiuj link żądania",
+  "asset_transfer_multi": "Transfery tokenów",
+  "asset_transfer_ownership": "Przeniesienie własności tokena"
 }

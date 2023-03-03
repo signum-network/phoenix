@@ -580,5 +580,7 @@
   "desktop": "Desktop",
   "success_send_message": "Pesan berhasil dikirim",
   "error_send_message": "Hmm... pengiriman pesan gagal karena beberapa alasan yang tidak diketahui.",
-  "copy_deep_link": "Salin Tautan Permintaan"
+  "copy_deep_link": "Salin Tautan Permintaan",
+  "asset_transfer_multi": "Token-Transfer",
+  "asset_transfer_ownership": "Transfer Kepemilikan Token"
 }

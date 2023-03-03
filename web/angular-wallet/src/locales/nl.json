@@ -580,5 +580,7 @@
   "desktop": "Bureaublad",
   "success_send_message": "Bericht succesvol verzonden",
   "error_send_message": "Hmm... het verzenden van het bericht is om onbekende redenen mislukt.",
-  "copy_deep_link": "Kopieer verzoeklink"
+  "copy_deep_link": "Kopieer verzoeklink",
+  "asset_transfer_multi": "Token-overdrachten",
+  "asset_transfer_ownership": "Token-eigendomsoverdracht"
 }

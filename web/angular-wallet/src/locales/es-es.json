@@ -580,5 +580,7 @@
   "desktop": "Escritorio",
   "success_send_message": "Mensaje enviado con éxito",
   "error_send_message": "Hmm... el envío del mensaje falló por razones desconocidas.",
-  "copy_deep_link": "Copiar enlace de solicitud"
+  "copy_deep_link": "Copiar enlace de solicitud",
+  "asset_transfer_multi": "Transferencias de tokens",
+  "asset_transfer_ownership": "Transferencia de propiedad de tokens"
 }

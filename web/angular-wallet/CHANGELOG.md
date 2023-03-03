@@ -1,4 +1,17 @@
 # Changelog
+
+## 1.5.0-beta.2
+
+### Feature
+
+- Added Multi Asset Transfer as Transaction Type
+- 
+
+### Bug Fixes
+
+- Fixed a routing loop for the rare case that someone loads the 1.5.0-beta version for first time in testnet 
+- Minor Layout fixes
+
 ## 1.5.0-beta.1
 
 No more features.

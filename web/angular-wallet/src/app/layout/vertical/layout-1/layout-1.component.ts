@@ -33,8 +33,20 @@ export class VerticalLayout1Component extends UnsubscribeOnDestroy implements On
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((config) => {
         this.fuseConfig = config;
-        const hasAccountSelected = !!this.storeService.getSelectedAccount();
-        this.fuseConfig.layout.navbar.hidden = !hasAccountSelected;
+
+        this.fuseConfig.layout.navbar.hidden = false;
+        this.fuseConfig.layout.toolbar.hidden = false;
+
+        if (/disclaimer/ig.test(location.hash)){
+          this.fuseConfig.layout.navbar.hidden = true;
+          this.fuseConfig.layout.toolbar.hidden = true;
+        }
+
+        if (/login/ig.test(location.hash)){
+          const hasNoAccounts = this.storeService.getAllAccounts().length !== 0;
+          this.fuseConfig.layout.navbar.hidden = hasNoAccounts;
+          this.fuseConfig.layout.toolbar.hidden = false;
+        }
       });
   }
 }

@@ -321,7 +321,7 @@
   "recipient_no_public_key": "The recipient account does not have a public key, meaning it has never had an outgoing transaction. The account has a balance of __burst__ Signa. Please double check your recipient address before submitting.",
   "recipients": "Recipients",
   "record": "Account Data",
-  "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
+  "referenced_transaction_full_hash": "Referenced Full Hash",
   "refund": "Refund",
   "refunded": "Refunded",
   "register": "Register",
@@ -580,5 +580,7 @@
   "desktop": "Desktop",
   "success_send_message": "Message sent successfully",
   "error_send_message": "Hmm... sending the message failed for some unknown reasons.",
-  "copy_deep_link": "Copy Request Link"
+  "copy_deep_link": "Copy Request Link",
+  "asset_transfer_ownership": "Token Ownership Transfer",
+  "asset_transfer_multi": "Token-Transfers"
 }
