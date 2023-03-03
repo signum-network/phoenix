@@ -5,12 +5,13 @@
 ### Feature
 
 - Added Multi Asset Transfer as Transaction Type
-- 
+- Transaction Details with clickable referenced transaction hash
+- With SignumJS RC.56, which introduces transaction sending verification for more security
 
 ### Bug Fixes
 
 - Fixed a routing loop for the rare case that someone loads the 1.5.0-beta version for first time in testnet 
-- Minor Layout fixes
+- Minor Layout fixes/improvements
 
 ## 1.5.0-beta.1
 
