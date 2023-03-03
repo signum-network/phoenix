@@ -3,7 +3,7 @@ import {
   Transaction
 } from '@signumjs/core';
 import { StoreService } from 'app/store/store.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { UtilService } from '../../../util.service';
 import { CellValue, CellValueMapper } from './cell-value-mapper';
 import { NetworkService } from '../../../network/network.service';
@@ -41,31 +41,41 @@ export class TransactionDetailsComponent extends UnsubscribeOnDestroy implements
     private utilService: UtilService,
     private networkService: NetworkService,
     private appService: AppService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     super();
   }
 
   async ngOnInit(): Promise<void> {
-    this.transaction = this.route.snapshot.data.transaction as Transaction;
-
-    // @ts-ignore
-    delete this.transaction.attachmentBytes;
 
     this.account = await this.accountManagementService.getSelectedAccount();
-    this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
-
-    const host = this.networkService.getChainExplorerHost();
-    this.explorerLink = `${host}/tx/${this.transaction.transaction}`;
-
     this.storeService.languageSelected$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
         this.updateDetailsData();
       });
+
+    this.router.events
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.updateDetailsData();
+        }
+      });
   }
 
+
   private updateDetailsData(): void {
+    this.transaction = this.route.snapshot.data.transaction as Transaction;
+    // @ts-ignore
+    delete this.transaction.attachmentBytes;
+
+    this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
+
+    const host = this.networkService.getChainExplorerHost();
+    this.explorerLink = `${host}/tx/${this.transaction.transaction}`;
+
     this.detailsData = Object
       .keys(this.transaction)
       .filter(k => k !== 'distribution')

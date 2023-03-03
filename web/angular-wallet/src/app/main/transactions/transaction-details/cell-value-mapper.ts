@@ -19,6 +19,7 @@ export enum CellValueType {
   AssetMultiTransfer = 'AssetMultiTransfer',
   BlockId = 'BlockId',
   Date = 'Date',
+  ReferenceHash = 'ReferenceHash',
   Default = 'Default',
   Distribution = 'Distribution',
   EncryptedMessage = 'EncryptedMessage',
@@ -60,7 +61,9 @@ export class CellValueMapper {
       type: this.getTransactionType(),
       subtype: this.getTransactionSubtype(),
       attachment: this.getTypedAttachment(),
-      referencedTransactionFullHash: this.getTypedReferenceHash(),
+      referencedTransactionFullHash: this.transaction.referencedTransactionFullHash
+        ? this.getTypedValue(this.transaction.referencedTransactionFullHash, CellValueType.ReferenceHash)
+        : null,
       feeNQT: this.getAmount(this.transaction.feeNQT),
       amountNQT: this.getAmount(this.transaction.amountNQT),
       senderRS: this.getTypedValue(this.transaction.senderRS, CellValueType.AccountAddress),
@@ -151,15 +154,5 @@ export class CellValueMapper {
     }catch(e){
       return new CellValue('');
     }
-  }
-
-  private getTypedReferenceHash(): CellValue {
-    const {referencedTransactionFullHash, type, subtype} = this.transaction;
-
-    // FIXME: use signumjs new subtype
-    if(type === TransactionType.Asset && subtype === 10){
-      return new CellValue(referencedTransactionFullHash, CellValueType.AssetTransferOwnershipReference);
-    }
-    return new CellValue(referencedTransactionFullHash);
   }
 }

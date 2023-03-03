@@ -32,6 +32,10 @@
     <a [routerLink]="['/blocks/block', value.data]">{{value.data}}</a>
   </div>
 
+  <div *ngSwitchCase="'ReferenceHash'">
+    <a [routerLink]="['/transactions/transaction', value.data]">{{value.data}}</a>
+  </div>
+
   <div *ngSwitchCase="'Asset'">
     <table>
       <tr>
