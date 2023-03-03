@@ -50,7 +50,8 @@
     "electron": "^22.3.1",
     "electron-builder": "^23.6.0",
     "jest": "^24.9.0",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "cli-truncate": "^2.1.0"
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/signum-network/phoenix",
