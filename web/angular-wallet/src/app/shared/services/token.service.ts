@@ -178,7 +178,8 @@ export class TokenService {
       attachment,
       feePlanck: fee.getPlanck(),
       recipientId: recipient.addressId,
-      recipientPublicKey,
+      // FIXME: once 3.6.1 is up, we can return this line
+      // recipientPublicKey,
       quantity: quantity.getAtomic(),
       amountPlanck: signa ? signa.getPlanck() : undefined,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
