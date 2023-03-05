@@ -121,8 +121,7 @@ export class AliasService {
       isEncrypted: shouldEncryptMessage,
       isText: messageIsText,
       encryptionKey: getPrivateEncryptionKey(pin, keys),
-      // FIXME: return this once 3.6.1 is up
-      // recipientPublicKey,
+      recipientPublicKey,
       message
     }) : undefined;
 
