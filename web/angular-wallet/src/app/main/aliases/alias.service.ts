@@ -104,7 +104,7 @@ export class AliasService {
       amountPlanck,
       feePlanck,
       recipientId,
-      // FIXME: this is only temporary
+      // FIXME: return this once 3.6.1 is up
       // recipientPublicKey,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
@@ -121,7 +121,8 @@ export class AliasService {
       isEncrypted: shouldEncryptMessage,
       isText: messageIsText,
       encryptionKey: getPrivateEncryptionKey(pin, keys),
-      recipientPublicKey,
+      // FIXME: return this once 3.6.1 is up
+      // recipientPublicKey,
       message
     }) : undefined;
 
@@ -146,6 +147,8 @@ export class AliasService {
       recipientId,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
+      // FIXME: return this once 3.6.1 is up
+      // recipientPublicKey,
     })) as TransactionId;
   }
 
