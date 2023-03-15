@@ -1,20 +1,17 @@
-import {
-  loadAccounts,
-  loadPasscode,
-} from "../../../modules/auth/store/actions";
-import { getSuggestedFees } from "../../../modules/network/store/actions";
-import { loadHistoricalPriceApiData } from "../../../modules/price-api/store/actions";
-import { AppSettings, UserSettings } from "../../interfaces";
-import { fetchAppSettings } from "../../utils/keychain";
-import { createAction, createActionFn } from "../../utils/store";
-import { actionTypes } from "./actionTypes";
+import {loadAccounts, loadPasscode} from '../../../modules/auth/store/actions';
+import {getSuggestedFees} from '../../../modules/network/store/actions';
+import {loadHistoricalPriceApiData} from '../../../modules/price-api/store/actions';
+import {AppSettings, UserSettings} from '../../interfaces';
+import {fetchAppSettings} from '../../utils/keychain';
+import {createAction, createActionFn} from '../../utils/store';
+import {actionTypes} from './actionTypes';
 import {
   fetchUserSettings,
   resetUserSettings,
   updateUserSettings,
-} from "../../utils/storage";
-import { selectChainApi } from "./selectors";
-import { asyncTryRun } from "../../utils/asyncTryRun";
+} from '../../utils/storage';
+import {selectChainApi} from './selectors';
+import {asyncTryRun} from '../../utils/asyncTryRun';
 
 const actions = {
   appLoaded: createAction<void>(actionTypes.appLoaded),
@@ -22,7 +19,7 @@ const actions = {
   setUserSettings: createAction<UserSettings>(actionTypes.setUserSettings),
 };
 
-export const loadApp = createActionFn<void, Promise<void>>(async (dispatch) => {
+export const loadApp = createActionFn<void, Promise<void>>(async dispatch => {
   await Promise.all([
     dispatch(loadAccounts()),
     dispatch(loadPasscode()),
@@ -36,32 +33,32 @@ export const loadApp = createActionFn<void, Promise<void>>(async (dispatch) => {
 
 export const loadAppSettings = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) =>
-    asyncTryRun("loadAppSettings", async () => {
+    asyncTryRun('loadAppSettings', async () => {
       const settings = await fetchAppSettings();
-      console.log("loaded App Settings:", settings);
+      console.log('loaded App Settings:', settings);
       dispatch(actions.setAppSettings(settings));
-    })
+    }),
 );
 
 export const loadUserSettings = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) =>
-    asyncTryRun("loadUserSettings", async () => {
+    asyncTryRun('loadUserSettings', async () => {
       const settings = await fetchUserSettings();
-      console.log("Loaded user Settings", settings);
+      console.log('Loaded user Settings', settings);
       dispatch(actions.setUserSettings(settings));
       if (settings.isAutomaticNodeSelection) {
         dispatch(autoSelectNode(true));
       }
-    })
+    }),
 );
 
 export const resetAppState = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) =>
-    asyncTryRun("resetAppState", async () => {
+    asyncTryRun('resetAppState', async () => {
       const settings = await resetUserSettings();
-      console.log("Reset App State", settings);
+      console.log('Reset App State', settings);
       dispatch(actions.setUserSettings(settings));
-    })
+    }),
 );
 
 // export const setAppSettings = createActionFn<AppSettings, Promise<void>>(
@@ -87,32 +84,32 @@ export const resetAppState = createActionFn<void, Promise<void>>(
 
 export const setNode = createActionFn<string, Promise<void>>(
   async (dispatch, _getState, node) => {
-    await asyncTryRun("setNode", async () => {
-      const partialSettings = { currentNodeHost: node };
+    await asyncTryRun('setNode', async () => {
+      const partialSettings = {currentNodeHost: node};
       await updateUserSettings(partialSettings);
       dispatch(actions.setUserSettings(partialSettings));
-      console.log("setNode:", node);
+      console.log('setNode:', node);
     });
-  }
+  },
 );
 
 export const agreeToTerms = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
-    await asyncTryRun("agreeToTerms", async () => {
-      const partialSettings: UserSettings = { agreedToTerms: true };
+    await asyncTryRun('agreeToTerms', async () => {
+      const partialSettings: UserSettings = {agreedToTerms: true};
       await updateUserSettings(partialSettings);
       dispatch(actions.setUserSettings(partialSettings));
     });
-  }
+  },
 );
 
 export const autoSelectNode = createActionFn<boolean, Promise<void>>(
   async (dispatch, getState, isAutomatic) => {
-    await asyncTryRun("autoSelectNode", async () => {
-      const partialSettings = { isAutomaticNodeSelection: isAutomatic };
+    await asyncTryRun('autoSelectNode', async () => {
+      const partialSettings = {isAutomaticNodeSelection: isAutomatic};
       dispatch(actions.setUserSettings(partialSettings));
       await updateUserSettings(partialSettings);
-      console.log("autoSelectNode:", isAutomatic);
+      console.log('autoSelectNode:', isAutomatic);
       if (!isAutomatic) {
         return;
       }
@@ -121,5 +118,5 @@ export const autoSelectNode = createActionFn<boolean, Promise<void>>(
       const bestNode = await api.service.selectBestHost(true);
       dispatch(setNode(bestNode));
     });
-  }
+  },
 );

@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Colors } from "../../theme/colors";
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Colors} from '../../theme/colors';
 
 const styles = StyleSheet.create({
   view: {

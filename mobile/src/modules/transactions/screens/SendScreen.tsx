@@ -2,33 +2,45 @@ import {
   useNavigation,
   useRoute,
   useFocusEffect,
-} from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
-import { View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { Account, SuggestedFees, TransactionId } from "@signumjs/core";
-import { Text, TextThemes } from "../../../core/components/base/Text";
-import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
-import { i18n } from "../../../core/i18n";
-import { AsyncParticle } from "../../../core/interfaces";
-import { FullHeightView } from "../../../core/layout/FullHeightView";
-import { Screen } from "../../../core/layout/Screen";
-import { routes } from "../../../core/navigation/routes";
-import { ApplicationState } from "../../../core/store/initialState";
-import { isAsyncLoading } from "../../../core/utils/async";
+  CompositeNavigationProp,
+} from '@react-navigation/native';
+import React, {useState, useEffect} from 'react';
+import {View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {Account, SuggestedFees, TransactionId} from '@signumjs/core';
+import {Text, TextThemes} from '../../../core/components/base/Text';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {AsyncParticle} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {ApplicationState} from '../../../core/store/initialState';
+import {isAsyncLoading} from '../../../core/utils/async';
 import {
   getAccount,
   getAlias,
   getUnstoppableAddress,
-} from "../../auth/store/actions";
-import { SendForm, SendFormState } from "../components/send/SendForm";
+} from '../../auth/store/actions';
+import {SendForm, SendFormState} from '../components/send/SendForm';
 import {
   sendMoney as sendMoneyAction,
   SendAmountPayload,
-} from "../store/actions";
-import { transactions } from "../translations";
-import { NoActiveAccount } from "../components/send/NoActiveAccount";
-import { stableParsePlanckAmount } from "../../../core/utils/amount";
+} from '../store/actions';
+import {transactions} from '../translations';
+import {NoActiveAccount} from '../components/send/NoActiveAccount';
+import {stableParsePlanckAmount} from '../../../core/utils/amount';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {
+  BottomTabNavigatorParamList,
+  SendStackParamList,
+} from '../../auth/navigation/mainStack';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+
+type SendScreenNavProp = CompositeNavigationProp<
+  StackNavigationProp<SendStackParamList, 'Send'>,
+  BottomTabNavigationProp<BottomTabNavigatorParamList, 'SendStack'>
+>;
 
 interface SendDeeplinkParameters {
   recipient?: string;
@@ -40,13 +52,13 @@ interface SendDeeplinkParameters {
   message?: string;
 }
 
-export const SendScreen: React.FC = () => {
+export const SendScreen = () => {
   const route = useRoute();
-  const navigation = useNavigation();
+  const navigation = useNavigation<SendScreenNavProp>();
   const dispatch = useDispatch();
   const [deeplinkData, setDeeplinkData] = useState<SendFormState>();
   const accounts = useSelector<ApplicationState, Account[]>(
-    (state) => state.auth.accounts || []
+    state => state.auth.accounts || [],
   );
   const [, setShouldUpdate] = useState(true);
 
@@ -54,9 +66,9 @@ export const SendScreen: React.FC = () => {
   const sendMoneyFn = useSelector<
     ApplicationState,
     AsyncParticle<TransactionId>
-  >((state) => state.transactions.sendMoney);
+  >(state => state.transactions.sendMoney);
   const suggestedFees = useSelector<ApplicationState, SuggestedFees | null>(
-    (state) => state.network.suggestedFees
+    state => state.network.suggestedFees,
   );
 
   useEffect(() => {
@@ -64,7 +76,7 @@ export const SendScreen: React.FC = () => {
       return;
     }
 
-    console.log("SendScreen - Got Deeplink Params", route.params);
+    console.log('SendScreen - Got Deeplink Params', route.params);
     // @ts-ignore
     const payload = route.params.payload as SendDeeplinkParameters;
     // @ts-ignore
@@ -78,7 +90,8 @@ export const SendScreen: React.FC = () => {
         ? stableParsePlanckAmount(payload.amountPlanck).getSigna()
         : undefined,
       message: payload.message,
-      messageIsText: payload.messageIsText == null ? true : payload.messageIsText,
+      messageIsText:
+        payload.messageIsText == null ? true : payload.messageIsText,
       encrypt: payload.encrypt === true,
       immutable: payload.immutable === true,
     });
@@ -94,13 +107,13 @@ export const SendScreen: React.FC = () => {
 
   const handleSubmit = (form: SendAmountPayload) => {
     dispatch(sendMoneyAction(form));
-    setDeeplinkData(undefined)
-    navigation.navigate(routes.home);
+    setDeeplinkData(undefined);
+    navigation.navigate('Home', {screen: 'Accounts'});
   };
 
   const handleReset = () => {
-    setDeeplinkData(undefined)
-  }
+    setDeeplinkData(undefined);
+  };
 
   const handleGetAccount = (id: string) => {
     return dispatch(getAccount(id));
@@ -115,12 +128,12 @@ export const SendScreen: React.FC = () => {
   };
 
   const handleCameraIconPress = () => {
-    navigation.navigate(routes.scan);
+    navigation.navigate('Scan');
   };
 
-  const { error } = sendMoneyFn;
+  const {error} = sendMoneyFn;
   const isLoading = isAsyncLoading(sendMoneyFn);
-  const hasActiveAccounts = accounts.some(({ type }) => type !== "offline");
+  const hasActiveAccounts = accounts.some(({type}) => type !== 'offline');
 
   return (
     <Screen>

@@ -1,8 +1,8 @@
-import { AsyncParticleStates } from "../enums";
-import { AsyncParticle } from "../interfaces";
+import {AsyncParticleStates} from '../enums';
+import {AsyncParticle} from '../interfaces';
 
 export function wait(ms: number = 0) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
 }

@@ -1,4 +1,4 @@
-import { toNumber, toString } from "lodash";
+import {toNumber, toString} from 'lodash';
 
 // @ts-ignore-next-line WARNING: typescript can't check what we have in .env
 // tslint:disable-next-line: max-line-length
@@ -10,7 +10,7 @@ import {
   RELIABLE_NODE_HOSTS,
   BLACK_LISTED_ACCOUNT_IDS,
   TESTNET_NODE_HOSTS,
-} from "react-native-dotenv";
+} from '@env';
 
 // So we check it like this
 // tslint:disable-next-line: max-line-length
@@ -22,14 +22,14 @@ if (
   !RELIABLE_NODE_HOSTS ||
   !BLACK_LISTED_ACCOUNT_IDS
 ) {
-  throw new Error("Incorrect .env config!");
+  throw new Error('Incorrect .env config!');
 }
 
 const fromCsvString = (csv: string): string[] =>
   toString(csv)
-    .split(";")
-    .map((v) => v.trim())
-    .filter((v) => !!v)
+    .split(';')
+    .map(v => v.trim())
+    .filter(v => !!v);
 
 const defaultSettings = {
   nodeHost: toString(DEFAULT_NODE_HOST),
@@ -41,6 +41,6 @@ const defaultSettings = {
   blackListedAccountIds: fromCsvString(BLACK_LISTED_ACCOUNT_IDS),
 };
 
-console.log("Environment Settings:", defaultSettings);
+console.log('Environment Settings:', defaultSettings);
 
-export { defaultSettings };
+export {defaultSettings};

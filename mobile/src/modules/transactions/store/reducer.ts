@@ -1,11 +1,11 @@
-import { TransactionId } from "@signumjs/core";
-import { AsyncParticle, Reducer } from "../../../core/interfaces";
-import { initAsyncParticle } from "../../../core/utils/async";
+import {TransactionId} from '@signumjs/core';
+import {AsyncParticle, Reducer} from '../../../core/interfaces';
+import {initAsyncParticle} from '../../../core/utils/async';
 import {
   createAsyncParticleReducers,
   createReducers,
-} from "../../../core/utils/store";
-import { actionTypes } from "./actionTypes";
+} from '../../../core/utils/store';
+import {actionTypes} from './actionTypes';
 
 export interface TransactionsReduxState {
   sendMoney: AsyncParticle<TransactionId>;
@@ -15,7 +15,7 @@ export interface TransactionsReduxState {
 export const transactionsState = (): TransactionsReduxState => {
   return {
     sendMoney: initAsyncParticle<TransactionId>(),
-    imageUrl: "",
+    imageUrl: '',
   };
 };
 
@@ -24,11 +24,11 @@ const sendMoney = createAsyncParticleReducers<
   void,
   TransactionId,
   Error
->("sendMoney");
+>('sendMoney');
 
 const updateQRImageUrl: Reducer<TransactionsReduxState, string> = (
   state,
-  action
+  action,
 ) => {
   const imageUrl = action.payload;
   return {

@@ -1,23 +1,25 @@
-import * as React from "react";
-import { createStackNavigator, StackNavigatorConfig } from "react-navigation";
-import { tabbarIcons } from "../../../assets/icons";
-import { TabBarIcon } from "../../../core/components/tabbar/TabBarIcon";
-import { defaultStackOptions } from "../../../core/navigation/defaultStackOptions";
-import { routes, RoutesMap } from "../../../core/navigation/routes";
-import { SettingsScreen } from "../screens/SettingsScreen";
+import {createStackNavigator} from '@react-navigation/stack';
+import * as React from 'react';
+import {tabbarIcons} from '../../../assets/icons';
+import {TabBarIcon} from '../../../core/components/tabbar/TabBarIcon';
+import {defaultStackOptions} from '../../../core/navigation/defaultStackOptions';
+import {routes} from '../../../core/navigation/routes';
+import {SettingsScreen} from '../screens/SettingsScreen';
 
-const stackConfig: StackNavigatorConfig = {
-  initialRouteName: routes.settings,
+/*const stackConfig: StackNavigatorConfig = {
   navigationOptions: {
     tabBarIcon: (options) => (
       <TabBarIcon source={tabbarIcons.settings} {...options} />
     ),
   },
-  defaultNavigationOptions: defaultStackOptions,
-};
+};*/
 
-const routesMap: RoutesMap = {
-  [routes.settings]: SettingsScreen,
-};
+const Stack = createStackNavigator();
 
-export const settingsStack = createStackNavigator(routesMap, stackConfig);
+export const sendStack = () => (
+  <Stack.Navigator
+    initialRouteName={'Settings'}
+    screenOptions={defaultStackOptions}>
+    <Stack.Screen name={'Settings'} component={SettingsScreen} />
+  </Stack.Navigator>
+);

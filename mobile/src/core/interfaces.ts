@@ -1,9 +1,9 @@
-import { AuthenticateConfig } from "react-native-touch-id";
-import { AnyAction as ReduxAction } from "redux";
-import { ThunkDispatch } from "redux-thunk";
-import { AsyncParticleStates, AuthStorageKeys, KeyChainKeys } from "./enums";
-import { ApplicationState } from "./store/initialState";
-import { ApiSettings } from "@signumjs/core";
+import {AuthenticateConfig} from 'react-native-touch-id';
+import {AnyAction as ReduxAction} from 'redux';
+import {ThunkDispatch} from 'redux-thunk';
+import {AsyncParticleStates, AuthStorageKeys, KeyChainKeys} from './enums';
+import {ApplicationState} from './store/initialState';
+import {ApiSettings} from '@signumjs/core';
 
 export interface InjectedReduxProps {
   dispatch: any; // TODO: fix typings
@@ -24,26 +24,26 @@ export interface AsyncParticle<T = any> {
  */
 export type Reducer<State, Payload> = (
   state: State,
-  action: AnyAction<Payload>
+  action: AnyAction<Payload>,
 ) => State;
 
 export type GetState = () => ApplicationState;
 export type Action<Payload, Result> = (payload: Payload) => ThunkAction<Result>;
 export type ThunkAction<Result> = (
   dispatch: ThunkDispatch<ApplicationState, any, any>,
-  getState: GetState
+  getState: GetState,
 ) => Result;
 export type CustomAction<Payload, Result> = (
   dispatch: ThunkDispatch<ApplicationState, any, any>,
   getState: GetState,
-  payload: Payload
+  payload: Payload,
 ) => Result;
 
 export interface AsyncParticleReducers<
   State,
   Begin = any,
   Success = any,
-  Failed = any
+  Failed = any,
 > {
   begin: Reducer<State, Begin>;
   success: Reducer<State, Success>;

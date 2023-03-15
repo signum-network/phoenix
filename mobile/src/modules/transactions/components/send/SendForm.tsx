@@ -1,6 +1,6 @@
-import { Account, Address, Alias, SuggestedFees } from "@signumjs/core";
-import { Amount } from "@signumjs/util";
-import React, { createRef } from "react";
+import {Account, Address, Alias, SuggestedFees} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
+import React, {createRef} from 'react';
 import {
   Image,
   NativeSyntheticEvent,
@@ -9,49 +9,49 @@ import {
   TextInputEndEditingEventData,
   TouchableOpacity,
   View,
-} from "react-native";
-import SwipeButton from "rn-swipe-button";
-import { actionIcons, transactionIcons } from "../../../../assets/icons";
-import { BInput, KeyboardTypes } from "../../../../core/components/base/BInput";
-import { BSelect, SelectItem } from "../../../../core/components/base/BSelect";
+} from 'react-native';
+import SwipeButton from 'rn-swipe-button';
+import {actionIcons, transactionIcons} from '../../../../assets/icons';
+import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
+import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
 import {
   Text,
   Text as BText,
   TextAlign,
-} from "../../../../core/components/base/Text";
-import { i18n } from "../../../../core/i18n";
-import { Colors } from "../../../../core/theme/colors";
-import { amountToString } from "../../../../core/utils/numbers";
-import { SendAmountPayload } from "../../store/actions";
+} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {Colors} from '../../../../core/theme/colors';
+import {amountToString} from '../../../../core/utils/numbers';
+import {SendAmountPayload} from '../../store/actions';
 import {
   Recipient,
   RecipientType,
   RecipientValidationStatus,
-} from "../../store/utils";
-import { transactions } from "../../translations";
-import { FeeSlider } from "../fee-slider/FeeSlider";
-import { AccountStatusPill } from "./AccountStatusPill";
+} from '../../store/utils';
+import {transactions} from '../../translations';
+import {FeeSlider} from '../fee-slider/FeeSlider';
+import {AccountStatusPill} from './AccountStatusPill';
 import {
   isValidReedSolomonAddress,
   shortenRSAddress,
-} from "../../../../core/utils/account";
-import { BCheckbox } from "../../../../core/components/base/BCheckbox";
-import { FontSizes, Sizes } from "../../../../core/theme/sizes";
-import { AmountText } from "../../../../core/components/base/Amount";
-import { DangerBox } from "./DangerBox";
+} from '../../../../core/utils/account';
+import {BCheckbox} from '../../../../core/components/base/BCheckbox';
+import {FontSizes, Sizes} from '../../../../core/theme/sizes';
+import {AmountText} from '../../../../core/components/base/Amount';
+import {DangerBox} from './DangerBox';
 import {
   AccountBalances,
   getBalancesFromAccount,
   ZeroAcountBalances,
-} from "../../../../core/utils/balance/getBalancesFromAccount";
-import { Button, ButtonThemes } from "../../../../core/components/base/Button";
+} from '../../../../core/utils/balance/getBalancesFromAccount';
+import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {
   stableAmountFormat,
   stableParseSignaAmount,
-} from "../../../../core/utils/amount";
-import { core } from "../../../../core/translations";
+} from '../../../../core/utils/amount';
+import {core} from '../../../../core/translations';
 
-const AddressPrefix = "S-";
+const AddressPrefix = 'S-';
 
 interface Props {
   loading: boolean;
@@ -86,17 +86,17 @@ export interface SendFormState {
 
 const styles = StyleSheet.create({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    height: "95%",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '95%',
   },
   headerSection: {},
   formSection: {
-    minHeight: "50%",
+    minHeight: '50%',
   },
   bottomSection: {},
   form: {
-    display: "flex",
+    display: 'flex',
   },
   scan: {
     marginTop: 10,
@@ -111,15 +111,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.TRANSPARENT,
   },
   total: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     marginTop: 10,
   },
   chevron: {
     width: 25,
     height: 25,
     marginTop: 3,
-    transform: [{ rotate: "-90deg" }],
+    transform: [{rotate: '-90deg'}],
   },
   balance: {
     marginTop: 3,
@@ -135,14 +135,14 @@ const styles = StyleSheet.create({
 
 const subBalanceStyles = StyleSheet.create({
   root: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: Sizes.MEDIUM,
   },
 });
 
-const Balances: React.FC<{ balances?: AccountBalances }> = ({
+const Balances: React.FC<{balances?: AccountBalances}> = ({
   balances = ZeroAcountBalances,
 }) => (
   <View style={subBalanceStyles.root}>
@@ -183,7 +183,7 @@ const Balances: React.FC<{ balances?: AccountBalances }> = ({
 
 function isUnstoppableDomain(recipient: string): boolean {
   return /.+\.(zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain)$/.test(
-    recipient.toLowerCase()
+    recipient.toLowerCase(),
   );
 }
 
@@ -197,8 +197,8 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
   getAccounts = (): Array<SelectItem<string>> => {
     return this.props.accounts
-      .filter(({ type }) => type !== "offline")
-      .map(({ accountRS, name }) => ({
+      .filter(({type}) => type !== 'offline')
+      .map(({accountRS, name}) => ({
         value: accountRS,
         label: name || shortenRSAddress(accountRS),
       }));
@@ -206,7 +206,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
   getAccount = (address: string): Account | null => {
     return (
-      this.props.accounts.find(({ accountRS }) => accountRS === address) || null
+      this.props.accounts.find(({accountRS}) => accountRS === address) || null
     );
   };
 
@@ -217,19 +217,22 @@ export class SendForm extends React.Component<Props, SendFormState> {
     const balances = getBalancesFromAccount(sender);
     return {
       sender,
-      amount: (deeplinkProps && deeplinkProps.amount) || "0",
+      amount: (deeplinkProps && deeplinkProps.amount) || '0',
       fee:
         (deeplinkProps && deeplinkProps.fee) ||
         (this.props.suggestedFees &&
           Amount.fromPlanck(this.props.suggestedFees.standard).getSigna()) ||
-        "0",
+        '0',
       message: (deeplinkProps && deeplinkProps.message) || undefined,
-      messageIsText: deeplinkProps && deeplinkProps.messageIsText !== undefined ? deeplinkProps.messageIsText : true,
+      messageIsText:
+        deeplinkProps && deeplinkProps.messageIsText !== undefined
+          ? deeplinkProps.messageIsText
+          : true,
       encrypt: (deeplinkProps && deeplinkProps.encrypt) || false,
       immutable: (deeplinkProps && deeplinkProps.immutable) || false,
       recipient: new Recipient(
         (deeplinkProps && deeplinkProps.address) || AddressPrefix,
-        (deeplinkProps && deeplinkProps.address) || ""
+        (deeplinkProps && deeplinkProps.address) || '',
       ),
       addMessage: (deeplinkProps && !!deeplinkProps.message) || false,
       confirmedRisk: false,
@@ -239,7 +242,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
   };
 
   private async fetchAccountIdFromAlias(alias: string): Promise<string | null> {
-    const { aliasURI } = await this.props.onGetAlias(alias);
+    const {aliasURI} = await this.props.onGetAlias(alias);
     const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
     if (!matches || matches.length < 2) {
       return null;
@@ -248,10 +251,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
     return Address.fromReedSolomonAddress(unwrappedAddress).getNumericId();
   }
 
-  UNSAFE_componentWillReceiveProps = ({ deepLinkProps }: Props) => {
+  UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
     if (deepLinkProps) {
       this.setState(this.getInitialState(deepLinkProps), () =>
-        this.applyRecipientType(this.state.recipient.addressRaw)
+        this.applyRecipientType(this.state.recipient.addressRaw),
       );
     }
   };
@@ -276,20 +279,20 @@ export class SendForm extends React.Component<Props, SendFormState> {
       {
         recipient: {
           addressRaw: r,
-          addressRS: "",
+          addressRS: '',
           status: RecipientValidationStatus.UNKNOWN,
           type,
         },
       },
       () => {
         this.validateRecipient(r, type);
-      }
+      },
     );
   }
 
   async validateRecipient(
     recipient: string,
-    type: RecipientType
+    type: RecipientType,
   ): Promise<void> {
     let formattedAddress: string | null = recipient;
 
@@ -297,7 +300,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
       case RecipientType.ALIAS:
         try {
           formattedAddress = await this.fetchAccountIdFromAlias(
-            formattedAddress
+            formattedAddress,
           );
         } catch (e) {
           this.setState({
@@ -319,7 +322,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
       case RecipientType.UNSTOPPABLE:
         try {
           formattedAddress = await this.props.onGetUnstoppableAddress(
-            recipient
+            recipient,
           );
           if (formattedAddress === null) {
             this.setState({
@@ -349,12 +352,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
     }
 
     try {
-      const { accountRS, publicKey } = await this.props.onGetAccount(
-        formattedAddress || ""
+      const {accountRS, publicKey} = await this.props.onGetAccount(
+        formattedAddress || '',
       );
 
       let type = this.state.recipient.type;
-      if (publicKey.startsWith('0000000000000')){
+      if (publicKey.startsWith('0000000000000')) {
         type = RecipientType.CONTRACT;
       }
 
@@ -390,14 +393,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
   }
 
   hasSufficientBalance = (): boolean => {
-    const { amount, balances } = this.state;
+    const {amount, balances} = this.state;
     const parsedAmount = stableParseSignaAmount(amount);
     return balances.availableBalance.greaterOrEqual(parsedAmount);
   };
 
   isSubmitEnabled = () => {
-    const { sender, recipient, amount, fee, confirmedRisk } = this.state;
-    const { loading } = this.props;
+    const {sender, recipient, amount, fee, confirmedRisk} = this.state;
+    const {loading} = this.props;
 
     return Boolean(
       Number(amount) &&
@@ -406,18 +409,18 @@ export class SendForm extends React.Component<Props, SendFormState> {
         isValidReedSolomonAddress(recipient?.addressRS) &&
         !loading &&
         confirmedRisk &&
-        this.hasSufficientBalance()
+        this.hasSufficientBalance(),
     );
   };
 
   markAsDirty = (): void => {
-    this.setState({ dirty: true });
+    this.setState({dirty: true});
   };
 
   handleChangeFromAccount = (sender: string) => {
     const account = this.getAccount(sender);
     const balances = getBalancesFromAccount(account);
-    this.setState({ sender: account, balances });
+    this.setState({sender: account, balances});
   };
 
   handleChangeAddress = (address: string) => {
@@ -431,13 +434,13 @@ export class SendForm extends React.Component<Props, SendFormState> {
   };
 
   handleAddressBlur = (
-    e: NativeSyntheticEvent<TextInputEndEditingEventData>
+    e: NativeSyntheticEvent<TextInputEndEditingEventData>,
   ) => {
     this.applyRecipientType(e.nativeEvent.text);
   };
 
   handleAmountChange = (amount: string) => {
-    this.setState({ amount: stableAmountFormat(amount) });
+    this.setState({amount: stableAmountFormat(amount)});
     this.markAsDirty();
   };
 
@@ -450,17 +453,17 @@ export class SendForm extends React.Component<Props, SendFormState> {
   };
 
   handleMessageChange = (message: string) => {
-    this.setState({ message });
+    this.setState({message});
     this.markAsDirty();
   };
 
   setEncryptMessage(encrypt: boolean): void {
-    this.setState({ encrypt });
+    this.setState({encrypt});
     this.markAsDirty();
   }
 
   setAddMessage(addMessage: boolean): void {
-    this.setState({ addMessage }, () => {
+    this.setState({addMessage}, () => {
       setTimeout(() => {
         // @ts-ignore
         this.scrollViewRef.current.scrollToEnd();
@@ -470,25 +473,25 @@ export class SendForm extends React.Component<Props, SendFormState> {
   }
 
   handleFeeChangeFromSlider = (fee: number) => {
-    this.setState({ fee: amountToString(fee) });
+    this.setState({fee: amountToString(fee)});
     this.markAsDirty();
   };
 
   setConfirmedRisk = (confirmedRisk: boolean) => {
-    this.setState({ confirmedRisk });
+    this.setState({confirmedRisk});
   };
 
   onSpendAll = () => {
-    const { sender, fee, balances } = this.state;
+    const {sender, fee, balances} = this.state;
     if (!sender) {
       return;
     }
 
     const maxAmount = balances.availableBalance.subtract(
-      Amount.fromSigna(fee || 0)
+      Amount.fromSigna(fee || 0),
     );
     this.handleAmountChange(
-      maxAmount.less(Amount.Zero()) ? "0" : maxAmount.getSigna()
+      maxAmount.less(Amount.Zero()) ? '0' : maxAmount.getSigna(),
     );
   };
 
@@ -524,11 +527,11 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
   handleReset = () => {
     this.setState(this.getInitialState());
-    this.props.onReset()
+    this.props.onReset();
   };
 
   shouldShowAliasWarning = (): boolean => {
-    const { type, status } = this.state.recipient;
+    const {type, status} = this.state.recipient;
     return (
       type === RecipientType.ALIAS &&
       status === RecipientValidationStatus.INVALID
@@ -536,7 +539,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
   };
 
   shouldConfirmRisk = (): boolean => {
-    const { recipient, confirmedRisk } = this.state;
+    const {recipient, confirmedRisk} = this.state;
     return (
       !confirmedRisk &&
       recipient.type !== RecipientType.UNKNOWN &&
@@ -550,7 +553,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
   };
 
   getTotal = (): Amount => {
-    const { amount, fee } = this.state;
+    const {amount, fee} = this.state;
     return stableParseSignaAmount(amount).add(stableParseSignaAmount(fee));
   };
 
@@ -566,7 +569,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
       recipient,
       sender,
     } = this.state;
-    const { suggestedFees } = this.props;
+    const {suggestedFees} = this.props;
     const total = this.getTotal();
     const senderRS = (sender && sender.accountRS) || null;
     const isResetEnabled = this.isResetEnabled();
@@ -576,7 +579,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
       : i18n.t(transactions.screens.send.button.disabled);
 
     const SenderRightElement = (
-      <View style={{ flexDirection: "row" }}>
+      <View style={{flexDirection: 'row'}}>
         {this.state.sender && (
           <View style={styles.balance}>
             <AmountText
@@ -590,7 +593,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
     );
 
     const RecipientRightIcons = (
-      <View style={{ flexDirection: "row" }}>
+      <View style={{flexDirection: 'row'}}>
         {recipient.addressRaw !== AddressPrefix && (
           <AccountStatusPill
             address={recipient.addressRS}
@@ -605,7 +608,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
     );
 
     const AmountRightIcons = (
-      <View style={{ flexDirection: "row" }}>
+      <View style={{flexDirection: 'row'}}>
         <TouchableOpacity onPress={this.onSpendAll}>
           <Image source={transactionIcons.sendAll} style={styles.inputIcon} />
         </TouchableOpacity>
@@ -648,7 +651,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
               keyboard={KeyboardTypes.NUMERIC}
               editable={!this.state.immutable}
               title={i18n.t(transactions.screens.send.amountNQT)}
-              placeholder={"0"}
+              placeholder={'0'}
               rightIcons={AmountRightIcons}
             />
             <BInput
@@ -657,12 +660,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
               keyboard={KeyboardTypes.NUMERIC}
               editable={!this.state.immutable}
               title={i18n.t(transactions.screens.send.feeNQT)}
-              placeholder={"0"}
+              placeholder={'0'}
             />
             {suggestedFees && (
               <FeeSlider
                 disabled={this.state.immutable}
-                fee={parseFloat(fee || "0")}
+                fee={parseFloat(fee || '0')}
                 onSlidingComplete={this.handleFeeChangeFromSlider}
                 suggestedFees={suggestedFees}
               />
@@ -672,14 +675,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
               disabled={this.state.immutable}
               label={i18n.t(transactions.screens.send.addMessage)}
               value={addMessage || false}
-              onCheck={(checked) => this.setAddMessage(checked)}
+              onCheck={checked => this.setAddMessage(checked)}
             />
 
             {addMessage && (
               <>
                 <BInput
                   editable={!this.state.immutable}
-                  value={message || ""}
+                  value={message || ''}
                   onChange={this.handleMessageChange}
                   title={i18n.t(transactions.screens.send.message)}
                 />
@@ -688,7 +691,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                   disabled={this.state.immutable}
                   label={i18n.t(transactions.screens.send.encrypt)}
                   value={encrypt || false}
-                  onCheck={(checked) => this.setEncryptMessage(checked)}
+                  onCheck={checked => this.setEncryptMessage(checked)}
                 />
               </>
             )}
@@ -706,8 +709,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
               <BText
                 bebasFont
                 color={Colors.WHITE}
-                textAlign={TextAlign.CENTER}
-              >
+                textAlign={TextAlign.CENTER}>
                 {i18n.t(transactions.screens.send.insufficientFunds)}
               </BText>
             </DangerBox>
@@ -718,8 +720,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
               <BText
                 bebasFont
                 color={Colors.WHITE}
-                textAlign={TextAlign.CENTER}
-              >
+                textAlign={TextAlign.CENTER}>
                 {i18n.t(transactions.screens.send.invalidAlias)}
               </BText>
             </DangerBox>
@@ -727,7 +728,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
           {this.shouldConfirmRisk() && (
             <DangerBox>
-              <View style={{ width: "90%" }}>
+              <View style={{width: '90%'}}>
                 <BCheckbox
                   label={i18n.t(transactions.screens.send.confirmRisk, {
                     address: recipient?.addressRS,
@@ -762,8 +763,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
               <Button
                 theme={ButtonThemes.ACCENT}
                 disabled={!isResetEnabled}
-                onPress={this.handleReset}
-              >
+                onPress={this.handleReset}>
                 {i18n.t(transactions.screens.send.reset)}
               </Button>
             </>

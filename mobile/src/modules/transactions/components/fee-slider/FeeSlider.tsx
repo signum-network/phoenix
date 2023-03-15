@@ -1,8 +1,8 @@
-import { SuggestedFees } from "@signumjs/core";
-import { Amount } from "@signumjs/util";
-import Slider from "@react-native-community/slider";
-import React from "react";
-import { Colors } from "../../../../core/theme/colors";
+import {SuggestedFees} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
+import Slider from '@react-native-community/slider';
+import React from 'react';
+import {Colors} from '../../../../core/theme/colors';
 
 interface Props {
   onSlidingComplete: (value: number) => void;
@@ -13,7 +13,7 @@ interface Props {
 
 const styles: any = {
   slider: {
-    width: "100%",
+    width: '100%',
     height: 40,
   },
 };
@@ -37,10 +37,10 @@ export class FeeSlider extends React.PureComponent<Props> {
         value={this.props.fee}
         style={styles.slider}
         minimumValue={Number(
-          Amount.fromPlanck(this.props.suggestedFees.minimum).getSigna()
+          Amount.fromPlanck(this.props.suggestedFees.minimum).getSigna(),
         )}
         maximumValue={Number(
-          Amount.fromPlanck(this.props.suggestedFees.priority).getSigna()
+          Amount.fromPlanck(this.props.suggestedFees.priority).getSigna(),
         )}
         onSlidingComplete={this.props.onSlidingComplete}
         minimumTrackTintColor={this.getMinTrackTintColor(this.props.fee)}

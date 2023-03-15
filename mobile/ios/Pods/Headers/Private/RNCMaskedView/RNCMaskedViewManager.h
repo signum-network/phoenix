@@ -1,1 +1,1 @@
-../../../../../node_modules/@react-native-community/masked-view/ios/RNCMaskedViewManager.h
+../../../../../node_modules/@react-native-masked-view/masked-view/ios/RNCMaskedViewManager.h

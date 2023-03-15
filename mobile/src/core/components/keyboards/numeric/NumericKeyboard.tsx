@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { RoundButton } from "./RoundButton";
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {RoundButton} from './RoundButton';
 
 interface Props {
   onPress: (key: string) => void;
@@ -11,12 +11,12 @@ interface Props {
 
 const styles = StyleSheet.create({
   keyboard: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
 });
 
@@ -36,16 +36,16 @@ export class NumericKeyboard extends React.PureComponent<Props> {
   };
 
   useTouchID = () => {
-    const { onTouchID } = this.props;
+    const {onTouchID} = this.props;
 
     onTouchID && onTouchID();
   };
 
   render() {
-    const { onTouchID, touchIDReason } = this.props;
+    const {onTouchID, touchIDReason} = this.props;
     const withTouchID = !!(onTouchID && touchIDReason);
 
-    const baseNumbers = numbers.map((item) => {
+    const baseNumbers = numbers.map(item => {
       return (
         <RoundButton value={item} onPress={this.handleButtonPress} key={item}>
           {item.toString()}
@@ -58,12 +58,12 @@ export class NumericKeyboard extends React.PureComponent<Props> {
     return (
       <View style={styles.keyboard}>
         {baseNumbers}
-        <RoundButton onPress={this.handleDelPress}>{"<"}</RoundButton>
+        <RoundButton onPress={this.handleDelPress}>{'<'}</RoundButton>
         <RoundButton value={0} onPress={this.handleButtonPress}>
-          {"0"}
+          {'0'}
         </RoundButton>
         <RoundButton disabled={!withTouchID} onPress={this.handleTouchIDPress}>
-          {"ID"}
+          {'ID'}
         </RoundButton>
       </View>
     );

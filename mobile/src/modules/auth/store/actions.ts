@@ -1,10 +1,10 @@
-import { Account, Address, Alias } from "@signumjs/core";
-import { encryptAES, generateMasterKeys, hashSHA256 } from "@signumjs/crypto";
-import { some } from "lodash";
-import { i18n } from "../../../core/i18n";
-import { createAction, createActionFn } from "../../../core/utils/store";
-import { auth } from "../translations";
-import { actionTypes } from "./actionTypes";
+import {Account, Address, Alias} from '@signumjs/core';
+import {encryptAES, generateMasterKeys, hashSHA256} from '@signumjs/crypto';
+import {some} from 'lodash';
+import {i18n} from '../../../core/i18n';
+import {createAction, createActionFn} from '../../../core/utils/store';
+import {auth} from '../translations';
+import {actionTypes} from './actionTypes';
 import {
   restoreAccounts,
   getPasscode,
@@ -12,8 +12,8 @@ import {
   resetKeychain,
   savePasscode,
   storeAccounts,
-} from "./utils";
-import { selectChainApi } from "../../../core/store/app/selectors";
+} from './utils';
+import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface UnstoppableDomainResponse {
   addresses: {
@@ -32,17 +32,17 @@ const actions = {
   loadAgreeToTerms: createAction<boolean>(actionTypes.loadAgreeToTerms),
   loadPasscode: createAction<string>(actionTypes.loadPasscode),
   loadPasscodeEnteredTime: createAction<number>(
-    actionTypes.loadPasscodeEnteredTime
+    actionTypes.loadPasscodeEnteredTime,
   ),
   removeAccount: createAction<Account>(actionTypes.removeAccount),
   resetAuthState: createAction<void>(actionTypes.resetAuthState),
   setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
   setPasscode: createAction<string>(actionTypes.setPasscode),
   setPasscodeEnteredTime: createAction<number>(
-    actionTypes.setPasscodeEnteredTime
+    actionTypes.setPasscodeEnteredTime,
   ),
   setPasscodeModalVisible: createAction<boolean>(
-    actionTypes.setPasscodeModalVisible
+    actionTypes.setPasscodeModalVisible,
   ),
   updateAccount: createAction<Account>(actionTypes.updateAccount),
 };
@@ -57,7 +57,7 @@ export const createActiveAccount = createActionFn<string, Account>(
       publicKey: keys.publicKey,
       agreementPrivateKey: encryptAES(
         keys.agreementPrivateKey,
-        hashSHA256(pin)
+        hashSHA256(pin),
       ),
       signPrivateKey: encryptAES(keys.signPrivateKey, hashSHA256(pin)),
     };
@@ -65,7 +65,7 @@ export const createActiveAccount = createActionFn<string, Account>(
     const address = Address.fromPublicKey(keys.publicKey);
     const hasAccount = some(
       getState().auth.accounts,
-      (item) => item.account === address.getNumericId()
+      item => item.account === address.getNumericId(),
     );
 
     if (hasAccount) {
@@ -73,18 +73,18 @@ export const createActiveAccount = createActionFn<string, Account>(
     }
 
     const pinHash = hashSHA256(pin + keys.publicKey);
-    const account = new Account({
-      type: "active",
+    const account: Account = {
+      type: 'active',
       account: address.getNumericId(),
       accountRS: address.getReedSolomonAddress(),
       keys: encryptedKeys,
       pinHash,
-    });
+    };
     if (isBlacklistedAccount(account)) {
-      throw new Error("This is a blacklisted account. Creation aborted");
+      throw new Error('This is a blacklisted account. Creation aborted');
     }
     return account;
-  }
+  },
 );
 
 export const createOfflineAccount = createActionFn<string, Account>(
@@ -98,28 +98,28 @@ export const createOfflineAccount = createActionFn<string, Account>(
 
     const hasAccount = some(
       getState().auth.accounts,
-      (item) => item.account === address.getNumericId()
+      item => item.account === address.getNumericId(),
     );
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    const account = new Account({
-      type: "offline",
+    const account: Account = {
+      type: 'offline',
       account: address.getNumericId(),
       accountRS: address.getReedSolomonAddress(),
-    });
+    };
     if (isBlacklistedAccount(account)) {
-      throw new Error("This is a blacklisted account. Creation aborted");
+      throw new Error('This is a blacklisted account. Creation aborted');
     }
     return account;
-  }
+  },
 );
 
 export const hydrateAccount = createActionFn<
-  { account: Account; withTransactions?: boolean },
+  {account: Account; withTransactions?: boolean},
   Promise<Account>
 >(async (dispatch, getState, payload) => {
-  const { account, withTransactions = true } = payload;
+  const {account, withTransactions = true} = payload;
   const state = getState();
   const api = selectChainApi(state);
   try {
@@ -127,13 +127,13 @@ export const hydrateAccount = createActionFn<
       accountId: account.account,
       includeCommittedAmount: true,
     });
-    console.log("Got account", accountDetails);
+    console.log('Got account', accountDetails);
     dispatch(actions.updateAccount(accountDetails));
     if (withTransactions) {
       dispatch(updateAccountTransactions(accountDetails));
     }
   } catch (e) {
-    console.error("Something failed", e);
+    console.error('Something failed', e);
   }
 
   await storeAccounts(state.auth.accounts);
@@ -151,7 +151,7 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
       });
       // tslint:disable-next-line: no-empty
     } catch (e) {}
-  }
+  },
 );
 
 export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
@@ -159,7 +159,7 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     const state = getState();
     const api = selectChainApi(state);
     return api.alias.getAliasByName(account);
-  }
+  },
 );
 
 export const getUnstoppableAddress = createActionFn<
@@ -167,7 +167,7 @@ export const getUnstoppableAddress = createActionFn<
   Promise<string | null>
 >(async (_dispatch, _getState, address) => {
   return fetch(`https://unstoppabledomains.com/api/v1/${address.toLowerCase()}`)
-    .then((response) => response.json())
+    .then(response => response.json())
     .then((response: UnstoppableDomainResponse) => {
       return response.addresses.BURST;
     });
@@ -183,17 +183,17 @@ export const updateAccountTransactions = createActionFn<
     ...account,
   };
   try {
-    console.log("updating transactions...", account.accountRS);
-    const { transactions } = await api.account.getAccountTransactions({
+    console.log('updating transactions...', account.accountRS);
+    const {transactions} = await api.account.getAccountTransactions({
       accountId: account.account,
       firstIndex: 0,
       lastIndex: 200,
       includeIndirect: true,
     });
-    const { unconfirmedTransactions } =
+    const {unconfirmedTransactions} =
       await api.account.getUnconfirmedAccountTransactions(
         account.account,
-        true
+        true,
       );
     updatedAccount.transactions = unconfirmedTransactions.concat(transactions);
     dispatch(actions.updateAccount(updatedAccount));
@@ -207,7 +207,7 @@ export const addAccount = createActionFn<Account, Promise<Account>>(
     dispatch(actions.addAccount(account));
     await storeAccounts(getState().auth.accounts);
     return account;
-  }
+  },
 );
 
 export const removeAccount = createActionFn<Account, Promise<void>>(
@@ -217,34 +217,34 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
     dispatch(actions.removeAccount(account));
     await storeAccounts(getState().auth.accounts);
     return;
-  }
+  },
 );
 
 export const loadAccounts = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     let accounts: Account[] = await restoreAccounts();
-    accounts = accounts.filter((account) => {
+    accounts = accounts.filter(account => {
       const isBlacklisted = isBlacklistedAccount(account);
       if (isBlacklisted) {
         // tslint:disable-next-line:no-console
         console.info(
-          "Found black listed account - Ignoring: ",
+          'Found black listed account - Ignoring: ',
           account.accountRS,
-          account.account
+          account.account,
         );
       }
       return !isBlacklisted;
     });
-    accounts.forEach((account) => hydrateAccount({ account }));
+    accounts.forEach(account => hydrateAccount({account}));
     dispatch(actions.loadAccounts(accounts));
-  }
+  },
 );
 
 export const resetAuthState = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     resetKeychain();
     dispatch(actions.resetAuthState());
-  }
+  },
 );
 
 export const setPasscode = createActionFn<string, Promise<void>>(
@@ -254,14 +254,14 @@ export const setPasscode = createActionFn<string, Promise<void>>(
 
     // reset the redux store
     dispatch(loadPasscode());
-  }
+  },
 );
 
 export const loadPasscode = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const passcode = await getPasscode();
     dispatch(actions.loadPasscode(passcode));
-  }
+  },
 );
 
 export const setPasscodeModalVisible = actions.setPasscodeModalVisible;

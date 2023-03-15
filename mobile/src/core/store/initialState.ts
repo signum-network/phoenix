@@ -1,17 +1,17 @@
-import { AuthReduxState, authState } from "../../modules/auth/store/reducer";
+import {AuthReduxState, authState} from '../../modules/auth/store/reducer';
 import {
   NetworkReduxState,
   networkState,
-} from "../../modules/network/store/reducer";
+} from '../../modules/network/store/reducer';
 import {
   priceApiState,
   PriceInfoReduxState,
-} from "../../modules/price-api/store/reducer";
+} from '../../modules/price-api/store/reducer';
 import {
   TransactionsReduxState,
   transactionsState,
-} from "../../modules/transactions/store/reducer";
-import { AppReduxState, getInitialAppState } from "./app/reducer";
+} from '../../modules/transactions/store/reducer';
+import {AppReduxState, getInitialAppState} from './app/reducer';
 
 export interface ApplicationState {
   app: AppReduxState;

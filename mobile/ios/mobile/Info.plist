@@ -41,7 +41,7 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>New item</key>
-			<string></string>
+			<string/>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -80,6 +80,13 @@
 		<string>BebasNeueRegular.ttf</string>
 		<string>BebasNeueBold.ttf</string>
 		<string>NotoSansThin.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Italic.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Thin.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Italic.ttf</string>
+		<string>Roboto-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -1,4 +1,4 @@
-import { isIOS } from "../utils/platform";
+import {isIOS} from '../utils/platform';
 
 export interface Fonts {
   signum: string;
@@ -9,19 +9,19 @@ export interface Fonts {
 }
 
 const iOSFonts: Fonts = {
-  signum: "Montserrat",
-  roboto: "Roboto",
-  noto: "Noto Sans",
-  bebas: "Bebas Neue",
-  bebasBold: "Bebas Neue",
+  signum: 'Montserrat',
+  roboto: 'Roboto',
+  noto: 'Noto Sans',
+  bebas: 'Bebas Neue',
+  bebasBold: 'Bebas Neue',
 };
 
 const androidFonts: Fonts = {
-  signum: "Montserrat-Regular",
-  roboto: "Roboto-Regular",
-  noto: "NotoSansRegular",
-  bebas: "BebasNeueRegular",
-  bebasBold: "BebasNeueBold",
+  signum: 'Montserrat-Regular',
+  roboto: 'Roboto-Regular',
+  noto: 'NotoSansRegular',
+  bebas: 'BebasNeueRegular',
+  bebasBold: 'BebasNeueBold',
 };
 
 export const fonts: Fonts = isIOS ? iOSFonts : androidFonts;

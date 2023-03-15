@@ -1,25 +1,25 @@
-import React from "react";
-import { StyleSheet, View, Image } from "react-native";
-import { connect } from "react-redux";
+import React from 'react';
+import {StyleSheet, View, Image} from 'react-native';
+import {connect} from 'react-redux';
 import {
   Text,
   TextAlign,
   TextThemes,
-} from "../../../../core/components/base/Text";
-import { NumericKeyboard } from "../../../../core/components/keyboards/numeric/NumericKeyboard";
-import { i18n } from "../../../../core/i18n";
-import { InjectedReduxProps } from "../../../../core/interfaces";
-import { FullHeightView } from "../../../../core/layout/FullHeightView";
-import { Screen } from "../../../../core/layout/Screen";
-import { AppReduxState } from "../../../../core/store/app/reducer";
-import { ApplicationState } from "../../../../core/store/initialState";
-import { Colors } from "../../../../core/theme/colors";
-import { Sizes } from "../../../../core/theme/sizes";
-import { PASSCODE_LENGTH } from "../../consts";
-import { setPasscode } from "../../store/actions";
-import { AuthReduxState } from "../../store/reducer";
-import { auth } from "../../translations";
-import { logos } from "../../../../assets/icons";
+} from '../../../../core/components/base/Text';
+import {NumericKeyboard} from '../../../../core/components/keyboards/numeric/NumericKeyboard';
+import {i18n} from '../../../../core/i18n';
+import {InjectedReduxProps} from '../../../../core/interfaces';
+import {FullHeightView} from '../../../../core/layout/FullHeightView';
+import {Screen} from '../../../../core/layout/Screen';
+import {AppReduxState} from '../../../../core/store/app/reducer';
+import {ApplicationState} from '../../../../core/store/initialState';
+import {Colors} from '../../../../core/theme/colors';
+import {Sizes} from '../../../../core/theme/sizes';
+import {PASSCODE_LENGTH} from '../../consts';
+import {setPasscode} from '../../store/actions';
+import {AuthReduxState} from '../../store/reducer';
+import {auth} from '../../translations';
+import {logos} from '../../../../assets/icons';
 
 interface InjectedProps extends InjectedReduxProps {
   app: AppReduxState;
@@ -41,20 +41,20 @@ interface State {
 const styles = StyleSheet.create({
   view: {
     backgroundColor: Colors.BLUE,
-    display: "flex",
-    alignItems: "center",
-    height: "100%",
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
   },
   header: {
-    textAlign: "center",
+    textAlign: 'center',
     flex: 1,
-    alignSelf: "center",
-    justifyContent: "flex-end",
+    alignSelf: 'center',
+    justifyContent: 'flex-end',
     marginTop: Sizes.LARGER * 2,
   },
   keyboard: {
     flex: 1.5,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   hint: {
     marginBottom: Sizes.MEDIUM,
@@ -62,27 +62,27 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    resizeMode: "contain",
-    alignSelf: "center",
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
 });
 
 class SetPasscodeModal extends React.PureComponent<Props, State> {
   state = {
-    code: "",
-    savedCode: "",
+    code: '',
+    savedCode: '',
     hasError: false,
   };
 
   handleNumberPress = (value: string) => {
-    const { code, savedCode } = this.state;
+    const {code, savedCode} = this.state;
     const newCode = code + value;
 
     if (newCode.length > PASSCODE_LENGTH) {
       return;
     }
 
-    this.setState({ hasError: false, code: newCode }, () => {
+    this.setState({hasError: false, code: newCode}, () => {
       if (newCode.length === PASSCODE_LENGTH) {
         if (savedCode) {
           if (newCode === savedCode) {
@@ -92,13 +92,13 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
             }, 250);
           } else {
             this.setState({
-              code: "",
+              code: '',
               hasError: true,
             });
           }
         } else {
           setTimeout(() => {
-            this.setState({ code: "", savedCode: newCode });
+            this.setState({code: '', savedCode: newCode});
           }, 500);
         }
       }
@@ -106,7 +106,7 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
   };
 
   handleDelPress = () => {
-    const { code } = this.state;
+    const {code} = this.state;
 
     if (code.length > 0) {
       this.setState({
@@ -116,8 +116,8 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { hasError, savedCode } = this.state;
-    const code = this.state.code.replace(/./g, "*") + " ";
+    const {hasError, savedCode} = this.state;
+    const code = this.state.code.replace(/./g, '*') + ' ';
     const hint = !savedCode
       ? i18n.t(auth.setPasscodeModal.passcodeHint)
       : i18n.t(auth.setPasscodeModal.enterAgain);
@@ -131,16 +131,14 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
               <Text
                 theme={TextThemes.ACCENT}
                 textAlign={TextAlign.CENTER}
-                color={Colors.WHITE}
-              >
+                color={Colors.WHITE}>
                 {hint}
               </Text>
               {hasError && (
                 <Text
                   theme={TextThemes.HINT}
                   textAlign={TextAlign.CENTER}
-                  color={Colors.WHITE}
-                >
+                  color={Colors.WHITE}>
                   {i18n.t(auth.errors.incorrectPasscode)}
                 </Text>
               )}
@@ -148,8 +146,7 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
             <Text
               theme={TextThemes.HEADER}
               color={Colors.WHITE}
-              textAlign={TextAlign.CENTER}
-            >
+              textAlign={TextAlign.CENTER}>
               {code}
             </Text>
           </View>

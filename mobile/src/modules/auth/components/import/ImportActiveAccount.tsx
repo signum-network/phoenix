@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button } from "../../../../core/components/base/Button";
-import { Input } from "../../../../core/components/base/Input";
-import { SwitchItem } from "../../../../core/components/base/SwitchItem";
-import { i18n } from "../../../../core/i18n";
-import { auth } from "../../translations";
-import { AccountTypeHint } from "./AccountTypeHint";
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Button} from '../../../../core/components/base/Button';
+import {Input} from '../../../../core/components/base/Input';
+import {SwitchItem} from '../../../../core/components/base/SwitchItem';
+import {i18n} from '../../../../core/i18n';
+import {auth} from '../../translations';
+import {AccountTypeHint} from './AccountTypeHint';
 
 interface Props {
   onFinish: (passphrase: string) => void;
@@ -13,18 +13,18 @@ interface Props {
 
 const styles = StyleSheet.create({
   mainBlock: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   passphraseSwitch: {
-    paddingTop: 10
+    paddingTop: 10,
   },
   button: {
-    paddingTop: "10%"
-  }
+    paddingTop: '10%',
+  },
 });
 
-export const ImportActiveAccount: React.FC<Props> = ({ onFinish }) => {
-  const [passphrase, setPassphrase] = useState("");
+export const ImportActiveAccount: React.FC<Props> = ({onFinish}) => {
+  const [passphrase, setPassphrase] = useState('');
   const [showPassphrase, setShowPassphrase] = useState(false);
 
   const handleChangePassphrase = (phrase: string) => {
@@ -60,7 +60,10 @@ export const ImportActiveAccount: React.FC<Props> = ({ onFinish }) => {
         </View>
       </View>
       <View style={styles.button}>
-        <Button fullWidth={true} onPress={handleFinish} disabled={passphrase.length === 0}>
+        <Button
+          fullWidth={true}
+          onPress={handleFinish}
+          disabled={passphrase.length === 0}>
           {i18n.t(auth.importAccount.import)}
         </Button>
       </View>

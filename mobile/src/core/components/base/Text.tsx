@@ -1,24 +1,24 @@
-import React from "react";
-import { StyleSheet, Text as RNText } from "react-native";
-import { Colors } from "../../theme/colors";
-import { fonts } from "../../theme/fonts";
-import { FontSizes } from "../../theme/sizes";
-import { isIOS } from "../../utils/platform";
+import React from 'react';
+import {StyleSheet, Text as RNText} from 'react-native';
+import {Colors} from '../../theme/colors';
+import {fonts} from '../../theme/fonts';
+import {FontSizes} from '../../theme/sizes';
+import {isIOS} from '../../utils/platform';
 
 export enum TextThemes {
-  DEFAULT = "DEFAULT",
-  ACCENT = "ACCENT",
-  HEADER = "HEADER",
-  HINT = "HINT",
-  DANGER = "DANGER",
+  DEFAULT = 'DEFAULT',
+  ACCENT = 'ACCENT',
+  HEADER = 'HEADER',
+  HINT = 'HINT',
+  DANGER = 'DANGER',
 }
 
 export enum TextAlign {
-  AUTO = "auto",
-  LEFT = "left",
-  RIGHT = "right",
-  CENTER = "center",
-  JUSTIFY = "justify",
+  AUTO = 'auto',
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center',
+  JUSTIFY = 'justify',
 }
 
 interface Props {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fonts.roboto,
     fontSize: FontSizes.MEDIUM,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     textAlign: defaultAlign,
     color: Colors.BLACK,
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 });
 
 // TODO: Create new universal text component according to mockups
-export const Text: React.FunctionComponent<Props> = (props) => {
+export const Text: React.FunctionComponent<Props> = props => {
   const {
     theme = defaultTheme,
     textAlign,
@@ -90,22 +90,21 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     theme === TextThemes.DANGER && styles.textDanger,
     theme === TextThemes.HEADER && styles.textHeader,
     theme === TextThemes.HINT && styles.textHint,
-    textAlign && { textAlign },
-    color && { color },
-    bebasFont && { fontFamily: bold && fonts.roboto },
-    size && { fontSize: size },
+    textAlign && {textAlign},
+    color && {color},
+    bebasFont && {fontFamily: bold && fonts.roboto},
+    size && {fontSize: size},
     disabled && styles.textDisabled,
-    disabledColor && { color: disabledColor },
-    bold && { fontWeight: isIOS ? "500" : "400" },
-    thin && { fontWeight: "400" },
+    disabledColor && {color: disabledColor},
+    bold && {fontWeight: isIOS ? '500' : '400'},
+    thin && {fontWeight: '400'},
   ];
 
   return (
     <RNText
       style={style}
       selectable={props.selectable}
-      numberOfLines={numberOfLines}
-    >
+      numberOfLines={numberOfLines}>
       {props.children}
     </RNText>
   );

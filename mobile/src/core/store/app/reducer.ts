@@ -1,8 +1,8 @@
-import { Api, composeApi, ApiSettings } from "@signumjs/core";
-import { defaultSettings } from "../../environment";
-import { AppSettings, Reducer, UserSettings } from "../../interfaces";
-import { createReducers } from "../../utils/store";
-import { actionTypes } from "./actionTypes";
+import {Api, composeApi, ApiSettings} from '@signumjs/core';
+import {defaultSettings} from '../../environment';
+import {AppSettings, Reducer, UserSettings} from '../../interfaces';
+import {createReducers} from '../../utils/store';
+import {actionTypes} from './actionTypes';
 
 export interface AppReduxState {
   isAppLoaded: boolean;
@@ -38,7 +38,7 @@ export const getInitialAppState = (): AppReduxState => {
   };
 };
 
-const appLoaded: Reducer<AppReduxState, undefined> = (state) => {
+const appLoaded: Reducer<AppReduxState, undefined> = state => {
   return {
     ...state,
     isAppLoaded: true,
@@ -56,7 +56,7 @@ const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
 
 const setUserSettings: Reducer<AppReduxState, UserSettings> = (
   state,
-  action
+  action,
 ) => {
   const newState: AppReduxState = {
     ...state,
@@ -83,5 +83,5 @@ const reducers = {
 
 export const app = createReducers<AppReduxState>(
   getInitialAppState(),
-  reducers
+  reducers,
 );

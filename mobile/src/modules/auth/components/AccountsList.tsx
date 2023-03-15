@@ -1,17 +1,17 @@
-import { Account } from "@signumjs/core";
-import { toString } from "lodash";
-import React, { useState } from "react";
+import {Account} from '@signumjs/core';
+import {toString} from 'lodash';
+import React, {useState} from 'react';
 import {
   FlatList,
   ListRenderItemInfo,
   RefreshControl,
   StyleSheet,
-} from "react-native";
-import { ListSeparator } from "../../../core/components/base/ListSeparator";
-import { AccountColors, Colors } from "../../../core/theme/colors";
-import { PriceInfoReduxState } from "../../price-api/store/reducer";
-import { AccountListItem } from "./AccountListItem";
-import { NoAccounts } from "./NoAccounts";
+} from 'react-native';
+import {ListSeparator} from '../../../core/components/base/ListSeparator';
+import {AccountColors, Colors} from '../../../core/theme/colors';
+import {PriceInfoReduxState} from '../../price-api/store/reducer';
+import {AccountListItem} from './AccountListItem';
+import {NoAccounts} from './NoAccounts';
 
 interface Props {
   accounts: Account[];
@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    height: "auto",
+    height: 'auto',
   },
   emptyContainer: {
-    height: "100%",
+    height: '100%',
   },
 });
 
-export const AccountsList: React.FC<Props> = (props) => {
+export const AccountsList: React.FC<Props> = props => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const {
     priceApi,
@@ -63,9 +63,9 @@ export const AccountsList: React.FC<Props> = (props) => {
     setIsRefreshing(false);
   };
 
-  const renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
+  const renderAccountItem = ({item}: ListRenderItemInfo<Account>) => {
     const accountIndex =
-      accounts.findIndex(({ account }) => account === item.account) %
+      accounts.findIndex(({account}) => account === item.account) %
       AccountColors.length;
     return (
       <AccountListItem

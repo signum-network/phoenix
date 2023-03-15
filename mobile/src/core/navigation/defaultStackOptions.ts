@@ -1,15 +1,15 @@
-import { NavigationScreenOptions } from "react-navigation";
-import { Colors } from "../theme/colors";
-import { fonts } from "../theme/fonts";
+import {StackNavigationOptions} from '@react-navigation/stack';
+import {Colors} from '../theme/colors';
+import {fonts} from '../theme/fonts';
 
-export const defaultStackOptions: NavigationScreenOptions = {
+export const defaultStackOptions: StackNavigationOptions = {
   headerStyle: {
     backgroundColor: Colors.BLUE,
     borderBottomWidth: 0,
   },
   headerTintColor: Colors.GREEN,
   headerTitleStyle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontFamily: fonts.signum,
   },
 };

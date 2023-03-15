@@ -1,34 +1,34 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
   TextInputEndEditingEventData,
   View,
-} from "react-native";
-import { Colors } from "../../theme/colors";
-import { fonts } from "../../theme/fonts";
-import { FontSizes, Sizes } from "../../theme/sizes";
-import { Text as BText } from "./Text";
+} from 'react-native';
+import {Colors} from '../../theme/colors';
+import {fonts} from '../../theme/fonts';
+import {FontSizes, Sizes} from '../../theme/sizes';
+import {Text as BText} from './Text';
 
 interface Props {
   value: string;
   onChange: (value: string) => void;
   onEndEditing?: (
-    value: NativeSyntheticEvent<TextInputEndEditingEventData>
+    value: NativeSyntheticEvent<TextInputEndEditingEventData>,
   ) => void;
   keyboard?: KeyboardTypes;
   title?: string;
   placeholder?: string;
   rightIcons?: React.ReactElement;
   editable?: boolean;
-  autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
 }
 
 export enum KeyboardTypes {
-  DEFAULT = "default",
-  EMAIL = "email-address",
-  NUMERIC = "numeric",
-  PHONE = "phone-pad",
+  DEFAULT = 'default',
+  EMAIL = 'email-address',
+  NUMERIC = 'numeric',
+  PHONE = 'phone-pad',
 }
 
 export class BInput extends React.PureComponent<Props> {
@@ -40,21 +40,21 @@ export class BInput extends React.PureComponent<Props> {
       padding: Sizes.MEDIUM,
       backgroundColor: Colors.BLACK_T,
       marginBottom: Sizes.MEDIUM,
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     input: {
       fontFamily: fonts.roboto,
       letterSpacing: -1,
       fontSize: FontSizes.MEDIUM,
-      fontWeight: "500",
+      fontWeight: '500',
       backgroundColor: Colors.TRANSPARENT,
       height: 25,
       padding: 0,
-      width: "100%",
+      width: '100%',
       flex: 1,
     },
     end: {
-      marginLeft: "auto",
+      marginLeft: 'auto',
     },
   };
 
@@ -95,10 +95,10 @@ export class BInput extends React.PureComponent<Props> {
             value={value}
             onChangeText={onChange}
             style={this.getInputStyle()}
-            autoCapitalize={autoCapitalize || "none"}
+            autoCapitalize={autoCapitalize || 'none'}
             autoCorrect={false}
             keyboardType={keyboard}
-            returnKeyType={"done"}
+            returnKeyType={'done'}
             placeholder={placeholder}
             placeholderTextColor={Colors.GREY_TT}
           />

@@ -1,16 +1,14 @@
 import {
-  BottomTabNavigatorConfig,
-  NavigationContainer,
-} from "react-navigation";
-
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { mainStack } from "../../modules/auth/navigation/mainStack";
-import { settingsStack } from "../../modules/settings/navigation/settingsStack";
-import { receiveStack } from "../../modules/transactions/navigation/receiveStack";
-import { sendStack } from "../../modules/transactions/navigation/sendStack";
-import { Colors } from "../theme/colors";
-import { fonts } from "../theme/fonts";
-import { routes, RoutesMap } from "./routes";
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import {mainStack} from '../../modules/auth/navigation/mainStack';
+import {settingsStack} from '../../modules/settings/navigation/settingsStack';
+import {receiveStack} from '../../modules/transactions/navigation/receiveStack';
+import {sendStack} from '../../modules/transactions/navigation/sendStack';
+import {Colors} from '../theme/colors';
+import {fonts} from '../theme/fonts';
+import {routes, RoutesMap} from './routes';
 
 const routesMap: RoutesMap = {
   [routes.home]: mainStack,
@@ -19,26 +17,30 @@ const routesMap: RoutesMap = {
   [routes.settings]: settingsStack,
 };
 
-const rootTabStackConfig: BottomTabNavigatorConfig = {
-  initialRouteName: routes.home,
-  tabBarOptions: {
-    activeTintColor: Colors.WHITE,
-    activeBackgroundColor: Colors.BLUE_DARKER,
-    inactiveTintColor: Colors.GREY,
-    inactiveBackgroundColor: Colors.BLUE_DARKER,
-    showIcon: true,
-    labelStyle: {
-      textTransform: "uppercase",
-      fontFamily: fonts.bebas,
-    },
-    style: {
-      backgroundColor: Colors.BLUE_DARKER,
-      borderTopWidth: 0,
-    },
+const rootTabStackConfig: BottomTabNavigationOptions = {
+  tabBarActiveTintColor: Colors.WHITE,
+  tabBarActiveBackgroundColor: Colors.BLUE_DARKER,
+  tabBarInactiveTintColor: Colors.GREY,
+  tabBarInactiveBackgroundColor: Colors.BLUE_DARKER,
+  tabBarLabelStyle: {
+    textTransform: 'uppercase',
+    fontFamily: fonts.bebas,
+  },
+  tabBarStyle: {
+    backgroundColor: Colors.BLUE_DARKER,
+    borderTopWidth: 0,
   },
 };
 
-export const rootTabStack: NavigationContainer = createBottomTabNavigator(
-  routesMap,
-  rootTabStackConfig
+const BottomTabStack = createBottomTabNavigator();
+
+export const rootTabStack = () => (
+  <BottomTabStack.Navigator
+    initialRouteName={routes.home}
+    screenOptions={rootTabStackConfig}>
+    <BottomTabStack.Screen name={routes.home} component={mainStack} />
+    <BottomTabStack.Screen name={routes.send} component={sendStack} />
+    <BottomTabStack.Screen name={routes.receive} component={receiveStack} />
+    <BottomTabStack.Screen name={routes.settings} component={settingsStack} />
+  </BottomTabStack.Navigator>
 );

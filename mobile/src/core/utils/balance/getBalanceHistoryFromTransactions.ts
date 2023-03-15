@@ -3,18 +3,18 @@ import {
   Transaction,
   TransactionType,
   TransactionAssetSubtype,
-} from "@signumjs/core";
-import { convertNQTStringToNumber } from "@signumjs/util";
-import { BalanceHistoryItem } from "./typings";
+} from '@signumjs/core';
+import {convertNQTStringToNumber} from '@signumjs/util';
+import {BalanceHistoryItem} from './typings';
 
 const isOwnTransaction = (
   accountId: string,
-  transaction: Transaction
+  transaction: Transaction,
 ): boolean => transaction.sender === accountId;
 
 function getRelativeTransactionAmount(
   accountId: string,
-  transaction: Transaction
+  transaction: Transaction,
 ): number {
   if (isOwnTransaction(accountId, transaction)) {
     // type 2, subtype 3 = BidOrderPlacement
@@ -27,7 +27,7 @@ function getRelativeTransactionAmount(
             (
               transaction.attachment.quantityQNT *
               transaction.attachment.priceNQT
-            ).toString()
+            ).toString(),
           )
         : convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
@@ -47,7 +47,7 @@ function getRelativeTransactionAmount(
 export function getBalanceHistoryFromTransactions(
   accountId: string,
   currentBalance: number,
-  transactions: Transaction[]
+  transactions: Transaction[],
 ): BalanceHistoryItem[] {
   let balance = currentBalance;
 

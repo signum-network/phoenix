@@ -1,21 +1,26 @@
-import React from "react";
+import React, {useEffect} from 'react';
 
-import { Alert, StyleSheet, TouchableOpacity, View, Image } from "react-native";
+import {Alert, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 
-import QRCodeScanner, { Event } from "react-native-qrcode-scanner";
-import { i18n } from "../../../core/i18n";
-import { routes } from "../../../core/navigation/routes";
-import { Colors } from "../../../core/theme/colors";
-import { transactions } from "../translations";
-import { Screen } from "../../../core/layout/Screen";
-import { FullHeightView } from "../../../core/layout/FullHeightView";
-import { actionIcons } from "../../../assets/icons";
-import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
+import {i18n} from '../../../core/i18n';
+import {routes} from '../../../core/navigation/routes';
+import {Colors} from '../../../core/theme/colors';
+import {transactions} from '../translations';
+import {Screen} from '../../../core/layout/Screen';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {actionIcons} from '../../../assets/icons';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
 import {
   getDeeplinkInfo,
   SupportedDeeplinkActions,
-} from "../../../core/utils/deeplink";
-import { useNavigation } from "@react-navigation/native";
+} from '../../../core/utils/deeplink';
+import {useNavigation} from '@react-navigation/native';
+import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import {BarcodeFormat, useScanBarcodes} from 'vision-camera-code-scanner';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {SendStackParamList} from '../../auth/navigation/mainStack';
+
+type ScanQRCodeScreenNavProp = StackNavigationProp<SendStackParamList, 'Scan'>;
 
 const styles = StyleSheet.create({
   topView: {
@@ -32,22 +37,39 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ScanQRCodeScreen: React.FC = () => {
-  const navigation = useNavigation();
+export const ScanQRCodeScreen = () => {
+  const navigation = useNavigation<ScanQRCodeScreenNavProp>();
+  const devices = useCameraDevices();
+  const device = devices.back;
 
-  const onSuccess = (e: Event) => {
-    try {
-      const { action, decodedPayload } = getDeeplinkInfo(e.data);
+  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE], {
+    checkInverted: true,
+  });
 
-      if (action !== SupportedDeeplinkActions.Pay) {
-        return Alert.alert(`Unsupported Deeplink Action: ${action}`);
+  useEffect(() => {
+    if (barcodes && barcodes[0].displayValue) {
+      try {
+        const {action, decodedPayload} = getDeeplinkInfo(
+          barcodes[0].displayValue,
+        );
+
+        if (action !== SupportedDeeplinkActions.Pay) {
+          return Alert.alert(`Unsupported Deeplink Action: ${action}`);
+        }
+        navigation.navigate('Send', {payload: decodedPayload});
+      } catch (e) {
+        return Alert.alert('Unknown QR Code');
       }
-      // @ts-ignore
-      navigation.navigate(routes.send, { payload: decodedPayload });
-    } catch (e) {
-      return Alert.alert("Unknown QR Code");
     }
-  };
+  }, []);
+
+  if (device == null) {
+    return (
+      <Screen>
+        <View />
+      </Screen>
+    );
+  }
 
   return (
     <Screen>
@@ -56,35 +78,34 @@ export const ScanQRCodeScreen: React.FC = () => {
           <View
             style={{
               backgroundColor: Colors.BLUE_DARKER,
-              flexDirection: "row",
-            }}
-          >
+              flexDirection: 'row',
+            }}>
             <TouchableOpacity
               style={{
-                flexDirection: "row",
-                position: "absolute",
+                flexDirection: 'row',
+                position: 'absolute',
                 zIndex: 1,
                 left: 10,
                 top: 10,
               }}
-              onPress={() => navigation.goBack()}
-            >
+              onPress={() => navigation.goBack()}>
               <Image
                 source={actionIcons.chevronLeft}
-                style={{ width: 30, height: 30 }}
+                style={{width: 30, height: 30}}
               />
             </TouchableOpacity>
-            <View style={{ flex: 1, alignItems: "center", margin: 10 }}>
+            <View style={{flex: 1, alignItems: 'center', margin: 10}}>
               <HeaderTitle>
                 {i18n.t(transactions.screens.scan.title)}
               </HeaderTitle>
             </View>
           </View>
-          <QRCodeScanner
-            topViewStyle={styles.topView}
-            bottomViewStyle={styles.topView}
-            onRead={onSuccess}
-            showMarker
+          <Camera
+            style={StyleSheet.absoluteFill}
+            device={device}
+            isActive={true}
+            frameProcessor={frameProcessor}
+            frameProcessorFps={5}
           />
         </View>
       </FullHeightView>

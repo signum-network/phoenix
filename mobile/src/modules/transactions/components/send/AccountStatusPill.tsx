@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "../../../../core/components/base/Text";
-import { i18n } from "../../../../core/i18n";
-import { Colors } from "../../../../core/theme/colors";
-import { FontSizes } from "../../../../core/theme/sizes";
-import { RecipientType, RecipientValidationStatus } from "../../store/utils";
-import { transactions } from "../../translations";
+import React, {useState, useRef, useEffect} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Text} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {Colors} from '../../../../core/theme/colors';
+import {FontSizes} from '../../../../core/theme/sizes';
+import {RecipientType, RecipientValidationStatus} from '../../store/utils';
+import {transactions} from '../../translations';
 
 interface Props {
   status: RecipientValidationStatus;
@@ -37,11 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const AccountStatusPill: React.FC<Props> = ({
-  status,
-  type,
-  address,
-}) => {
+export const AccountStatusPill: React.FC<Props> = ({status, type, address}) => {
   const timeoutRef = useRef<number>();
   const [expanded, setExpanded] = useState(false);
 
@@ -70,7 +66,7 @@ export const AccountStatusPill: React.FC<Props> = ({
       case RecipientValidationStatus.ZIL_OUTAGE:
         return i18n.t(transactions.screens.send.zilOutage);
       default:
-        return "";
+        return '';
     }
   };
 
@@ -105,8 +101,7 @@ export const AccountStatusPill: React.FC<Props> = ({
   return (
     <TouchableOpacity
       onPress={handleTap}
-      style={[styles.wrapper, getBackgroundColor()]}
-    >
+      style={[styles.wrapper, getBackgroundColor()]}>
       <Text size={FontSizes.SMALLER} color={getTextColor()}>
         {getLabelText()}
       </Text>

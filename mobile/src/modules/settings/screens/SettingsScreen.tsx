@@ -1,48 +1,53 @@
-import { translations } from "i18n-js";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { StyleSheet, View, Image } from "react-native";
-import VersionNumber from "react-native-version-number";
-import { NavigationInjectedProps } from "react-navigation";
-import { BSelect, SelectItem } from "../../../core/components/base/BSelect";
-import { Button, ButtonThemes } from "../../../core/components/base/Button";
-import { BCheckbox } from "../../../core/components/base/BCheckbox";
-import { Text } from "../../../core/components/base/Text";
-import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
-import { i18n } from "../../../core/i18n";
-import { InjectedReduxProps } from "../../../core/interfaces";
-import { FullHeightView } from "../../../core/layout/FullHeightView";
-import { Screen } from "../../../core/layout/Screen";
-import { routes } from "../../../core/navigation/routes";
-import { AppReduxState } from "../../../core/store/app/reducer";
-import { Colors } from "../../../core/theme/colors";
-import { FontSizes, Sizes } from "../../../core/theme/sizes";
-import { resetAuthState } from "../../auth/store/actions";
-import { AuthReduxState } from "../../auth/store/reducer";
-import { settings } from "../translations";
-import { autoSelectNode, setNode } from "../../../core/store/app/actions";
-import { defaultSettings } from "../../../core/environment";
-import { useNavigation } from "@react-navigation/native";
+import React, {useState} from 'react';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {StyleSheet, View, Image} from 'react-native';
+import VersionNumber from 'react-native-version-number';
+import {BSelect, SelectItem} from '../../../core/components/base/BSelect';
+import {Button, ButtonThemes} from '../../../core/components/base/Button';
+import {BCheckbox} from '../../../core/components/base/BCheckbox';
+import {Text} from '../../../core/components/base/Text';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {AppReduxState} from '../../../core/store/app/reducer';
+import {Colors} from '../../../core/theme/colors';
+import {FontSizes, Sizes} from '../../../core/theme/sizes';
+import {resetAuthState} from '../../auth/store/actions';
+import {AuthReduxState} from '../../auth/store/reducer';
+import {settings} from '../translations';
+import {autoSelectNode, setNode} from '../../../core/store/app/actions';
+import {defaultSettings} from '../../../core/environment';
+import {useNavigation} from '@react-navigation/native';
 import {
   selectCurrentNode,
   selectIsAutomaticNodeSelection,
-} from "../../../core/store/app/selectors";
-import { SwitchItem } from "../../../core/components/base/SwitchItem";
-import { logos } from "../../../assets/icons";
-import { ResetModal } from "../../../core/components/modals/ResetModal";
+} from '../../../core/store/app/selectors';
+import {SwitchItem} from '../../../core/components/base/SwitchItem';
+import {logos} from '../../../assets/icons';
+import {ResetModal} from '../../../core/components/modals/ResetModal';
+import {RootStackParamList} from '../../auth/navigation/mainStack';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {ApplicationState} from '../../../core/store/initialState';
 
-interface IProps extends InjectedReduxProps {
+type SettingsScreenNavProp = StackNavigationProp<
+  RootStackParamList,
+  'Settings'
+>;
+
+type Props = {
   auth: AuthReduxState;
   app: AppReduxState;
-}
-
-type Props = IProps & NavigationInjectedProps;
+  navigation: SettingsScreenNavProp;
+};
 
 const styles = StyleSheet.create({
   container: {
-    height: "90%",
-    display: "flex",
-    justifyContent: "center",
+    height: '90%',
+    display: 'flex',
+    justifyContent: 'center',
   },
   settingsZone: {
     flex: 4,
@@ -55,25 +60,25 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   dangerZone: {
-    position: "relative",
+    position: 'relative',
     flex: 1,
     padding: Sizes.MEDIUM,
     borderRadius: 4,
     borderColor: Colors.WHITE,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderWidth: 1,
   },
   dangerZoneLabel: {
-    position: "absolute",
+    position: 'absolute',
     backgroundColor: Colors.BLUE,
     top: -10,
     left: 8,
     paddingHorizontal: 2,
   },
   flexBottom: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   signumjs: {
     height: 40,
@@ -82,9 +87,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SettingsScreen: React.FC<Props> = () => {
+const Settings = ({}: Props) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<SettingsScreenNavProp>();
   const [erasePromptVisible, setErasePromptVisible] = useState(false);
   const [showTestnetNodes, setShowTestnetNodes] = useState(false);
   const currentNode = useSelector(selectCurrentNode);
@@ -96,17 +101,8 @@ export const SettingsScreen: React.FC<Props> = () => {
 
   const confirmErase = () => {
     dispatch(resetAuthState());
-    navigation.navigate(routes.home);
+    navigation.navigate('Accounts');
     toggleConfirmDeletePrompt();
-  };
-
-  const getLocales = () => {
-    return Object.keys(translations).map((locale) => {
-      return {
-        value: locale,
-        label: locale,
-      };
-    });
   };
 
   const handleNodeSelect = (node: string) => {
@@ -120,13 +116,18 @@ export const SettingsScreen: React.FC<Props> = () => {
     dispatch(autoSelectNode(automatic));
   };
 
-  const getNodeList = () =>{
-    const nodeHosts: String[] = defaultSettings.reliableNodeHosts.concat(showTestnetNodes ? defaultSettings.testnetNodeHosts: [])
-    return nodeHosts.map((n) => ({
-      label: n,
-      value: n,
-    } as SelectItem<string>));
-  }
+  const getNodeList = () => {
+    const nodeHosts: String[] = defaultSettings.reliableNodeHosts.concat(
+      showTestnetNodes ? defaultSettings.testnetNodeHosts : [],
+    );
+    return nodeHosts.map(
+      n =>
+        ({
+          label: n,
+          value: n,
+        } as SelectItem<string>),
+    );
+  };
   return (
     <Screen>
       <FullHeightView>
@@ -154,9 +155,8 @@ export const SettingsScreen: React.FC<Props> = () => {
             <BCheckbox
               label={i18n.t(settings.screens.settings.showTestnetNodes)}
               value={showTestnetNodes}
-              onCheck={(checked) => setShowTestnetNodes(checked)}
+              onCheck={checked => setShowTestnetNodes(checked)}
             />
-
           </View>
           <View style={styles.dangerZone}>
             <View style={styles.dangerZoneLabel}>
@@ -166,8 +166,7 @@ export const SettingsScreen: React.FC<Props> = () => {
             </View>
             <Button
               theme={ButtonThemes.DANGER}
-              onPress={toggleConfirmDeletePrompt}
-            >
+              onPress={toggleConfirmDeletePrompt}>
               {i18n.t(settings.screens.settings.erase)}
             </Button>
           </View>
@@ -199,3 +198,12 @@ export const SettingsScreen: React.FC<Props> = () => {
     </Screen>
   );
 };
+
+function mapStateToProps(state: ApplicationState) {
+  return {
+    auth: state.auth,
+    app: state.app,
+  };
+}
+
+export const SettingsScreen = connect(mapStateToProps)(Settings);

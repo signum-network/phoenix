@@ -1,11 +1,17 @@
 module.exports = {
-  presets: [
-    "module:metro-react-native-babel-preset",
-    "module:react-native-dotenv",
+  plugins: [
+    [
+      'react-native-reanimated/plugin',
+      {
+        globals: ['__scanCodes'],
+      },
+    ],
+    'module:react-native-dotenv',
   ],
+  presets: ['module:metro-react-native-babel-preset'],
   env: {
     production: {
-      plugins: ["transform-remove-console"],
+      plugins: ['transform-remove-console'],
     },
   },
 };

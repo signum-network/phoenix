@@ -1,9 +1,9 @@
-import { AsyncStorage } from "react-native";
-import { UserSettings } from "../interfaces";
-import { defaultSettings } from "../environment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {UserSettings} from '../interfaces';
+import {defaultSettings} from '../environment';
 
 export enum AsyncStorageKeys {
-  userSettings = "USER_SETTINGS",
+  userSettings = 'USER_SETTINGS',
 }
 
 const DefaultUserSettings: UserSettings = {
@@ -29,12 +29,12 @@ export async function resetUserSettings(): Promise<UserSettings> {
 }
 
 export async function updateUserSettings(
-  userSettings: UserSettings
+  userSettings: UserSettings,
 ): Promise<UserSettings> {
   const currentSettings = await fetchUserSettings();
-  const updatedSettings = { ...currentSettings, ...userSettings };
+  const updatedSettings = {...currentSettings, ...userSettings};
   await save(AsyncStorageKeys.userSettings, updatedSettings);
-  console.log("updated user settings", updatedSettings);
+  console.log('updated user settings', updatedSettings);
   return updatedSettings;
 }
 
