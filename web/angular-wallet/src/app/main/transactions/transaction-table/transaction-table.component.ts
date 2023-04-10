@@ -91,7 +91,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     }
 
     return this.isMultiOutPayment(transaction)
-      ? getRecipientsAmount(this.account.account, transaction).toString(10)
+      ? getRecipientsAmount(this.account.account, transaction).getSigna()
       : Amount.fromPlanck(transaction.amountNQT).getSigna();
   }
 

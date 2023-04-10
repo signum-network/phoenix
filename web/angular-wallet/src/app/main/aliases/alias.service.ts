@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {
   TransactionId,
-  Alias, AliasList, Ledger
+  Alias, AliasList
 } from '@signumjs/core';
 import {Keys} from '@signumjs/crypto';
 import {AccountService} from 'app/setup/account/account.service';
@@ -9,7 +9,7 @@ import {StoreService} from 'app/store/store.service';
 import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
 import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
 import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
-import { LedgerService } from "../../ledger.service";
+import { LedgerService } from '../../ledger.service';
 
 interface SetAliasRequest {
   aliasName: string;
@@ -69,7 +69,7 @@ export class AliasService {
   }
 
   public getAliases(accountId: string): Promise<AliasList> {
-      return this.ledgerService.ledger.account.getAliases({ accountId });
+      return this.ledgerService.ledger.alias.getAliases({ accountId });
   }
 
   public getAliasesDirectOffers(accountId: string): Promise<AliasList> {
@@ -79,7 +79,7 @@ export class AliasService {
 
   public setAlias({ aliasName, aliasURI, feeNQT, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = getPrivateSigningKey(pin, keys);
-    return this.ledgerService.ledger.account.setAlias({
+    return this.ledgerService.ledger.alias.setAlias({
       aliasName,
       aliasURI,
       feePlanck: feeNQT,

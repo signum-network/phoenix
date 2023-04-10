@@ -137,6 +137,10 @@ export class CellValueMapper {
   private getMessageAttachment(transaction: Transaction): CellValue {
     const {type, subtype, attachment} = transaction;
 
+    if(!attachment){
+      return new CellValue('');
+    }
+
     if (
       type === TransactionType.AT &&
       subtype === TransactionSmartContractSubtype.SmartContractPayment
