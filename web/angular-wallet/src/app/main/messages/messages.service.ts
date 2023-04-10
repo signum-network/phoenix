@@ -154,7 +154,8 @@ export class MessagesService implements Resolve<any> {
       const allMessages =
         pending.unconfirmedTransactions.filter((t: Transaction) =>
           t.type === TransactionType.Arbitrary &&
-          t.subtype === TransactionArbitrarySubtype.Message
+          t.subtype === TransactionArbitrarySubtype.Message &&
+          t.attachment !== undefined
         ).concat(confirmed.transactions);
 
       allMessages.sort((a, b) => a.timestamp > b.timestamp ? -1 : 1);

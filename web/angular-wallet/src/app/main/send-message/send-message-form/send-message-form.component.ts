@@ -134,7 +134,6 @@ export class SendMessageFormComponent extends UnsubscribeOnDestroy implements On
         this.notifierService.notify('error', this.i18nService.getTranslation('error_send_message'));
       }
     } finally {
-      this.immutable = false;
       this.isSending = false;
     }
   }

@@ -23,7 +23,7 @@ function getRelativeTransactionAmount(accountId: string, transaction: Transactio
     return parseFloat(amount.getSigna());
   }
 
-  return getRecipientsAmount(accountId, transaction);
+  return Number(getRecipientsAmount(accountId, transaction).getSigna());
 }
 
 
