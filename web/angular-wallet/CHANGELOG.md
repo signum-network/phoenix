@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.0-beta.3
+
+### Bug Fixes
+
+- Fixed Burning Verification Error (#1743)
+- Fixed issue with undefined attachments (#1739)
+- Fixed Immutable issue on deeplink payment (#1518)
+
+
 ## 1.5.0-beta.2
 
 ### Feature
